@@ -6,6 +6,5 @@ int main(int argc, char argv[])
 {
 	printf("Hola");
 	getchar();
-	//Mikel
 	return 0;
 }
