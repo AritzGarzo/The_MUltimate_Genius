@@ -6,6 +6,6 @@ int main(int argc, char argv[])
 {
 	printf("Hola loco");
 	getchar();
-	//Mikel
+	//Jorge
 	return 0;
 }
