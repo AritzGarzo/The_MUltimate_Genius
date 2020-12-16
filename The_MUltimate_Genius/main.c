@@ -8,6 +8,7 @@
 #include <string.h>
 
 
+
 #define SOINU_KOP 5
 char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
                         ".\\sound\\BugleCall.wav",  ".\\sound\\terminator.wav" };
