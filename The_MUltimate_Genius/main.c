@@ -6,7 +6,8 @@
 #include "imagen.h"
 #include <stdio.h>
 #include <string.h>
-//Aritz Garzo 
+//Aritz Garzo
+//no me toqueis la rama
 
 
 #define SOINU_KOP 5
