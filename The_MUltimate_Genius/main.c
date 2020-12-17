@@ -51,8 +51,9 @@ int main(int argc, char* str[])
     audioTerminate();
     sgItxi();*/
     //
+
     mu_hasieratu();
-    while (irten != 1)
+    do 
     {
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
@@ -71,21 +72,15 @@ int main(int argc, char* str[])
                 fondoPantaila(".\\img\\menu.bmp");
             }
             break;
-
+        case GERTAERA_IRTEN:
+                irten = 1;
+                break;
         default:
             break;
         }
-    }
+    } while (irten != 1);
     audioTerminate();
     sgItxi();
-
-
-
-
-
-
-
-
     return 0;
 }
 
@@ -115,25 +110,6 @@ int hasieratu(void)
         fprintf(stderr, "Unable to load music %s\n", SDL_GetError());
         return 0;
     }
-    textuaGaitu();
-    pantailaGarbitu();
-
-    gureGauzak.idIrudi = irudiaKargatu(".\\img\\hexagono.bmp");
-
-    textuaIdatzi(10, 20, "Return: musika ON/OFF");
-    textuaIdatzi(10, 40, "[0,4]:  soinu bat");
-    textuaIdatzi(10, 60, "ESC:    amaitzeko");
-    textuaIdatzi(10, 80, "arratoia hexagonoan: amaitu");
-    sprintf(str, "%lf", d);
-    textuaIdatzi(10, 100, str);
-    irudiaMugitu(gureGauzak.idIrudi, 300, 200);
-    irudiakMarraztu();
-    arkatzKoloreaEzarri(0xFF, 0xFF, 0xFF);
-    zuzenaMarraztu(0, SCREEN_HEIGHT * 2 / 3, SCREEN_WIDTH, SCREEN_HEIGHT * 2 / 3);
-    zirkuluaMarraztu(500, 400, 10);
-    pantailaBerriztu();
-    ;
-
 
     return 0;
 }
@@ -196,11 +172,15 @@ int jolastu(void)
         case TECLA_a:
             strcat(esaldia, "A");//esaldia = I
             break;
+        case GERTAERA_IRTEN:
+            irten = 1;
+            break;
         default:
             break;
         }
         if (strcmp(esaldia, "STAT") == 0)
         {
+            strcpy(esaldia,"");
             irten = 0;
         }
     }
@@ -225,6 +205,9 @@ int kontrolak(void)
         case SAGU_BOTOIA_EZKERRA:
             pos = saguarenPosizioa();
             if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) irten = 0;//irten
+            break;
+        case GERTAERA_IRTEN:
+                irten = 1;
             break;
         default:
             break;
