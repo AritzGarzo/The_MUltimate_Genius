@@ -6,7 +6,7 @@
 #include "imagen.h"
 #include <stdio.h>
 #include <string.h>
-//Garzo
+//Aritz Garzo 
 
 
 #define SOINU_KOP 5
