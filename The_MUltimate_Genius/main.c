@@ -6,7 +6,7 @@
 #include "imagen.h"
 #include <stdio.h>
 #include <string.h>
-
+//Dev2
 
 
 #define SOINU_KOP 5
