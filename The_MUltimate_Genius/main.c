@@ -6,7 +6,7 @@
 #include "imagen.h"
 #include <stdio.h>
 #include <string.h>
-//Txillu
+//Txillu kaixo
 
 
 #define SOINU_KOP 5
