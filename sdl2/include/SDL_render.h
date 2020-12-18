@@ -807,8 +807,8 @@ extern DECLSPEC int SDLCALL SDL_RenderFillRects(SDL_Renderer * renderer,
  *
  *  \return 0 on success, or -1 on error
  */
-extern DECLSPEC int SDLCALL SDL_RenderCopy(SDL_Renderer * renderer,
-                                           SDL_Texture * texture,
+extern DECLSPEC int SDLCALL SDL_RenderCopy(SDL_Renderer * renderer, 
+                                           SDL_Texture* texture,
                                            const SDL_Rect * srcrect,
                                            const SDL_Rect * dstrect);
 
