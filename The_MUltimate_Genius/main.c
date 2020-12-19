@@ -22,7 +22,7 @@ void fondoPantaila(char* str);
 int jolastu(void);
 int kontrolak(void);
 int profila(void);
-void idazkeraInteraktiboaAhalbidetu(int ebentu, char str, int x, int y);
+void idazkeraInteraktiboaAhalbidetu(int ebentu, char str[], int x, int y);
 
 int main(int argc, char* str[])
 {
@@ -32,14 +32,14 @@ int main(int argc, char* str[])
 
     //
     hasieratu();
-    while (irten != 1)
+    while (irten != -1)
     {
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case SAGU_BOTOIA_EZKERRA:
             pos = saguarenPosizioa();
-            if ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)) irten = 1;//irten
+            if ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)) irten = -1;//irten
             else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 386 && pos.y < 386 + 68))//kontrolak
             {
                 irten = kontrolak();
@@ -69,9 +69,6 @@ int main(int argc, char* str[])
 //
 int hasieratu(void)
 {
-    int i;
-    char str[128];
-    double d = 7.3;
 
     if (sgHasieratu() == -1)
     {
@@ -398,34 +395,38 @@ int profila(void)
     POSIZIOA pos;
     amaitu = 0;
     ebentu = ebentuaJasoGertatuBada();
-    fondoPantaila(".\\img\\profila.bmp");
     do
     {
         pantailaGarbitu();
+        fondoPantaila(".\\img\\profila.bmp");
         pos = saguarenPosizioa();
-        //si clicka en izena
-        if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))
+        if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))//izena
         {
             idazkeraInteraktiboaAhalbidetu(ebentu, esaldia, 172 + 13, 166 + 14);
         }
         //si clicka en gradua
-        /*le aparece una especie de lista*/
+        /*le aparece una especie de lista
+        if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88))
+        */
         //
         //si clicka en una imagen
-        /*se ilumina*/
+        /*se ilumina
+        if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))
+        if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))
+        */
         //
-        //si clicka en jarraitu
-        /*pasa a jugar (amaitu = 1)*/
-        //
-        //si clicka en atzera
-        /*se va a tomar por qlo (amaitu = -1)*/
-        //
+        //jarraitu
+        if ((pos.x >= 1077 && pos.x <= 1077 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = 1;
+        //atzera
+        if ((pos.x >= 26 && pos.x <= 26 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = -1;
+        
+        
         pantailaBerriztu();
     } while (amaitu == 0);
-
+    return amaitu;
 }
 
-void idazkeraInteraktiboaAhalbidetu(int ebentu, char str, int x, int y)
+void idazkeraInteraktiboaAhalbidetu(int ebentu, char str[], int x, int y)
 {
     int amaitu;
     amaitu = 0;

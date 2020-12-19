@@ -13,4 +13,34 @@ typedef struct
 	MOTA mota;
 }JOKO_ELEMENTUA;
 
+typedef struct
+{
+	float notaFinala;
+	char izena[128];
+	/*
+	* 
+	* 
+	* GALDERAK ETA 
+	* 
+	* 
+	*/
+
+}IKASGAI;
+
+typedef struct
+{
+	int iKop;//ikasgai 
+	char izena[128];
+	IKASGAI* ikasgaiak;
+}GRADUA;
+
+typedef struct
+{
+	int id;//irudia
+	int id_2d;//mugituko den irudia
+	char izena[128];
+	GRADUA gradua;
+	POSIZIOA pos;
+}JOKALARIA;
+
 #endif
