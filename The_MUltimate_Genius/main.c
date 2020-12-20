@@ -150,7 +150,7 @@ int mu_hasieratu(void)
     }
     audioInit();
     pantailaGarbitu();
-    fondoPantaila(".\\img\\menu.bmp");
+    fondoPantaila(".\\img\\jolastu.bmp");
     /*gureGauzak.idIrudi = irudiaKargatu(".\\img\\menu.bmp");
     irudiaMugitu(gureGauzak.idIrudi, 0, 0);
     irudiakMarraztu();*/
