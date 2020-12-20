@@ -26,7 +26,6 @@ int profila(void);
 int etxea(void);
 int uni(void);
 int galderak(void);
-FILE* jokoaFitx_hasieratu(char izena[]);
 
 int main(int argc, char* str[])
 {
@@ -106,13 +105,6 @@ int jolastu(void)
 {
     int irten;
     //POSIZIOA pos;
-    /*JOKALARIA pertsonaia;
-    FILE* fitx;
-    //
-    strcpy(pertsonaia.izena, "Furriko Morales");
-    pertsonaia.izena[strlen(pertsonaia.izena)] = '\0';
-    //
-    fitx = jokoaFitx_hasieratu(pertsonaia.izena);*/
     irten = 0;
     //
     //irten = -1|kanpora
@@ -176,6 +168,7 @@ int profila(void)
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
             pos = saguarenPosizioa();
+            //si clicka en izena
             /*if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))//izena
             {
                 idazkeraInteraktiboaAhalbidetu
@@ -273,19 +266,6 @@ int galderak(void)
     return jarraitu;
 }
 
-FILE* jokoaFitx_hasieratu(char izena[])
-{
-    char karpeta[128];
-    FILE* fitx;
-    //
-    strcpy(karpeta, izena);
-    strcat(karpeta, ".dat");
-    karpeta[strlen(karpeta)] = '\0';
-    //
-    fitx = fopen(karpeta, "rb");
-
-    return fitx;
-}
 
 /*
 if ((gureGauzak.idSounds[i] = loadSound(soundFiles[i])) == -1)
