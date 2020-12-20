@@ -4,72 +4,62 @@
 #include "soinua.h"
 #include "text.h"
 #include "imagen.h"
+#include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
-//Mikel
-
-
-#define SOINU_KOP 5
-char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
-                        ".\\sound\\BugleCall.wav",  ".\\sound\\terminator.wav" };
+//Dev2
 
 typedef struct S_GURE_GAUZAK
 {
-    int idSounds[SOINU_KOP];
     int idIrudi;
 }GURE_GAUZAK;
 
 GURE_GAUZAK gureGauzak;
 
-int hasieratu(void);
 //
-int mu_hasieratu(void);
-void fondoPantaila(char* str);
+int hasieratu(void);
+int fondoPantaila(char* str);
 int jolastu(void);
 int kontrolak(void);
+int profila(void);
+int etxea(void);
+int uni(void);
+int galderak(void);
 
 int main(int argc, char* str[])
 {
-    int ebentu = 0, irten = 0;
-    char esaldia[] = "";
+    int fondoa, ebentu = 0, irten = 0;
     POSIZIOA pos;
-
-    /*hasieratu();
-    while(!irten)
-    {
-      ebentu = ebentuaJasoGertatuBada();
-      if (ebentu == SAGU_BOTOIA_EZKERRA)
-      {
-        pos=saguarenPosizioa();
-        if ((pos.x > 300) && (pos.x < 300 + 40) && (pos.y>200) && (pos.y < 200 + 38)) irten = 1;
-      }
-      if (ebentu == TECLA_ESCAPE) irten = 1;
-      else if((ebentu >= TECLA_0) &&(ebentu < TECLA_0+SOINU_KOP))
-        playSound(gureGauzak.idSounds[ebentu - TECLA_0]);
-      else if (ebentu == TECLA_RETURN) toggleMusic();
-    }
-    audioTerminate();
-    sgItxi();*/
     //
-    mu_hasieratu();
-    while (irten != 1)
+    fondoa = hasieratu();
+    while (irten != -1)
     {
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case SAGU_BOTOIA_EZKERRA:
+            irudiaKendu(fondoa);
             pos = saguarenPosizioa();
-            if ((pos.x > 18) && (pos.x < 18 + 175) && (pos.y > 650) && (pos.y < 650 + 50)) irten = 1;//irten
-            else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 386) && (pos.y < 386 + 68))
+            if ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)) irten = -1;//irten
+            else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 386 && pos.y < 386 + 68))//kontrolak
             {
                 irten = kontrolak();
-                fondoPantaila(".\\img\\menu.bmp");
             }
-            else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 293) && (pos.y < 293 + 68))
+            else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 293 && pos.y < 293 + 68))//jolastu
             {
-                irten = jolastu();
-                fondoPantaila(".\\img\\menu.bmp");
+                fondoa = fondoPantaila(".\\img\\menu.bmp");
+                //no tiene ningun juego cargado
+                if (irten == 0)
+                {
+                    irten = profila();
+                }
+                //
+                if (irten == 1)
+                {
+                    irten = jolastu();
+                }
             }
+            fondoa = fondoPantaila(".\\img\\menu.bmp");
             break;
 
         default:
@@ -79,71 +69,13 @@ int main(int argc, char* str[])
     audioTerminate();
     sgItxi();
 
-
-
-
-
-
-
-
     return 0;
 }
 
-
+//
 int hasieratu(void)
 {
-    int i;
-    char str[128];
-    double d = 7.3;
-
-    if (sgHasieratu() == -1)
-    {
-        fprintf(stderr, "Unable to set 640x480 video: %s\n", SDL_GetError());
-        return 0;
-    }
-    audioInit();
-    for (i = 0; i < SOINU_KOP; i++)
-    {
-        if ((gureGauzak.idSounds[i] = loadSound(soundFiles[i])) == -1)
-        {
-            fprintf(stderr, "Unable to load sound %s\n", SDL_GetError());
-            return 0;
-        }
-    }
-    if (!loadTheMusic(".\\sound\\beat.wav"))
-    {
-        fprintf(stderr, "Unable to load music %s\n", SDL_GetError());
-        return 0;
-    }
-    textuaGaitu();
-    pantailaGarbitu();
-
-    gureGauzak.idIrudi = irudiaKargatu(".\\img\\hexagono.bmp");
-
-    textuaIdatzi(10, 20, "Return: musika ON/OFF");
-    textuaIdatzi(10, 40, "[0,4]:  soinu bat");
-    textuaIdatzi(10, 60, "ESC:    amaitzeko");
-    textuaIdatzi(10, 80, "arratoia hexagonoan: amaitu");
-    sprintf(str, "%lf", d);
-    textuaIdatzi(10, 100, str);
-    irudiaMugitu(gureGauzak.idIrudi, 300, 200);
-    irudiakMarraztu();
-    arkatzKoloreaEzarri(0xFF, 0xFF, 0xFF);
-    zuzenaMarraztu(0, SCREEN_HEIGHT * 2 / 3, SCREEN_WIDTH, SCREEN_HEIGHT * 2 / 3);
-    zirkuluaMarraztu(500, 400, 10);
-    pantailaBerriztu();
-    ;
-
-
-    return 0;
-}
-//
-int mu_hasieratu(void)
-{
-    int i;
-    char str[128];
-    double d = 7.3;
-
+    int id;
     if (sgHasieratu() == -1)
     {
         fprintf(stderr, "Unable to set 1280x720 video: %s\n", SDL_GetError());
@@ -151,16 +83,13 @@ int mu_hasieratu(void)
     }
     audioInit();
     pantailaGarbitu();
-    fondoPantaila(".\\img\\menu.bmp");
-    /*gureGauzak.idIrudi = irudiaKargatu(".\\img\\menu.bmp");
-    irudiaMugitu(gureGauzak.idIrudi, 0, 0);
-    irudiakMarraztu();*/
+    id = fondoPantaila(".\\img\\menu.bmp");
     pantailaBerriztu();
 
-    return 0;
+    return id;
 }
 
-void fondoPantaila(char* str)
+int fondoPantaila(char* str)
 {
     int id;
     pantailaGarbitu();
@@ -168,67 +97,185 @@ void fondoPantaila(char* str)
     irudiaMugitu(id, 0, 0);
     irudiakMarraztu();
     pantailaBerriztu();
+    return id;
 }
 
 int jolastu(void)
 {
-    int irten, ebentu;
-    static char esaldia[16] = "";
+    int irten;
     //POSIZIOA pos;
-    irten = 3;
-    fondoPantaila(".\\img\\jolastu.bmp");
-    pantailaGarbitu();
+    irten = 0;
+    //
+    //irten = -1|kanpora
+    //irten = 0|etxea
+    //irten = 1|unibertsitatea
 
-    while (irten == 3)
+    while (irten != -1)
     {
-        ebentu = ebentuaJasoGertatuBada();
-        switch (ebentu)
+        //
+        if (irten == 0)
         {
-        case TECLA_s:
-            if (irten == 3)
-            {
-                strcat(esaldia, "S");//esaldia = S
-            }
-            break;
-        case TECLA_t:
-            strcat(esaldia, "T");//esaldia = U
-            break;
-        case TECLA_a:
-            strcat(esaldia, "A");//esaldia = I
-            break;
-        default:
-            break;
+            irten = etxea();
         }
-        if (strcmp(esaldia, "STAT") == 0)
+        if (irten == 1)
         {
-            irten = 0;
+            irten = uni();
         }
+        //
     }
-    //system("pause");
-
-    pantailaBerriztu();
+    //
     return irten;
 }
 
 int kontrolak(void)
 {
-    int irten, ebentu;
+    int fondoa, jarraitu, ebentu;
     POSIZIOA pos;
-    irten = 2;
-    fondoPantaila(".\\img\\kontrolak.bmp");
-
-    while (irten == 2)
+    jarraitu = 1;
+    //
+    fondoa = fondoPantaila(".\\img\\kontrolak.bmp");
+    //
+    while (jarraitu == 1)
     {
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case SAGU_BOTOIA_EZKERRA:
             pos = saguarenPosizioa();
-            if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) irten = 0;//irten
+            if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) jarraitu = 0;//irten
             break;
         default:
             break;
         }
     }
-    return irten;
+    //
+    irudiaKendu(fondoa);
+    //
+    return jarraitu;
 }
+
+int profila(void)
+{
+    int fondoa, amaitu, ebentu;
+    //char esaldia[16];
+    POSIZIOA pos;
+    amaitu = -1;
+    fondoa = fondoPantaila(".\\img\\profila.bmp");
+    while (amaitu == -1)
+    {
+        ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == SAGU_BOTOIA_EZKERRA)
+        {
+            pos = saguarenPosizioa();
+            //si clicka en izena
+            /*if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))//izena
+            {
+                idazkeraInteraktiboaAhalbidetu
+            }*/
+            //si clicka en gradua
+            /*le aparece una especie de lista
+            if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88))
+            */
+            //
+            //si clicka en una imagen
+            /*se ilumina
+            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))
+            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))
+            */
+            //
+            //jarraitu
+            if ((pos.x >= 1077 && pos.x <= 1077 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = 1;
+            //atzera
+            if ((pos.x >= 880 && pos.x <= 880 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = 0;
+        }
+    }
+    //
+    irudiaKendu(fondoa);
+    //
+    return amaitu;
+}
+
+int etxea(void)
+{
+    int fondoa, jarraitu = 0, ebentu = 0;
+    POSIZIOA pos;
+    //
+    fondoa = fondoPantaila(".\\img\\etxea.bmp");
+    //
+    while (jarraitu == 0)//etxea den bitartean
+    {
+        ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == SAGU_BOTOIA_EZKERRA)
+        {
+            pos = saguarenPosizioa();
+            if ((pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244)) jarraitu = 1;//(busa)itzultzerakoan unibertsitatera bidaltzeko
+            if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57)) jarraitu = -1;//(ohea)itzultzerakoan kanpora bidaltzeko
+        }
+    }
+    //
+    irudiaKendu(fondoa);
+    return jarraitu;
+}
+
+int uni(void)
+{
+    int fondoa, jarraitu = 1, ebentu = 0;
+    POSIZIOA pos;
+    //
+    fondoa = fondoPantaila(".\\img\\uni.bmp");
+    //
+    while (jarraitu == 1)//unibertsitatea den bitartean
+    {
+        ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == SAGU_BOTOIA_EZKERRA)
+        {
+            pos = saguarenPosizioa();
+            if ((pos.x >= 1 && pos.x <= 1 + 51) && (pos.y >= 103 && pos.y <= 103 + 158))
+            {
+                jarraitu = galderak();//itzultzerakoan etxera bidaltzeko
+            }
+        }
+    }
+    //
+    irudiaKendu(fondoa);
+    //
+    return jarraitu;
+}
+
+int galderak(void)
+{
+    int fondoa, jarraitu = 1, ebentu = 0;
+    POSIZIOA pos;
+    pos = saguarenPosizioa();
+    //
+    fondoa = fondoPantaila(".\\img\\Preguntas.bmp");
+    //
+    textuaGaitu();
+    while (jarraitu == 1)//unibertsitatea den bitartean
+    {
+        pantailaGarbitu();
+        textuaIdatzi(20,20,"Furkolay Morales");
+        ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == SAGU_BOTOIA_EZKERRA)
+        {
+            pos = saguarenPosizioa();
+            if ((pos.x >= 657 && pos.x <= 657 + 600) && (pos.y >= 490 && pos.y <= 490 + 82)) jarraitu = 0;//itzultzerakoan etxera bidaltzeko
+        }
+        pantailaBerriztu();
+    }
+    //
+    irudiaKendu(fondoa);
+    //
+    return jarraitu;
+}
+
+
+/*
+if ((gureGauzak.idSounds[i] = loadSound(soundFiles[i])) == -1)
+        {
+            fprintf(stderr, "Unable to load sound %s\n", SDL_GetError());
+            return 0;
+        }
+        fprintf(stderr, "Unable to load music %s\n", SDL_GetError());
+        return 0;
+*/

@@ -3,5 +3,6 @@
 
 void textuaGaitu(void);
 void textuaIdatzi(int x, int y, char *str);
+void textuaDesgaitu(void);
 
 #endif
