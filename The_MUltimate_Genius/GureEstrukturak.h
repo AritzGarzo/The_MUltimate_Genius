@@ -18,11 +18,11 @@ typedef struct
 	float notaFinala;
 	char izena[128];
 	/*
-	* 
-	* 
-	* GALDERAK ETA 
-	* 
-	* 
+	* GALDERAK ETA
+	* separar por carpetas
+	* cada carpeta tenga el nombre de la asignatura
+	* dentro pregunta y su respuesta
+	* aparece pregunta y jugador decide (click)coordenadas
 	*/
 
 }IKASGAI;
@@ -36,8 +36,8 @@ typedef struct
 
 typedef struct
 {
-	int id;//irudia
-	int id_2d;//mugituko den irudia
+	int id;//irudia (las preguntas)
+	int id_2d;//mugituko den irudia (movimientos/animaciones)
 	char izena[128];
 	GRADUA gradua;
 	POSIZIOA pos;
