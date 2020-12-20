@@ -17,6 +17,7 @@ typedef struct
 {
 	float notaFinala;
 	char izena[128];
+	char karpeta[128];
 	/*
 	* GALDERAK ETA
 	* separar por carpetas
