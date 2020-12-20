@@ -251,14 +251,18 @@ int galderak(void)
     //
     fondoa = fondoPantaila(".\\img\\Preguntas.bmp");
     //
+    textuaGaitu();
     while (jarraitu == 1)//unibertsitatea den bitartean
     {
+        pantailaGarbitu();
+        textuaIdatzi(20,20,"Furkolay Morales");
         ebentu = ebentuaJasoGertatuBada();
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
             pos = saguarenPosizioa();
             if ((pos.x >= 657 && pos.x <= 657 + 600) && (pos.y >= 490 && pos.y <= 490 + 82)) jarraitu = 0;//itzultzerakoan etxera bidaltzeko
         }
+        pantailaBerriztu();
     }
     //
     irudiaKendu(fondoa);

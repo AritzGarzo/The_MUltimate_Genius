@@ -28,6 +28,7 @@ void textuaIdatzi(int x, int y, char* str)
 
 	if (font == 0) return;
 	gRenderer = getRenderer();
+	irudiakMarraztu();
 	textSurface = TTF_RenderText_Solid(font, str, textColor);
 	mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
 	src.x = 0; dst.x = x;
