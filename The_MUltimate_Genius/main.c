@@ -7,7 +7,8 @@
 #include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
-//Mikel
+#include <Windows.h>
+//Dev
 
 typedef struct S_GURE_GAUZAK
 {
