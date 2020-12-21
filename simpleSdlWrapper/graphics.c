@@ -26,12 +26,14 @@ int sgHasieratu()
     return -1;
   }
   atexit(SDL_Quit);
-  window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("The Multimate Genius", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL)
   {
     fprintf(stderr, "Ezin lehioa sortu: %s\n", SDL_GetError());
     return -1;
   }
+  SDL_Surface* ikonoa = SDL_LoadBMP(".\\img\\logo.bmp");
+  SDL_SetWindowIcon(window, ikonoa);
   gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   TTF_Init();
   atexit(TTF_Quit);
