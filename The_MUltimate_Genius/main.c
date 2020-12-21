@@ -174,7 +174,7 @@ void fondoPantaila(char* str)
 
 int jolastu(void)
 {
-    int irten, ebentu;
+    int irten, ebentu, x, y;
     static char esaldia[16] = "";
     //POSIZIOA pos;
     JOKALARIA sprite;
@@ -184,30 +184,33 @@ int jolastu(void)
     pantailaGarbitu();
 
     sprite.id_2d = irudiaKargatu(".\\img\\PersonajeChicoVF.bmp");
-    irudiaMugitu(sprite.id_2d, 520, 550);
-    irudiakMarraztu();
-
+    x = 520; y = 550;
     //declarar sprite dibujarlo || id_2 = irudiakargatu("  kvsvubj"); --> irudiamugitu(id_2, 12, 15); -->irudiakmarraztu();
     while (irten == 3)
     {
         pantailaGarbitu();
+        irudiaMugitu(sprite.id_2d, x, y);
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case TECLA_s:
            //sprite mover adelante
+            y++;
             break;
 
         case TECLA_w:
            //sprite mover adelante
+            y--;
             break;
 
         case TECLA_d:
            //sprite mover adelante
+            x++;
             break;    
 
         case TECLA_a:
            //mover
+            x--;
             break;
 
         case TECLA_t:
@@ -216,6 +219,7 @@ int jolastu(void)
         default:
             break;
         }
+        irudiakMarraztu();
         pantailaBerriztu();
     }
     //system("pause");
