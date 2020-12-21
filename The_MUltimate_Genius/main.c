@@ -25,7 +25,7 @@ int kontrolak(void);
 int profila(void);
 int etxea(void);
 int uni(void);
-int galderak(void);
+int galderak(int orden);
 
 int main(int argc, char* str[])
 {
@@ -233,7 +233,23 @@ int uni(void)
             pos = saguarenPosizioa();
             if ((pos.x >= 1 && pos.x <= 1 + 51) && (pos.y >= 103 && pos.y <= 103 + 158))
             {
-                jarraitu = galderak();//itzultzerakoan etxera bidaltzeko
+                jarraitu = galderak(1);//itzultzerakoan etxera bidaltzeko
+            }
+            if ((pos.x >= 1 && pos.x <= 1 + 51) && (pos.y >= 433 && pos.y <= 433 + 166))
+            {
+                jarraitu = galderak(2);//itzultzerakoan etxera bidaltzeko
+            }
+            if ((pos.x >= 1234 && pos.x <= 1234 + 45) && (pos.y >= 5 && pos.y <= 5 + 176))
+            {
+                jarraitu = galderak(3);//itzultzerakoan etxera bidaltzeko
+            }
+            if ((pos.x >= 1233 && pos.x <= 1233 + 44) && (pos.y >= 289 && pos.y <= 289 + 160))
+            {
+                jarraitu = galderak(4);//itzultzerakoan etxera bidaltzeko
+            }
+            if ((pos.x >= 1233 && pos.x <= 1233 + 46) && (pos.y >= 561 && pos.y <= 561 + 143))
+            {
+                jarraitu = galderak(5);//itzultzerakoan etxera bidaltzeko
             }
         }
     }
@@ -243,19 +259,43 @@ int uni(void)
     return jarraitu;
 }
 
-int galderak(void)
+int galderak(int orden)
 {
-    int fondoa, jarraitu = 1, ebentu = 0;
+    int fondoa, irakaslea, jarraitu = 1, ebentu = 0;
     POSIZIOA pos;
     pos = saguarenPosizioa();
     //
     fondoa = fondoPantaila(".\\img\\Preguntas.bmp");
     //
+    switch (orden)
+    {
+    case 1://mate
+        irakaslea = irudiaKargatu(".\\img\\ProfeMates.bmp");
+        break;
+    case 2://program
+        irakaslea = irudiaKargatu(".\\img\\ProfeProgram.bmp");
+        break;
+    case 3://oinarri
+        irakaslea = irudiaKargatu(".\\img\\ProfeOinarri.bmp");
+        break;
+    case 4://redes
+        irakaslea = irudiaKargatu(".\\img\\ProfeRedes.bmp");
+        break;
+    case 5://empresa
+        irakaslea = irudiaKargatu(".\\img\\ProfeEmpresa.bmp");
+        break;
+    default:
+        break;
+    }
+    irudiaMugitu(irakaslea, 907, 72);
+
+    //
+
     textuaGaitu();
     while (jarraitu == 1)//unibertsitatea den bitartean
     {
         pantailaGarbitu();
-        textuaIdatzi(20,20,"Furkolay Morales");
+        textuaIdatzi(11, 267, "Hola gente! Buenas! Que pasa guacho! Ey! Apa! Aupa! Kaixo! abcdefghijklmnopqrstuvwxyz\ntcfvygbh");
         ebentu = ebentuaJasoGertatuBada();
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
