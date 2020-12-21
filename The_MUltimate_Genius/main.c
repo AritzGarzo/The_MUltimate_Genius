@@ -10,13 +10,6 @@
 #include <Windows.h>
 //Aritz Garzo
 
-typedef struct S_GURE_GAUZAK
-{
-    int idIrudi;
-}GURE_GAUZAK;
-
-GURE_GAUZAK gureGauzak;
-
 //
 int hasieratu(void);
 int fondoPantaila(char* str);
