@@ -4,6 +4,7 @@
 #include "soinua.h"
 #include "text.h"
 #include "imagen.h"
+#include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
 //Jorge
@@ -32,6 +33,7 @@ int main(int argc, char* str[])
     int ebentu = 0, irten = 0;
     char esaldia[] = "";
     POSIZIOA pos;
+    
 
     /*hasieratu();
     while(!irten)
@@ -74,6 +76,7 @@ int main(int argc, char* str[])
         default:
             break;
         }
+
     }
     audioTerminate();
     sgItxi();
@@ -174,38 +177,50 @@ int jolastu(void)
     int irten, ebentu;
     static char esaldia[16] = "";
     //POSIZIOA pos;
+    JOKALARIA sprite;
+
     irten = 3;
     fondoPantaila(".\\img\\jolastu.bmp");
     pantailaGarbitu();
 
+    sprite.id_2d = irudiaKargatu(".\\img\\PersonajeChicoVF.bmp");
+    irudiaMugitu(sprite.id_2d, 520, 550);
+    irudiakMarraztu();
+
+    //declarar sprite dibujarlo || id_2 = irudiakargatu("  kvsvubj"); --> irudiamugitu(id_2, 12, 15); -->irudiakmarraztu();
     while (irten == 3)
     {
+        pantailaGarbitu();
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case TECLA_s:
-            if (irten == 3)
-            {
-                strcat(esaldia, "S");//esaldia = S
-            }
+           //sprite mover adelante
             break;
-        case TECLA_t:
-            strcat(esaldia, "T");//esaldia = U
+
+        case TECLA_w:
+           //sprite mover adelante
             break;
+
+        case TECLA_d:
+           //sprite mover adelante
+            break;    
+
         case TECLA_a:
-            strcat(esaldia, "A");//esaldia = I
+           //mover
+            break;
+
+        case TECLA_t:
+            irten = 0;
             break;
         default:
             break;
         }
-        if (strcmp(esaldia, "STAT") == 0)
-        {
-            irten = 0;
-        }
+        pantailaBerriztu();
     }
     //system("pause");
 
-    pantailaBerriztu();
+  
     return irten;
 }
 
