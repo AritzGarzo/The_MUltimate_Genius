@@ -168,7 +168,6 @@ int profila(void)
             //si clicka en izena
             if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))
             {
-                textuaDesgaitu();
                 amaitu = 2;
                 textuaGaitu_profila();
                 while (amaitu == 2)
@@ -289,6 +288,7 @@ int profila(void)
                     default:
                         break;
                     }
+                    irudiakMarraztu();
                     textuaIdatzi(180, 174, esaldia);
                     pantailaBerriztu();
                     if (strlen(esaldia) == 7) amaitu = -1;
@@ -300,6 +300,7 @@ int profila(void)
             {
                 crearLista(str);
                 fondoa = fondoPantaila(".\\img\\profila.bmp");
+                irudiakMarraztu();
                 textuaIdatzi(180, 356, str);
                 pantailaBerriztu();
             }
@@ -448,6 +449,7 @@ void crearLista(char str[])
     irudiakMarraztu();
     //
     textuaGaitu_profila();
+    irudiakMarraztu();
     textuaIdatzi(172, 29, "Informatika");
     textuaIdatzi(172, 102, "Elektronika");
     pantailaBerriztu();
