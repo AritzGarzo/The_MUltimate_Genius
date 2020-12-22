@@ -25,12 +25,12 @@ int main(int argc, char* str[])
         }
         else if (egoera == 2) {
             irten=kontrolak();
-            fondoPantaila(".\\img\\menu.bmp");
+            //fondoPantaila(".\\img\\menu.bmp");
 
         }
         else if (egoera == 3) {
             irten = jolastu();
-            fondoPantaila(".\\img\\menu.bmp");
+            //fondoPantaila(".\\img\\menu.bmp");
 
         }
 

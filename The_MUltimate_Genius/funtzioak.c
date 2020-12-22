@@ -9,7 +9,6 @@
 #include"GureEstrukturak.h"
 #include"funtzioak.h"
 
-
 //int hasieratu(void)
 //{
 //    int i;
@@ -99,43 +98,51 @@ void fondoPantaila(char* str)
 
 int jolastu(void)
 {
+    int exp=0;
     int irten, ebentu;
     static char esaldia[16] = "";
-    //POSIZIOA pos;
+    POSIZIOA pos;
     irten = 3;
-    fondoPantaila(".\\img\\jolastu.bmp");
+    fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PRO.bmp");
     pantailaGarbitu();
 
     while (irten == 3)
     {
         ebentu = ebentuaJasoGertatuBada();
-        switch (ebentu)
-        {
-        case TECLA_s:
-            if (irten == 3)
-            {
-                strcat(esaldia, "S");//esaldia = S
-            }
-            break;
-        case TECLA_t:
-            strcat(esaldia, "T");//esaldia = U
-            break;
-        case TECLA_a:
-            strcat(esaldia, "A");//esaldia = I
-            break;
-        case GERTAERA_IRTEN:
-            irten = 1;
-            break;
-        default:
-            break;
+
+        if (ebentu == SAGU_BOTOIA_EZKERRA) {
+
+            exp = galderaEranzun(exp);
+
         }
-        if (strcmp(esaldia, "STAT") == 0)
-        {
-            strcpy(esaldia, "");
-            irten = 0;
-        }
+        //------HEMEN STAT DAGO------
+
+        //switch (ebentu)
+        //{
+        //case TECLA_s:
+        //    if (irten == 3)
+        //    {
+        //        strcat(esaldia, "S");//esaldia = S
+        //    }
+        //    break;
+        //case TECLA_t:
+        //    strcat(esaldia, "T");//esaldia = U
+        //    break;
+        //case TECLA_a:
+        //    strcat(esaldia, "A");//esaldia = I
+        //    break;
+        //case GERTAERA_IRTEN:
+        //    irten = 1;
+        //    break;
+        //default:
+        //    break;
+        //}
+        //if (strcmp(esaldia, "STAT") == 0)
+        //{
+        //    strcpy(esaldia, "");
+        //    irten = 0;
+        //}
     }
-    //system("pause");
 
     pantailaBerriztu();
     return irten;
@@ -155,14 +162,43 @@ int kontrolak(void)
         {
         case SAGU_BOTOIA_EZKERRA:
             pos = saguarenPosizioa();
-            if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) irten = 0;//irten
+            if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) {  // volver a menu de inicio
+                fondoPantaila(".\\img\\menu.bmp"); 
+                irten = 0;
+            }
             break;
         case GERTAERA_IRTEN:
-            irten = 1;
+            irten = 1;//cerrar SDL/TODO
             break;
         default:
             break;
         }
     }
+
     return irten;
+}
+
+int galderaEranzun(int exp) {
+
+    POSIZIOA pos;
+
+    pos = saguarenPosizioa();
+
+    if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+    }
+
+    if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+        exp += 10;
+    } 
+    if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+    }
+ 
+    if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+    }
+
+    return exp;
 }

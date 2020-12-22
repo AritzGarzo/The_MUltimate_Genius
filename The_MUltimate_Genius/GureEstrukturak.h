@@ -14,13 +14,6 @@ typedef struct
 	MOTA mota;
 }JOKO_ELEMENTUA;
 
-char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
-                        ".\\sound\\BugleCall.wav",  ".\\sound\\terminator.wav" };
-
-typedef struct S_GURE_GAUZAK
-{
-    int idSounds[SOINU_KOP];
-    int idIrudi;
-}GURE_GAUZAK;
-
+typedef enum{A=1,B,C,D} OPZIOAK;
+typedef enum {//EMAITZAREN ORDENA  } EMAITZAK;
 #endif

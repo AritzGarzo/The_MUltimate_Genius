@@ -10,6 +10,4 @@ void fondoPantaila(char* str);
 int jolastu(void);
 int kontrolak(void);
 
-
-
 #endif // !FUNTZIOAK_H
