@@ -19,6 +19,7 @@ int profila(void);
 int etxea(void);
 int uni(void);
 int galderak(int orden);
+void crearLista(char str[]);
 
 int main(int argc, char* str[])
 {
@@ -151,6 +152,8 @@ int kontrolak(void)
 int profila(void)
 {
     int fondoa, amaitu, ebentu, ebentu_c;
+    char str[128];
+    //char gradua[][128] = { "Informatika", "Empresa", "Magisteritza" };
     static char esaldia[7];
     POSIZIOA pos;
     strcpy(esaldia, " ");
@@ -292,10 +295,14 @@ int profila(void)
                 }
                 strcpy(esaldia, " ");
             }
-            //si clicka en gradua
-            /*le aparece una especie de lista
+            //si clicka en gradua le aparece una especie de lista
             if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88))
-            */
+            {
+                crearLista(str);
+                fondoa = fondoPantaila(".\\img\\profila.bmp");
+                textuaIdatzi(180, 356, str);
+                pantailaBerriztu();
+            }
             //
             //si clicka en una imagen
             /*se ilumina
@@ -428,6 +435,53 @@ int galderak(int orden)
     //
     return jarraitu;
 }
+
+void crearLista(char str[])
+{
+    int id, amaitu, ebentu;
+    POSIZIOA pos;
+    //
+    strcpy(str, " ");
+    amaitu = 0;
+    id = irudiaKargatu(".\\img\\zerrenda.bmp");
+    irudiaMugitu(id, 171, 29);
+    irudiakMarraztu();
+    //
+    textuaGaitu_profila();
+    textuaIdatzi(172, 29, "Informatika");
+    textuaIdatzi(172, 102, "Elektronika");
+    pantailaBerriztu();
+    //
+    while (amaitu == 0)
+    {
+        pos = saguarenPosizioa();
+        ebentu = ebentuaJasoGertatuBada();
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 29 && pos.y <= 29 + 74))) amaitu = 1;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 102 && pos.y <= 102 + 74))) amaitu = 2;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 175 && pos.y <= 175 + 74))) amaitu = 3;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 248 && pos.y <= 248 + 74))) amaitu = 4;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 321 && pos.y <= 321 + 74))) amaitu = 5;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 394 && pos.y <= 394 + 74))) amaitu = 6;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 467 && pos.y <= 467 + 74))) amaitu = 7;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 540 && pos.y <= 540 + 74))) amaitu = 8;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 613 && pos.y <= 613 + 74))) amaitu = 9;
+    }
+    //
+    switch (amaitu)
+    {
+    case 1:
+        strcpy(str, "Informatika");
+        break;
+    case 2:
+        strcpy(str, "Elektronika");
+        break;
+    default:
+        strcpy(str, "ey");
+        break;
+    }
+    //
+}
+
 
 
 /*
