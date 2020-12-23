@@ -13,18 +13,20 @@
 //
 int hasieratu(void);
 int fondoPantaila(char* str);
-int jolastu(void);
+int jolastu(JOKALARIA* jokalaria);
 int kontrolak(void);
-int profila(void);
-int etxea(void);
-int uni(void);
+int profila(JOKALARIA* jokalaria);
+int etxea(JOKALARIA* jokalaria);
+int uni(JOKALARIA* jokalaria);
 int galderak(int orden);
 void crearLista(char str[]);
 
 int main(int argc, char* str[])
 {
     int fondoa, ebentu = 0, irten = 0;
+    JOKALARIA jokalaria;
     POSIZIOA pos;
+    //
     //
     fondoa = hasieratu();
     while (irten != -1)
@@ -46,12 +48,12 @@ int main(int argc, char* str[])
                 //no tiene ningun juego cargado
                 if (irten == 0)
                 {
-                    irten = profila();
+                    irten = profila(&jokalaria);
                 }
                 //
                 if (irten == 1)
                 {
-                    irten = jolastu();
+                    irten = jolastu(&jokalaria);
                 }
             }
             fondoa = fondoPantaila(".\\img\\menu.bmp");
@@ -95,7 +97,7 @@ int fondoPantaila(char* str)
     return id;
 }
 
-int jolastu(void)
+int jolastu(JOKALARIA* jokalaria)
 {
     int irten;
     //POSIZIOA pos;
@@ -110,11 +112,11 @@ int jolastu(void)
         //
         if (irten == 0)
         {
-            irten = etxea();
+            irten = etxea(jokalaria);
         }
         if (irten == 1)
         {
-            irten = uni();
+            irten = uni(jokalaria);
         }
         //
     }
@@ -149,18 +151,29 @@ int kontrolak(void)
     return jarraitu;
 }
 
-int profila(void)
+int profila(JOKALARIA* jokalaria)
 {
-    int fondoa, amaitu, ebentu, ebentu_c;
-    char str[128];
+    int fondoa, amaitu, ebentu, ebentu_c, aldaketa;
+    char gradua[128];
     //char gradua[][128] = { "Informatika", "Empresa", "Magisteritza" };
     static char esaldia[7];
     POSIZIOA pos;
+    //
+    aldaketa = 0;
     strcpy(esaldia, " ");
+    strcpy(gradua, " ");
+    strcpy((*jokalaria).izena, esaldia);
+    strcpy((*jokalaria).gradua.izena, gradua);
     amaitu = -1;
     fondoa = fondoPantaila(".\\img\\profila.bmp");
+    textuaGaitu_profila();
+    //
     while (amaitu == -1)
     {
+        /*irudiakMarraztu();
+        textuaIdatzi(180, 174, esaldia);
+        textuaIdatzi(180, 356, gradua);
+        pantailaBerriztu();*/
         ebentu = ebentuaJasoGertatuBada();
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
@@ -168,13 +181,18 @@ int profila(void)
             //si clicka en izena
             if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))
             {
+                //borrar nombre
+                irudiakMarraztu();
+                textuaIdatzi(180, 174, " ");
+                textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
+                pantailaBerriztu();
+                //
                 amaitu = 2;
-                textuaGaitu_profila();
                 while (amaitu == 2)
                 {
-                    pantailaGarbitu();
                     pos = saguarenPosizioa();
                     ebentu_c = ebentuaJasoGertatuBada();
+                    if ((ebentu_c == SAGU_BOTOIA_EZKERRA) && ((pos.x < 172) || (pos.x > 172 + 458) || (pos.y < 166) || (pos.y > 166 + 88))) amaitu = -1;
                     switch (ebentu_c)
                     {
                     case TECLA_a:
@@ -281,28 +299,27 @@ int profila(void)
                         if (!strcmp(esaldia, " ")) strcpy(esaldia, "Z");
                         else strcat(esaldia, "Z");
                         break;
-                        //
-                    case SAGU_BOTOIA_EZKERRA:
-                        if ((pos.x < 172) || (pos.x > 172 + 458) || (pos.y < 166) || (pos.y > 166 + 88)) amaitu = -1;
-                        break;
                     default:
                         break;
                     }
-                    irudiakMarraztu();
                     textuaIdatzi(180, 174, esaldia);
                     pantailaBerriztu();
                     if (strlen(esaldia) == 7) amaitu = -1;
                 }
+                strcpy(jokalaria->izena, esaldia);
+                irudiakMarraztu();
+                textuaIdatzi(180, 174, esaldia);
+                pantailaBerriztu();
                 strcpy(esaldia, " ");
+                aldaketa = 1;
             }
             //si clicka en gradua le aparece una especie de lista
             if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88))
             {
-                crearLista(str);
+                crearLista(gradua);
+                strcpy((*jokalaria).gradua.izena, gradua);
                 fondoa = fondoPantaila(".\\img\\profila.bmp");
-                irudiakMarraztu();
-                textuaIdatzi(180, 356, str);
-                pantailaBerriztu();
+                aldaketa = 1;
             }
             //
             //si clicka en una imagen
@@ -316,6 +333,15 @@ int profila(void)
             //atzera
             if ((pos.x >= 880 && pos.x <= 880 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = 0;
         }
+        //aplikazio grafiko funtzioanala
+        if (aldaketa == 1)
+        {
+            irudiakMarraztu();
+            textuaIdatzi(180, 174, (*jokalaria).izena);
+            textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
+            pantailaBerriztu();
+            aldaketa = 0;
+        }
     }
     //
     irudiaKendu(fondoa);
@@ -323,7 +349,7 @@ int profila(void)
     return amaitu;
 }
 
-int etxea(void)
+int etxea(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 0, ebentu = 0;
     POSIZIOA pos;
@@ -345,7 +371,7 @@ int etxea(void)
     return jarraitu;
 }
 
-int uni(void)
+int uni(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 1, ebentu = 0;
     POSIZIOA pos;
