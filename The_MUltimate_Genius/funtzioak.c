@@ -103,7 +103,10 @@ int jolastu(void)
     static char esaldia[16] = "";
     POSIZIOA pos;
     irten = 3;
-    fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PRO.bmp");
+    fondoPantaila(".\\img\\Galderak_Erantzunak\\Preguntas.bmp");
+    textuaGaitu();
+    textuaIdatzi(27, 290, "Zein da “For” baten sintaxis egokia?");
+    pantailaBerriztu();
     pantailaGarbitu();
 
     while (irten == 3)
@@ -181,6 +184,7 @@ int kontrolak(void)
 int galderaEranzun(int exp) {
 
     POSIZIOA pos;
+
 
     pos = saguarenPosizioa();
 
