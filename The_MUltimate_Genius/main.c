@@ -20,6 +20,7 @@ int etxea(JOKALARIA* jokalaria);
 int uni(JOKALARIA* jokalaria);
 int galderak(int orden);
 void crearLista(char str[]);
+void koadroaMarraztu(int x1, int y1, int x2, int y2);
 
 int main(int argc, char* str[])
 {
@@ -322,12 +323,21 @@ int profila(JOKALARIA* jokalaria)
                 aldaketa = 1;
             }
             //
-            //si clicka en una imagen
-            /*se ilumina
+            //si clicka en una imagen se marca/ilumina
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))
+            {
+                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChichoHablando.bmp");
+                jokalaria->id.pos_hasi.x = 932; jokalaria->id.pos_hasi.y = 185;
+                jokalaria->id.pos_buka.x = 932 + 147; jokalaria->id.pos_buka.y = 185 + 133;
+                aldaketa = 1;
+            }
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))
-            */
-            //
+            {
+                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChichoHablando.bmp");
+                jokalaria->id.pos_hasi.x = 932; jokalaria->id.pos_hasi.y = 350;
+                jokalaria->id.pos_buka.x = 932 + 147; jokalaria->id.pos_buka.y = 350 + 133;
+                aldaketa = 1;
+            }
             //jarraitu
             if ((pos.x >= 1077 && pos.x <= 1077 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)) amaitu = 1;
             //atzera
@@ -339,6 +349,8 @@ int profila(JOKALARIA* jokalaria)
             irudiakMarraztu();
             textuaIdatzi(180, 174, (*jokalaria).izena);
             textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
+            arkatzKoloreaEzarri(0XF8, 0XF3, 0X2B);
+            koadroaMarraztu(jokalaria->id.pos_hasi.x - 1, jokalaria->id.pos_hasi.y - 1, jokalaria->id.pos_buka.x, jokalaria->id.pos_buka.y);
             pantailaBerriztu();
             aldaketa = 0;
         }
@@ -510,7 +522,21 @@ void crearLista(char str[])
     //
 }
 
-
+void koadroaMarraztu(int x1, int y1, int x2, int y2)
+{
+    //goia
+    zuzenaMarraztu(x1 - 1, y1 - 1, x2 - 1, y1 -1);
+    zuzenaMarraztu(x1, y1, x2, y1);
+    //ezkerra
+    zuzenaMarraztu(x1 - 1, y1 - 1, x1 - 1, y2 + 1);
+    zuzenaMarraztu(x1, y1, x1, y2);
+    //eskuina
+    zuzenaMarraztu(x2, y1, x2, y2);
+    zuzenaMarraztu(x2 + 1, y1 - 1, x2 + 1, y2 + 1);
+    //behea
+    zuzenaMarraztu(x1, y2, x2, y2);
+    zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
+}
 
 /*
 if ((gureGauzak.idSounds[i] = loadSound(soundFiles[i])) == -1)

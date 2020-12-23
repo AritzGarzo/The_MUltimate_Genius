@@ -37,7 +37,14 @@ typedef struct
 
 typedef struct
 {
-	int id;//irudia (las preguntas)
+	int id;
+	POSIZIOA pos_hasi;//goi ezkerra
+	POSIZIOA pos_buka;//behe eskubia
+}IMG;
+
+typedef struct
+{
+	IMG id;//irudia (las preguntas)
 	int id_2d;//mugituko den irudia (movimientos/animaciones)
 	char izena[128];
 	GRADUA gradua;
