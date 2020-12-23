@@ -322,18 +322,17 @@ int profila(JOKALARIA* jokalaria)
                 fondoa = fondoPantaila(".\\img\\profila.bmp");
                 aldaketa = 1;
             }
-            //
             //si clicka en una imagen se marca/ilumina
-            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))
+            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))//mutila
             {
-                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChichoHablando.bmp");
+                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChicoHablando.bmp");
                 jokalaria->id.pos_hasi.x = 932; jokalaria->id.pos_hasi.y = 185;
                 jokalaria->id.pos_buka.x = 932 + 147; jokalaria->id.pos_buka.y = 185 + 133;
                 aldaketa = 1;
             }
-            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))
+            if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))//neska
             {
-                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChichoHablando.bmp");
+                jokalaria->id.id = irudiaKargatu(".\\img\\PersonajeChicaHablando.bmp");
                 jokalaria->id.pos_hasi.x = 932; jokalaria->id.pos_hasi.y = 350;
                 jokalaria->id.pos_buka.x = 932 + 147; jokalaria->id.pos_buka.y = 350 + 133;
                 aldaketa = 1;
