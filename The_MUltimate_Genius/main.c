@@ -21,13 +21,16 @@ int uni(JOKALARIA* jokalaria);
 int galderak(int orden);
 void crearLista(char str[]);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
+void Gorde(JOKALARIA jokalaria);
+int Kargatu(JOKALARIA* jokalaria);
 
 int main(int argc, char* str[])
 {
-    int fondoa, ebentu = 0, irten = 0;
+    int fondoa, ebentu = 0, irten = 0, karga;
     JOKALARIA jokalaria;
     POSIZIOA pos;
     //
+    karga = 0;
     //
     fondoa = hasieratu();
     while (irten != -1)
@@ -53,6 +56,14 @@ int main(int argc, char* str[])
                 }
                 //
                 if (irten == 1)
+                {
+                    irten = jolastu(&jokalaria);
+                }
+            }
+            else if ((pos.x >= 1200 && pos.x <= 1200 + 80) && (pos.y >= 700 && pos.y <= 700 + 20))
+            {
+                karga = Kargatu(&jokalaria);
+                if (karga == 1)
                 {
                     irten = jolastu(&jokalaria);
                 }
@@ -374,7 +385,11 @@ int etxea(JOKALARIA* jokalaria)
         {
             pos = saguarenPosizioa();
             if ((pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244)) jarraitu = 1;//(busa)itzultzerakoan unibertsitatera bidaltzeko
-            if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57)) jarraitu = -1;//(ohea)itzultzerakoan kanpora bidaltzeko
+            if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
+            {
+                Gorde(*jokalaria);
+                jarraitu = -1;//(ohea)itzultzerakoan kanpora bidaltzeko
+            }
         }
     }
     //
@@ -535,6 +550,53 @@ void koadroaMarraztu(int x1, int y1, int x2, int y2)
     //behea
     zuzenaMarraztu(x1, y2, x2, y2);
     zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
+}
+
+void Gorde(JOKALARIA jokalaria)
+{
+    int egoera;
+    char karpeta[] = "gordeketa.dat";
+    FILE* fitx;
+    //
+    fitx = fopen(karpeta, "wb");
+    //
+    if (fitx == NULL)
+    {
+        printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
+    }
+    else
+    {
+        egoera = fwrite(&jokalaria, sizeof(JOKALARIA), 1, fitx);
+        if (egoera != 1)
+        {
+            printf("Errorea \"%s\"fitxategian idazterakoan.\n", karpeta);
+        }
+    }
+    fclose(fitx);
+}
+
+int Kargatu(JOKALARIA* jokalaria)
+{
+    int egoera;
+    char karpeta[] = "gordeketa.dat";
+    FILE* fitx;
+    //
+    fitx = fopen(karpeta, "rb");
+    //
+    if (fitx == NULL)
+    {
+        printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
+    }
+    else
+    {
+        egoera = fread(&jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
+        if (egoera != 1)
+        {
+            printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
+        }
+    }
+    fclose(fitx);
+    return egoera;
 }
 
 /*
