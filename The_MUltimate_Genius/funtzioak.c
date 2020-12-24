@@ -39,7 +39,7 @@
 //}
 //
 
-void galderaSortu(GALDERA galdera[]);
+void galderakEtaEurenAukerakSortu(GALDERA galdera[]);
 
 int mu_hasieratu(void)
 {
@@ -119,9 +119,9 @@ int jolastu(void)
             srand(time(NULL));
             id = 1+rand()%3;
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
-                galderaSortu(galdera);
+                galderakEtaEurenAukerakSortu(galdera);
 
-                exp = galderaEranzun(exp, id,galdera);
+                exp = galderenPantallaSortu(exp, id,galdera);
             }
         }
         //------HEMEN STAT DAGO------
@@ -187,33 +187,44 @@ int kontrolak(void)
     return irten;
 }
 
-int galderaEranzun(int exp, int galderaID,GALDERA galdera[]) {
+int galderenPantallaSortu(int exp, int galderaID,GALDERA galdera[]) {
 
     POSIZIOA pos;
 
     fondoPantaila(".\\img\\Galderak_Erantzunak\\Preguntas.bmp");
-
-    /*textuaGaitu();
-    textuaIdatzi(27, 290, "Zein da “For” baten sintaxis egokia?");    -------HAU DENA TESTUA IDAZTEKO------
-    pantailaBerriztu();*/
 
     switch (galderaID)
     {
     case 1:
         textuaGaitu();
         textuaIdatzi(27, 290,galdera[galderaID].testua);
+        textuaIdatzi(55,512, galdera[galderaID].aukerak.A);
+        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
         pantailaBerriztu();
 
         break;
     case 2:
         textuaGaitu();
         textuaIdatzi(27, 290, galdera[galderaID].testua);
+        textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
         pantailaBerriztu();
 
         break;
     case 3:
         textuaGaitu();
         textuaIdatzi(27, 290, galdera[galderaID].testua);
+        textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
         pantailaBerriztu();
 
         break;
@@ -224,44 +235,54 @@ int galderaEranzun(int exp, int galderaID,GALDERA galdera[]) {
     pos = saguarenPosizioa();
 
     if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+       // fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
     }
 
     if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+       // fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
         exp += 10;
     }
     if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+       // fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
     }
 
     if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-        fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
+        //fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
     }
 
     return exp;
 }
 
-void galderaSortu(GALDERA galdera[]) {
+void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
     int i = 1;
-    char testua[MAX] = " ";
-
     while (i <= 4) {
 
         galdera[i].id = i;
         switch (i)
         {
         case 1:
-            strcpy(testua, "Zein da FOR baten sintaxia?");
-            strcpy(galdera[i].testua, testua);
+            strcpy(galdera[i].testua, "Zein da FOR baten sintaxia?");
+            strcpy(galdera[i].aukerak.A, "(i=0;i<10;i++)"); //ONDO
+            strcpy(galdera[i].aukerak.B, "[i=0;i<10;i++]");
+            strcpy(galdera[i].aukerak.C, "{i=0,i<10,i++}");
+            strcpy(galdera[i].aukerak.D, "{i=0;i<10;i++}");
+
             break;
         case 2:
-            strcpy(testua, "EZ DAKIT");
-            strcpy(galdera[i].testua, testua);
+            strcpy(galdera[i].testua, "Nola da 65 bitarrean?");
+            strcpy(galdera[i].aukerak.A, "01101011");
+            strcpy(galdera[i].aukerak.B, "01000001");  //  ONDO
+            strcpy(galdera[i].aukerak.C, "11000001");
+            strcpy(galdera[i].aukerak.D, "01000010");
+
             break;
         case 3:
-            strcpy(testua, "BESTE PRUEBA BAT");
-            strcpy(galdera[i].testua, testua);
+            strcpy(galdera[i].testua, "Zer diferentzia dago do while eta while-en artean?");
+            strcpy(galdera[i].aukerak.A, " ez dago desberdintasunik");
+            strcpy(galdera[i].aukerak.B, "bat bestea baino azkarragoa da");
+            strcpy(galdera[i].aukerak.C, "batek lehenego zerbait egiten du eta gero baldintza konparatu");  //ONDO
+            strcpy(galdera[i].aukerak.D, "bat efizienteagoa da");
+
             break;
         default:
             break;
