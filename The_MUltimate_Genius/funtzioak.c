@@ -8,6 +8,7 @@
 #include <string.h>
 #include"GureEstrukturak.h"
 #include"funtzioak.h"
+#include<stdlib.h>
 
 //int hasieratu(void)
 //{
@@ -115,7 +116,8 @@ int jolastu(void)
 
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
             pos = saguarenPosizioa();
-            id = srand() % 3;
+            srand(time(NULL));
+            id = 1+rand()%3;
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 galderaSortu(galdera);
 
