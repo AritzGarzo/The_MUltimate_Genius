@@ -1,6 +1,8 @@
 #ifndef GUREESTRUKTURAK_H
 #define GUREESTRUKTURAK_H
 #define SOINU_KOP 5
+#define MAX 128
+//#define GALDERA1 ".\\img\\Galderak_Erantzunak\\Program\\Preguntas.bmp"
 
 #include "ebentoak.h"
 
@@ -20,7 +22,7 @@ typedef enum {/*EMAITZAREN ORDENA*/  } EMAITZAK;
 typedef struct galdera {
 
 	int id;
-	char testua[128];
+	char testua[MAX];
 	OPZIOAK erantzuna;//swicth erabili aukeratzeko
 
 }GALDERA;

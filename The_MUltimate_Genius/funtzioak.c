@@ -38,9 +38,11 @@
 //}
 //
 
+void galderaSortu(GALDERA galdera[]);
+
 int mu_hasieratu(void)
 {
-    int i,ebentu,egoera;
+    int i, ebentu, egoera;
     POSIZIOA pos;
 
     if (sgHasieratu() == -1)
@@ -59,7 +61,7 @@ int mu_hasieratu(void)
 
 int menua(void) {
 
-    int i, ebentu, egoera=0;
+    int  ebentu, egoera = 0;
     POSIZIOA pos;
 
     ebentu = ebentuaJasoGertatuBada();
@@ -98,25 +100,27 @@ void fondoPantaila(char* str)
 
 int jolastu(void)
 {
-    int exp=0;
+    int exp = 0, id = 0;
     int irten, ebentu;
     static char esaldia[16] = "";
     POSIZIOA pos;
+    GALDERA galdera[55];
+    galdera[0].id = 0;
     irten = 3;
-    fondoPantaila(".\\img\\Galderak_Erantzunak\\Preguntas.bmp");
-    textuaGaitu();
-    textuaIdatzi(27, 290, "Zein da “For” baten sintaxis egokia?");
-    pantailaBerriztu();
-    pantailaGarbitu();
+    fondoPantaila(".\\img\\Gela.bmp");
 
     while (irten == 3)
     {
         ebentu = ebentuaJasoGertatuBada();
 
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
+            pos = saguarenPosizioa();
+            id = srand() % 3;
+            if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
+                galderaSortu(galdera);
 
-            exp = galderaEranzun(exp);
-
+                exp = galderaEranzun(exp, id,galdera);
+            }
         }
         //------HEMEN STAT DAGO------
 
@@ -166,7 +170,7 @@ int kontrolak(void)
         case SAGU_BOTOIA_EZKERRA:
             pos = saguarenPosizioa();
             if ((pos.x > 33) && (pos.x < 33 + 189) && (pos.y > 633) && (pos.y < 633 + 44)) {  // volver a menu de inicio
-                fondoPantaila(".\\img\\menu.bmp"); 
+                fondoPantaila(".\\img\\menu.bmp");
                 irten = 0;
             }
             break;
@@ -181,10 +185,39 @@ int kontrolak(void)
     return irten;
 }
 
-int galderaEranzun(int exp) {
+int galderaEranzun(int exp, int galderaID,GALDERA galdera[]) {
 
     POSIZIOA pos;
 
+    fondoPantaila(".\\img\\Galderak_Erantzunak\\Preguntas.bmp");
+
+    /*textuaGaitu();
+    textuaIdatzi(27, 290, "Zein da “For” baten sintaxis egokia?");    -------HAU DENA TESTUA IDAZTEKO------
+    pantailaBerriztu();*/
+
+    switch (galderaID)
+    {
+    case 1:
+        textuaGaitu();
+        textuaIdatzi(27, 290,galdera[galderaID].testua);
+        pantailaBerriztu();
+
+        break;
+    case 2:
+        textuaGaitu();
+        textuaIdatzi(27, 290, galdera[galderaID].testua);
+        pantailaBerriztu();
+
+        break;
+    case 3:
+        textuaGaitu();
+        textuaIdatzi(27, 290, galdera[galderaID].testua);
+        pantailaBerriztu();
+
+        break;
+    default:
+        break;
+    }
 
     pos = saguarenPosizioa();
 
@@ -195,14 +228,42 @@ int galderaEranzun(int exp) {
     if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
         fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
         exp += 10;
-    } 
+    }
     if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
         fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
     }
- 
+
     if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
         fondoPantaila(".\\img\\Galderak_Erantzunak\\Pregunta1PROEMA.bmp");
     }
 
     return exp;
+}
+
+void galderaSortu(GALDERA galdera[]) {
+    int i = 1;
+    char testua[MAX] = " ";
+
+    while (i <= 4) {
+
+        galdera[i].id = i;
+        switch (i)
+        {
+        case 1:
+            strcpy(testua, "Zein da FOR baten sintaxia?");
+            strcpy(galdera[i].testua, testua);
+            break;
+        case 2:
+            strcpy(testua, "EZ DAKIT");
+            strcpy(galdera[i].testua, testua);
+            break;
+        case 3:
+            strcpy(testua, "BESTE PRUEBA BAT");
+            strcpy(galdera[i].testua, testua);
+            break;
+        default:
+            break;
+        }
+        i++;
+    }
 }
