@@ -560,6 +560,10 @@ void Gorde(JOKALARIA jokalaria)
     //
     fitx = fopen(karpeta, "wb");
     //
+    textuaGaitu_beltza();
+    textuaIdatzi_beltza(10, 20, "Partida gordetzen...");
+    pantailaGarbitu();
+    Sleep(2500);
     if (fitx == NULL)
     {
         printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
