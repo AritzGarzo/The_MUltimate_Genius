@@ -99,7 +99,7 @@ void fondoPantaila(char* str)
     irudiakMarraztu();
     pantailaBerriztu();
 }
-void fondoPantailaGalderekin(char* str,int galderaID,GALDERA galdera[])
+void fondoPantailaGalderekin(char* str, int galderaID, GALDERA galdera[])
 {
     int id;
     pantailaGarbitu();
@@ -121,7 +121,7 @@ void fondoPantailaGalderekin(char* str,int galderaID,GALDERA galdera[])
 int jolastu(void)
 {
     int exp = 0, id = 0;
-    int irten, ebentu,bukatuta=0;
+    int irten, ebentu, bukatuta = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
     GALDERA galdera[55];
@@ -265,111 +265,111 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
     POSIZIOA pos;
     int ebentu = 0;
 
-        ebentu = ebentuaJasoGertatuBada();
+    ebentu = ebentuaJasoGertatuBada();
 
-        if (ebentu == SAGU_BOTOIA_EZKERRA) {
+    if (ebentu == SAGU_BOTOIA_EZKERRA) {
 
-            pos = saguarenPosizioa();
+        pos = saguarenPosizioa();
 
-            switch (galderaID)
-            {
-            case 1:
+        switch (galderaID)
+        {
+        case 1:
 
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1O.bmp"),30,488);
-                    irudiakMarraztu();
-                    pantailaBerriztu();
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1O.bmp"), 30, 490);
+                irudiakMarraztu();
+                pantailaBerriztu();
 
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M1.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M2.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M3.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-                break;
-
-            case 2:
-
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 30, 488);
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-                     
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-                     
-                }
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M2.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M3.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-
-                break;
-
-            case 3:
-
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 488);
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-                     
-                }
-                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M2.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-                     
-                }
-
-                if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-
-                    irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M3.bmp");
-                    irudiakMarraztu();
-                    pantailaBerriztu();
-
-                }
-                break;
-
-            default:
-
-                break;
             }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M1.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M2.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M3.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+            break;
+
+        case 2:
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 30, 488);
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M2.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M3.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            break;
+
+        case 3:
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 488);
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M2.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M3.bmp");
+                irudiakMarraztu();
+                pantailaBerriztu();
+
+            }
+            break;
+
+        default:
+
+            break;
         }
+    }
 
 
     return exp;
