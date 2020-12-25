@@ -136,7 +136,6 @@ int jolastu(void)
             srand(time(NULL));
             id = 1 + rand() % 3;
             galderakEtaEurenAukerakSortu(galdera);
-            id = 1;
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 //----SUPUESTO UNI-----
                 fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", id, galdera);
@@ -315,22 +314,51 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
         case 2:
 
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 30, 488);
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp");
                 irudiakMarraztu();
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
+
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp");
+
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 30, 488);
                 irudiakMarraztu();
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
+
             }
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                 irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M2.bmp");
                 irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
                 irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M3.bmp");
                 irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+
             }
 
             break;
@@ -338,23 +366,51 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
         case 3:
 
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 488);
+                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp");
                 irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp");
-                irudiakMarraztu();
-            }
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                 irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M2.bmp");
                 irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
+            }
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 488);
+                irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
 
                 irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M3.bmp");
                 irudiakMarraztu();
+
+                textuaGaitu();
+                textuaIdatzi(27, 290, galdera[galderaID].testua);
+                textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
+                textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
+                textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+
             }
             break;
 
