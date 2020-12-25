@@ -98,7 +98,6 @@ void pantailaGarbitu()
   SDL_RenderClear(gRenderer);
 }
 
-
 void pantailaBerriztu()
 {
   SDL_RenderPresent(gRenderer);
