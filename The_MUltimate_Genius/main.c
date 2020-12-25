@@ -32,8 +32,7 @@ int main(int argc, char* str[])
 {
     int ebentu = 0, irten = 0;
     char esaldia[] = "";
-    POSIZIOA pos;
-    
+    POSIZIOA pos;    
 
     /*hasieratu();
     while(!irten)
@@ -68,6 +67,7 @@ int main(int argc, char* str[])
             }
             else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 293) && (pos.y < 293 + 68))
             {
+                fondoPantaila(".\\img\\jolastu.bmp");
                 irten = jolastu();
                 fondoPantaila(".\\img\\menu.bmp");
             }
@@ -80,13 +80,6 @@ int main(int argc, char* str[])
     }
     audioTerminate();
     sgItxi();
-
-
-
-
-
-
-
 
     return 0;
 }
@@ -176,41 +169,40 @@ int jolastu(void)
 {
     int irten, ebentu, x, y;
     static char esaldia[16] = "";
-    //POSIZIOA pos;
     JOKALARIA sprite;
 
     irten = 3;
-    fondoPantaila(".\\img\\jolastu.bmp");
-    pantailaGarbitu();
 
-    sprite.id_2d = irudiaKargatu(".\\img\\PersonajeChicoVF.bmp");
-    x = 520; y = 550;
-    //declarar sprite dibujarlo || id_2 = irudiakargatu("  kvsvubj"); --> irudiamugitu(id_2, 12, 15); -->irudiakmarraztu();
+    sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF.bmp");
+    x = 0; y = 0;
+
     while (irten == 3)
     {
+
         pantailaGarbitu();
-        irudiaMugitu(sprite.id_2d, x, y);
+        spriteMugitu(sprite.id_2d, x, y);
+
         ebentu = ebentuaJasoGertatuBada();
         switch (ebentu)
         {
         case TECLA_s:
            //sprite mover adelante
-            y++;
+            y = y + 4;
             break;
 
         case TECLA_w:
            //sprite mover adelante
-            y--;
+            y = y - 4;
             break;
 
         case TECLA_d:
            //sprite mover adelante
-            x++;
+            x = x + 4;
             break;    
 
         case TECLA_a:
            //mover
-            x--;
+            x = x - 4;
             break;
 
         case TECLA_t:
@@ -220,6 +212,7 @@ int jolastu(void)
             break;
         }
         irudiakMarraztu();
+        spriteakMarraztu();
         pantailaBerriztu();
     }
     //system("pause");
@@ -250,3 +243,14 @@ int kontrolak(void)
     }
     return irten;
 }
+
+
+/*
+0,0     1,0     2,0                 Cada frame tiene que ser 
+                                    de x = ? pixeles                                                      
+0,1     1,1     2,1                 de y = ? pixeles
+
+0,2     1,2     2,2
+
+0,3     1,3     2,3
+*/

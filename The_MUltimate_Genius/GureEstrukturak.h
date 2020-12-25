@@ -4,22 +4,5 @@
 #include "ebentoak.h"
 
 typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
-typedef enum { IRUDIA, MARGOA, TESTUA } MOTA;
-
-typedef struct
-{
-	POSIZIOA pos;
-	int id;
-	MOTA mota;
-}JOKO_ELEMENTUA;
-
-typedef struct
-{
-	int id;//irudia (las preguntas)
-	int id_2d;//mugituko den irudia (movimientos/animaciones)
-	char izena[128];
-	//GRADUA gradua;
-	POSIZIOA pos;
-}JOKALARIA;
 
 #endif

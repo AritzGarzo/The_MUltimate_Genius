@@ -38,7 +38,6 @@ int sgHasieratu()
   return ret;
 }
 
-
 void sgItxi()
 {
   SDL_DestroyWindow(window);
@@ -51,7 +50,6 @@ void arkatzKoloreaEzarri(int red, int green, int blue)
   colorG = green;
   colorB = blue;
 }
-
 
 void zuzenaMarraztu(int x1, int y1, int x2, int y2)
 {
@@ -78,8 +76,6 @@ void zirkuluaMarraztu(int x, int y, int r)
   }
 }
 
-
-
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest)
 {
   SDL_Rect src;
@@ -98,8 +94,22 @@ void pantailaGarbitu()
   SDL_RenderClear(gRenderer);
 }
 
-
 void pantailaBerriztu()
 {
   SDL_RenderPresent(gRenderer);
+}
+
+//SPRITES
+
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest)
+{
+    SDL_Rect src;
+
+    src.x = 0;
+    src.y = 0;
+    src.w = pDest->w;
+    src.h = pDest->h;
+
+    SDL_RenderCopy(gRenderer, texture, &src, pDest);
+    return 0;
 }
