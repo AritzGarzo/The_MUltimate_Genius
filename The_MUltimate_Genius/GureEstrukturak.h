@@ -5,6 +5,8 @@
 
 typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
 
+#define CHICA_AVATAR ".\\img\\chica....bmp";
+#define CHICO_AVATAR ".\\img\\chico....bmp";
 
 typedef struct
 {
@@ -39,7 +41,7 @@ typedef struct
 typedef struct
 {
 	IRUDIA irudia;//irudia (las preguntas)
-	int irudia2d;//mugituko den irudia (movimientos/animaciones)
+	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	char izena[128];
 	GRADUA gradua;
 	POSIZIOA pos;
