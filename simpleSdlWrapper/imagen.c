@@ -154,13 +154,13 @@ void spriteMugitu(int numImg, int x, int y)
 	sprite[id].dest.y = y;
 }
 
-void spriteakMarraztu(void)
+void spriteakMarraztu(int x, int y)
 {
 	int i = 0;
 
 	for (i = 0; i < spriteKop; i++)
 	{
-		spriteMarraztu(sprite[i].texture, &sprite[i].dest);
+		spriteMarraztu(sprite[i].texture, &sprite[i].dest, x, y);
 	}
 }
 

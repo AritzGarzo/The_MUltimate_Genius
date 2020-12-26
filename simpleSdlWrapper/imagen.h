@@ -13,7 +13,7 @@ void irudiaKendu(int id);
 
 int spriteKargatu(char* fileName);
 void spriteMugitu(int numImg, int x, int y);
-void spriteakMarraztu(void);
+void spriteakMarraztu(int x, int y);
 void spriteKendu(int id);
 int spritearenPosizioaAurkitu(int id);
 

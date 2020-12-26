@@ -6,7 +6,6 @@
 #define GRAPHICS
 
 #include "SDL_ttf.h"
-
 #include "imagen.h"
 #include "graphics.h"
 
@@ -101,15 +100,18 @@ void pantailaBerriztu()
 
 //SPRITES
 
-int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest)
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y)
 {
-    SDL_Rect src;
+	SDL_Rect src;
 
-    src.x = 0;
-    src.y = 0;
-    src.w = pDest->w;
-    src.h = pDest->h;
+	src.x = x * 5;//Mueve el cuadrado que enfoca tantas veces como le digas en el eje x
+	src.y = y * 7;//Mueve el cuadrado que enfoca tantas veces como le digas en el eje y
+	src.w = 18;//pDest->w;
+	src.h = 28;//pDest->h;
+	pDest->w = 35;//Determina el ancho del cuadrado que enfoca a la imagen
+	pDest->h = 35;//Determina el alto del cuadrado que enfoca a la imagen
 
-    SDL_RenderCopy(gRenderer, texture, &src, pDest);
-    return 0;
+
+	SDL_RenderCopy(gRenderer, texture, &src, pDest);
+	return 0;
 }

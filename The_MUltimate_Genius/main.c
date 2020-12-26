@@ -33,7 +33,7 @@ int main(int argc, char* str[])
     int ebentu = 0, irten = 0;
     char esaldia[] = "";
     POSIZIOA pos;    
-
+    
     /*hasieratu();
     while(!irten)
     {
@@ -167,7 +167,7 @@ void fondoPantaila(char* str)
 
 int jolastu(void)
 {
-    int irten, ebentu, x, y;
+    int irten, ebentu, x, y, tamaño = 48, tmp = 0, x_1, y_1;
     static char esaldia[16] = "";
     JOKALARIA sprite;
 
@@ -175,34 +175,97 @@ int jolastu(void)
 
     sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF.bmp");
     x = 0; y = 0;
+    x_1 = 0; y_1 = 0;
 
     while (irten == 3)
     {
 
         pantailaGarbitu();
-        spriteMugitu(sprite.id_2d, x, y);
+        spriteMugitu(sprite.id_2d, x_1, y_1);
 
         ebentu = ebentuaJasoGertatuBada();
+
         switch (ebentu)
         {
         case TECLA_s:
-           //sprite mover adelante
-            y = y + 4;
+            y_1 = y_1 + 4;
+
+            y = 0;
+            if (tmp == TECLA_s)
+            {
+                x = x + 4;
+            }
+            else
+            {
+                x = 4;
+            }
+            if (x > 8)
+            {
+                x = 0;
+            }
+           //sprite mover adelante          
+           tmp = ebentu;
             break;
 
         case TECLA_w:
            //sprite mover adelante
-            y = y - 4;
+            y_1 = y_1 - 4;
+
+            y = 12;
+            if (tmp == TECLA_w)
+            {
+                x = x + 4;
+            }
+            else
+            {
+                x = 4;
+            }
+            if (x > 8)
+            {
+                x = 0;
+            }
+            tmp = ebentu;
             break;
 
         case TECLA_d:
            //sprite mover adelante
-            x = x + 4;
+            x_1 = x_1 + 4;
+            y = 8;
+            
+            if (tmp == TECLA_d)
+            {
+                x = x + 4;
+            }
+            else
+            {
+                x = 4;
+            }
+            if (x > 8)
+            {
+                x = 0;
+            }
+            tmp = ebentu;
             break;    
 
         case TECLA_a:
            //mover
-            x = x - 4;
+            x_1 = x_1 - 4;
+
+            y = 4;
+
+            if (tmp == TECLA_a)
+            {
+                x = x + 4;
+            }
+            else
+            {
+                x = 4;
+            }
+            if (x > 8)
+            {
+                x = 0;
+            }
+            tmp = ebentu;
             break;
 
         case TECLA_t:
@@ -211,8 +274,10 @@ int jolastu(void)
         default:
             break;
         }
+      
+
         irudiakMarraztu();
-        spriteakMarraztu();
+        spriteakMarraztu(x, y, tamaño);
         pantailaBerriztu();
     }
     //system("pause");
@@ -243,14 +308,3 @@ int kontrolak(void)
     }
     return irten;
 }
-
-
-/*
-0,0     1,0     2,0                 Cada frame tiene que ser 
-                                    de x = ? pixeles                                                      
-0,1     1,1     2,1                 de y = ? pixeles
-
-0,2     1,2     2,2
-
-0,3     1,3     2,3
-*/
