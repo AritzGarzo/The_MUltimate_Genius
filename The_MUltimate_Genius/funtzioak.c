@@ -139,7 +139,7 @@ int jolastu(void)
             pos = saguarenPosizioa();
             srand(time(NULL));
             id = 1 + rand() % 14;
-            id = 14;
+            id = 22;
             galderakEtaEurenAukerakSortu(galdera);
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 //----SUPUESTO UNI-----
@@ -220,10 +220,12 @@ int kontrolak(void)
 
 void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
     int i = 1;
-    while (i <= 15) {
+    while (i < 50) {
 
 
         galdera[i].id = i;
+
+
         switch (i)
         {
         case 1://---PROGRAMEKO GALDERAK---
@@ -336,11 +338,82 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.D, "I*(R^2)"); //ONDO
             break;
         case 16: //---OINARRIKO GALDERA---
-            strcpy(galdera[i].testua, "");
-            strcpy(galdera[i].aukerak.A, "");  //ONDO
-            strcpy(galdera[i].aukerak.B, "");
-            strcpy(galdera[i].aukerak.C, "");
-            strcpy(galdera[i].aukerak.D, "");
+            strcpy(galdera[i].testua, "Zertarako balio du Git?");
+            strcpy(galdera[i].aukerak.A, "Bertsioen kontrol bat egiteko");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Programa bat gehiago nahasteko");
+            strcpy(galdera[i].aukerak.C, "Textu bat lainoan gordetzeko");
+            strcpy(galdera[i].aukerak.D, "Web bat egiteko");        
+            break;
+        case 17:
+            strcpy(galdera[i].testua, "PDF batek irudia badu zer eduki behar du berarekin?");
+            strcpy(galdera[i].aukerak.A, "Deskripzio bat bakarrik");
+            strcpy(galdera[i].aukerak.B, "Irudien taula bakarrik");
+            strcpy(galdera[i].aukerak.C, "Deskripzio bat eta irudien taula");  //ONDO
+            strcpy(galdera[i].aukerak.D, "Ezer");
+            break;
+        case 18:
+            strcpy(galdera[i].testua, "Zer etiketa erabili behar da izenburua jartzeko?");
+            strcpy(galdera[i].aukerak.A, "<head> ... </head>");  
+            strcpy(galdera[i].aukerak.B, "<title> ... </title>");  //ONDO
+            strcpy(galdera[i].aukerak.C, "<img> ... </img>");
+            strcpy(galdera[i].aukerak.D, "<p> ... </p>");
+            break;
+
+        case 19:
+            strcpy(galdera[i].testua, "Zer etiketa erabili behar da kodigoa jartzeko?");
+            strcpy(galdera[i].aukerak.A, "<strong> ... </strong>");  
+            strcpy(galdera[i].aukerak.B, "<div> ... </div>");
+            strcpy(galdera[i].aukerak.C, "<script> ... </script>");  //ONDO
+            strcpy(galdera[i].aukerak.D, "<head> ... <\head>");
+            break;
+        case 20://---REDES---
+            strcpy(galdera[i].testua, "Zein da Google-ren DNS IPv4-a?");
+            strcpy(galdera[i].aukerak.A, "1.1.1.1");  
+            strcpy(galdera[i].aukerak.B, "5.5.5.5");
+            strcpy(galdera[i].aukerak.C, "0.0.0.0");
+            strcpy(galdera[i].aukerak.D, "8.8.8.8");  //ONDO
+            break;
+        case 21:
+            strcpy(galdera[i].testua, "Zer izen du transporte kapan lan egiten duen PDU-ari?");
+            strcpy(galdera[i].aukerak.A, "bits");  
+            strcpy(galdera[i].aukerak.B, "trama");
+            strcpy(galdera[i].aukerak.C, "segmento");  //ONDO
+            strcpy(galdera[i].aukerak.D, "pakete");
+            break;
+        case 22:
+            strcpy(galdera[i].testua, "Ari - gabeko host batek IP helbide bat eskatu behar du, zer protokolo erabili behar du eskaera hori  egiteko?");
+            strcpy(galdera[i].aukerak.A, "HTTP");
+            strcpy(galdera[i].aukerak.B, "SNMP");
+            strcpy(galdera[i].aukerak.C, "DHCP");  //ONDO    
+            strcpy(galdera[i].aukerak.D, "ICMP");
+            break;
+        case 23:
+            strcpy(galdera[i].testua, "Zein da IPv6 helbide honen (2001:0000:0000:abcd:0000:0000:0000:0001) idazkera motzena?");
+            strcpy(galdera[i].aukerak.A, "2001:0000:0000:abcd::1");  
+            strcpy(galdera[i].aukerak.B, "2001:0:0:abcd::1");    //ONDO
+            strcpy(galdera[i].aukerak.C, "2001::abcd::1");
+            strcpy(galdera[i].aukerak.D, "2001::abdc:0:1");
+            break;
+        case 24:
+            strcpy(galdera[i].testua, "255.255.255.248 maskaran zenbat host dira helbideragarriak?");
+            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.B, "6");  //ONDO
+            strcpy(galdera[i].aukerak.C, "8");
+            strcpy(galdera[i].aukerak.D, "14");
+            break;
+        case 25://---PORGRAM II---
+            strcpy(galdera[i].testua, "Zein da arraya[i]-ren baliokidea?");
+            strcpy(galdera[i].aukerak.A, "*(arraya+i)");  //ONDO
+            strcpy(galdera[i].aukerak.B, "arraya.i");
+            strcpy(galdera[i].aukerak.C, "(arraya+i)");
+            strcpy(galdera[i].aukerak.D, "*arraya+i");
+            break;
+        case 26:
+            strcpy(galdera[i].testua, "Zer da erakusle bat?");
+            strcpy(galdera[i].aukerak.A, "Ezer");  
+            strcpy(galdera[i].aukerak.B, "Memoriako zati bat");
+            strcpy(galdera[i].aukerak.C, "Memoriako elementuak");
+            strcpy(galdera[i].aukerak.D, "Memoriako helbide bat zehazten duen elementu bat");//ONDO
             break;
         /*
                 case 5:
@@ -352,13 +425,13 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
 
         */
-
-
         default:
             break;
         }
         i++;
     }
+
+
 }
 
 int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {

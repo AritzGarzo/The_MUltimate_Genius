@@ -30,6 +30,7 @@ typedef struct galdera {
     int id;
     char testua[MAX];
     OPZIOAK aukerak;//swicth erabili aukeratzeko
+    int erabilita;
 
 }GALDERA;
 
