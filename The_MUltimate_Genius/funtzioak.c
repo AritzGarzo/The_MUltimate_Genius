@@ -9,6 +9,8 @@
 #include"GureEstrukturak.h"
 #include"funtzioak.h"
 #include<stdlib.h>
+#include <Windows.h>
+#include<time.h>
 
 
 //int hasieratu(void)
@@ -151,7 +153,7 @@ int jolastu(void)
 
                     erantzunda = GalderakErantzun(exp, id, galdera);
                     if (erantzunda != 0) {
-                      //  sleep(5);
+                        Sleep(500);
                         id++;               
                         fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", id, galdera);
 
