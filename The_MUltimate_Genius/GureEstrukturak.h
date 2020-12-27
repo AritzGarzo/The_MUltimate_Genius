@@ -1,50 +1,37 @@
 #ifndef GUREESTRUKTURAK_H
 #define GUREESTRUKTURAK_H
+#define SOINU_KOP 5
+#define MAX 128
+//#define GALDERA1 ".\\img\\Galderak_Erantzunak\\Program\\Preguntas.bmp"
 
 #include "ebentoak.h"
 
 typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
-
-#define CHICA_AVATAR ".\\img\\chica....bmp";
-#define CHICO_AVATAR ".\\img\\chico....bmp";
+typedef enum { IRUDIA, MARGOA, TESTUA } MOTA;
 
 typedef struct
 {
-	float notaFinala;
-	char izena[128];
-	char karpeta[128];
-	/*
-	* GALDERAK ETA
-	* separar por carpetas
-	* cada carpeta tenga el nombre de la asignatura
-	* dentro pregunta y su respuesta
-	* aparece pregunta y jugador decide (click)coordenadas
-	*/
+    POSIZIOA pos;
+    int id;
+    MOTA mota;
+}JOKO_ELEMENTUA;
 
-}IKASGAI;
+typedef struct opzioak {
+    char A[MAX];
+    char B[MAX];
+    char C[MAX];
+    char D[MAX];
 
-typedef struct
-{
-	int iKop;//ikasgai 
-	char izena[128];
-	IKASGAI* ikasgaiak;
-}GRADUA;
+} OPZIOAK;
+typedef enum {/*EMAITZAREN ORDENA*/ } EMAITZAK;
 
-typedef struct
-{
-	int id;
-	char izena[128];
-	POSIZIOA pos_hasi;//goi ezkerra
-	POSIZIOA pos_buka;//behe eskubia
-}IRUDIA;
+typedef struct galdera {
 
-typedef struct
-{
-	IRUDIA irudia;//irudia (las preguntas)
-	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
-	char izena[128];
-	GRADUA gradua;
-	POSIZIOA pos;
-}JOKALARIA;
+    int id;
+    char testua[MAX];
+    OPZIOAK aukerak;//swicth erabili aukeratzeko
+    int erabilita;
+
+}GALDERA;
 
 #endif
