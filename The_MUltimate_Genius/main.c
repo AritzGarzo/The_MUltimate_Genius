@@ -6,7 +6,6 @@
 #include "imagen.h"
 #include <stdio.h>
 #include <string.h>
-//Danel
 
 
 #define SOINU_KOP 5
