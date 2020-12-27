@@ -34,23 +34,6 @@ int main(int argc, char* str[])
     char esaldia[] = "";
     POSIZIOA pos;
 
-    /*hasieratu();
-    while(!irten)
-    {
-      ebentu = ebentuaJasoGertatuBada();
-      if (ebentu == SAGU_BOTOIA_EZKERRA)
-      {
-        pos=saguarenPosizioa();
-        if ((pos.x > 300) && (pos.x < 300 + 40) && (pos.y>200) && (pos.y < 200 + 38)) irten = 1;
-      }
-      if (ebentu == TECLA_ESCAPE) irten = 1;
-      else if((ebentu >= TECLA_0) &&(ebentu < TECLA_0+SOINU_KOP))
-        playSound(gureGauzak.idSounds[ebentu - TECLA_0]);
-      else if (ebentu == TECLA_RETURN) toggleMusic();
-    }
-    audioTerminate();
-    sgItxi();*/
-    //
     mu_hasieratu();
     while (irten != 1)
     {
