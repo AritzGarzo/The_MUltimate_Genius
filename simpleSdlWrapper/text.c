@@ -31,7 +31,7 @@ void textuaGaitu_profila(void) {
 
 //pantaila beltza
 void textuaGaitu_beltza(void) {
-	font = TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\BRLNSR.TTF", 32, 0);
+	font = TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\BRLNSR.TTF", 16, 0);
 	if (!font)
 	{
 		printf("TTF_OpenFontIndex: %s\n", TTF_GetError());
