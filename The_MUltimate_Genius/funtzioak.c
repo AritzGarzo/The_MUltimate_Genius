@@ -415,6 +415,77 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.C, "Memoriako elementuak");
             strcpy(galdera[i].aukerak.D, "Memoriako helbide bat zehazten duen elementu bat");//ONDO
             break;
+        case 27:
+            strcpy(galdera[i].testua, "Nola deklaratzen da erakusle bat?");
+            strcpy(galdera[i].aukerak.A, "?");  
+            strcpy(galdera[i].aukerak.B, "&");
+            strcpy(galdera[i].aukerak.C, "*");  //ONDO
+            strcpy(galdera[i].aukerak.D, "^");
+            break;
+        case 28:
+            strcpy(galdera[i].testua, "Zer da programazioan errekurtsibitatea?");
+            strcpy(galdera[i].aukerak.A, "Funtzio batek bere buruari deitzea");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Funtzio batek beste funtzio bati deitzea");
+            strcpy(galdera[i].aukerak.C, "Funtzio bat");
+            strcpy(galdera[i].aukerak.D, "Funtzio baten barruan hainbat funtzio edukitzea");
+            break;
+        case 29:
+            strcpy(galdera[i].testua, "Fitxategi bat irekitzeko fopen erabiltzen da, funtzio honek fitxategiaren izena eta modua behar du, zein letra da irakurtzeko?");
+            strcpy(galdera[i].aukerak.A, "d");  
+            strcpy(galdera[i].aukerak.B, "w");
+            strcpy(galdera[i].aukerak.C, "a");
+            strcpy(galdera[i].aukerak.D, "r");  //ONDO
+            break;
+        case 30://---MATE II---
+            strcpy(galdera[i].testua, "Zer da pibot bat?");
+            strcpy(galdera[i].aukerak.A, "Saskibaloiko posizio bat");  
+            strcpy(galdera[i].aukerak.B, "Ezkerretik hasita 0 ez den lehen zenbakia");  //ONDO
+            strcpy(galdera[i].aukerak.C, "Eskuinetik hasieta 0 ez den lehen zenbakia");
+            strcpy(galdera[i].aukerak.D, "Eskuinetik hasieta 0 den lehen zenbakia");
+            break;
+        case 31:
+            strcpy(galdera[i].testua, "Noiz erabili behar da Bernoulli?");
+            strcpy(galdera[i].aukerak.A, "Ekuazioa lineala denean");
+            strcpy(galdera[i].aukerak.B, "Ekuazioa ez lineala denea");
+            strcpy(galdera[i].aukerak.C, "Ekuazio diferentziala lineala denean");
+            strcpy(galdera[i].aukerak.D, "Ekuazio diferentziala ez lineala denean");  //ONDO
+            break;
+        case 32:
+            strcpy(galdera[i].testua, "Zer esan nahi du matriz bateko zutabe bakoitzean pibot bat edukitzeak?");
+            strcpy(galdera[i].aukerak.A, "Matrizea osatzen duen ekuazioek pibot bat dutela");
+            strcpy(galdera[i].aukerak.B, "Matrizea osatzen duen ekuazioek sistema indeterminatu bat osatzen dutela");
+            strcpy(galdera[i].aukerak.C, "Matrizea osatzen duen ekuazioek sistema bateragarri determinatua dela");   //ONDO
+            strcpy(galdera[i].aukerak.D, "Matrizea osatzen duen ekuazioek sistema batera ezin bat dela");
+            break;
+        case 33:
+            strcpy(galdera[i].testua, "Zer da matriz elemental bat?");
+            strcpy(galdera[i].aukerak.A, "Matrizeko diagonal nagusian dagoen zenbakiak 1 dira eta beste guztiak 0");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Matrizeko diagonal nagusian dagoen zenbakiak 0 dira eta beste denak 1");
+            strcpy(galdera[i].aukerak.C, "Ordenaturik dagoen matrize bat");
+            strcpy(galdera[i].aukerak.D, "Matrize batean 0-rik ez edukitzea");
+            break;
+        case 34:
+            strcpy(galdera[i].testua, "Zein da ekuazio diferentzial baten orden maila?");
+            strcpy(galdera[i].aukerak.A, "Koefiziente handiena ");
+            strcpy(galdera[i].aukerak.B, "Deribatu maila handiena");   //ONDO
+            strcpy(galdera[i].aukerak.C, "Deribatu maila txikiena");
+            strcpy(galdera[i].aukerak.D, "Koefiziente txikiena");
+            break;
+        case 35://---MATE DISKRETA---
+            strcpy(galdera[i].testua, "Zer da grafo Hamilton bat?");
+            strcpy(galdera[i].aukerak.A, "Puntu guztietatik pasatzea baina amaiera eta hasiera ezberdinak izanik");
+            strcpy(galdera[i].aukerak.B, "Puntu guztietatik behin pasatzea baina amaiera eta hasiera ezberdinak izanik");
+            strcpy(galdera[i].aukerak.C, "Hasiera eta amaiera puntu bera izanik ibildide zirkularra egitea puntu guztietatik behin pasatuz");  //ONDO
+            strcpy(galdera[i].aukerak.D, "Hasiera eta amaiera puntu bera izanik puntu guztietatik pasatzea");
+            break;
+        case 36:
+            strcpy(galdera[i].testua, "Zer ezberdintasun dago grafo Eulearra eta Hamiltondarraren artean?");
+            strcpy(galdera[i].aukerak.A, "Batek ibilbide ziklikoa egiten du eta besteak ez");
+            strcpy(galdera[i].aukerak.B, "Batek erpinak hartzen ditu kontua eta besteak ertzak");   //ONDO
+            strcpy(galdera[i].aukerak.C, "Batek ibilbide ziklikoak puntuen artean eta besteak ibilbide ziklikoa ertzen artean");
+            strcpy(galdera[i].aukerak.D, "Ez dago ezberdintasunik");
+            break;
+
         /*
                 case 5:
             strcpy(galdera[i].testua, "");
