@@ -232,9 +232,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
     int i = 1;
     while (i < 50) {
 
-
         galdera[i].id = i;
-
 
         switch (i)
         {
