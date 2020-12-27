@@ -139,7 +139,7 @@ int jolastu(void)
             pos = saguarenPosizioa();
             srand(time(NULL));
             id = 1 + rand() % 49;
-           // id = 22;
+             id = 5;
             galderakEtaEurenAukerakSortu(galdera);
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 //----SUPUESTO UNI-----
@@ -233,8 +233,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].testua, "Zein da FOR baten sintaxia?");
             strcpy(galdera[i].aukerak.A, "(i=0;i<10;i++)"); //ONDO
             strcpy(galdera[i].aukerak.B, "[i=0;i<10;i++]");
-            strcpy(galdera[i].aukerak.C, "{i=0,i<10,i++}");
-            strcpy(galdera[i].aukerak.D, "{i=0;i<10;i++}");
+            strcpy(galdera[i].aukerak.C, "(i=0,i<10,i++)");
+            strcpy(galdera[i].aukerak.D, "[i=0;i<10;i++]");
 
             break;
         case 2:
@@ -290,7 +290,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
 
         case 9:
             strcpy(galdera[i].testua, "Zenbat da Sin5(pi)/6?");
-            strcpy(galdera[i].aukerak.A, "erro(2)/2");  
+            strcpy(galdera[i].aukerak.A, "erro(2)/2");
             strcpy(galdera[i].aukerak.B, "1/2");//ONDO
             strcpy(galdera[i].aukerak.C, "erro(3)/3");
             strcpy(galdera[i].aukerak.D, "-erro(2)/2");
@@ -312,10 +312,10 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 12:
             strcpy(galdera[i].testua, "Zein zen Thevenin?");
-            strcpy(galdera[i].aukerak.A, "Ingeniero bat");
+            strcpy(galdera[i].aukerak.A, "Ingeniero bat");//ONDO
             strcpy(galdera[i].aukerak.B, "Fisiko bat");
             strcpy(galdera[i].aukerak.C, "Kimiko bat");
-            strcpy(galdera[i].aukerak.D, "Elektroniko bat");//ONDO
+            strcpy(galdera[i].aukerak.D, "Elektroniko bat");
             break;
         case 13:
             strcpy(galdera[i].testua, " Zein da Kirchhoff-en legea?");
@@ -329,11 +329,11 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.A, "R=R1+R2");
             strcpy(galdera[i].aukerak.B, "(1/R)=(1/R1)+(1/R2)");  //ONDO
             strcpy(galdera[i].aukerak.C, "R=(1/R1)+(1/R2)");
-            strcpy(galdera[i].aukerak.D, "R=R1+(1/R2)");
+            strcpy(galdera[i].aukerak.D, "R=(1/R1)+R2)");
             break;
         case 15:
             strcpy(galdera[i].testua, "Zein da potentzialaren formula egokia?");
-            strcpy(galdera[i].aukerak.A, "V/(I^2)"); 
+            strcpy(galdera[i].aukerak.A, "V/(I^2)");
             strcpy(galdera[i].aukerak.B, "(I^2)/R");
             strcpy(galdera[i].aukerak.C, "(V^2)*R");
             strcpy(galdera[i].aukerak.D, "I*(R^2)"); //ONDO
@@ -343,7 +343,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.A, "Bertsioen kontrol bat egiteko");  //ONDO
             strcpy(galdera[i].aukerak.B, "Programa bat gehiago nahasteko");
             strcpy(galdera[i].aukerak.C, "Textu bat lainoan gordetzeko");
-            strcpy(galdera[i].aukerak.D, "Web bat egiteko");        
+            strcpy(galdera[i].aukerak.D, "Web bat egiteko");
             break;
         case 17:
             strcpy(galdera[i].testua, "PDF batek irudia badu zer eduki behar du berarekin?");
@@ -354,7 +354,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 18:
             strcpy(galdera[i].testua, "Zer etiketa erabili behar da izenburua jartzeko?");
-            strcpy(galdera[i].aukerak.A, "<head> ... </head>");  
+            strcpy(galdera[i].aukerak.A, "<head> ... </head>");
             strcpy(galdera[i].aukerak.B, "<title> ... </title>");  //ONDO
             strcpy(galdera[i].aukerak.C, "<img> ... </img>");
             strcpy(galdera[i].aukerak.D, "<p> ... </p>");
@@ -362,21 +362,21 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
 
         case 19:
             strcpy(galdera[i].testua, "Zer etiketa erabili behar da kodigoa jartzeko?");
-            strcpy(galdera[i].aukerak.A, "<strong> ... </strong>");  
+            strcpy(galdera[i].aukerak.A, "<strong> ... </strong>");
             strcpy(galdera[i].aukerak.B, "<div> ... </div>");
             strcpy(galdera[i].aukerak.C, "<script> ... </script>");  //ONDO
             strcpy(galdera[i].aukerak.D, "<head> ... <\head>");
             break;
         case 20://---REDES---
             strcpy(galdera[i].testua, "Zein da Google-ren DNS IPv4-a?");
-            strcpy(galdera[i].aukerak.A, "1.1.1.1");  
+            strcpy(galdera[i].aukerak.A, "1.1.1.1");
             strcpy(galdera[i].aukerak.B, "5.5.5.5");
             strcpy(galdera[i].aukerak.C, "0.0.0.0");
             strcpy(galdera[i].aukerak.D, "8.8.8.8");  //ONDO
             break;
         case 21:
             strcpy(galdera[i].testua, "Zer izen du transporte kapan lan egiten duen PDU-ari?");
-            strcpy(galdera[i].aukerak.A, "bits");  
+            strcpy(galdera[i].aukerak.A, "bits");
             strcpy(galdera[i].aukerak.B, "trama");
             strcpy(galdera[i].aukerak.C, "segmento");  //ONDO
             strcpy(galdera[i].aukerak.D, "pakete");
@@ -390,14 +390,14 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 23:
             strcpy(galdera[i].testua, "Zein da IPv6 helbide honen (2001:0000:0000:abcd:0000:0000:0000:0001) idazkera motzena?");
-            strcpy(galdera[i].aukerak.A, "2001:0000:0000:abcd::1");  
+            strcpy(galdera[i].aukerak.A, "2001:0000:0000:abcd::1");
             strcpy(galdera[i].aukerak.B, "2001:0:0:abcd::1");    //ONDO
             strcpy(galdera[i].aukerak.C, "2001::abcd::1");
             strcpy(galdera[i].aukerak.D, "2001::abdc:0:1");
             break;
         case 24:
             strcpy(galdera[i].testua, "255.255.255.248 maskaran zenbat host dira helbideragarriak?");
-            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.A, "2");
             strcpy(galdera[i].aukerak.B, "6");  //ONDO
             strcpy(galdera[i].aukerak.C, "8");
             strcpy(galdera[i].aukerak.D, "14");
@@ -411,14 +411,14 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 26:
             strcpy(galdera[i].testua, "Zer da erakusle bat?");
-            strcpy(galdera[i].aukerak.A, "Ezer");  
+            strcpy(galdera[i].aukerak.A, "Ezer");
             strcpy(galdera[i].aukerak.B, "Memoriako zati bat");
             strcpy(galdera[i].aukerak.C, "Memoriako elementuak");
             strcpy(galdera[i].aukerak.D, "Memoriako helbide bat zehazten duen elementu bat");//ONDO
             break;
         case 27:
             strcpy(galdera[i].testua, "Nola deklaratzen da erakusle bat?");
-            strcpy(galdera[i].aukerak.A, "?");  
+            strcpy(galdera[i].aukerak.A, "?");
             strcpy(galdera[i].aukerak.B, "&");
             strcpy(galdera[i].aukerak.C, "*");  //ONDO
             strcpy(galdera[i].aukerak.D, "^");
@@ -432,14 +432,14 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 29:
             strcpy(galdera[i].testua, "Fitxategi bat irekitzeko fopen erabiltzen da, funtzio honek fitxategiaren izena eta modua behar du, zein letra da irakurtzeko?");
-            strcpy(galdera[i].aukerak.A, "d");  
+            strcpy(galdera[i].aukerak.A, "d");
             strcpy(galdera[i].aukerak.B, "w");
             strcpy(galdera[i].aukerak.C, "a");
             strcpy(galdera[i].aukerak.D, "r");  //ONDO
             break;
         case 30://---MATE II---
             strcpy(galdera[i].testua, "Zer da pibot bat?");
-            strcpy(galdera[i].aukerak.A, "Saskibaloiko posizio bat");  
+            strcpy(galdera[i].aukerak.A, "Saskibaloiko posizio bat");
             strcpy(galdera[i].aukerak.B, "Ezkerretik hasita 0 ez den lehen zenbakia");  //ONDO
             strcpy(galdera[i].aukerak.C, "Eskuinetik hasieta 0 ez den lehen zenbakia");
             strcpy(galdera[i].aukerak.D, "Eskuinetik hasieta 0 den lehen zenbakia");
@@ -488,21 +488,21 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 37:
             strcpy(galdera[i].testua, "Zenbat modu daude {1,2,3} zenbakiak ordenatzeko?");
-            strcpy(galdera[i].aukerak.A, "4"); 
+            strcpy(galdera[i].aukerak.A, "4");
             strcpy(galdera[i].aukerak.B, "6"); //ONDO
             strcpy(galdera[i].aukerak.C, "8");
             strcpy(galdera[i].aukerak.D, "10");
             break;
         case 38:
             strcpy(galdera[i].testua, "12 korrikalari dagoen lasterketa baten zenbat modu daude dominak banatzeko orduan? ");
-            strcpy(galdera[i].aukerak.A, "1250"); 
+            strcpy(galdera[i].aukerak.A, "1250");
             strcpy(galdera[i].aukerak.B, "1320"); //ONDO
             strcpy(galdera[i].aukerak.C, "1640");
             strcpy(galdera[i].aukerak.D, "1480");
             break;
         case 39:
             strcpy(galdera[i].testua, "15 gozoki izanik zenbat modu daude 20 umeren artean banatzeko gehienez bakoitzak 1 izanik?");
-            strcpy(galdera[i].aukerak.A, "10408");  
+            strcpy(galdera[i].aukerak.A, "10408");
             strcpy(galdera[i].aukerak.B, "15504");//ONDO
             strcpy(galdera[i].aukerak.C, "16450");
             strcpy(galdera[i].aukerak.D, "17430");
@@ -523,14 +523,14 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 42:
             strcpy(galdera[i].testua, "Zein da artezgailu baten helburua?");
-            strcpy(galdera[i].aukerak.A, "Korronteen frekuentzia handitzea");  
+            strcpy(galdera[i].aukerak.A, "Korronteen frekuentzia handitzea");
             strcpy(galdera[i].aukerak.B, "Korronte zuzena alterno bihurtzea");
             strcpy(galdera[i].aukerak.C, "Korronte alternoa zuzena bihurtzea");//ONDO
             strcpy(galdera[i].aukerak.D, "Korronteen frekuentzia txikitzea");
             break;
         case 43:
             strcpy(galdera[i].testua, "Zenbat transistore mota daude?");
-            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.A, "2");
             strcpy(galdera[i].aukerak.B, "3");
             strcpy(galdera[i].aukerak.C, "4");//ONDO
             strcpy(galdera[i].aukerak.D, "5");
@@ -542,16 +542,16 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.C, "Transformadorea->artezgailuak->filtroa->irteera");
             strcpy(galdera[i].aukerak.D, "Transformadorea->artezgailuak->filtroa->reguladorea->irteera");   //ONDO
             break;
-        case 45:
+        case 45://----EMPRESA----
             strcpy(galdera[i].testua, "Zenbat ingurune nagusi daude enpresa bati eragiten diona?");
-            strcpy(galdera[i].aukerak.A, "1");  
+            strcpy(galdera[i].aukerak.A, "1");
             strcpy(galdera[i].aukerak.B, "2");//ONDO
             strcpy(galdera[i].aukerak.C, "3");
             strcpy(galdera[i].aukerak.D, "4");
             break;
         case 46:
             strcpy(galdera[i].testua, "Kontabilitate garaian , zenbat atal eduki behar ditu urteko kontuetan?");
-            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.A, "2");
             strcpy(galdera[i].aukerak.B, "3");
             strcpy(galdera[i].aukerak.C, "4");
             strcpy(galdera[i].aukerak.D, "5");//ONDO
@@ -566,7 +566,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             break;
         case 48:
             strcpy(galdera[i].testua, "-Enpresa baten negozio plana zenbat atal nagusi ditu?");
-            strcpy(galdera[i].aukerak.A, "5"); 
+            strcpy(galdera[i].aukerak.A, "5");
             strcpy(galdera[i].aukerak.B, "7");
             strcpy(galdera[i].aukerak.C, "8"); //ONDO
             strcpy(galdera[i].aukerak.D, "10");
@@ -578,16 +578,16 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.C, "Jarduera-sektore baten barneko enpresetan du bakarrik eragina");
             strcpy(galdera[i].aukerak.D, "Jarduera-sektore guztien barneko enpresetan du bakarrik eragina");
             break;
-        /*
-                case 5:
-            strcpy(galdera[i].testua, "");
-            strcpy(galdera[i].aukerak.A, "");  //ONDO
-            strcpy(galdera[i].aukerak.B, "");
-            strcpy(galdera[i].aukerak.C, "");
-            strcpy(galdera[i].aukerak.D, "");
-            break;
+            /*
+                    case 5:
+                strcpy(galdera[i].testua, "");
+                strcpy(galdera[i].aukerak.A, "");  //ONDO
+                strcpy(galdera[i].aukerak.B, "");
+                strcpy(galdera[i].aukerak.C, "");
+                strcpy(galdera[i].aukerak.D, "");
+                break;
 
-        */
+            */
         default:
             break;
         }
@@ -623,6 +623,7 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 opzioakAgertu(galdera, galderaID, 2);
 
             }
+
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                 irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1M2.bmp"), 30, 614);
                 irudiakMarraztu();
@@ -641,7 +642,7 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
         case 2:
 
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M1.bmp"), 30, 490);
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 1);
 
@@ -650,21 +651,22 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
 
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 30, 488);
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2O.bmp"), 656, 489);
                 irudiakMarraztu();
                 textuaGaitu();
                 opzioakAgertu(galdera, galderaID, 2);
 
             }
+
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M2.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M2.bmp"), 30, 614);
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 3);
 
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M3.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2M3.bmp"), 656, 616);
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
 
@@ -675,7 +677,7 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
         case 3:
 
             if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M1.bmp"), 30, 490);
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 1);
 
@@ -683,17 +685,15 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
             }
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M2.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M2.bmp"), 656, 489);
                 irudiakMarraztu();
-
                 opzioakAgertu(galdera, galderaID, 2);
 
-
             }
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 488);
-                irudiakMarraztu();
 
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3O.bmp"), 30, 614);
+                irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 3);
 
 
@@ -701,14 +701,94 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
 
-                irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M3.bmp");
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3M3.bmp"), 656, 616);
                 irudiakMarraztu();
-
                 opzioakAgertu(galdera, galderaID, 4);
 
 
             }
             break;
+        case 4:
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4O.bmp"), 30, 490);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 1);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4M1.bmp"), 656, 489);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 2);
+            }
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4M2.bmp"), 30, 614);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 3);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4M3.bmp"), 656, 616);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 4);
+            }          
+            break;
+
+        case 5:
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5M3.bmp"), 30, 490);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 1);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5M2.bmp"), 656, 489);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 2);
+            }
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5M1.bmp"), 30, 614);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 3);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5O.bmp"), 656, 616);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 4);
+            }
+            break;
+
+        case 6:
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1O.bmp"), 30, 490);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 1);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1M1.bmp"), 656, 489);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 2);
+            }
+
+            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1M2.bmp"), 30, 614);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 3);
+            }
+
+            if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1M3.bmp"), 656, 616);
+                irudiakMarraztu();
+                opzioakAgertu(galdera, galderaID, 4);
+            }
+            break;
+
 
         default:
 
