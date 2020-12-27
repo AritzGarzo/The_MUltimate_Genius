@@ -18,7 +18,27 @@ void textuaGaitu(void){
 	}
 }
 
-void textuaIdatzi(int x, int y, char *str)
+//profila
+void textuaGaitu_profila(void) {
+	font = TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\BRLNSR.TTF", 64, 0);
+	if (!font)
+	{
+		printf("TTF_OpenFontIndex: %s\n", TTF_GetError());
+		// handle error
+	}
+}
+
+//pantaila beltza
+void textuaGaitu_beltza(void) {
+	font = TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\BRLNSR.TTF", 32, 0);
+	if (!font)
+	{
+		printf("TTF_OpenFontIndex: %s\n", TTF_GetError());
+		// handle error
+	}
+}
+
+void textuaIdatzi(int x, int y, char* str)
 {
   SDL_Surface* textSurface;
   SDL_Texture *mTexture;
