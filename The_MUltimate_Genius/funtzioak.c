@@ -138,8 +138,8 @@ int jolastu(void)
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
             pos = saguarenPosizioa();
             srand(time(NULL));
-            id = 1 + rand() % 14;
-            id = 22;
+            id = 1 + rand() % 49;
+           // id = 22;
             galderakEtaEurenAukerakSortu(galdera);
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 //----SUPUESTO UNI-----
@@ -218,6 +218,7 @@ int kontrolak(void)
     return irten;
 }
 
+//---HEMEN GALDERAK ETA AUKERAK ESTRUKTURAN SARTZEN DUGU GERO PRINTEATZEKO
 void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
     int i = 1;
     while (i < 50) {
@@ -485,7 +486,98 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[]) {
             strcpy(galdera[i].aukerak.C, "Batek ibilbide ziklikoak puntuen artean eta besteak ibilbide ziklikoa ertzen artean");
             strcpy(galdera[i].aukerak.D, "Ez dago ezberdintasunik");
             break;
+        case 37:
+            strcpy(galdera[i].testua, "Zenbat modu daude {1,2,3} zenbakiak ordenatzeko?");
+            strcpy(galdera[i].aukerak.A, "4"); 
+            strcpy(galdera[i].aukerak.B, "6"); //ONDO
+            strcpy(galdera[i].aukerak.C, "8");
+            strcpy(galdera[i].aukerak.D, "10");
+            break;
+        case 38:
+            strcpy(galdera[i].testua, "12 korrikalari dagoen lasterketa baten zenbat modu daude dominak banatzeko orduan? ");
+            strcpy(galdera[i].aukerak.A, "1250"); 
+            strcpy(galdera[i].aukerak.B, "1320"); //ONDO
+            strcpy(galdera[i].aukerak.C, "1640");
+            strcpy(galdera[i].aukerak.D, "1480");
+            break;
+        case 39:
+            strcpy(galdera[i].testua, "15 gozoki izanik zenbat modu daude 20 umeren artean banatzeko gehienez bakoitzak 1 izanik?");
+            strcpy(galdera[i].aukerak.A, "10408");  
+            strcpy(galdera[i].aukerak.B, "15504");//ONDO
+            strcpy(galdera[i].aukerak.C, "16450");
+            strcpy(galdera[i].aukerak.D, "17430");
+            break;
+        case 40://--- ELEKTRONIKA GALDERA-----
+            strcpy(galdera[i].testua, "Nolakoa da korronte alternoaren uhinak");
+            strcpy(galdera[i].aukerak.A, "Sinusoidala");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Zirkularra");
+            strcpy(galdera[i].aukerak.C, "Ez da ezagutzen");
+            strcpy(galdera[i].aukerak.D, "obalatua");
+            break;
+        case 41:
+            strcpy(galdera[i].testua, "Zer da diodo bat?");
+            strcpy(galdera[i].aukerak.A, "Artezgailu bat");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Transistore bat");
+            strcpy(galdera[i].aukerak.C, "Transformadore bat");
+            strcpy(galdera[i].aukerak.D, "Energia iturri bat");
+            break;
+        case 42:
+            strcpy(galdera[i].testua, "Zein da artezgailu baten helburua?");
+            strcpy(galdera[i].aukerak.A, "Korronteen frekuentzia handitzea");  
+            strcpy(galdera[i].aukerak.B, "Korronte zuzena alterno bihurtzea");
+            strcpy(galdera[i].aukerak.C, "Korronte alternoa zuzena bihurtzea");//ONDO
+            strcpy(galdera[i].aukerak.D, "Korronteen frekuentzia txikitzea");
+            break;
+        case 43:
+            strcpy(galdera[i].testua, "Zenbat transistore mota daude?");
+            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.B, "3");
+            strcpy(galdera[i].aukerak.C, "4");//ONDO
+            strcpy(galdera[i].aukerak.D, "5");
+            break;
+        case 44:
+            strcpy(galdera[i].testua, "Zer zati ditu elikadura iturri basiko batek?");
+            strcpy(galdera[i].aukerak.A, "Transdormadorea-> irteera");
+            strcpy(galdera[i].aukerak.B, "Transformadorea->artezgailuak->irteera");
+            strcpy(galdera[i].aukerak.C, "Transformadorea->artezgailuak->filtroa->irteera");
+            strcpy(galdera[i].aukerak.D, "Transformadorea->artezgailuak->filtroa->reguladorea->irteera");   //ONDO
+            break;
+        case 45:
+            strcpy(galdera[i].testua, "Zenbat ingurune nagusi daude enpresa bati eragiten diona?");
+            strcpy(galdera[i].aukerak.A, "1");  
+            strcpy(galdera[i].aukerak.B, "2");//ONDO
+            strcpy(galdera[i].aukerak.C, "3");
+            strcpy(galdera[i].aukerak.D, "4");
+            break;
+        case 46:
+            strcpy(galdera[i].testua, "Kontabilitate garaian , zenbat atal eduki behar ditu urteko kontuetan?");
+            strcpy(galdera[i].aukerak.A, "2");  
+            strcpy(galdera[i].aukerak.B, "3");
+            strcpy(galdera[i].aukerak.C, "4");
+            strcpy(galdera[i].aukerak.D, "5");//ONDO
+            break;
 
+        case 47:
+            strcpy(galdera[i].testua, "Nola kalkulatzen da enpresa baten bermea?");
+            strcpy(galdera[i].aukerak.A, "Aktibo erreala/ zorrak");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Aktibo/Pasibo");
+            strcpy(galdera[i].aukerak.C, "Aktiko erreala*zorrak");
+            strcpy(galdera[i].aukerak.D, "Aktibo*Pasibo");
+            break;
+        case 48:
+            strcpy(galdera[i].testua, "-Enpresa baten negozio plana zenbat atal nagusi ditu?");
+            strcpy(galdera[i].aukerak.A, "5"); 
+            strcpy(galdera[i].aukerak.B, "7");
+            strcpy(galdera[i].aukerak.C, "8"); //ONDO
+            strcpy(galdera[i].aukerak.D, "10");
+            break;
+        case 49:
+            strcpy(galdera[i].testua, "Zer esan nahi du enpresa baten ingurune orokorra?");
+            strcpy(galdera[i].aukerak.A, "Enpresa guztientzako berdina da eta eragin bera du guztiendako");  //ONDO
+            strcpy(galdera[i].aukerak.B, "Enpresa guztientzako berdina da eta eragin bera du guztiendako");
+            strcpy(galdera[i].aukerak.C, "Jarduera-sektore baten barneko enpresetan du bakarrik eragina");
+            strcpy(galdera[i].aukerak.D, "Jarduera-sektore guztien barneko enpresetan du bakarrik eragina");
+            break;
         /*
                 case 5:
             strcpy(galdera[i].testua, "");
