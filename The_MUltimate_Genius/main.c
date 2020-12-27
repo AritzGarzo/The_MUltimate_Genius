@@ -188,9 +188,10 @@ int jolastu(void)
         switch (ebentu)
         {
         case TECLA_s:
+            //sprite mover abajo//
             y_1 = y_1 + 4;
-
-            y = 0;
+//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            y = 0;              
             if (tmp == TECLA_s)
             {
                 x = x + 4;
@@ -202,15 +203,15 @@ int jolastu(void)
             if (x > 8)
             {
                 x = 0;
-            }
-           //sprite mover adelante          
+            }        
            tmp = ebentu;
+//------------------------------------------------------------//
             break;
 
         case TECLA_w:
-           //sprite mover adelante
+           //sprite mover arriba//
             y_1 = y_1 - 4;
-
+//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 12;
             if (tmp == TECLA_w)
             {
@@ -225,47 +226,44 @@ int jolastu(void)
                 x = 0;
             }
             tmp = ebentu;
+//------------------------------------------------------------//
             break;
 
         case TECLA_d:
-           //sprite mover adelante
+           //sprite mover derecha//
             x_1 = x_1 + 4;
-            y = 8;
-            
+//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            y = 8;            
             if (tmp == TECLA_d)
             {
                 x = x + 4;
             }
-            else
-            {
-                x = 4;
-            }
+            else{ x = 4;}
+
             if (x > 8)
             {
                 x = 0;
             }
             tmp = ebentu;
+//------------------------------------------------------------//
             break;    
 
         case TECLA_a:
-           //mover
+           //sprite mover izquierda//
             x_1 = x_1 - 4;
-
+//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 4;
-
             if (tmp == TECLA_a)
             {
                 x = x + 4;
             }
-            else
-            {
-                x = 4;
-            }
+            else{ x = 4;}
             if (x > 8)
             {
                 x = 0;
             }
             tmp = ebentu;
+//------------------------------------------------------------//
             break;
 
         case TECLA_t:
@@ -274,14 +272,10 @@ int jolastu(void)
         default:
             break;
         }
-      
-
         irudiakMarraztu();
         spriteakMarraztu(x, y, tamaño);
         pantailaBerriztu();
     }
-    //system("pause");
-
   
     return irten;
 }
@@ -308,3 +302,5 @@ int kontrolak(void)
     }
     return irten;
 }
+
+//Crear funcion de personaje principal//
