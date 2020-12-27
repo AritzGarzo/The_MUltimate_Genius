@@ -25,7 +25,7 @@ int hasieratu(void);
 //
 int mu_hasieratu(void);
 void fondoPantaila(char* str);
-int jolastu(void);
+int pertsonaiaMugitu(void);
 int kontrolak(void);
 
 int main(int argc, char* str[])
@@ -68,7 +68,7 @@ int main(int argc, char* str[])
             else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 293) && (pos.y < 293 + 68))
             {
                 fondoPantaila(".\\img\\jolastu.bmp");
-                irten = jolastu();
+                irten = pertsonaiaMugitu();
                 fondoPantaila(".\\img\\menu.bmp");
             }
             break;
@@ -165,17 +165,16 @@ void fondoPantaila(char* str)
     pantailaBerriztu();
 }
 
-int jolastu(void)
+int pertsonaiaMugitu(void)
 {
     int irten, ebentu, x, y, tamaño = 48, tmp = 0, x_1, y_1;
-    static char esaldia[16] = "";
     JOKALARIA sprite;
 
     irten = 3;
 
-    sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF.bmp");
+    sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF .bmp");
     x = 0; y = 0;
-    x_1 = 0; y_1 = 0;
+    x_1 = 50; y_1 = 50;
 
     while (irten == 3)
     {
@@ -190,8 +189,8 @@ int jolastu(void)
         case TECLA_s:
             //sprite mover abajo//
             y_1 = y_1 + 4;
-//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-            y = 0;              
+            //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            y = 0;
             if (tmp == TECLA_s)
             {
                 x = x + 4;
@@ -203,16 +202,16 @@ int jolastu(void)
             if (x > 8)
             {
                 x = 0;
-            }        
-           tmp = ebentu;
-//------------------------------------------------------------//
+            }
+            tmp = ebentu;
+            //------------------------------------------------------------//
             break;
 
         case TECLA_w:
-           //sprite mover arriba//
+            //sprite mover arriba//
             y_1 = y_1 - 4;
-//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-            y = 12;
+            //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            y = 13;
             if (tmp == TECLA_w)
             {
                 x = x + 4;
@@ -226,44 +225,44 @@ int jolastu(void)
                 x = 0;
             }
             tmp = ebentu;
-//------------------------------------------------------------//
+            //------------------------------------------------------------//
             break;
 
         case TECLA_d:
-           //sprite mover derecha//
+            //sprite mover derecha//
             x_1 = x_1 + 4;
-//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-            y = 8;            
+            //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            y = 8;
             if (tmp == TECLA_d)
             {
                 x = x + 4;
             }
-            else{ x = 4;}
+            else { x = 4; }
 
             if (x > 8)
             {
                 x = 0;
             }
             tmp = ebentu;
-//------------------------------------------------------------//
-            break;    
+            //------------------------------------------------------------//
+            break;
 
         case TECLA_a:
-           //sprite mover izquierda//
+            //sprite mover izquierda//
             x_1 = x_1 - 4;
-//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+            //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 4;
             if (tmp == TECLA_a)
             {
                 x = x + 4;
             }
-            else{ x = 4;}
+            else { x = 4; }
             if (x > 8)
             {
                 x = 0;
             }
             tmp = ebentu;
-//------------------------------------------------------------//
+            //------------------------------------------------------------//
             break;
 
         case TECLA_t:
@@ -276,7 +275,7 @@ int jolastu(void)
         spriteakMarraztu(x, y, tamaño);
         pantailaBerriztu();
     }
-  
+
     return irten;
 }
 
@@ -303,4 +302,3 @@ int kontrolak(void)
     return irten;
 }
 
-//Crear funcion de personaje principal//

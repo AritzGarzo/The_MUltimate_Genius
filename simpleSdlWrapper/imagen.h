@@ -6,7 +6,7 @@
 int  irudiaKargatu(char *fileName);
 void irudiaMugitu(int numImg, int x, int y);
 void irudiakMarraztu(void);
-void spriteakMarraztu(void);
+void irudiakMarraztu(void);
 void irudiaKendu(int id);
 
 //SPRITES
