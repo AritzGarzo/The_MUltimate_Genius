@@ -167,20 +167,20 @@ void fondoPantaila(char* str)
 
 int pertsonaiaMugitu(void)
 {
-    int irten, ebentu, x, y, tamaño = 48, tmp = 0, x_1, y_1;
+    int irten, ebentu, x, y, tamaño = 48, tmp = 0;
     JOKALARIA sprite;
-
+    IRUDIA pos;
     irten = 3;
 
     sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF .bmp");
     x = 0; y = 0;
-    x_1 = 50; y_1 = 50;
+    pos.pos_hasi.x = 50; pos.pos_hasi.y = 50;//Donde va a empezar el jugador?
 
     while (irten == 3)
     {
 
         pantailaGarbitu();
-        spriteMugitu(sprite.id_2d, x_1, y_1);
+        spriteMugitu(sprite.id_2d, pos.pos_hasi.x, pos.pos_hasi.y);
 
         ebentu = ebentuaJasoGertatuBada();
 
@@ -188,7 +188,7 @@ int pertsonaiaMugitu(void)
         {
         case TECLA_s:
             //sprite mover abajo//
-            y_1 = y_1 + 4;
+            pos.pos_hasi.y = pos.pos_hasi.y + 4;
             //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 0;
             if (tmp == TECLA_s)
@@ -209,7 +209,7 @@ int pertsonaiaMugitu(void)
 
         case TECLA_w:
             //sprite mover arriba//
-            y_1 = y_1 - 4;
+            pos.pos_hasi.y = pos.pos_hasi.y - 4;
             //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 13;
             if (tmp == TECLA_w)
@@ -230,7 +230,7 @@ int pertsonaiaMugitu(void)
 
         case TECLA_d:
             //sprite mover derecha//
-            x_1 = x_1 + 4;
+            pos.pos_hasi.x = pos.pos_hasi.x + 4;
             //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 8;
             if (tmp == TECLA_d)
@@ -249,7 +249,7 @@ int pertsonaiaMugitu(void)
 
         case TECLA_a:
             //sprite mover izquierda//
-            x_1 = x_1 - 4;
+            pos.pos_hasi.x = pos.pos_hasi.x - 4;
             //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
             y = 4;
             if (tmp == TECLA_a)

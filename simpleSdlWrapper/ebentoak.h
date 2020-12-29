@@ -8,15 +8,6 @@ typedef struct S_POSIZIOA
   int y;
 } POSIZIOA;
 
-typedef struct
-{
-	int id;//irudia (las preguntas)
-	int id_2d;//mugituko den irudia (movimientos/animaciones)
-	char izena[128];
-	//GRADUA gradua;
-	POSIZIOA pos;
-}JOKALARIA;
-
 /*
   Helburua: Funztio hau tekla bat sakatu arte zain dago, 
   eta ondoren zenbaki oso baten bitartez zein sakatu den adieraziko digu.
