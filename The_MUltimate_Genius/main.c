@@ -42,11 +42,11 @@ int main(int argc, char* str[])
             irudiaKendu(fondoa);
             pos = saguarenPosizioa();
             if ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)) irten = -1;//irten
-            else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 386 && pos.y < 386 + 68))//kontrolak
+            else if ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 386 && pos.y < 386 + 68))//kontrolak
             {
                 irten = kontrolak();
             }
-            else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 293 && pos.y < 293 + 68))//jolastu
+            else if ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 293 && pos.y < 293 + 68))//jolastu
             {
                 fondoa = fondoPantaila(".\\img\\menu.bmp");
                 //no tiene ningun juego cargado
@@ -60,7 +60,7 @@ int main(int argc, char* str[])
                     irten = jolastu(&jokalaria);
                 }
             }
-            else if ((pos.x >= 1200 && pos.x <= 1200 + 80) && (pos.y >= 700 && pos.y <= 700 + 20))
+            else if ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 479 && pos.y < 479 + 68))
             {
                 karga = Kargatu(&jokalaria);
                 if (karga == 1)
