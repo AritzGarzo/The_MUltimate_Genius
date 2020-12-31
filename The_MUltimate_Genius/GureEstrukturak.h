@@ -25,6 +25,12 @@ typedef struct
 
 typedef struct
 {
+	int xp;//galderekin irabazi duen 
+	int max;//ikasgaiKop*20
+}EXP;
+
+typedef struct
+{
 	int iKop;//ikasgai 
 	char izena[128];
 	IKASGAI* ikasgaiak;
@@ -40,6 +46,7 @@ typedef struct
 
 typedef struct
 {
+	int urtea;//jakiteko zenbateko esperientzia daukan
 	IRUDIA irudia;//irudia (las preguntas)
 	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	char izena[128];
