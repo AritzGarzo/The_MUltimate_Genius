@@ -183,10 +183,6 @@ int profila(JOKALARIA* jokalaria)
     //
     while (amaitu == -1)
     {
-        /*irudiakMarraztu();
-        textuaIdatzi(180, 174, esaldia);
-        textuaIdatzi(180, 356, gradua);
-        pantailaBerriztu();*/
         ebentu = ebentuaJasoGertatuBada();
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
@@ -194,7 +190,7 @@ int profila(JOKALARIA* jokalaria)
             //si clicka en izena
             if ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88))
             {
-                //borrar nombre
+                //borrar nombre y mantener el grado
                 irudiakMarraztu();
                 textuaIdatzi(180, 174, " ");
                 textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
@@ -337,14 +333,14 @@ int profila(JOKALARIA* jokalaria)
             //si clicka en una imagen se marca/ilumina
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))//mutila
             {
-                strcpy(jokalaria->irudia.izena, "img\\PersonajeChicoHablando.bmp");
+                strcpy(jokalaria->irudia.izena, ".\\img\\PersonajeChicoHablando.bmp");
                 jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 185;
                 jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 133;
                 aldaketa = 1;
             }
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))//neska
             {
-                strcpy(jokalaria->irudia.izena, "img\\PersonajeChicaHablando.bmp");
+                strcpy(jokalaria->irudia.izena, ".\\img\\PersonajeChicaHablando.bmp");
                 jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 350;
                 jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 133;
                 aldaketa = 1;
@@ -358,8 +354,8 @@ int profila(JOKALARIA* jokalaria)
         if (aldaketa == 1)
         {
             irudiakMarraztu();
-            textuaIdatzi(180, 174, (*jokalaria).izena);
-            textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
+            textuaIdatzi(180, 174, (*jokalaria).izena);//izena beridatzi
+            textuaIdatzi(180, 356, (*jokalaria).gradua.izena);//gradua beridatzi
             arkatzKoloreaEzarri(0XF8, 0XF3, 0X2B);
             koadroaMarraztu(jokalaria->irudia.pos_hasi.x - 1, jokalaria->irudia.pos_hasi.y - 1, jokalaria->irudia.pos_buka.x, jokalaria->irudia.pos_buka.y);
             pantailaBerriztu();
