@@ -663,14 +663,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 1);
 
-
             }
 
             else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-
                 irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2B.bmp"), 656, 489);
                 irudiakMarraztu();
-                textuaGaitu();
                 opzioakAgertu(galdera, galderaID, 2);
 
             }
@@ -722,16 +719,17 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
             }
 
             else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-
                 irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3D.bmp"), 656, 616);
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
 
-
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 4:
             erantzunda = 1;
 
@@ -758,9 +756,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
 
         case 5:
             erantzunda = 1;
@@ -788,9 +789,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
 
         case 6://---Mate---
             erantzunda = 1;
@@ -818,9 +822,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
 
         case 7:
             erantzunda = 1;
@@ -848,9 +855,13 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
+
         case 8:
             erantzunda = 1;
 
@@ -877,9 +888,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 9:
             erantzunda = 1;
 
@@ -906,9 +920,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
 
         case 10:
             erantzunda = 1;
@@ -936,9 +953,13 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
+
         case 11://--Fisika---
             erantzunda = 1;
 
@@ -965,9 +986,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 12:
             erantzunda = 1;
 
@@ -994,9 +1018,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 13:
             erantzunda = 1;
 
@@ -1023,9 +1050,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 14:
             erantzunda = 1;
 
@@ -1052,9 +1082,13 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
+
         case 15:
             erantzunda = 1;
 
@@ -1081,9 +1115,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 16://---oinarri---
             erantzunda = 1;
 
@@ -1110,9 +1147,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+
+            break;
         case 17:
             erantzunda = 1;
 
@@ -1139,9 +1179,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
         case 18:
             erantzunda = 1;
 
@@ -1171,7 +1213,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 19:
             erantzunda = 1;
 
@@ -1198,9 +1242,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 20://---redes----
             erantzunda = 1;
 
@@ -1230,7 +1277,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 21:
             erantzunda = 1;
 
@@ -1260,7 +1309,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 22:
             erantzunda = 1;
 
@@ -1290,7 +1341,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 23:
             erantzunda = 1;
 
@@ -1320,7 +1373,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 24:
             erantzunda = 1;
 
@@ -1350,7 +1405,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 25://---program II----
             erantzunda = 1;
 
@@ -1380,7 +1437,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 26:
             erantzunda = 1;
 
@@ -1410,7 +1469,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 27:
             erantzunda = 1;
 
@@ -1440,7 +1501,8 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 28:
             erantzunda = 1;
@@ -1468,9 +1530,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 29:
             erantzunda = 1;
 
@@ -1500,7 +1565,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 30://---Mate II----
             erantzunda = 1;
 
@@ -1527,9 +1594,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 31:
             erantzunda = 1;
@@ -1557,9 +1626,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 32:
             erantzunda = 1;
@@ -1587,9 +1658,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 33:
             erantzunda = 1;
@@ -1617,9 +1690,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 34:
             erantzunda = 1;
@@ -1647,9 +1722,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 35://---Mate Diskreta----
             erantzunda = 1;
 
@@ -1676,9 +1754,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 36:
             erantzunda = 1;
 
@@ -1708,7 +1789,9 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
 
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 37:
             erantzunda = 1;
 
@@ -1735,9 +1818,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 38:
             erantzunda = 1;
 
@@ -1764,9 +1850,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 39:
             erantzunda = 1;
 
@@ -1793,9 +1882,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 40://---elektronika---
             erantzunda = 1;
@@ -1823,9 +1914,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 41:
             erantzunda = 1;
 
@@ -1852,9 +1946,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 42:
             erantzunda = 1;
 
@@ -1881,9 +1978,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 43:
             erantzunda = 1;
 
@@ -1910,9 +2010,12 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
+
         case 44:
             erantzunda = 1;
 
@@ -1939,9 +2042,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         case 45:
             erantzunda = 1;
@@ -1969,9 +2074,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
         case 46:
             erantzunda = 1;
 
@@ -1998,9 +2105,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
         case 47:
             erantzunda = 1;
 
@@ -2027,9 +2136,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
         case 48:
             erantzunda = 1;
 
@@ -2056,9 +2167,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
         case 49:
             erantzunda = 1;
 
@@ -2085,9 +2198,11 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 irudiakMarraztu();
                 opzioakAgertu(galdera, galderaID, 4);
             }
+
             else {
                 erantzunda = 0;
-            }break;
+            }
+            break;
 
         default:
 
