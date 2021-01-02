@@ -78,8 +78,6 @@ void zirkuluaMarraztu(int x, int y, int r)
   }
 }
 
-
-
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest)
 {
   SDL_Rect src;
@@ -97,7 +95,6 @@ void pantailaGarbitu()
   SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_RenderClear(gRenderer);
 }
-
 
 void pantailaBerriztu()
 {

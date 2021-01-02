@@ -45,6 +45,9 @@
     <ClCompile Include="..\simpleSdlWrapper\text.c">
       <Filter>src\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="funtzioak.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\simpleSdlWrapper\ebentoak.h">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="GureEstrukturak.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="funtzioak.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
