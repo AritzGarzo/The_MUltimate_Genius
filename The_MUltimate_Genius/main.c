@@ -49,13 +49,7 @@ int main(int argc, char* str[])
             }
             else if ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 293 && pos.y < 293 + 68))//jolastu
             {
-                fondoa = fondoPantaila(".\\img\\menu.bmp");
-                //no tiene ningun juego cargado
-                if (irten == 0)
-                {
-                    irten = profila(&jokalaria);
-                }
-                //
+                irten = profila(&jokalaria);
                 if (irten == 1)
                 {
                     irten = jolastu(&jokalaria);
@@ -325,14 +319,14 @@ int profila(JOKALARIA* jokalaria)
             //si clicka en una imagen se marca/ilumina
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133))//mutila
             {
-                strcpy(jokalaria->irudia.izena, ".\\img\\PersonajeChicoHablando.bmp");
+                strcpy(jokalaria->irudia.izena, CHICO_AVATAR);
                 jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 185;
                 jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 133;
                 aldaketa = 1;
             }
             if ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133))//neska
             {
-                strcpy(jokalaria->irudia.izena, ".\\img\\PersonajeChicaHablando.bmp");
+                strcpy(jokalaria->irudia.izena, CHICA_AVATAR);
                 jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 350;
                 jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 133;
                 aldaketa = 1;
@@ -445,16 +439,16 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
     berria.irudia.pos_hasi.y = 0;
         //irudia2d--------------------------------
             //izena-------------------------------
-    if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 1)
+    if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 0)
     {
         strcpy(berria.irudia2d.izena, CHICO_AVATAR_M);
     }
-    else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 1)
+    else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 0)
     {
         strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
     }
             //pos---------------------------------
-    berria.urtea =
+    
         //exp-------------------------------------
     berria.exp.xp = 0;
     berria.exp.max = berria.gradua.iKop * 20;    
@@ -613,7 +607,7 @@ void Gorde(JOKALARIA jokalaria)
         }
         else
         {
-            textuaIdatzi_beltza(10, 40, "Partida gordeta.\n");
+            textuaIdatzi_beltza(10, 40, "Partida gordeta.");
             pantailaBerriztu();
         }
     }
