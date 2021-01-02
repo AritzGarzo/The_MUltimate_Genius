@@ -24,6 +24,7 @@
     <ClInclude Include="..\simpleSdlWrapper\imagen.h" />
     <ClInclude Include="..\simpleSdlWrapper\soinua.h" />
     <ClInclude Include="..\simpleSdlWrapper\text.h" />
+    <ClInclude Include="GureEstrukturak.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\simpleSdlWrapper\ebentoak.c" />

@@ -42,6 +42,9 @@
     <ClInclude Include="..\simpleSdlWrapper\soinua.h">
       <Filter>include\sdl</Filter>
     </ClInclude>
+    <ClInclude Include="GureEstrukturak.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
