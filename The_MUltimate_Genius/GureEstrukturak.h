@@ -8,7 +8,7 @@
 #define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp"
 #define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp"
 
-typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
+typedef enum { MENUA, PROFILA, JOLASTU, IRTEN, KONTROLAK, KARGATU }EGOERA;
 
 typedef struct exp
 {
