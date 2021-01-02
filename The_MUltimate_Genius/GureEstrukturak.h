@@ -35,7 +35,7 @@ typedef struct gradua
 {
     int iKop;//ikasgai 
     char izena[128];
-    IKASGAI ikasgaiak;
+    IKASGAI* ikasgaiak;
 }GRADUA;
 
 typedef struct irudia
