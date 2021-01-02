@@ -35,27 +35,30 @@ int main(int argc, char* str[])
     EGOERA egoera;
     POSIZIOA pos;
     //
-    egoera = menua();
-    if (egoera == PROFILA)
+    do
     {
-        egoera = ;//JOLASTU
-    }
-    if (egoera == KARGATU)
-    {
-        egoera = ;//JOLASTU
-    }
+        egoera = menua();
+        if (egoera == PROFILA)
+        {
+            egoera = JOLASTU;//JOLASTU
+        }
+        if (egoera == KARGATU)
+        {
+            egoera = JOLASTU;//JOLASTU
+        }
         //
-    switch (egoera)
-    {
-    case JOLASTU:
-        //
-        break;
-    case KONTROLAK:
-        egoera = kontrolak();//
-        break;
-    default://irten
-        break;
-    }
+        switch (egoera)
+        {
+        case JOLASTU:
+            //
+            break;
+        case KONTROLAK:
+            egoera = kontrolak();//
+            break;
+        default://irten
+            break;
+        }
+    } while (egoera == MENUA);
     //
     audioTerminate();
     sgItxi();
@@ -136,8 +139,9 @@ EGOERA jolastu(JOKALARIA* jokalaria)
     EGOERA egoera;
     //
     egoera = ETXEA;
+    jarraitu = 1;
     //
-    while (jarraitu == 1)
+    while (egoera == ETXEA || egoera == UNI)
     {
         if (egoera == ETXEA)
         {
@@ -153,11 +157,13 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 }
 EGOERA profila(JOKALARIA* jokalaria)
 {
-    int ebentu, sub;
+    int ebentu, subBucleo, tmpEbentu, aldaketa, fondoa;
+    char tmpIzena[7], tmpGradua[128];
     EGOERA egoera;
     POSIZIOA pos;
     //
     egoera = PROFILA;
+    aldaketa = 0;
     //
     while (egoera == PROFILA)
     {
@@ -172,137 +178,137 @@ EGOERA profila(JOKALARIA* jokalaria)
             textuaIdatzi(180, 356, (*jokalaria).gradua.izena);
             pantailaBerriztu();
             //
-            amaitu = 2;
-            while (amaitu == 2)
+            subBucleo = 0;
+            while (subBucleo == 0)
             {
                 pos = saguarenPosizioa();
-                ebentu_c = ebentuaJasoGertatuBada();
-                if ((ebentu_c == SAGU_BOTOIA_EZKERRA) && ((pos.x < 172) || (pos.x > 172 + 458) || (pos.y < 166) || (pos.y > 166 + 88))) amaitu = -1;
-                switch (ebentu_c)
+                tmpEbentu = ebentuaJasoGertatuBada();
+                if ((tmpEbentu == SAGU_BOTOIA_EZKERRA) && ((pos.x < 172) || (pos.x > 172 + 458) || (pos.y < 166) || (pos.y > 166 + 88))) subBucleo = -1;
+                switch (tmpEbentu)
                 {
                 case TECLA_a:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "A");
-                    else strcat(esaldia, "A");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "A");
+                    else strcat(tmpIzena, "A");
                     break;
                 case TECLA_b:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "B");
-                    else strcat(esaldia, "B");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "B");
+                    else strcat(tmpIzena, "B");
                     break;
                 case TECLA_c:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "C");
-                    else strcat(esaldia, "C");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "C");
+                    else strcat(tmpIzena, "C");
                     break;
                 case TECLA_d:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "D");
-                    else strcat(esaldia, "D");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "D");
+                    else strcat(tmpIzena, "D");
                     break;
                 case TECLA_e:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "E");
-                    else strcat(esaldia, "E");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "E");
+                    else strcat(tmpIzena, "E");
                     break;
                 case TECLA_f:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "F");
-                    else strcat(esaldia, "F");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "F");
+                    else strcat(tmpIzena, "F");
                     break;
                 case TECLA_g:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "G");
-                    else strcat(esaldia, "G");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "G");
+                    else strcat(tmpIzena, "G");
                     break;
                 case TECLA_h:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "H");
-                    else strcat(esaldia, "H");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "H");
+                    else strcat(tmpIzena, "H");
                     break;
                 case TECLA_i:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "I");
-                    else strcat(esaldia, "I");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "I");
+                    else strcat(tmpIzena, "I");
                     break;
                 case TECLA_j:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "J");
-                    else strcat(esaldia, "J");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "J");
+                    else strcat(tmpIzena, "J");
                     break;
                 case TECLA_k:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "K");
-                    else strcat(esaldia, "K");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "K");
+                    else strcat(tmpIzena, "K");
                     break;
                 case TECLA_l:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "L");
-                    else strcat(esaldia, "L");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "L");
+                    else strcat(tmpIzena, "L");
                     break;
                 case TECLA_m:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "M");
-                    else strcat(esaldia, "M");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "M");
+                    else strcat(tmpIzena, "M");
                     break;
                 case TECLA_n:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "N");
-                    else strcat(esaldia, "N");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "N");
+                    else strcat(tmpIzena, "N");
                     break;
                 case TECLA_o:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "O");
-                    else strcat(esaldia, "O");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "O");
+                    else strcat(tmpIzena, "O");
                     break;
                 case TECLA_p:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "P");
-                    else strcat(esaldia, "P");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "P");
+                    else strcat(tmpIzena, "P");
                     break;
                 case TECLA_q:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "Q");
-                    else strcat(esaldia, "Q");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Q");
+                    else strcat(tmpIzena, "Q");
                     break;
                 case TECLA_r:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "R");
-                    else strcat(esaldia, "R");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "R");
+                    else strcat(tmpIzena, "R");
                     break;
                 case TECLA_s:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "S");
-                    else strcat(esaldia, "S");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "S");
+                    else strcat(tmpIzena, "S");
                     break;
                 case TECLA_t:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "T");
-                    else strcat(esaldia, "T");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "T");
+                    else strcat(tmpIzena, "T");
                     break;
                 case TECLA_u:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "U");
-                    else strcat(esaldia, "U");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "U");
+                    else strcat(tmpIzena, "U");
                     break;
                 case TECLA_v:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "V");
-                    else strcat(esaldia, "V");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "V");
+                    else strcat(tmpIzena, "V");
                     break;
                 case TECLA_w:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "W");
-                    else strcat(esaldia, "W");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "W");
+                    else strcat(tmpIzena, "W");
                     break;
                 case TECLA_x:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "X");
-                    else strcat(esaldia, "X");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "X");
+                    else strcat(tmpIzena, "X");
                     break;
                 case TECLA_y:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "Y");
-                    else strcat(esaldia, "Y");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Y");
+                    else strcat(tmpIzena, "Y");
                     break;
                 case TECLA_z:
-                    if (!strcmp(esaldia, " ")) strcpy(esaldia, "Z");
-                    else strcat(esaldia, "Z");
+                    if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Z");
+                    else strcat(tmpIzena, "Z");
                     break;
                 default:
                     break;
                 }
-                textuaIdatzi(180, 174, esaldia);
+                textuaIdatzi(180, 174, tmpIzena);
                 pantailaBerriztu();
-                if (strlen(esaldia) == 7) amaitu = -1;
+                if (strlen(tmpIzena) == 7) subBucleo = -1;
             }
-            strcpy(jokalaria->izena, esaldia);
+            strcpy(jokalaria->izena, tmpIzena);
             irudiakMarraztu();
-            textuaIdatzi(180, 174, esaldia);
+            textuaIdatzi(180, 174, tmpIzena);
             pantailaBerriztu();
-            strcpy(esaldia, " ");
+            strcpy(tmpIzena, " ");
             aldaketa = 1;
         }
         //si clicka en gradua le aparece una especie de lista
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88)))
         {
-            crearLista(gradua);
-            strcpy((*jokalaria).gradua.izena, gradua);
+            crearLista(tmpGradua);
+            strcpy((*jokalaria).gradua.izena, tmpGradua);
             fondoa = fondoPantaila(".\\img\\profila.bmp");
             aldaketa = 1;
         }
@@ -385,7 +391,7 @@ int hasieratu(void)
 }
 */
 //pantailak----------------------------------
-int jolastu(JOKALARIA* jokalaria)
+/*int jolastu(JOKALARIA* jokalaria)
 {
     int irten;
     //POSIZIOA pos;
@@ -411,11 +417,11 @@ int jolastu(JOKALARIA* jokalaria)
     }
     //
     return irten;
-}
+}*/
     //funtzioak
 
 //pantailak----------------------------------
-int profila(JOKALARIA* jokalaria)
+/*int profila(JOKALARIA* jokalaria)
 {
     int fondoa, amaitu, ebentu, ebentu_c, aldaketa;
     char gradua[128];
@@ -618,7 +624,7 @@ int profila(JOKALARIA* jokalaria)
     irudiaKendu(fondoa);
     //
     return amaitu;
-}
+}*/
     //funtzioak
 void crearLista(char str[])
 {
