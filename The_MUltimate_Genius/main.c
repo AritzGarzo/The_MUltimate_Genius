@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
-//Mikel
+//Dev
 
 typedef struct S_GURE_GAUZAK
 {
