@@ -88,7 +88,7 @@ EGOERA menua()
         //
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)))
         {
-            egoera = IRTEN;//irten
+            egoera = IRTEN;//ir
         }
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 386 && pos.y < 386 + 68)))//kontrolak
         {
