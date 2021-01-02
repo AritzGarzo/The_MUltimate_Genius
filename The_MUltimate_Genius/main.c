@@ -8,10 +8,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
-//Aritz Garzo
+//Dev
 
 //
-int hasieratu(void);
+//int hasieratu(void);
 int fondoPantaila(char* str);
 int jolastu(JOKALARIA* jokalaria);
 int kontrolak(void);
@@ -50,7 +50,7 @@ int main(int argc, char* str[])
         switch (egoera)
         {
         case JOLASTU:
-            //
+            egoera = profila(&jokalaria);
             break;
         case KONTROLAK:
             egoera = kontrolak();//
