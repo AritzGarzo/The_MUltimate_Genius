@@ -48,12 +48,10 @@ int main(int argc, char* str[])
             else if ((pos.x > 483 && pos.x < 483 + 343) && (pos.y > 293 && pos.y < 293 + 68))//jolastu
             {
                 fondoa = fondoPantaila(".\\img\\menu.bmp");
-                //no tiene ningun juego cargado
                 if (irten == 0)
                 {
                     irten = profila(&jokalaria);
                 }
-                //
                 if (irten == 1)
                 {
                     irten = jolastu(&jokalaria);
