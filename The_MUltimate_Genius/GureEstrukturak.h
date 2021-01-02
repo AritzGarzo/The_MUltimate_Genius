@@ -23,7 +23,6 @@ typedef struct opzioak {
     char D[MAX];
 
 } OPZIOAK;
-typedef enum {/*EMAITZAREN ORDENA*/ } EMAITZAK;
 
 typedef struct galdera {
 
