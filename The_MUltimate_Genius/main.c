@@ -81,7 +81,7 @@ int main(int argc, char* str[])
     return 0;
 }
 
-//
+//-------------------------------------------
 int hasieratu(void)
 {
     int id;
@@ -97,46 +97,6 @@ int hasieratu(void)
 
     return id;
 }
-
-int fondoPantaila(char* str)
-{
-    int id;
-    pantailaGarbitu();
-    id = irudiaKargatu(str);
-    irudiaMugitu(id, 0, 0);
-    irudiakMarraztu();
-    pantailaBerriztu();
-    return id;
-}
-
-int jolastu(JOKALARIA* jokalaria)
-{
-    int irten;
-    //POSIZIOA pos;
-    irten = 0;
-    //
-
-    //
-    //irten = -1|kanpora
-    //irten = 0|etxea
-    //irten = 1|unibertsitatea
-    while (irten != -1)
-    {
-        //
-        if (irten == 0)
-        {
-            irten = etxea(jokalaria);
-        }
-        if (irten == 1)
-        {
-            irten = uni(jokalaria);
-        }
-        //
-    }
-    //
-    return irten;
-}
-
 int kontrolak(void)
 {
     int fondoa, jarraitu, ebentu;
@@ -164,6 +124,37 @@ int kontrolak(void)
     return jarraitu;
 }
 
+//pantailak----------------------------------
+int jolastu(JOKALARIA* jokalaria)
+{
+    int irten;
+    //POSIZIOA pos;
+    irten = 0;
+    //
+
+    //
+    //irten = -1|kanpora
+    //irten = 0|etxea
+    //irten = 1|unibertsitatea
+    while (irten != -1)
+    {
+        //
+        if (irten == 0)
+        {
+            irten = etxea(jokalaria);
+        }
+        if (irten == 1)
+        {
+            irten = uni(jokalaria);
+        }
+        //
+    }
+    //
+    return irten;
+}
+    //funtzioak
+
+//pantailak----------------------------------
 int profila(JOKALARIA* jokalaria)
 {
     int fondoa, amaitu, ebentu, ebentu_c, aldaketa;
@@ -367,7 +358,107 @@ int profila(JOKALARIA* jokalaria)
     //
     return amaitu;
 }
+    //funtzioak
+void crearLista(char str[])
+{
+    int id, amaitu, ebentu;
+    POSIZIOA pos;
+    //
+    strcpy(str, " ");
+    amaitu = 0;
+    id = irudiaKargatu(".\\img\\zerrenda.bmp");
+    irudiaMugitu(id, 171, 29);
+    irudiakMarraztu();
+    //
+    textuaGaitu_profila();
+    irudiakMarraztu();
+    textuaIdatzi(172, 29, "Informatika");
+    textuaIdatzi(172, 102, "Elektronika");
+    pantailaBerriztu();
+    //
+    while (amaitu == 0)
+    {
+        pos = saguarenPosizioa();
+        ebentu = ebentuaJasoGertatuBada();
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 29 && pos.y <= 29 + 74))) amaitu = 1;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 102 && pos.y <= 102 + 74))) amaitu = 2;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 175 && pos.y <= 175 + 74))) amaitu = 3;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 248 && pos.y <= 248 + 74))) amaitu = 4;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 321 && pos.y <= 321 + 74))) amaitu = 5;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 394 && pos.y <= 394 + 74))) amaitu = 6;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 467 && pos.y <= 467 + 74))) amaitu = 7;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 540 && pos.y <= 540 + 74))) amaitu = 8;
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 613 && pos.y <= 613 + 74))) amaitu = 9;
+    }
+    //
+    switch (amaitu)
+    {
+    case 1:
+        strcpy(str, "Informatika");
+        break;
+    case 2:
+        strcpy(str, "Elektronika");
+        break;
+    default:
+        strcpy(str, "ey");
+        break;
+    }
+    //
+}
+void koadroaMarraztu(int x1, int y1, int x2, int y2)
+{
+    //goia
+    zuzenaMarraztu(x1 - 1, y1 - 1, x2 - 1, y1 -1);
+    zuzenaMarraztu(x1, y1, x2, y1);
+    //ezkerra
+    zuzenaMarraztu(x1 - 1, y1 - 1, x1 - 1, y2 + 1);
+    zuzenaMarraztu(x1, y1, x1, y2);
+    //eskuina
+    zuzenaMarraztu(x2, y1, x2, y2);
+    zuzenaMarraztu(x2 + 1, y1 - 1, x2 + 1, y2 + 1);
+    //behea
+    zuzenaMarraztu(x1, y2, x2, y2);
+    zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
+}
+        //en proceso
+JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
+{
+    JOKALARIA berria;
+    //
+    berria = jokalaria;
+    //
+        //urtea----------------------------------
+    berria.urtea = 1;
+        //gradua----------------------------------
+    berria.gradua.iKop = 5;
+            //ikasgaia----------------------------
+    berria.gradua.ikasgaiak->notaFinala = 0;
+        //irudia----------------------------------
+            //id----------------------------------
+//  berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
+            //pos---------------------------------
+    berria.irudia.pos_hasi.x = 0;
+    berria.irudia.pos_hasi.y = 0;
+        //irudia2d--------------------------------
+            //izena-------------------------------
+    /*if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 1)
+    {
+        strcpy(berria.irudia2d.izena, CHICO_AVATAR_M);
+    }
+    else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 1)
+    {
+        strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
+    }*/
+            //pos---------------------------------
+    berria.urtea =
+        //exp-------------------------------------
+    berria.exp.xp = 0;
+    berria.exp.max = berria.gradua.iKop * 20;    
+    //
+    return jokalaria;
+}
 
+//pantailak----------------------------------
 int etxea(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 0, ebentu = 0;
@@ -393,7 +484,9 @@ int etxea(JOKALARIA* jokalaria)
     irudiaKendu(fondoa);
     return jarraitu;
 }
+    //funtzioak
 
+//pantailak----------------------------------
 int uni(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 1, ebentu = 0;
@@ -434,7 +527,9 @@ int uni(JOKALARIA* jokalaria)
     //
     return jarraitu;
 }
+    //funtzioak
 
+//pantailak----------------------------------
 int galderak(int orden)
 {
     int fondoa, irakaslea, jarraitu = 1, ebentu = 0;
@@ -485,70 +580,9 @@ int galderak(int orden)
     //
     return jarraitu;
 }
+    //funtzioak
 
-void crearLista(char str[])
-{
-    int id, amaitu, ebentu;
-    POSIZIOA pos;
-    //
-    strcpy(str, " ");
-    amaitu = 0;
-    id = irudiaKargatu(".\\img\\zerrenda.bmp");
-    irudiaMugitu(id, 171, 29);
-    irudiakMarraztu();
-    //
-    textuaGaitu_profila();
-    irudiakMarraztu();
-    textuaIdatzi(172, 29, "Informatika");
-    textuaIdatzi(172, 102, "Elektronika");
-    pantailaBerriztu();
-    //
-    while (amaitu == 0)
-    {
-        pos = saguarenPosizioa();
-        ebentu = ebentuaJasoGertatuBada();
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 29 && pos.y <= 29 + 74))) amaitu = 1;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 102 && pos.y <= 102 + 74))) amaitu = 2;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 175 && pos.y <= 175 + 74))) amaitu = 3;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 248 && pos.y <= 248 + 74))) amaitu = 4;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 321 && pos.y <= 321 + 74))) amaitu = 5;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 394 && pos.y <= 394 + 74))) amaitu = 6;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 467 && pos.y <= 467 + 74))) amaitu = 7;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 540 && pos.y <= 540 + 74))) amaitu = 8;
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 459) && (pos.y >= 613 && pos.y <= 613 + 74))) amaitu = 9;
-    }
-    //
-    switch (amaitu)
-    {
-    case 1:
-        strcpy(str, "Informatika");
-        break;
-    case 2:
-        strcpy(str, "Elektronika");
-        break;
-    default:
-        strcpy(str, "ey");
-        break;
-    }
-    //
-}
-
-void koadroaMarraztu(int x1, int y1, int x2, int y2)
-{
-    //goia
-    zuzenaMarraztu(x1 - 1, y1 - 1, x2 - 1, y1 -1);
-    zuzenaMarraztu(x1, y1, x2, y1);
-    //ezkerra
-    zuzenaMarraztu(x1 - 1, y1 - 1, x1 - 1, y2 + 1);
-    zuzenaMarraztu(x1, y1, x1, y2);
-    //eskuina
-    zuzenaMarraztu(x2, y1, x2, y2);
-    zuzenaMarraztu(x2 + 1, y1 - 1, x2 + 1, y2 + 1);
-    //behea
-    zuzenaMarraztu(x1, y2, x2, y2);
-    zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
-}
-
+//pantailak----------------------------------
 void Gorde(JOKALARIA jokalaria)
 {
     int egoera;
@@ -582,7 +616,9 @@ void Gorde(JOKALARIA jokalaria)
     Sleep(1500);
     fclose(fitx);
 }
+    //funtzioak
 
+//pantailak----------------------------------
 int Kargatu(JOKALARIA* jokalaria)
 {
     int egoera;
@@ -606,6 +642,26 @@ int Kargatu(JOKALARIA* jokalaria)
     fclose(fitx);
     return egoera;
 }
+    //funtzioak
+//pantailak----------------------------------
+    //funtzioak
+
+//funtzioak----------------------------------
+int fondoPantaila(char* str)
+{
+    int id;
+    pantailaGarbitu();
+    id = irudiaKargatu(str);
+    irudiaMugitu(id, 0, 0);
+    irudiakMarraztu();
+    pantailaBerriztu();
+    return id;
+}
+
+
+
+
+
 
 /*
 if ((gureGauzak.idSounds[i] = loadSound(soundFiles[i])) == -1)

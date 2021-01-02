@@ -5,10 +5,10 @@
 
 typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
 
-#define CHICA_AVATAR ".\\img\\PersonajeChicoHablando.bmp";
-#define CHICO_AVATAR ".\\img\\PersonajeChicaHablando.bmp";
-#define CHICA_AVATAR_M ".\\img\\PersonajeChicoVF.bmp";
-#define CHICO_AVATAR_M ".\\img\\PersonajeChicaVF.bmp";
+#define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp";
+#define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp";
+#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp";
+#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp";
 
 typedef struct exp
 {
@@ -54,6 +54,7 @@ typedef struct jokalaria
 	IRUDIA irudia;//irudia (las preguntas)
 	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	GRADUA gradua;
+	EXP exp;
 }JOKALARIA;
 
 #endif
