@@ -13,7 +13,7 @@
 SDL_Window* window = NULL;
 SDL_Renderer* gRenderer;
 int colorR, colorG, colorB;
-SDL_Surface* surface;
+
 SDL_Renderer* getRenderer(void) { return gRenderer; }
 
 int sgHasieratu()
@@ -26,12 +26,14 @@ int sgHasieratu()
     return -1;
   }
   atexit(SDL_Quit);
-  window = SDL_CreateWindow("The MUltimate Genius", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("The Multimate Genius", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL)
   {
     fprintf(stderr, "Ezin lehioa sortu: %s\n", SDL_GetError());
     return -1;
   }
+  SDL_Surface* ikonoa = SDL_LoadBMP(".\\img\\logo.bmp");
+  SDL_SetWindowIcon(window, ikonoa);
   gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   TTF_Init();
   atexit(TTF_Quit);
@@ -78,6 +80,8 @@ void zirkuluaMarraztu(int x, int y, int r)
   }
 }
 
+
+
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest)
 {
   SDL_Rect src;
@@ -95,6 +99,7 @@ void pantailaGarbitu()
   SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_RenderClear(gRenderer);
 }
+
 
 void pantailaBerriztu()
 {

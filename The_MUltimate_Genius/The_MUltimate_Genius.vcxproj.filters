@@ -19,57 +19,5 @@
     <Filter Include="include">
       <UniqueIdentifier>{52e8732c-8110-4ce7-ac7e-0508716dfe93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\sdl">
-      <UniqueIdentifier>{99ea4894-4ac1-4baa-8cf0-f72cf74d88df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\sdl">
-      <UniqueIdentifier>{2ac6b2a8-6d62-4681-bea8-5db3fd5cef38}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\simpleSdlWrapper\ebentoak.c">
-      <Filter>src\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\simpleSdlWrapper\graphics.c">
-      <Filter>src\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\simpleSdlWrapper\imagen.c">
-      <Filter>src\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\simpleSdlWrapper\soinua.c">
-      <Filter>src\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\simpleSdlWrapper\text.c">
-      <Filter>src\sdl</Filter>
-    </ClCompile>
-    <ClCompile Include="funtzioak.c">
-      <Filter>src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\simpleSdlWrapper\ebentoak.h">
-      <Filter>include\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\simpleSdlWrapper\graphics.h">
-      <Filter>include\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\simpleSdlWrapper\imagen.h">
-      <Filter>include\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\simpleSdlWrapper\soinua.h">
-      <Filter>include\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\simpleSdlWrapper\text.h">
-      <Filter>include\sdl</Filter>
-    </ClInclude>
-    <ClInclude Include="GureEstrukturak.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="funtzioak.h">
-      <Filter>src</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

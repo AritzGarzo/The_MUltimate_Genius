@@ -7,8 +7,7 @@
 #include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
-#include <Windows.h>
-//Aritz Garzo
+//Mikel
 
 //
 int hasieratu(void);
@@ -113,11 +112,10 @@ int jolastu(JOKALARIA* jokalaria)
     //POSIZIOA pos;
     irten = 0;
     //
-
-    //
     //irten = -1|kanpora
     //irten = 0|etxea
     //irten = 1|unibertsitatea
+
     while (irten != -1)
     {
         //
@@ -559,10 +557,9 @@ void Gorde(JOKALARIA jokalaria)
     //
     fitx = fopen(karpeta, "wb");
     //
-    pantailaGarbitu();
     textuaGaitu_beltza();
     textuaIdatzi_beltza(10, 20, "Partida gordetzen...");
-    pantailaBerriztu();
+    pantailaGarbitu();
     Sleep(2500);
     if (fitx == NULL)
     {
@@ -575,13 +572,7 @@ void Gorde(JOKALARIA jokalaria)
         {
             printf("Errorea \"%s\"fitxategian idazterakoan.\n", karpeta);
         }
-        else
-        {
-            textuaIdatzi_beltza(10, 40, "Partida gordeta.\n");
-            pantailaBerriztu();
-        }
     }
-    Sleep(1500);
     fclose(fitx);
 }
 
