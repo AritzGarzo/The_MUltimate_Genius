@@ -12,5 +12,4 @@ int kontrolak(void);
 
 //----------NIREAK------
 
-
 #endif // !FUNTZIOAK_H

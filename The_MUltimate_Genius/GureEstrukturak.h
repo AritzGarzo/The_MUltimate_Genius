@@ -26,7 +26,8 @@ typedef struct opzioak {
 
 typedef struct galdera {
 
-    int id;
+    int gelaID;
+    int galderaID;
     char testua[MAX];
     OPZIOAK aukerak;//swicth erabili aukeratzeko
     int erabilita;
