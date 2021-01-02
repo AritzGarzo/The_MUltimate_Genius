@@ -348,7 +348,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 //_________
 
 //-------------------------------------------
-int hasieratu(void)
+/*int hasieratu(void)
 {
     int id;
     if (sgHasieratu() == -1)
@@ -362,7 +362,7 @@ int hasieratu(void)
     pantailaBerriztu();
 
     return id;
-}
+}*/
 /*int kontrolak(void)
 {
     int fondoa, jarraitu, ebentu;
