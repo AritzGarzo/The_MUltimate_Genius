@@ -19,5 +19,48 @@
     <Filter Include="include">
       <UniqueIdentifier>{52e8732c-8110-4ce7-ac7e-0508716dfe93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\sdl">
+      <UniqueIdentifier>{289fcef8-0e82-4118-903a-118336d8a876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sdl">
+      <UniqueIdentifier>{d32a5554-afb7-4823-aa02-a60d70584fe9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\simpleSdlWrapper\ebentoak.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\simpleSdlWrapper\text.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\simpleSdlWrapper\graphics.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\simpleSdlWrapper\imagen.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\simpleSdlWrapper\soinua.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\simpleSdlWrapper\ebentoak.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\simpleSdlWrapper\graphics.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\simpleSdlWrapper\imagen.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\simpleSdlWrapper\soinua.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\simpleSdlWrapper\text.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

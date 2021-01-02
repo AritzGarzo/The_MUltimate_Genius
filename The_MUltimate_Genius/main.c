@@ -7,7 +7,7 @@
 #include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
-//Mikel
+//Dev
 
 //
 int hasieratu(void);
