@@ -2203,7 +2203,6 @@ int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
                 erantzunda = 0;
             }
             break;
-
         default:
 
             break;
