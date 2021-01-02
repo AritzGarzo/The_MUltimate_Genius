@@ -23,6 +23,7 @@ void crearLista(char str[]);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void Gorde(JOKALARIA jokalaria);
 int Kargatu(JOKALARIA* jokalaria);
+JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 
 int main(int argc, char* str[])
 {
@@ -353,6 +354,7 @@ int profila(JOKALARIA* jokalaria)
             aldaketa = 0;
         }
     }
+    *jokalaria = pertsonaiaEratu(*jokalaria);
     //
     irudiaKendu(fondoa);
     //
@@ -424,38 +426,40 @@ void koadroaMarraztu(int x1, int y1, int x2, int y2)
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 {
     JOKALARIA berria;
+    IKASGAI iBerria;
     //
     berria = jokalaria;
     //
         //urtea----------------------------------
     berria.urtea = 1;
         //gradua----------------------------------
-    berria.gradua.iKop = 5;
+    berria.gradua.iKop = 10;
             //ikasgaia----------------------------
-    berria.gradua.ikasgaiak->notaFinala = 0;
+    iBerria.notaFinala = 0;
+    berria.gradua.ikasgaiak = &iBerria;
         //irudia----------------------------------
             //id----------------------------------
-//  berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
+    //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
             //pos---------------------------------
     berria.irudia.pos_hasi.x = 0;
     berria.irudia.pos_hasi.y = 0;
         //irudia2d--------------------------------
             //izena-------------------------------
-    /*if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 1)
+    if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 1)
     {
         strcpy(berria.irudia2d.izena, CHICO_AVATAR_M);
     }
     else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 1)
     {
         strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
-    }*/
+    }
             //pos---------------------------------
     berria.urtea =
         //exp-------------------------------------
     berria.exp.xp = 0;
     berria.exp.max = berria.gradua.iKop * 20;    
     //
-    return jokalaria;
+    return berria;
 }
 
 //pantailak----------------------------------

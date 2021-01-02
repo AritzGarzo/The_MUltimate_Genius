@@ -3,12 +3,12 @@
 
 #include "ebentoak.h"
 
-typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
+#define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
+#define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
+#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp"
+#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp"
 
-#define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp";
-#define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp";
-#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp";
-#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp";
+typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
 
 typedef struct exp
 {
