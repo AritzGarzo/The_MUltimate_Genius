@@ -1,37 +1,60 @@
 #ifndef GUREESTRUKTURAK_H
 #define GUREESTRUKTURAK_H
-#define SOINU_KOP 5
-#define MAX 128
-//#define GALDERA1 ".\\img\\Galderak_Erantzunak\\Program\\Preguntas.bmp"
 
 #include "ebentoak.h"
 
-typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
-typedef enum { IRUDIA, MARGOA, TESTUA } MOTA;
+#define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
+#define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
+#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp"
+#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp"
 
-typedef struct
+typedef enum { MENUA, PROFILA, JOLASTU, IRTEN, KONTROLAK, KARGATU }EGOERA;
+
+typedef struct exp
 {
-    POSIZIOA pos;
-    int id;
-    MOTA mota;
-}JOKO_ELEMENTUA;
+	int xp;//galderekin irabazi duen 
+	int max;//ikasgaiKop*20
+}EXP;
 
-typedef struct opzioak {
-    char A[MAX];
-    char B[MAX];
-    char C[MAX];
-    char D[MAX];
+typedef struct ikasgai
+{
+	float notaFinala;
+	char izena[128];
+	char karpeta[128];
+	/*
+	* GALDERAK ETA
+	* separar por carpetas
+	* cada carpeta tenga el nombre de la asignatura
+	* dentro pregunta y su respuesta
+	* aparece pregunta y jugador decide (click)coordenadas
+	*/
 
-} OPZIOAK;
-typedef enum {/*EMAITZAREN ORDENA*/ } EMAITZAK;
+}IKASGAI;
 
-typedef struct galdera {
+typedef struct gradua
+{
+	int iKop;//ikasgai 
+	char izena[128];
+	IKASGAI* ikasgaiak;
+}GRADUA;
 
-    int id;
-    char testua[MAX];
-    OPZIOAK aukerak;//swicth erabili aukeratzeko
-    int erabilita;
+typedef struct irudia
+{
+	int id;
+	char izena[128];
+	POSIZIOA pos_hasi;//goi ezkerra
+	POSIZIOA pos_buka;//behe eskubia
+}IRUDIA;
 
-}GALDERA;
+typedef struct jokalaria
+{
+	int urtea;//jakiteko zenbateko esperientzia daukan
+	char izena[128];
+	POSIZIOA pos;//sprite-aren mugimendua
+	IRUDIA irudia;//irudia (las preguntas)
+	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
+	GRADUA gradua;
+	EXP exp;
+}JOKALARIA;
 
 #endif
