@@ -45,9 +45,9 @@
 //
 
 void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int galderaID, int mota);
+void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota);
 void fondoPantailaGalderekin(char* str, int galderaID, int gelaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]);
+int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[]);
 
 
 int mu_hasieratu(void)
@@ -128,7 +128,7 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 
 int jolastu(void)
 {
-    int exp = 0, gelaID = 0, galderaID = 0, erantzunda = 0;
+    int exp = 0, gelaID = 0, galderaID = 0, erantzunda = 0, denakErantzunda = 0;
     int irten, ebentu, bukatuta = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
@@ -143,24 +143,33 @@ int jolastu(void)
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
             pos = saguarenPosizioa();
             srand(time(NULL));
-            gelaID = 1 + rand() % 49;
+            gelaID = 1 + rand() % 10;
             gelaID = 1;
-            galderaID = 1;
+            galderaID = 5;
             galderakEtaEurenAukerakSortu(galdera);
             if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
                 //----SUPUESTO UNI-----
-               // gelaID = 1+rand() % 10;
-                fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-
-                while (galderaID <= 5) {
-
-                    erantzunda = GalderakErantzun(exp, gelaID, galdera);
-                    if (erantzunda != 0) {
-                        Sleep(500);
-                        galderaID++;
-                        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+               // galderaID = 1+rand() % 5;
+                while (gelaID <= 10) {
+                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    while (galderaID <= 5&&!denakErantzunda) {
+                        erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+                        if (erantzunda != 0) {
+                            Sleep(500);
+                            galderaID++;
+                            if (galderaID == 6) {
+                                denakErantzunda = 1;
+                                galderaID = 1;
+                            }
+                            else {
+                                fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                            }
+                        }
 
                     }
+
+                    gelaID++;
+                    denakErantzunda = 0;
                 }
             }
         }
@@ -195,6 +204,7 @@ int jolastu(void)
         //    irten = 0;
         //}
     }
+
 
     pantailaBerriztu();
     return irten;
@@ -844,7 +854,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 
         gelaID++;
     }
-
+    //oinarria
     /*
             case 5:
         strcpy(galdera[i].testua, "");
@@ -857,1649 +867,1724 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
     */
 }
 
-int GalderakErantzun(int exp, int galderaID, GALDERA galdera[]) {
+int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[]) {
 
     POSIZIOA pos;
     int ebentu = 0;
     int erantzunda = 0;
+
 
     ebentu = ebentuaJasoGertatuBada();
     if (ebentu == SAGU_BOTOIA_EZKERRA) {
         pantailaGarbitu();
 
         pos = saguarenPosizioa();
-        switch (galderaID)
+        switch (gelaID)//zer gelara sartu den ikusiko dugu.
         {
         case 1://---program---
+            switch (galderaID)
+            {
+            case 1:
 
-            erantzunda = 1;
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
 
-            }
+                }
 
-            else  if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
+                else  if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            }
+                else   if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else   if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
+                else {
+                    erantzunda = 0;
+                }
 
-            }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
+            case 2:
 
-            break;
+                erantzunda = 1;
 
-        case 2:
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
 
-            erantzunda = 1;
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
 
-            }
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
 
-            }
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
 
-            }
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
+                else {
+                    erantzunda = 0;
+                }
 
-            }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
+            case 3:
+                erantzunda = 1;
 
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
 
-        case 3:
-            erantzunda = 1;
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
 
+                }
 
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
 
-            }
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-
-
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-        case 4:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 5:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 6://---Mate---
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 7:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 8:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-        case 9:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 10:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 11://--Fisika---
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-        case 12:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-        case 13:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-        case 14:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-
-            break;
-
-        case 15:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+
+                break;
+            case 4:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+
+                break;
+
+            case 5:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+
+                break;
+
+            default:
+                break;
             }
             break;
+        case 2://---mate---
+            switch (galderaID)
+            {
 
-        case 16://---oinarri---
-            erantzunda = 1;
+            case 1:
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                erantzunda = 1;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else {
-                erantzunda = 0;
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            break;
-        case 17:
-            erantzunda = 1;
+                else {
+                    erantzunda = 0;
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+            case 2:
+                erantzunda = 1;
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
-        case 18:
-            erantzunda = 1;
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+            case 3:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 19:
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                break;
+            case 4:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 20://---redes----
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+            case 5:
+                erantzunda = 1;
 
-        case 21:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
+                break;
+            default:
+                break;
             }
             break;
+        case 3://---fisika---
+            switch (galderaID)
+            {
+            case 1://--Fisika---
+                erantzunda = 1;
 
-        case 22:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                break;
+            case 2:
+                erantzunda = 1;
 
-        case 23:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                break;
+            case 3:
+                erantzunda = 1;
 
-        case 24:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                break;
+            case 4:
+                erantzunda = 1;
 
-        case 25://---program II----
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                break;
 
-        case 26:
-            erantzunda = 1;
+            case 5:
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                else {
+                    erantzunda = 0;
+                }
 
-        case 27:
-            erantzunda = 1;
+                break;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
+            default:
+                break;
             }
             break;
+        case 4://---oinarri---
+            switch (galderaID)
+            {
+            case 1://---oinarri---
+                erantzunda = 1;
 
-        case 28:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                break;
+            case 2:
+                erantzunda = 1;
 
-        case 29:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 3:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 30://---Mate II----
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+            case 4:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 31:
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
-
-        case 32:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
+            default:
+                break;
             }
             break;
+        case 5://---redes---
+            switch (galderaID)
+            {
+            case 1:
+                erantzunda = 1;
 
-        case 33:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+            case 2:
+                erantzunda = 1;
 
-        case 34:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+            case 3:
+                erantzunda = 1;
 
-        case 35://---Mate Diskreta----
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+            case 4:
+                erantzunda = 1;
 
-        case 36:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+            case 5:
+                erantzunda = 1;
 
-        case 37:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
-
-        case 38:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
+            default:
+                break;
             }
             break;
+        case 6://---program II----
+            switch (galderaID)
+            {
+            case 1:
+                erantzunda = 1;
 
-        case 39:
-            erantzunda = 1;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtC.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtD.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 2:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 40://---elektronika---
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+            case 3:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 41:
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+            case 4:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 42:
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+            case 5:
+                erantzunda = 1;
 
-            else {
-                erantzunda = 0;
-            }
-            break;
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-        case 43:
-            erantzunda = 1;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else {
+                    erantzunda = 0;
+                }
+                break;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
-            }
-            break;
-
-        case 44:
-            erantzunda = 1;
-
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
-
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
-
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
-
-            else {
-                erantzunda = 0;
+            default:
+                break;
             }
             break;
+        case 7://---Mate II---
+            switch (galderaID)
+            {
 
-        case 45:
-            erantzunda = 1;
+            case 1:
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else {
-                erantzunda = 0;
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 2:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 3:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 4:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 5:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+
+            default:
+                break;
             }
             break;
-        case 46:
-            erantzunda = 1;
+        case 8://---Mate D---
+            switch (galderaID)
+            {
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+            case 1:
+                erantzunda = 1;
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else {
-                erantzunda = 0;
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 2:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 3:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 4:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 5:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtC.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtD.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            default:
+                break;
             }
             break;
-        case 47:
-            erantzunda = 1;
+        case 9://---elektronika---
+            switch (galderaID)
+            {
+            case 1://---elektronika---
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else {
-                erantzunda = 0;
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 2:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 3:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 4:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+            case 5:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+
+
+            default:
+                break;
             }
             break;
-        case 48:
-            erantzunda = 1;
+        case 10://---empresa---
+            switch (galderaID)
+            {
+            case 1:
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else {
-                erantzunda = 0;
-            }
-            break;
-        case 49:
-            erantzunda = 1;
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 2:
+                erantzunda = 1;
 
-            if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5A.bmp"), 30, 490);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 1);
-            }
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5B.bmp"), 656, 489);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 2);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
 
-            else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5C.bmp"), 30, 614);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 3);
-            }
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
 
-            else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5D.bmp"), 656, 616);
-                irudiakMarraztu();
-                opzioakAgertu(galdera, galderaID, 4);
-            }
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
 
-            else {
-                erantzunda = 0;
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 3:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 4:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            case 5:
+                erantzunda = 1;
+
+                if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5A.bmp"), 30, 490);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 1);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5B.bmp"), 656, 489);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 2);
+                }
+
+                else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5C.bmp"), 30, 614);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 3);
+                }
+
+                else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5D.bmp"), 656, 616);
+                    irudiakMarraztu();
+                    opzioakAgertu(galdera, gelaID, galderaID, 4);
+                }
+
+                else {
+                    erantzunda = 0;
+                }
+                break;
+            default:
+
+                break;
             }
-            break;
         default:
-
             break;
-        }
-        if (erantzunda == 1) {
-            pantailaBerriztu();
         }
 
     }
+
+    if (erantzunda == 1) {
+        pantailaBerriztu();
+    }
+
     return erantzunda;
 }
 
-void opzioakAgertu(GALDERA galdera[], int galderaID, int mota) {
+void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota) {
 
     switch (mota)
     {
     case 1:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[galderaID].testua);
-        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 2:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[galderaID].testua);
-        textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
-        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 3:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[galderaID].testua);
-        textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
-        textuaIdatzi(684, 645, galdera[galderaID].aukerak.D);
+        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
 
         break;
     case 4:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[galderaID].testua);
-        textuaIdatzi(55, 512, galdera[galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[galderaID].aukerak.C);
+        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
         break;
     default:
         break;
