@@ -12,23 +12,19 @@
 
 //
 int hasieratu(void);
-int fondoPantaila(char* str);
 EGOERA menua(void);
 EGOERA jolastu(JOKALARIA* jokalaria);
 EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
+EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria);
-EGOERA galderak(int orden);
-void insertarNombre(char str[]);
-void crearLista(char str[]);
-void koadroaMarraztu(int x1, int y1, int x2, int y2);
-EGOERA gorde(JOKALARIA jokalaria);
-EGOERA kargatu(JOKALARIA* jokalaria);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
-//_________
-EGOERA menua();
-EGOERA kontrolak();
+void koadroaMarraztu(int x1, int y1, int x2, int y2);
+void crearLista(char str[]);
+EGOERA gorde(JOKALARIA jokalaria);
+EGOERA galderak(int orden);
+int fondoPantaila(char* str);
 
 int main(int argc, char* str[])
 {
@@ -74,7 +70,7 @@ int main(int argc, char* str[])
     return 0;
 }
 
-//_________
+//------------------------------------
 int hasieratu(void)
 {
     int sdl;
@@ -88,16 +84,7 @@ int hasieratu(void)
     //
     return sdl;
 }
-int fondoPantaila(char* str)
-{
-    int id;
-    pantailaGarbitu();
-    id = irudiaKargatu(str);
-    irudiaMugitu(id, 0, 0);
-    irudiakMarraztu();
-    pantailaBerriztu();
-    return id;
-}
+
 EGOERA menua(void)
 {
     int id, ebentu;
@@ -135,7 +122,30 @@ EGOERA menua(void)
     //
     return egoera;
 }
+    //--------------------------------
+EGOERA jolastu(JOKALARIA* jokalaria)
+{
+    //int jarraitu;
+    EGOERA egoera;
     //
+    egoera = ETXEA_P;
+    //jarraitu = 1;
+    //
+    while (egoera == ETXEA_P || egoera == UNI_P)
+    {
+        if (egoera == ETXEA_P)
+        {
+            egoera = etxea(jokalaria);
+        }
+        if (egoera == UNI_P)
+        {
+            egoera = uni(jokalaria);
+        }
+    }
+    //
+    return egoera;
+}
+
 EGOERA kontrolak()
 {
     int fondoa, ebentu;
@@ -159,28 +169,7 @@ EGOERA kontrolak()
     //
     return egoera;
 }
-EGOERA jolastu(JOKALARIA* jokalaria)
-{
-    //int jarraitu;
-    EGOERA egoera;
-    //
-    egoera = ETXEA_P;
-    //jarraitu = 1;
-    //
-    while (egoera == ETXEA_P || egoera == UNI_P)
-    {
-        if (egoera == ETXEA_P)
-        {
-            egoera = etxea(jokalaria);
-        }
-        if (egoera == UNI_P)
-        {
-            egoera = uni(jokalaria);
-        }
-    }
-    //
-    return egoera;
-}
+    //--------------------------------
 EGOERA profila(JOKALARIA* jokalaria)
 {
     int ebentu, subBucle, tmpEbentu, aldaketa, fondoa;
@@ -394,6 +383,7 @@ EGOERA profila(JOKALARIA* jokalaria)
     //
     return egoera;
 }
+
 EGOERA kargatu(JOKALARIA* jokalaria)
 {
     int irakurketa;
@@ -420,7 +410,7 @@ EGOERA kargatu(JOKALARIA* jokalaria)
     fclose(fitx);
     return egoera;
 }
-        //
+        //----------------------------
 EGOERA etxea(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 0, ebentu = 0;
@@ -453,6 +443,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
     //
     return egoera;
 }
+
 EGOERA uni(JOKALARIA* jokalaria)
 {
     int fondoa, jarraitu = 1, ebentu = 0;
@@ -495,6 +486,62 @@ EGOERA uni(JOKALARIA* jokalaria)
     //
     return egoera;
 }
+
+JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
+{
+    JOKALARIA berria;
+    IKASGAI iBerria;
+    //
+    berria = jokalaria;
+    //
+        //urtea----------------------------------
+    berria.urtea = 1;
+        //gradua----------------------------------
+    berria.gradua.iKop = 10;
+            //ikasgaia----------------------------
+    iBerria.notaFinala = 0;
+    berria.gradua.ikasgaiak = &iBerria;
+        //irudia----------------------------------
+            //id----------------------------------
+    //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
+            //pos---------------------------------
+    berria.irudia.pos_hasi.x = 0;
+    berria.irudia.pos_hasi.y = 0;
+        //irudia2d--------------------------------
+            //izena-------------------------------
+    if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 0)
+    {
+        strcpy(berria.irudia2d.izena, CHICO_AVATAR_M);
+    }
+    else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 0)
+    {
+        strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
+    }
+            //pos---------------------------------
+    
+        //exp-------------------------------------
+    berria.exp.xp = 0;
+    berria.exp.max = berria.gradua.iKop * 20;    
+    //
+    return berria;
+}
+
+void koadroaMarraztu(int x1, int y1, int x2, int y2)
+{
+    //goia
+    zuzenaMarraztu(x1 - 1, y1 - 1, x2 - 1, y1 -1);
+    zuzenaMarraztu(x1, y1, x2, y1);
+    //ezkerra
+    zuzenaMarraztu(x1 - 1, y1 - 1, x1 - 1, y2 + 1);
+    zuzenaMarraztu(x1, y1, x1, y2);
+    //eskuina
+    zuzenaMarraztu(x2, y1, x2, y2);
+    zuzenaMarraztu(x2 + 1, y1 - 1, x2 + 1, y2 + 1);
+    //behea
+    zuzenaMarraztu(x1, y2, x2, y2);
+    zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
+}
+
 void crearLista(char str[])
 {
     int id, amaitu, ebentu;
@@ -541,22 +588,7 @@ void crearLista(char str[])
     }
     //
 }
-void koadroaMarraztu(int x1, int y1, int x2, int y2)
-{
-    //goia
-    zuzenaMarraztu(x1 - 1, y1 - 1, x2 - 1, y1 -1);
-    zuzenaMarraztu(x1, y1, x2, y1);
-    //ezkerra
-    zuzenaMarraztu(x1 - 1, y1 - 1, x1 - 1, y2 + 1);
-    zuzenaMarraztu(x1, y1, x1, y2);
-    //eskuina
-    zuzenaMarraztu(x2, y1, x2, y2);
-    zuzenaMarraztu(x2 + 1, y1 - 1, x2 + 1, y2 + 1);
-    //behea
-    zuzenaMarraztu(x1, y2, x2, y2);
-    zuzenaMarraztu(x1 - 1, y2 + 1, x2 + 1, y2 + 1);
-}
-            //
+            //------------------------
 EGOERA gorde(JOKALARIA jokalaria)
 {
     int irakurketa, ebentu;
@@ -641,6 +673,7 @@ EGOERA gorde(JOKALARIA jokalaria)
     //
     return egoera;
 }
+            
 EGOERA galderak(int orden)
 {
     int fondoa, irakaslea, jarraitu = 1, ebentu = 0;
@@ -691,41 +724,14 @@ EGOERA galderak(int orden)
     //
     return egoera;
 }
-JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
+                //--------------------
+int fondoPantaila(char* str)
 {
-    JOKALARIA berria;
-    IKASGAI iBerria;
-    //
-    berria = jokalaria;
-    //
-        //urtea----------------------------------
-    berria.urtea = 1;
-        //gradua----------------------------------
-    berria.gradua.iKop = 10;
-            //ikasgaia----------------------------
-    iBerria.notaFinala = 0;
-    berria.gradua.ikasgaiak = &iBerria;
-        //irudia----------------------------------
-            //id----------------------------------
-    //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
-            //pos---------------------------------
-    berria.irudia.pos_hasi.x = 0;
-    berria.irudia.pos_hasi.y = 0;
-        //irudia2d--------------------------------
-            //izena-------------------------------
-    if (strcmp(berria.irudia.izena, CHICO_AVATAR) == 0)
-    {
-        strcpy(berria.irudia2d.izena, CHICO_AVATAR_M);
-    }
-    else if(strcmp(berria.irudia.izena, CHICA_AVATAR) == 0)
-    {
-        strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
-    }
-            //pos---------------------------------
-    
-        //exp-------------------------------------
-    berria.exp.xp = 0;
-    berria.exp.max = berria.gradua.iKop * 20;    
-    //
-    return berria;
+    int id;
+    pantailaGarbitu();
+    id = irudiaKargatu(str);
+    irudiaMugitu(id, 0, 0);
+    irudiakMarraztu();
+    pantailaBerriztu();
+    return id;
 }
