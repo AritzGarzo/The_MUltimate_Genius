@@ -3,12 +3,21 @@
 
 #include "ebentoak.h"
 
+
+
+//--------------pantailak--------------
+#define MENUA_F ".\\img\\menu.bmp"
+#define KONTROLAK_F ".\\img\\kontrolak.bmp"
+#define PROFILA_F ".\\img\\profila.bmp"
+#define ETXEA_F ".\\img\\etxea.bmp"
+#define UNI_F ".\\img\\uni.bmp"
+//--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
 #define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp"
 #define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp"
 
-typedef enum { MENUA, PROFILA, JOLASTU, IRTEN, KONTROLAK, KARGATU, ETXEA, UNI }EGOERA;
+typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P }EGOERA;
 
 typedef struct exp
 {
