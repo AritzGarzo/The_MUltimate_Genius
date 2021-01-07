@@ -16,9 +16,9 @@ typedef struct Img
 }IMG;
 
 IMG irudiak[MAX_IMG];
-IMG sprite[MAX_IMG];//
+IMG sprite[MAX_IMG];//Nuevo
 int irudiKop=0;
-int spriteKop = 0;//
+int spriteKop = 0;//Nuevo
 int id=0;
 
 int irudiaKargatu(char *fileName)
@@ -103,7 +103,7 @@ int irudiarenPosizioaAurkitu(int id)
   }
 	return -1;
 }
-
+//Nuevo
 //SPRITES
 
 int spriteKargatu(char* fileName)

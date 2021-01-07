@@ -97,7 +97,7 @@ void pantailaBerriztu()
 {
   SDL_RenderPresent(gRenderer);
 }
-
+//Nuevo
 //SPRITES
 
 int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y)

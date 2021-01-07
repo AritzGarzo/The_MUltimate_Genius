@@ -84,7 +84,6 @@ int main(int argc, char* str[])
     return 0;
 }
 
-
 int hasieratu(void)
 {
     int i;
@@ -132,7 +131,7 @@ int hasieratu(void)
 
     return 0;
 }
-//
+
 int mu_hasieratu(void)
 {
     int i;
@@ -164,7 +163,7 @@ void fondoPantaila(char* str)
     irudiakMarraztu();
     pantailaBerriztu();
 }
-
+//Nuevo
 int pertsonaiaMugitu(void)
 {
     int irten, ebentu, x, y, tamaño = 48, tmp = 0;
@@ -301,4 +300,3 @@ int kontrolak(void)
     }
     return irten;
 }
-
