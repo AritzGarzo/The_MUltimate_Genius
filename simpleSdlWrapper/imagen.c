@@ -16,7 +16,9 @@ typedef struct Img
 }IMG;
 
 IMG irudiak[MAX_IMG];
-int irudiKop=0;
+IMG sprite[MAX_IMG];//Nuevo
+int irudiKop = 0;
+int spriteKop = 0;//Nuevo
 int id=0;
 
 int irudiaKargatu(char *fileName)
@@ -100,5 +102,87 @@ int irudiarenPosizioaAurkitu(int id)
   {
     if (id == irudiak[i].id) return i;
   }
+	return -1;
+}
+int spriteKargatu(char* fileName)
+{
+	int colorkey;
+	SDL_Surface* surface;
+	SDL_Renderer* gRenderer = getRenderer();
+
+	if (spriteKop < MAX_IMG)
+	{
+		surface = SDL_LoadBMP(fileName);
+		if (surface == NULL)
+		{
+			fprintf(stderr, "Couldn't load %s: %s\n", fileName, SDL_GetError());
+			return -1;
+		}
+		else
+		{
+			colorkey = SDL_MapRGB(surface->format, 255, 0, 255);
+			SDL_SetColorKey(surface, SDL_TRUE, colorkey);
+			sprite[spriteKop].texture = SDL_CreateTextureFromSurface(gRenderer, surface);
+			sprite[spriteKop].dest.x = sprite[spriteKop].dest.y = 0;
+			sprite[spriteKop].dest.w = surface->w;
+			sprite[spriteKop].dest.h = surface->h;
+			SDL_FreeSurface(surface);
+			sprite[spriteKop].id = id;
+			spriteKop++;
+			id++;
+		}
+	}
+	else
+	{
+		printf("Has superado el maixmo de Imagens por aplicación.Para aumentar imagen.h\n");
+		return -1;
+	}
+
+	return id - 1;
+}
+
+void spriteMugitu(int numImg, int x, int y)
+{
+
+	int id = 0;
+
+	id = spritearenPosizioaAurkitu(numImg);
+
+	sprite[id].dest.x = x;
+	sprite[id].dest.y = y;
+}
+
+void spriteakMarraztu(int x, int y)
+{
+	int i = 0;
+
+	for (i = 0; i < spriteKop; i++)
+	{
+		spriteMarraztu(sprite[i].texture, &sprite[i].dest, x, y);
+	}
+}
+
+void spriteKendu(int id)
+{
+	int i = 0, pos = 0;
+
+	pos = spritearenPosizioaAurkitu(id);
+	SDL_DestroyTexture(sprite[pos].texture);
+	for (i = pos; i < spriteKop; i++)
+	{
+
+		sprite[i] = sprite[i + 1];
+	}
+	spriteKop--;
+}
+
+int spritearenPosizioaAurkitu(int id)
+{
+	int i = 0;
+
+	for (i = 0; i < spriteKop; i++)
+	{
+		if (id == sprite[i].id) return i;
+	}
 	return -1;
 }

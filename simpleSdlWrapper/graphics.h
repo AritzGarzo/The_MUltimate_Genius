@@ -14,6 +14,7 @@ void zirkuluaMarraztu(int x, int y, int r);
 void pantailaGarbitu();
 void pantailaBerriztu();
 
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y);
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest);
 
 SDL_Renderer* getRenderer(void);
