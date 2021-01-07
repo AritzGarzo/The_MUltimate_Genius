@@ -20,7 +20,7 @@ EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
-void pertsonaiaMugitu(POSIZIOA pos);
+void pertsonaiaMugitu(int ebentu, POSIZIOA pos);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
@@ -425,8 +425,13 @@ EGOERA etxea(JOKALARIA* jokalaria)
     //
     while (egoera == ETXEA_P)//etxea den bitartean
     {
-        pertsonaiaMugitu(pos_jokalaria);
+        
         ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == TECLA_w || ebentu == TECLA_a || ebentu == TECLA_s || ebentu == TECLA_d)
+        {
+            pertsonaiaMugitu(ebentu, pos_jokalaria); //no se mueve
+        }
+
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
             pos = saguarenPosizioa();
@@ -461,8 +466,12 @@ EGOERA uni(JOKALARIA* jokalaria)
     //
     while (egoera == UNI_P)//unibertsitatea den bitartean
     {
-        pertsonaiaMugitu(pos_jokalaria);
+        
         ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == TECLA_w || ebentu == TECLA_a || ebentu == TECLA_s || ebentu == TECLA_d)
+        {
+            pertsonaiaMugitu(ebentu, pos_jokalaria);
+        }
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
             pos = saguarenPosizioa();
@@ -742,9 +751,9 @@ int fondoPantaila(char* str)
     pantailaBerriztu();
     return id;
 }
-void pertsonaiaMugitu(POSIZIOA pos)
+void pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
 {
-    int  ebentu, x, y, tamaño = 48, tmp = 0;
+    int x, y, tamaño = 48, tmp = 0;
     JOKALARIA sprite;
   
 
