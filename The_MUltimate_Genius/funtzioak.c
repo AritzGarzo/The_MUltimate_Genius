@@ -1,6 +1,4 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
-#define GELAIDMAX 11
-#define GALDERAIDMAX 6
 #include "graphics.h"
 #include "ebentoak.h"
 #include "soinua.h"
@@ -9,10 +7,10 @@
 #include <stdio.h>
 #include <string.h>
 #include"GureEstrukturak.h"
-#include"funtzioak.h"
 #include<stdlib.h>
 #include <Windows.h>
 #include<time.h>
+#include"funtzioak.h"
 
 
 //int hasieratu(void)
@@ -43,11 +41,6 @@
 //    return 0;
 //}
 //
-
-void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota);
-void fondoPantailaGalderekin(char* str, int galderaID, int gelaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[]);
 
 
 int mu_hasieratu(void)
@@ -867,12 +860,11 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
     */
 }
 
-int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[]) {
+int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 
     POSIZIOA pos;
     int ebentu = 0;
     int erantzunda = 0;
-
 
     ebentu = ebentuaJasoGertatuBada();
     if (ebentu == SAGU_BOTOIA_EZKERRA) {
@@ -2589,6 +2581,4 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     default:
         break;
     }
-
-
 }
