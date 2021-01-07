@@ -136,35 +136,36 @@ int jolastu(void)
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
             pos = saguarenPosizioa();
             srand(time(NULL));
-            gelaID = 1 + rand() % 10;
+            //gelaID = 1 + rand() % 10;
             gelaID = 1;
-            galderaID = 5;
-            galderakEtaEurenAukerakSortu(galdera);
-            if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
-                //----SUPUESTO UNI-----
-               // galderaID = 1+rand() % 5;
-                while (gelaID <= 10) {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-                    while (galderaID <= 5&&!denakErantzunda) {
-                        erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
-                        if (erantzunda != 0) {
-                            Sleep(500);
-                            galderaID++;
-                            if (galderaID == 6) {
-                                denakErantzunda = 1;
-                                galderaID = 1;
-                            }
-                            else {
-                                fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-                            }
-                        }
-
-                    }
-
-                    gelaID++;
-                    denakErantzunda = 0;
-                }
-            }
+            galderaID = 1;
+            //galderakEtaEurenAukerakSortu(galdera);
+            galderakEtaAukerakLotu(galdera);
+            //-----jokoa en si----
+            //if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
+            //    //----SUPUESTO UNI-----
+            //   // galderaID = 1+rand() % 5;
+            //    while (gelaID <= 10) {
+            //        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+            //        while (galderaID <= 5 && !denakErantzunda) {
+            //            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            //            if (erantzunda != 0) {
+            //                Sleep(500);
+            //                galderaID++;
+            //                if (galderaID == 6) {
+            //                    denakErantzunda = 1;
+            //                    galderaID = 1;
+            //                }
+            //                else {
+            //                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+            //                }
+            //            }
+            //        }
+            //        gelaID++;
+            //        denakErantzunda = 0;
+            //    }
+            //}
+            fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
         }
         if (ebentu == GERTAERA_IRTEN) {
             return 0;
@@ -196,6 +197,7 @@ int jolastu(void)
         //    strcpy(esaldia, "");
         //    irten = 0;
         //}
+
     }
 
 
@@ -2581,4 +2583,42 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     default:
         break;
     }
+}
+
+void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
+    char galderak[49][128] = { "",".\\galderak\\program\\galdera1.txt", ".\\galderak\\program\\galdera2.txt" };
+
+
+    FILE* fitx;
+    int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1;
+
+    while (fitxategiKont <= 2) {
+
+        fitx = fopen(galderak[fitxategiKont], "r");
+
+        if (fitx == NULL) {
+            printf("Errorea fitxeroarekin");
+        }
+        else {
+
+            fgets(galdera[gelaIDKont][galderaIDKont].testua, 50, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 50, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 50, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.C, 50, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.D, 50, fitx);
+
+            galdera[gelaIDKont][galderaIDKont].testua[strlen(galdera[gelaIDKont][galderaIDKont].testua) - 1] = '\0';
+            galdera[gelaIDKont][galderaIDKont].aukerak.A[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.A) - 1] = '\0';
+            galdera[gelaIDKont][galderaIDKont].aukerak.B[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.B) - 1] = '\0';
+            galdera[gelaIDKont][galderaIDKont].aukerak.C[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.C) - 1] = '\0';
+            galdera[gelaIDKont][galderaIDKont].aukerak.D[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.D) - 1] = '\0';
+            fclose(fitx);
+
+
+
+        }
+        galderaIDKont++;
+        fitxategiKont++;
+    }
+
 }
