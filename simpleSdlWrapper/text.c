@@ -8,6 +8,8 @@
 
 TTF_Font* font = 0;
 
+
+
 void textuaGaitu_galderak(void)
 {
 	font = TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\ARIAL.TTF", 32, 0); // 32 tamaina

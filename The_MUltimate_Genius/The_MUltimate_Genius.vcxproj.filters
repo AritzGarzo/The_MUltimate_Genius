@@ -45,6 +45,9 @@
     <ClInclude Include="GureEstrukturak.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="Galderak.h">
+      <Filter>include\sdl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -65,5 +68,11 @@
     <ClCompile Include="..\simpleSdlWrapper\text.c">
       <Filter>src\sdl</Filter>
     </ClCompile>
+    <ClCompile Include="Galderak.c">
+      <Filter>src\sdl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

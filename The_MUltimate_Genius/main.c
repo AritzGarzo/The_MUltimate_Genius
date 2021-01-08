@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
+#include "Galderak.h"
 //Dev
 
 //
@@ -24,7 +25,6 @@ void pertsonaiaMugitu(int ebentu, POSIZIOA pos);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
-EGOERA galderak(int orden);
 int fondoPantaila(char* str);
 
 int main(int argc, char* str[])
@@ -690,56 +690,6 @@ EGOERA gorde(JOKALARIA jokalaria)
     return egoera;
 }
 
-EGOERA galderak(int orden)
-{
-    int fondoa, irakaslea, jarraitu = 1, ebentu = 0;
-    EGOERA egoera;
-    POSIZIOA pos;
-    //
-    egoera = ETXEA_P;
-    fondoa = fondoPantaila(".\\img\\Galderak_Erantzunak\\Preguntas.bmp");
-    pos = saguarenPosizioa();
-    //
-    switch (orden)
-    {
-    case 1://mate
-        irakaslea = irudiaKargatu(".\\img\\ProfeMates.bmp");
-        break;
-    case 2://program
-        irakaslea = irudiaKargatu(".\\img\\ProfeProgram.bmp");
-        break;
-    case 3://oinarri
-        irakaslea = irudiaKargatu(".\\img\\ProfeOinarri.bmp");
-        break;
-    case 4://redes
-        irakaslea = irudiaKargatu(".\\img\\ProfeRedes.bmp");
-        break;
-    case 5://empresa
-        irakaslea = irudiaKargatu(".\\img\\ProfeEmpresa.bmp");
-        break;
-    default:
-        break;
-    }
-    irudiaMugitu(irakaslea, 907, 72);
-    irudiakMarraztu();
-    //
-    textuaGaitu_galderak();
-    while (jarraitu == 1)//unibertsitatea den bitartean
-    {
-        textuaIdatzi(11, 267, "Hola gente! Buenas! Que pasa guacho! Ey! Apa! Aupa! Kaixo!");
-        ebentu = ebentuaJasoGertatuBada();
-        if (ebentu == SAGU_BOTOIA_EZKERRA)
-        {
-            pos = saguarenPosizioa();
-            if ((pos.x >= 657 && pos.x <= 657 + 600) && (pos.y >= 490 && pos.y <= 490 + 82)) jarraitu = 0;//itzultzerakoan etxera bidaltzeko
-        }
-        pantailaBerriztu();
-    }
-    //
-    irudiaKendu(fondoa);
-    //
-    return egoera;
-}
 //--------------------
 int fondoPantaila(char* str)
 {
@@ -760,7 +710,6 @@ void pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
     sprite.irudia2d.id = spriteKargatu(".\\img\\PersonajeChicoVF_.bmp");
     x = 0; y = 0;
 
-   
 
         pantailaGarbitu();
         spriteMugitu(sprite.irudia2d.id, pos.x, pos.y);
@@ -853,8 +802,8 @@ void pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
         irudiakMarraztu();
         spriteakMarraztu(x, y);
         pantailaBerriztu();
-    
 
+    
     
 }
 

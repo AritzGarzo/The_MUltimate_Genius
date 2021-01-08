@@ -1,5 +1,6 @@
 #ifndef GUREESTRUKTURAK_H
 #define GUREESTRUKTURAK_H
+#define MAX 128
 
 #include "ebentoak.h"
 
@@ -67,4 +68,24 @@ typedef struct jokalaria
 	EXP exp;
 }JOKALARIA;
 
+
+typedef struct opzioak {
+	char A[MAX];
+	char B[MAX];
+	char C[MAX];
+	char D[MAX];
+
+} OPZIOAK;
+
+typedef struct galdera {
+
+	int gelaID;
+	int galderaID;
+	char testua[MAX];
+	OPZIOAK aukerak;//swicth erabili aukeratzeko
+	int erabilita;
+
+}GALDERA;
+
 #endif
+
