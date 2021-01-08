@@ -84,7 +84,6 @@ int main(int argc, char* str[])
     return 0;
 }
 
-
 int hasieratu(void)
 {
     int i;
@@ -132,7 +131,7 @@ int hasieratu(void)
 
     return 0;
 }
-//
+
 int mu_hasieratu(void)
 {
     int i;
@@ -166,8 +165,10 @@ void fondoPantaila(char* str)
 }
 
 void pertsonaiaMugitu(void)
+//Nuevo
+int pertsonaiaMugitu(void)
 {
-    int mugi, ebentu, x, y, tamaño = 48, tmp = 0;
+    int mugi, ebentu, x, y, tama?o = 48, tmp = 0;
     JOKALARIA sprite;
     IRUDIA pos;
     mugi = 3;
@@ -296,4 +297,3 @@ int kontrolak(void)
     }
     return irten;
 }
-

@@ -8,7 +8,7 @@ void irudiaMugitu(int numImg, int x, int y);
 void irudiakMarraztu(void);
 void irudiakMarraztu(void);
 void irudiaKendu(int id);
-
+//Nuevo
 //SPRITES
 
 int spriteKargatu(char* fileName);

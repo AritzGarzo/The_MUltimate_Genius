@@ -15,7 +15,7 @@ void pantailaGarbitu();
 void pantailaBerriztu();
 
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest);
-int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y);
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y);//Nuevo
 
 SDL_Renderer* getRenderer(void);
 
