@@ -46,17 +46,16 @@ int main(int argc, char* str[])
             }
             if (egoera == KARGATU_P)
             {
-                //kargatu()
-                egoera = JOLASTU_P;//JOLASTU
+                egoera = kargatu(&jokalaria);//
             }
             //
             switch (egoera)
             {
             case JOLASTU_P:
-                egoera = jolastu(&jokalaria);
+                egoera = jolastu(&jokalaria);//jolastu
                 break;
             case KONTROLAK_P:
-                egoera = kontrolak();//
+                egoera = kontrolak();//kontrolak
                 break;
             default://irten
                 break;
@@ -394,20 +393,39 @@ EGOERA kargatu(JOKALARIA* jokalaria)
     egoera = MENUA_P;
     fitx = fopen(karpeta, "rb");
     //
+    pantailaGarbitu();
+    textuaGaitu_beltza();
+    textuaIdatzi_beltza(10, 20, "Partida kargatzen...");
+    pantailaBerriztu();
+    Sleep(2000);
     if (fitx == NULL)
     {
         printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
     }
     else
     {
+        textuaIdatzi_beltza(10, 40, "Partida kargatuta.");
+        textuaIdatzi_beltza(10, 60, "Jokalaria kargatzen...");
+        Sleep(2500);
+        pantailaBerriztu();
         irakurketa = fread(&jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
         if (irakurketa != 1)
         {
             printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
+            textuaIdatzi(10, 80, "Jokalaria ezin izan da kargatu.");
+            pantailaBerriztu();
+            Sleep(2500);
+        }
+        else
+        {
+            textuaIdatzi_beltza(10, 80, "Jokalaria kargatuta.");
+            textuaIdatzi_beltza(10, 100, "Informazio guztia ongi kargatu da.");
+            pantailaBerriztu();
+            Sleep(1500);
             egoera = JOLASTU_P;
         }
+        fclose(fitx);
     }
-    fclose(fitx);
     return egoera;
 }
         //----------------------------
@@ -435,6 +453,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
             if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
             {
                 egoera = gorde(*jokalaria);
+                fondoa = fondoPantaila(ETXEA_F);
             }
         }
     }
@@ -665,9 +684,9 @@ EGOERA gorde(JOKALARIA jokalaria)
             }
         }
         strcpy(str, " ");
+        fclose(fitx);
     }
     Sleep(2000);
-    fclose(fitx);
     textuaDesgaitu();
     pantailaBerriztu();
     //
@@ -676,7 +695,7 @@ EGOERA gorde(JOKALARIA jokalaria)
             
 EGOERA galderak(int orden)
 {
-    int fondoa, irakaslea, jarraitu = 1, ebentu = 0;
+    int fondoa, irakaslea = 0, jarraitu = 1, ebentu = 0;
     EGOERA egoera;
     POSIZIOA pos;
     //
