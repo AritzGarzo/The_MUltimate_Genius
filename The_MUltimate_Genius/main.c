@@ -25,7 +25,7 @@ int hasieratu(void);
 //
 int mu_hasieratu(void);
 void fondoPantaila(char* str);
-int pertsonaiaMugitu(void);
+void pertsonaiaMugitu(void);
 int kontrolak(void);
 
 int main(int argc, char* str[])
@@ -68,7 +68,7 @@ int main(int argc, char* str[])
             else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 293) && (pos.y < 293 + 68))
             {
                 fondoPantaila(".\\img\\jolastu.bmp");
-                irten = pertsonaiaMugitu();
+                pertsonaiaMugitu();
                 fondoPantaila(".\\img\\menu.bmp");
             }
             break;
@@ -165,18 +165,18 @@ void fondoPantaila(char* str)
     pantailaBerriztu();
 }
 
-int pertsonaiaMugitu(void)
+void pertsonaiaMugitu(void)
 {
-    int irten, ebentu, x, y, tamaño = 48, tmp = 0;
+    int mugi, ebentu, x, y, tamaño = 48, tmp = 0;
     JOKALARIA sprite;
     IRUDIA pos;
-    irten = 3;
+    mugi = 3;
 
     sprite.id_2d = spriteKargatu(".\\img\\PersonajeChicoVF .bmp");
     x = 0; y = 0;
     pos.pos_hasi.x = 50; pos.pos_hasi.y = 50;//Donde va a empezar el jugador?
 
-    while (irten == 3)
+    while (mugi == 3)
     {
 
         pantailaGarbitu();
@@ -264,19 +264,14 @@ int pertsonaiaMugitu(void)
             tmp = ebentu;
             //------------------------------------------------------------//
             break;
-
-        case TECLA_t:
-            irten = 0;
-            break;
         default:
             break;
         }
         irudiakMarraztu();
-        spriteakMarraztu(x, y, tamaño);
+        spriteakMarraztu(x, y);
         pantailaBerriztu();
     }
 
-    return irten;
 }
 
 int kontrolak(void)
