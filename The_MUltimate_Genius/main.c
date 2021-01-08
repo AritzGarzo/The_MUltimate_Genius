@@ -164,11 +164,10 @@ void fondoPantaila(char* str)
     pantailaBerriztu();
 }
 
-void pertsonaiaMugitu(void)
 //Nuevo
-int pertsonaiaMugitu(void)
+void pertsonaiaMugitu(void)
 {
-    int mugi, ebentu, x, y, tama?o = 48, tmp = 0;
+    int mugi, ebentu, x, y, tamaño = 48, tmp = 0;
     JOKALARIA sprite;
     IRUDIA pos;
     mugi = 3;
