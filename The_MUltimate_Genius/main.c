@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "SDL.h"
 #include "graphics.h"
 #include "ebentoak.h"
 #include "soinua.h"
@@ -57,7 +58,7 @@ int main(int argc, char* str[])
             case KONTROLAK_P:
                 egoera = kontrolak();//kontrolak
                 break;
-            default://irten
+            default://case irten_p:
                 break;
             }
         } while (egoera == MENUA_P);
@@ -641,17 +642,13 @@ EGOERA gorde(JOKALARIA jokalaria)
         {
             textuaIdatzi_beltza(10, 40, "Partida gordeta.");
             pantailaBerriztu();
-            textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (Bai/Ez)");
+            textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (B/E)");
             //
-            while (strcmp(str, "BAI") != 0 && strcmp(str, "EZ") != 0)
+            while (strcmp(str, "B") != 0 && strcmp(str, "E") != 0)
             {
                 ebentu = ebentuaJasoGertatuBada();
                 switch (ebentu)
                 {
-                case TECLA_a:
-                    if (!strcmp(str, " ")) strcpy(str, "A");
-                    else strcat(str, "A");
-                    break;
                 case TECLA_b:
                     if (!strcmp(str, " ")) strcpy(str, "B");
                     else strcat(str, "B");
@@ -660,33 +657,25 @@ EGOERA gorde(JOKALARIA jokalaria)
                     if (!strcmp(str, " ")) strcpy(str, "E");
                     else strcat(str, "E");
                     break;
-                case TECLA_i:
-                    if (!strcmp(str, " ")) strcpy(str, "I");
-                    else strcat(str, "I");
-                    break;
-                case TECLA_z:
-                    if (!strcmp(str, " ")) strcpy(str, "Z");
-                    else strcat(str, "Z");
-                    break;
                 default:
                     break;
                 }
                 textuaIdatzi_beltza(10, 80, str);
                 pantailaBerriztu();
-            }
-            if(strcmp(str, "BAI") == 0)
-            {
-                egoera = ETXEA_P;
-            }
-            if (strcmp(str, "EZ") == 0)
-            {
-                egoera = MENUA_P;
+                if (strcmp(str, "B") == 0)
+                {
+                    egoera = ETXEA_P;
+                }
+                if (strcmp(str, "E") == 0)
+                {
+                    egoera = MENUA_P;
+                }
             }
         }
         strcpy(str, " ");
         fclose(fitx);
     }
-    Sleep(2000);
+    Sleep(1000);
     textuaDesgaitu();
     pantailaBerriztu();
     //
