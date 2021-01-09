@@ -1,0 +1,5 @@
+Zer esan nahi du matriz bateko zutabe bakoitzean pibot bat edukitzeak?
+Matrizea osatzen duen ekuazioek pibot bat dutela
+Matrizea osatzen duen ekuazioek sistema indeterminatu bat osatzen dutela
+Matrizea osatzen duen ekuazioek sistema bateragarri determinatua dela
+Matrizea osatzen duen ekuazioek sistema batera ezin bat dela

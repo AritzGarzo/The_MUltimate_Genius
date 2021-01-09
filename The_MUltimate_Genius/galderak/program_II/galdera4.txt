@@ -1,0 +1,5 @@
+Zer da programazioan errekurtsibitatea?
+Funtzio batek bere buruari deitzea
+Funtzio batek beste funtzio bati deitzea
+Funtzio bat
+Funtzio baten barruan hainbat funtzio edukitzea

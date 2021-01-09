@@ -1,0 +1,5 @@
+Zer/zeinen legea da hau? (V=R*I\R=V/I\I=V/R)
+Ohm-en legea
+Thevenin-ren legea
+Coulomb-en legea
+Joul-en legea

@@ -1,0 +1,5 @@
+Zer ezberdintasun dago grafo Eulearra eta Hamiltondarraren artean?
+Batek ibilbide ziklikoa egiten du eta besteak ez
+Batek erpinak hartzen ditu kontua eta besteak ertzak
+Batek ibilbide ziklikoak puntuen artean eta besteak ibilbide ziklikoa ertzen artean
+Ez dago ezberdintasunik

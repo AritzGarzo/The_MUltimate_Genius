@@ -1,0 +1,5 @@
+Noiz erabili behar da Bernoulli?
+Ekuazioa lineala denean
+Ekuazioa ez lineala denea
+Ekuazio diferentziala lineala denean
+Ekuazio diferentziala ez lineala denean

@@ -1,0 +1,5 @@
+Zein da (Sinx/Cosx) dx ren integrala?
+-Ln(cosx)
+tanx
+Ln(sinx)
+arctan x

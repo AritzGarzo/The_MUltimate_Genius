@@ -1,0 +1,5 @@
+Zer diferentzia dago do while eta while-en artean?
+Ez dago desberdintasunik
+Bat bestea baino azkarragoa da
+Batek lehenego zerbait egiten du eta gero baldintza konparatu
+Bat efizienteagoa da

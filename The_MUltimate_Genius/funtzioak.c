@@ -346,7 +346,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 case 5:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
-                    strcpy(galdera[gelaID][galderaID].testua, "idatzi (2i-4)/(3+2i) polarrean.");
+                    strcpy(galdera[gelaID][galderaID].testua, "Idatzi (2i-4)/(3+2i) polarrean.");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "(-8+14i)/13");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "(-6-5i)/14,");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "(5+16i)/10");
@@ -387,8 +387,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 case 3:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
-                    strcpy(galdera[gelaID][galderaID].testua, " Zein da Kirchhoff-en legea?");
-                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Korapiloaren legea,");  //ONDO
+                    strcpy(galdera[gelaID][galderaID].testua, "Zein da Kirchhoff-en legea?");
+                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Korapiloaren legea");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Energia kontserbazioaren legea");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Akzio-erreakzio");
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Kanpo magnetikoaren legea");
@@ -437,7 +437,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 case 2:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
-                    strcpy(galdera[gelaID][galderaID].testua, "PDF batek irudia badu zer eduki behar du berarekin?");
+                    strcpy(galdera[gelaID][galderaID].testua, "PDF edo dokumentu batek irudia badu zer eduki behar du berarekin?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Deskripzio bat bakarrik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Irudien taula bakarrik");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Deskripzio bat eta irudien taula");  //ONDO
@@ -541,7 +541,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 case 1:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zein da arraya[gelaID][galderaID]-ren baliokidea?");
+                    strcpy(galdera[gelaID][galderaID].testua, "Zein da arraya[i]-ren baliokidea?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "*(arraya+i)");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "arraya.i");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "(arraya+i)");
@@ -782,7 +782,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 galderaID++;
             }
             break;
-        case 10://---elektrtonika---
+        case 10://---empresa---
             galderaID = 1;
             while (galderaID <= 5) {
                 switch (galderaID)
@@ -818,7 +818,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                 case 4:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
-                    strcpy(galdera[gelaID][galderaID].testua, "-Enpresa baten negozio plana zenbat atal nagusi ditu?");
+                    strcpy(galdera[gelaID][galderaID].testua, "Enpresa baten negozio plana zenbat atal nagusi ditu?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "5");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "7");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "8"); //ONDO
@@ -2586,13 +2586,24 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
 }
 
 void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
-    char galderak[49][128] = { "",".\\galderak\\program\\galdera1.txt", ".\\galderak\\program\\galdera2.txt" };
+    char galderak[60][128] = { "",".\\galderak\\program\\galdera1.txt", ".\\galderak\\program\\galdera2.txt",".\\galderak\\program\\galdera3.txt",".\\galderak\\program\\galdera4.txt",".\\galderak\\program\\galdera5.txt",
+              "", ".\\galderak\\mate\\galdera1.txt", ".\\galderak\\mate\\galdera2.txt",".\\galderak\\mate\\galdera3.txt",".\\galderak\\mate\\galdera4.txt",".\\galderak\\mate\\galdera5.txt",
+              "",  ".\\galderak\\fisika\\galdera1.txt", ".\\galderak\\fisika\\galdera2.txt",".\\galderak\\fisika\\galdera3.txt",".\\galderak\\fisika\\galdera4.txt",".\\galderak\\fisika\\galdera5.txt",
+              "",  ".\\galderak\\oinarri\\galdera1.txt", ".\\galderak\\oinarri\\galdera2.txt",".\\galderak\\oinarri\\galdera3.txt",".\\galderak\\oinarri\\galdera4.txt","",
+              "",  ".\\galderak\\redes\\galdera1.txt", ".\\galderak\\redes\\galdera2.txt",".\\galderak\\redes\\galdera3.txt",".\\galderak\\redes\\galdera4.txt",".\\galderak\\redes\\galdera5.txt",
+              "",  ".\\galderak\\program_II\\galdera1.txt", ".\\galderak\\program_II\\galdera2.txt",".\\galderak\\program_II\\galdera3.txt",".\\galderak\\program_II\\galdera4.txt",".\\galderak\\program_II\\galdera5.txt",
+              "",  ".\\galderak\\mate_II\\galdera1.txt", ".\\galderak\\mate_II\\galdera2.txt",".\\galderak\\mate_II\\galdera3.txt",".\\galderak\\mate_II\\galdera4.txt",".\\galderak\\mate_II\\galdera5.txt",
+              "",  ".\\galderak\\mate_D\\galdera1.txt", ".\\galderak\\mate_D\\galdera2.txt",".\\galderak\\mate_D\\galdera3.txt",".\\galderak\\mate_D\\galdera4.txt",".\\galderak\\mate_D\\galdera5.txt",
+              "",  ".\\galderak\\elektronika\\galdera1.txt", ".\\galderak\\elektronika\\galdera2.txt",".\\galderak\\elektronika\\galdera3.txt",".\\galderak\\elektronika\\galdera4.txt",".\\galderak\\elektronika\\galdera5.txt",
+              "",  ".\\galderak\\empresa\\galdera1.txt", ".\\galderak\\empresa\\galdera2.txt",".\\galderak\\empresa\\galdera3.txt",".\\galderak\\empresa\\galdera4.txt",".\\galderak\\empresa\\galdera5.txt"
+    };
 
 
     FILE* fitx;
     int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1;
 
-    while (fitxategiKont <= 2) {
+    while (fitxategiKont <= 60) {//gero 49
+
 
         fitx = fopen(galderak[fitxategiKont], "r");
 
@@ -2600,12 +2611,13 @@ void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
             printf("Errorea fitxeroarekin");
         }
         else {
-
-            fgets(galdera[gelaIDKont][galderaIDKont].testua, 50, fitx);
-            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 50, fitx);
-            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 50, fitx);
-            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.C, 50, fitx);
-            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.D, 50, fitx);
+            galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
+            galdera[gelaIDKont][galderaIDKont].galderaID = galderaIDKont;
+            fgets(galdera[gelaIDKont][galderaIDKont].testua, 128, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 128, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 128, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.C, 128, fitx);
+            fgets(galdera[gelaIDKont][galderaIDKont].aukerak.D, 128, fitx);
 
             galdera[gelaIDKont][galderaIDKont].testua[strlen(galdera[gelaIDKont][galderaIDKont].testua) - 1] = '\0';
             galdera[gelaIDKont][galderaIDKont].aukerak.A[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.A) - 1] = '\0';
@@ -2614,11 +2626,16 @@ void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
             galdera[gelaIDKont][galderaIDKont].aukerak.D[strlen(galdera[gelaIDKont][galderaIDKont].aukerak.D) - 1] = '\0';
             fclose(fitx);
 
-
-
         }
-        galderaIDKont++;
+        if (galderaIDKont > 5) {
+            gelaIDKont++;
+            galderaIDKont = 1;
+        }
+        else {
+            galderaIDKont++;
+        }
         fitxategiKont++;
+
     }
 
 }

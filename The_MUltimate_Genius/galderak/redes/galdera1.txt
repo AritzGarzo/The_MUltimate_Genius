@@ -1,0 +1,5 @@
+Zein da Google-ren DNS IPv4-a?
+1.1.1.1
+5.5.5.5
+0.0.0.0
+8.8.8.8

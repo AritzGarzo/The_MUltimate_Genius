@@ -1,0 +1,5 @@
+If eta else if sententzia asko erabiltzen denean, zer beste sentetzia dago hori azkarrago egiteko
+Switch
+Change
+Goto
+Break

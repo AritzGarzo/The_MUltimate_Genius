@@ -1,0 +1,5 @@
+Zenbat modu daude {1,2,3} zenbakiak ordenatzeko?
+4
+6
+8
+10

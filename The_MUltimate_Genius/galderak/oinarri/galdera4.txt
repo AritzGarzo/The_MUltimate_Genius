@@ -1,0 +1,5 @@
+Zer etiketa erabili behar da kodigoa jartzeko?
+<strong> ... </strong>
+<div> ... </div>
+<script> ... </script>
+<head> ... <\head>

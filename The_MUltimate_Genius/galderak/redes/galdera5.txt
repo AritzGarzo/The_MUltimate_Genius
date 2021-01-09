@@ -1,0 +1,5 @@
+255.255.255.248 maskaran zenbat host dira helbideragarriak?");
+2
+6
+8
+14
