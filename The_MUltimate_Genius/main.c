@@ -26,6 +26,7 @@ void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
 EGOERA galderak(int orden);
 int fondoPantaila(char* str);
+void warning_abisua(char* str);
 
 int main(int argc, char* str[])
 {
@@ -184,6 +185,7 @@ EGOERA profila(JOKALARIA* jokalaria)
     strcpy(tmpGradua, " ");
     strcpy(jokalaria->izena, " ");
     strcpy(jokalaria->gradua.izena, " ");
+    strcpy(jokalaria->irudia.izena, " ");
     textuaGaitu_profila();
         //
     textuaIdatzi(180, 174, jokalaria->izena);
@@ -358,7 +360,18 @@ EGOERA profila(JOKALARIA* jokalaria)
         //jarraitu
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 1077 && pos.x <= 1077 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)))
         {
-            egoera = JOLASTU_P;
+            if((strcmp(" ", jokalaria->izena) != 0) && (strcmp(" ", jokalaria->gradua.izena) != 0) && (strcmp(" ", jokalaria->irudia.izena) != 0))
+            {
+                egoera = JOLASTU_P;
+            }
+            else
+            {
+                warning_abisua(ABISUA);
+                strcpy(jokalaria->izena, " ");
+                strcpy(jokalaria->gradua.izena, " ");
+                strcpy(jokalaria->irudia.izena, " ");
+                aldaketa = 1;
+            }
         }
         //atzera
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 880 && pos.x <= 880 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)))
@@ -369,10 +382,13 @@ EGOERA profila(JOKALARIA* jokalaria)
         if (aldaketa == 1)
         {
             irudiakMarraztu();
-            textuaIdatzi(180, 174, (*jokalaria).izena);//izena beridatzi
-            textuaIdatzi(180, 356, (*jokalaria).gradua.izena);//gradua beridatzi
-            arkatzKoloreaEzarri(0XF8, 0XF3, 0X2B);
-            koadroaMarraztu(jokalaria->irudia.pos_hasi.x - 1, jokalaria->irudia.pos_hasi.y - 1, jokalaria->irudia.pos_buka.x, jokalaria->irudia.pos_buka.y);
+            textuaIdatzi(180, 174, (*jokalaria).izena);//izena berridatzi
+            textuaIdatzi(180, 356, (*jokalaria).gradua.izena);//gradua berridatzi
+            if (strcmp(jokalaria->irudia.izena, " ") != 0)
+            {
+                arkatzKoloreaEzarri(0XF8, 0XF3, 0X2B);
+                koadroaMarraztu(jokalaria->irudia.pos_hasi.x - 1, jokalaria->irudia.pos_hasi.y - 1, jokalaria->irudia.pos_buka.x, jokalaria->irudia.pos_buka.y);
+            }//irudiaren koadroa berrezarri
             pantailaBerriztu();
             aldaketa = 0;
         }
@@ -402,6 +418,10 @@ EGOERA kargatu(JOKALARIA* jokalaria)
     if (fitx == NULL)
     {
         printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
+        textuaIdatzi_beltza(10, 40, "Ez dago aurreko jokaldirik gordeta.");
+        textuaIdatzi_beltza(10, 60, "Partida bat gordetzeko, beste bat gorde behar da aurretik.");
+        pantailaBerriztu();
+        Sleep(4500);
     }
     else
     {
@@ -742,4 +762,23 @@ int fondoPantaila(char* str)
     irudiakMarraztu();
     pantailaBerriztu();
     return id;
+}
+
+void warning_abisua(char* str)
+{
+    int id, i;
+    for (i = 0; i < 5; i++)
+    {
+        pantailaGarbitu();
+        id = irudiaKargatu(str);
+        irudiaMugitu(id, 320, 270);
+        irudiakMarraztu();
+        pantailaBerriztu();
+        Sleep(650);
+        irudiaKendu(id);
+        pantailaGarbitu();
+        irudiakMarraztu();
+        pantailaBerriztu();
+        Sleep(100);
+    }
 }
