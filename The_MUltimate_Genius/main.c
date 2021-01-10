@@ -184,7 +184,7 @@ EGOERA profila(JOKALARIA* jokalaria)
     strcpy(tmpIzena, " ");
     strcpy(tmpGradua, " ");
     strcpy(jokalaria->izena, " ");
-    strcpy(jokalaria->gradua.izena, " ");
+    strcpy(jokalaria->gradua.izena, "Informatika");//gradu bakarra edukiko dugulako
     strcpy(jokalaria->irudia.izena, " ");
     textuaGaitu_profila();
         //
@@ -335,13 +335,13 @@ EGOERA profila(JOKALARIA* jokalaria)
             aldaketa = 1;
         }
         //si clicka en gradua le aparece una especie de lista
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88)))
+        /*if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88)))
         {
             crearLista(tmpGradua);
             strcpy((*jokalaria).gradua.izena, tmpGradua);
             fondoa = fondoPantaila(PROFILA_F);
             aldaketa = 1;
-        }
+        }*/
         //si clicka en una imagen se marca/ilumina
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133)))//mutila
         {
@@ -368,7 +368,7 @@ EGOERA profila(JOKALARIA* jokalaria)
             {
                 warning_abisua(ABISUA);
                 strcpy(jokalaria->izena, " ");
-                strcpy(jokalaria->gradua.izena, " ");
+                //strcpy(jokalaria->gradua.izena, " ");
                 strcpy(jokalaria->irudia.izena, " ");
                 aldaketa = 1;
             }
@@ -767,7 +767,7 @@ int fondoPantaila(char* str)
 void warning_abisua(char* str)
 {
     int id, i;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 3; i++)
     {
         pantailaGarbitu();
         id = irudiaKargatu(str);
