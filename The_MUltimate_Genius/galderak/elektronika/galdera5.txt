@@ -1,5 +1,5 @@
 Zer zati ditu elikadura iturri basiko batek?
-Transdormadorea-> irteera
+Transdormadorea->irteera
 Transformadorea->artezgailuak->irteera
 Transformadorea->artezgailuak->filtroa->irteera
 Transformadorea->artezgailuak->filtroa->reguladorea->irteera

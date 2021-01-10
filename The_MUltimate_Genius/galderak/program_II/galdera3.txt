@@ -1,4 +1,4 @@
-Nola deklaratzen da erakusle bat?");
+Nola deklaratzen da erakusle bat?
 ?
 &
 *

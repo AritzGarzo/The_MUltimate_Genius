@@ -136,36 +136,71 @@ int jolastu(void)
         if (ebentu == SAGU_BOTOIA_EZKERRA) {
             pos = saguarenPosizioa();
             srand(time(NULL));
-            //gelaID = 1 + rand() % 10;
+            gelaID = 1 + rand() % 10;
+            galderaID = 1 + rand() % 5;
             gelaID = 1;
-            galderaID = 1;
-            //galderakEtaEurenAukerakSortu(galdera);
+            galderaID = 1;//mateII bug
+
+            // galderakEtaEurenAukerakSortu(galdera);
+
+             //-----jokoa en si----
+             //if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
+             //    //----SUPUESTO UNI-----
+             //   // galderaID = 1+rand() % 5;
+             //    while (gelaID <= 10) {
+             //        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+             //        while (galderaID <= 5 && !denakErantzunda) {
+             //            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+             //            if (erantzunda != 0) {
+             //                Sleep(500);
+             //                galderaID++;
+             //                if (galderaID == 6) {
+             //                    denakErantzunda = 1;
+             //                    galderaID = 1;
+             //                } 
+             //                else if (gelaID == 4 && galderaID == 5) {
+             //                    gelaID = 5;
+             //                    galderaID = 1;
+             //                    denakErantzunda = 1;
+             //                }
+             //                else {
+             //                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+             //                }
+             //            }
+             //        }
+             //        gelaID++;
+             //        denakErantzunda = 0;
+             //    }
+             //}
+
             galderakEtaAukerakLotu(galdera);
-            //-----jokoa en si----
-            //if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
-            //    //----SUPUESTO UNI-----
-            //   // galderaID = 1+rand() % 5;
-            //    while (gelaID <= 10) {
-            //        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-            //        while (galderaID <= 5 && !denakErantzunda) {
-            //            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
-            //            if (erantzunda != 0) {
-            //                Sleep(500);
-            //                galderaID++;
-            //                if (galderaID == 6) {
-            //                    denakErantzunda = 1;
-            //                    galderaID = 1;
-            //                }
-            //                else {
-            //                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-            //                }
-            //            }
-            //        }
-            //        gelaID++;
-            //        denakErantzunda = 0;
-            //    }
-            //}
-            fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+
+            while (gelaID <= 10) {
+                fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                while (galderaID <= 5 && !denakErantzunda) {
+                    erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+                    if (erantzunda != 0) {
+                        Sleep(500);
+                        galderaID++;
+                        if (galderaID == 6) {
+                            denakErantzunda = 1;
+                            galderaID = 1;
+                        }
+                        else if (gelaID == 4 && galderaID == 5) {
+                            gelaID = 5;
+                            galderaID = 1;
+                            denakErantzunda = 1;
+                        }
+                        else {
+                            fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                        }
+                    }
+                }
+                gelaID++;
+                denakErantzunda = 0;
+            }
+
+
         }
         if (ebentu == GERTAERA_IRTEN) {
             return 0;
@@ -1402,7 +1437,7 @@ int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDM
         case 4://---oinarri---
             switch (galderaID)
             {
-            case 1://---oinarri---
+            case 1:
                 erantzunda = 1;
 
                 if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
@@ -1495,6 +1530,7 @@ int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDM
                 else {
                     erantzunda = 0;
                 }
+
                 break;
 
             case 4:
@@ -2608,7 +2644,7 @@ void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
         fitx = fopen(galderak[fitxategiKont], "r");
 
         if (fitx == NULL) {
-            printf("Errorea fitxeroarekin");
+            printf("Errorea fitxeroarekin\n");
         }
         else {
             galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
