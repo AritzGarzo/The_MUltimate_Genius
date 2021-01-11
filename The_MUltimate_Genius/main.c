@@ -21,11 +21,12 @@ EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
-int pertsonaiaMugitu(int ebentu, POSIZIOA pos);
+int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
 int fondoPantaila(char* str);
+void warning_abisua(char* str);
 
 int main(int argc, char* str[])
 {
@@ -345,6 +346,7 @@ EGOERA profila(JOKALARIA* jokalaria)
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133)))//mutila
         {
             strcpy(jokalaria->irudia.izena, CHICO_AVATAR);
+            strcpy(jokalaria->irudia2d.izena, CHICO_AVATAR_M);
             jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 185;
             jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 133;
             aldaketa = 1;
@@ -352,6 +354,7 @@ EGOERA profila(JOKALARIA* jokalaria)
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133)))//neska
         {
             strcpy(jokalaria->irudia.izena, CHICA_AVATAR);
+            strcpy(jokalaria->irudia2d.izena, CHICA_AVATAR_M);
             jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 350;
             jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 133;
             aldaketa = 1;
@@ -359,7 +362,18 @@ EGOERA profila(JOKALARIA* jokalaria)
         //jarraitu
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 1077 && pos.x <= 1077 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)))
         {
-            egoera = JOLASTU_P;
+            if ((strcmp(" ", jokalaria->izena) != 0) && (strcmp(" ", jokalaria->gradua.izena) != 0) && (strcmp(" ", jokalaria->irudia.izena) != 0))
+            {
+                egoera = JOLASTU_P;
+            }
+            else
+            {
+                warning_abisua(ABISUA);
+                strcpy(jokalaria->izena, " ");
+                //strcpy(jokalaria->gradua.izena, " ");
+                strcpy(jokalaria->irudia.izena, " ");
+                aldaketa = 1;
+            }
         }
         //atzera
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 880 && pos.x <= 880 + 175) && (pos.y >= 638 && pos.y <= 638 + 50)))
@@ -435,7 +449,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
         ebentu = ebentuaJasoGertatuBada();
         
            
-       klik = pertsonaiaMugitu(ebentu, pos_jokalaria);
+       klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria);
         
 
         
@@ -474,7 +488,7 @@ EGOERA uni(JOKALARIA* jokalaria)
         ebentu = ebentuaJasoGertatuBada();
         if (ebentu == TECLA_w || ebentu == TECLA_a || ebentu == TECLA_s || ebentu == TECLA_d)
         {
-            pertsonaiaMugitu(ebentu, pos_jokalaria);
+            pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria);
         }
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
@@ -705,13 +719,20 @@ int fondoPantaila(char* str)
     pantailaBerriztu();
     return id;
 }
-int pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
+int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria)
 {
     int mugi, x, y, tamaño = 48, tmp = 0;
-    JOKALARIA sprite;
+    JOKALARIA sprite = jokalaria;
     mugi = 3;
 
-    sprite.irudia2d.id = spriteKargatu(".\\img\\PersonajeChicoVF_.bmp");
+    if (strcmp(sprite.irudia.izena, CHICO_AVATAR) == 0)
+    {
+        sprite.irudia2d.id = spriteKargatu(sprite.irudia2d.izena);
+    }
+    if (strcmp(sprite.irudia.izena, CHICA_AVATAR) == 0)
+    {
+        sprite.irudia2d.id = spriteKargatu(sprite.irudia2d.izena);
+    }
     x = 0; y = 0;
     pos.x = 1150;
     pos.y = 180;
@@ -834,4 +855,21 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
     
     
 }
-
+void warning_abisua(char* str)
+{
+    int id, i;
+    for (i = 0; i < 3; i++)
+    {
+        pantailaGarbitu();
+        id = irudiaKargatu(str);
+        irudiaMugitu(id, 320, 270);
+        irudiakMarraztu();
+        pantailaBerriztu();
+        Sleep(650);
+        irudiaKendu(id);
+        pantailaGarbitu();
+        irudiakMarraztu();
+        pantailaBerriztu();
+        Sleep(100);
+    }
+}

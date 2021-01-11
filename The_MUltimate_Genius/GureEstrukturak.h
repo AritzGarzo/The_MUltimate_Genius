@@ -15,8 +15,9 @@
 //--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
-#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF.bmp"
-#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF.bmp"
+#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF_.bmp"
+#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF_.bmp"
+#define ABISUA	".\\img\\abisua.bmp"
 
 typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P }EGOERA;
 
