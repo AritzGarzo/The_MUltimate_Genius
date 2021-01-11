@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 //Mapeo
+extern HITBOX hitbox;
 
 #define SOINU_KOP 5
 char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
@@ -38,6 +39,7 @@ int main(int argc, char* str[])
     Uint8 bpp;
     Uint32 refreshrate = 0;
     Uint32 moverate = 0;
+    JOKALARIA sprite;
 
     mu_hasieratu();
     while (irten != 1)
@@ -57,6 +59,16 @@ int main(int argc, char* str[])
             {
                 KargatuMapa(".\\img\\gelaMapeo.bmp", &pixels, &pitch, &bpp);
                 fondoPantaila(".\\img\\gela1.bmp");
+                
+                    printf("Pierna Izquierda: %d\n", hitbox.behekoa.ezker);
+                    printf("Izquierda x: %d  ", sprite.pos.x + 54);
+                    printf("y: %d \n\n", sprite.pos.y + 59);
+
+                    printf("Pierna derecha: %d\n", hitbox.behekoa.eskuin);
+                    printf("Derecha x: %d  ", sprite.pos.x + 75);
+                    printf("y: %d \n\n", sprite.pos.y);
+                
+                KolisioakKonprobatu(pixels, pitch, bpp);
                 pertsonaiaMugitu();
                 KolisioakKonprobatu(pixels, pitch, bpp);
                 fondoPantaila(".\\img\\menu.bmp");
