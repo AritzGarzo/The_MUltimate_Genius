@@ -138,8 +138,8 @@ int jolastu(void)
             srand(time(NULL));
             gelaID = 1 + rand() % 10;
             galderaID = 1 + rand() % 5;
-            gelaID = 1;
-            galderaID = 1;//mateII bug
+            gelaID = 7;
+            galderaID = 1;//mateII galdera 3-4 bug
 
             // galderakEtaEurenAukerakSortu(galdera);
 
@@ -884,17 +884,6 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 
         gelaID++;
     }
-    //oinarria
-    /*
-            case 5:
-        strcpy(galdera[i].testua, "");
-        strcpy(galdera[i].aukerak.A, "");  //ONDO
-        strcpy(galdera[i].aukerak.B, "");
-        strcpy(galdera[i].aukerak.C, "");
-        strcpy(galdera[i].aukerak.D, "");
-        break;
-
-    */
 }
 
 int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
