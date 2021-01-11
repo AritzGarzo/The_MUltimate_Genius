@@ -4,6 +4,69 @@
 #define GELAIDMAX 11
 #define GALDERAIDMAX 6
 
+#define GALDERA_NULL ""
+
+#define PROGRAM_GALDERA_1 ".\\galderak\\program\\galdera1.txt"
+#define PROGRAM_GALDERA_2 ".\\galderak\\program\\galdera2.txt"
+#define PROGRAM_GALDERA_3 ".\\galderak\\program\\galdera3.txt"
+#define PROGRAM_GALDERA_4 ".\\galderak\\program\\galdera4.txt"
+#define PROGRAM_GALDERA_5 ".\\galderak\\program\\galdera5.txt"
+
+#define MATE_GALDERA_1 ".\\galderak\\mate\\galdera1.txt"
+#define MATE_GALDERA_2 ".\\galderak\\mate\\galdera1.txt"
+#define MATE_GALDERA_3 ".\\galderak\\mate\\galdera1.txt"
+#define MATE_GALDERA_4 ".\\galderak\\mate\\galdera1.txt"
+#define MATE_GALDERA_5 ".\\galderak\\mate\\galdera1.txt"
+
+#define FISIKA_GALDERA_1 ".\\galderak\\fisika\\galdera1.txt"
+#define FISIKA_GALDERA_2 ".\\galderak\\fisika\\galdera1.txt"
+#define FISIKA_GALDERA_3 ".\\galderak\\fisika\\galdera1.txt"
+#define FISIKA_GALDERA_4 ".\\galderak\\fisika\\galdera1.txt"
+#define FISIKA_GALDERA_5 ".\\galderak\\fisika\\galdera1.txt"
+
+#define OINARRI_GALDERA1 ".\\galderak\\oinarri\\galdera1.txt"
+#define OINARRI_GALDERA2 ".\\galderak\\oinarri\\galdera1.txt"
+#define OINARRI_GALDERA_3 ".\\galderak\\oinarri\\galdera1.txt"
+#define OINARRI_GALDERA_4 ".\\galderak\\oinarri\\galdera1.txt"
+
+#define REDES_GALDERA_1 ".\\galderak\\redes\\galdera1.txt"
+#define REDES_GALDERA_2 ".\\galderak\\redes\\galdera1.txt"
+#define REDES_GALDERA_3 ".\\galderak\\redes\\galdera1.txt"
+#define REDES_GALDERA_4 ".\\galderak\\redes\\galdera1.txt"
+#define REDES_GALDERA_5 ".\\galderak\\redes\\galdera1.txt"
+
+#define PROGRAM_II_GALDERA_1 ".\\galderak\\program_II\\galdera1.txt"
+#define PROGRAM_II_GALDERA_2 ".\\galderak\\program_II\\galdera2.txt"
+#define PROGRAM_II_GALDERA_3 ".\\galderak\\program_II\\galdera3.txt"
+#define PROGRAM_II_GALDERA_4 ".\\galderak\\program_II\\galdera4.txt"
+#define PROGRAM_II_GALDERA_5 ".\\galderak\\program_II\\galdera5.txt"
+
+#define MATE_II_GALDERA_1 ".\\galderak\\mate_II\\galdera1.txt"
+#define MATE_II_GALDERA_2 ".\\galderak\\mate_II\\galdera1.txt"
+#define MATE_II_GALDERA_3 ".\\galderak\\mate_II\\galdera1.txt"
+#define MATE_II_GALDERA_4 ".\\galderak\\mate_II\\galdera1.txt"
+#define MATE_II_GALDERA_5 ".\\galderak\\mate_II\\galdera1.txt"
+
+#define MATE_D_GALDERA_1 ".\\galderak\\mate_D\\galdera1.txt"
+#define MATE_D_GALDERA_2 ".\\galderak\\mate_D\\galdera1.txt"
+#define MATE_D_GALDERA_3 ".\\galderak\\mate_D\\galdera1.txt"
+#define MATE_D_GALDERA_4 ".\\galderak\\mate_D\\galdera1.txt"
+#define MATE_D_GALDERA_5 ".\\galderak\\mate_D\\galdera1.txt"
+
+#define ELEKTRONIKA_GALDERA_1 ".\\galderak\\elektronika\\galdera1.txt"
+#define ELEKTRONIKA_GALDERA_2 ".\\galderak\\elektronika\\galdera1.txt"
+#define ELEKTRONIKA_GALDERA_3 ".\\galderak\\elektronika\\galdera1.txt"
+#define ELEKTRONIKA_GALDERA_4 ".\\galderak\\elektronika\\galdera1.txt"
+#define ELEKTRONIKA_GALDERA_5 ".\\galderak\\elektronika\\galdera1.txt"
+
+#define EMPRESA_GALDERA_1 ".\\galderak\\empresa\\galdera1.txt"
+#define EMPRESA_GALDERA_2 ".\\galderak\\empresa\\galdera1.txt"
+#define EMPRESA_GALDERA_3 ".\\galderak\\empresa\\galdera1.txt"
+#define EMPRESA_GALDERA_4 ".\\galderak\\empresa\\galdera1.txt"
+#define EMPRESA_GALDERA_5 ".\\galderak\\empresa\\galdera1.txt"
+
+
+
 #include"GureEstrukturak.h"
 
 int hasieratu(void);
