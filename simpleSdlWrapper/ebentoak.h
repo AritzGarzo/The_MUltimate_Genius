@@ -2,11 +2,41 @@
 #define EBENTUAK_H
 #include "SDL.h"
 
+
+
+typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 251, MOREA = 253, URDINA = 252 }KOLOREAK;
+typedef struct S_BEHEKOPIXEL
+{
+	KOLOREAK ezker;
+	KOLOREAK eskuin;
+}BEHEKOPIXEL;
+typedef struct S_ALBOKOPIXEL
+{
+	KOLOREAK goikoa;
+	KOLOREAK erdikoa;
+	KOLOREAK behekoa;
+}ALBOKOPIXEL;
+typedef struct S_HITBOX
+{
+	ALBOKOPIXEL ezker;
+	ALBOKOPIXEL eskuin;
+	BEHEKOPIXEL behekoa;
+	KOLOREAK goikoa;
+
+}HITBOX;
 typedef struct S_POSIZIOA
 {
   int x;
   int y;
 } POSIZIOA;
+typedef struct
+{
+	int id;//irudia (las preguntas)
+	int id_2d;//mugituko den irudia (movimientos/animaciones)
+	char izena[128];
+	//GRADUA gradua;
+	POSIZIOA pos;
+}JOKALARIA;
 
 /*
   Helburua: Funztio hau tekla bat sakatu arte zain dago, 
@@ -16,6 +46,7 @@ typedef struct S_POSIZIOA
 */
 int ebentuaJasoGertatuBada(void);
 POSIZIOA saguarenPosizioa();
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp);
 
 #define SAGU_MUGIMENDUA  4
 #define SAGU_BOTOIA_ESKUMA 5

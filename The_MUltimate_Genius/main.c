@@ -7,7 +7,7 @@
 #include "GureEstrukturak.h"
 #include <stdio.h>
 #include <string.h>
-//Jorge
+//Mapeo
 
 #define SOINU_KOP 5
 char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
@@ -33,24 +33,12 @@ int main(int argc, char* str[])
     int ebentu = 0, irten = 0;
     char esaldia[] = "";
     POSIZIOA pos;    
-    
-    /*hasieratu();
-    while(!irten)
-    {
-      ebentu = ebentuaJasoGertatuBada();
-      if (ebentu == SAGU_BOTOIA_EZKERRA)
-      {
-        pos=saguarenPosizioa();
-        if ((pos.x > 300) && (pos.x < 300 + 40) && (pos.y>200) && (pos.y < 200 + 38)) irten = 1;
-      }
-      if (ebentu == TECLA_ESCAPE) irten = 1;
-      else if((ebentu >= TECLA_0) &&(ebentu < TECLA_0+SOINU_KOP))
-        playSound(gureGauzak.idSounds[ebentu - TECLA_0]);
-      else if (ebentu == TECLA_RETURN) toggleMusic();
-    }
-    audioTerminate();
-    sgItxi();*/
-    //
+    void* pixels = NULL;
+    int pitch;
+    Uint8 bpp;
+    Uint32 refreshrate = 0;
+    Uint32 moverate = 0;
+
     mu_hasieratu();
     while (irten != 1)
     {
@@ -67,8 +55,10 @@ int main(int argc, char* str[])
             }
             else if ((pos.x > 483) && (pos.x < 483 + 343) && (pos.y > 293) && (pos.y < 293 + 68))
             {
-                fondoPantaila(".\\img\\jolastu.bmp");
+                KargatuMapa(".\\img\\gelaMapeo.bmp", &pixels, &pitch, &bpp);
+                fondoPantaila(".\\img\\gela1.bmp");
                 pertsonaiaMugitu();
+                KolisioakKonprobatu(pixels, pitch, bpp);
                 fondoPantaila(".\\img\\menu.bmp");
             }
             break;
@@ -109,7 +99,7 @@ int hasieratu(void)
         fprintf(stderr, "Unable to load music %s\n", SDL_GetError());
         return 0;
     }
-    textuaGaitu();
+   // textuaGaitu();
     pantailaGarbitu();
 
     gureGauzak.idIrudi = irudiaKargatu(".\\img\\hexagono.bmp");
@@ -145,7 +135,7 @@ int mu_hasieratu(void)
     }
     audioInit();
     pantailaGarbitu();
-    fondoPantaila(".\\img\\jolastu.bmp");
+    //fondoPantaila(".\\img\\jolastu.bmp");
     /*gureGauzak.idIrudi = irudiaKargatu(".\\img\\menu.bmp");
     irudiaMugitu(gureGauzak.idIrudi, 0, 0);
     irudiakMarraztu();*/

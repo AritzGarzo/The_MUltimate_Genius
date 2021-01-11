@@ -7,13 +7,7 @@
 
 int irudiarenPosizioaAurkitu(int id);
 
-typedef struct Img
-{
-	int id;
-  SDL_Surface* imagen;
-  SDL_Texture* texture;
-	SDL_Rect dest;
-}IMG;
+
 
 IMG irudiak[MAX_IMG];
 IMG sprite[MAX_IMG];//Nuevo
@@ -106,6 +100,14 @@ int irudiarenPosizioaAurkitu(int id)
 //Nuevo
 //SPRITES
 
+void KargatuMapa(char mapa[], void** pixels, int* pitch, Uint8* bpp)
+{
+	SDL_Surface* surface = SDL_LoadBMP(mapa);
+	*pixels = surface->pixels;
+	*pitch = surface->pitch;
+	*bpp = surface->format->BytesPerPixel;
+}
+
 int spriteKargatu(char* fileName)
 {
 	int colorkey;
@@ -187,4 +189,33 @@ int spritearenPosizioaAurkitu(int id)
 		if (id == sprite[i].id) return i;
 	}
 	return -1;
+}
+
+Uint32 getpixel(void* pixels, int pitch, Uint8 bpp, int x, int y)
+{
+	Uint8* p = (Uint8*)pixels + ((Uint64)(y)*pitch + x) * bpp;
+
+	switch (bpp) {
+	case 1:
+		return *p;
+		break;
+
+	case 2:
+		return *(Uint16*)p;
+		break;
+
+	case 3:
+		if (SDL_BYTEORDER == SDL_BIG_ENDIAN)
+			return p[0] << 16 | p[1] << 8 | p[2];
+		else
+			return p[0] | p[1] << 8 | p[2] << 16;
+		break;
+
+	case 4:
+		return *(Uint32*)p;
+		break;
+
+	default:
+		return 0;
+	}
 }
