@@ -21,7 +21,7 @@ EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
-void pertsonaiaMugitu(int ebentu, POSIZIOA pos);
+int pertsonaiaMugitu(int ebentu, POSIZIOA pos);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
@@ -414,38 +414,42 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 //----------------------------
 EGOERA etxea(JOKALARIA* jokalaria)
 {
-    int fondoa, jarraitu = 0, ebentu = 0;
+    int fondoa, jarraitu = 0, ebentu = 0, klik = 0;
     POSIZIOA pos, pos_jokalaria;
     EGOERA egoera;
+    JOKALARIA sprite;
+    
+    pos_jokalaria.x = 1150;
+    pos_jokalaria.y = 180;
+    
     //
     egoera = ETXEA_P;
     fondoa = fondoPantaila(ETXEA_F);
-    pos_jokalaria.x = 50;
-    pos_jokalaria.y = 50;
+
+   
+    
     //
     while (egoera == ETXEA_P)//etxea den bitartean
     {
         
         ebentu = ebentuaJasoGertatuBada();
-        if (ebentu == TECLA_w || ebentu == TECLA_a || ebentu == TECLA_s || ebentu == TECLA_d)
-        {
-            pertsonaiaMugitu(ebentu, pos_jokalaria); //no se mueve
-        }
+        
+           
+       klik = pertsonaiaMugitu(ebentu, pos_jokalaria);
+        
 
-        if (ebentu == SAGU_BOTOIA_EZKERRA)
-        {
-            pos = saguarenPosizioa();
+        
             //(busa)itzultzerakoan unibertsitatera bidaltzeko
-            if ((pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
+            if ( klik == 1)   //(pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
             {
                 egoera = UNI_P;
             }
             //(ohea)itzultzerakoan etxera edo menura bidaltzeko
-            if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
+            if ( klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
             {
                 egoera = gorde(*jokalaria);
             }
-        }
+        
     }
     //
     irudiaKendu(fondoa);
@@ -701,16 +705,20 @@ int fondoPantaila(char* str)
     pantailaBerriztu();
     return id;
 }
-void pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
+int pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
 {
-    int x, y, tamaño = 48, tmp = 0;
+    int mugi, x, y, tamaño = 48, tmp = 0;
     JOKALARIA sprite;
-  
+    mugi = 3;
 
     sprite.irudia2d.id = spriteKargatu(".\\img\\PersonajeChicoVF_.bmp");
     x = 0; y = 0;
+    pos.x = 1150;
+    pos.y = 180;
 
 
+    while (mugi == 3)
+    {
         pantailaGarbitu();
         spriteMugitu(sprite.irudia2d.id, pos.x, pos.y);
 
@@ -796,13 +804,33 @@ void pertsonaiaMugitu(int  ebentu, POSIZIOA pos)
             tmp = ebentu;
             //------------------------------------------------------------//
             break;
+        case SAGU_BOTOIA_EZKERRA:
+            
+            
+            if ((pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
+            {
+                spriteKendu(sprite.irudia2d.id);
+                mugi = 1;
+            }
+
+            //(ohea)itzultzerakoan etxera edo menura bidaltzeko
+            if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
+            {
+                spriteKendu(sprite.irudia2d.id);
+                mugi = 2;
+            }
+
+            break;
         default:
             break;
         }
         irudiakMarraztu();
         spriteakMarraztu(x, y);
         pantailaBerriztu();
-
+        
+    }
+    return mugi;
+    
     
     
 }
