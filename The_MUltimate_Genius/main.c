@@ -27,6 +27,7 @@ void crearLista(char str[]);
 EGOERA gorde(JOKALARIA jokalaria);
 int fondoPantaila(char* str);
 void warning_abisua(char* str);
+void karga_gif();
 
 int main(int argc, char* str[])
 {
@@ -456,6 +457,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
             //(busa)itzultzerakoan unibertsitatera bidaltzeko
             if ( klik == 1)   //(pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
             {
+                karga_gif();
                 egoera = UNI_P;
             }
             //(ohea)itzultzerakoan etxera edo menura bidaltzeko
@@ -871,5 +873,23 @@ void warning_abisua(char* str)
         irudiakMarraztu();
         pantailaBerriztu();
         Sleep(100);
+    }
+}
+void karga_gif()
+{
+    int id, i, j;
+    char busa_gif[][128] = { BUS_1, BUS_2, BUS_3, BUS_4, BUS_5, BUS_6, BUS_7, BUS_8, BUS_9, BUS_10, BUS_11, BUS_12, BUS_13, BUS_14, BUS_15, BUS_16, BUS_17, BUS_18, BUS_19, BUS_20, BUS_21, BUS_22 };
+    for (j = 0; j < 3; j++)
+    {
+        for (i = 0; i < 22; i++)
+        {
+            pantailaGarbitu();
+            id = irudiaKargatu(busa_gif[i]);
+            irudiaMugitu(id, 0, 0);
+            irudiakMarraztu();
+            pantailaBerriztu();
+            Sleep(50);
+            irudiaKendu(id);
+        }
     }
 }
