@@ -122,7 +122,7 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 int jolastu(void)
 {
     int exp = 0, gelaID = 0, galderaID = 0, erantzunda = 0, denakErantzunda = 0;
-    int irten, ebentu, bukatuta = 0;
+    int irten, ebentu, bukatuta = 0, error = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
     GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
@@ -138,42 +138,44 @@ int jolastu(void)
             srand(time(NULL));
             gelaID = 1 + rand() % 10;
             galderaID = 1 + rand() % 5;
-            gelaID = 7;
-            galderaID = 1;//mateII galdera 3-4 bug
+            gelaID = 1;
+            galderaID = 1;
+            //hamilton luzea da beigratu
+            error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
 
-            // galderakEtaEurenAukerakSortu(galdera);
+            if (error == 1) {//---FITXATEGIAK GAIZKI IRAKURTZEN BADU JOKOA SEGI AHAL IZATEKO---
+                galderakEtaEurenAukerakLotuEskuz(galdera);
+            }
 
-             //-----jokoa en si----
-             //if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
-             //    //----SUPUESTO UNI-----
-             //   // galderaID = 1+rand() % 5;
-             //    while (gelaID <= 10) {
-             //        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-             //        while (galderaID <= 5 && !denakErantzunda) {
-             //            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
-             //            if (erantzunda != 0) {
-             //                Sleep(500);
-             //                galderaID++;
-             //                if (galderaID == 6) {
-             //                    denakErantzunda = 1;
-             //                    galderaID = 1;
-             //                } 
-             //                else if (gelaID == 4 && galderaID == 5) {
-             //                    gelaID = 5;
-             //                    galderaID = 1;
-             //                    denakErantzunda = 1;
-             //                }
-             //                else {
-             //                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
-             //                }
-             //            }
-             //        }
-             //        gelaID++;
-             //        denakErantzunda = 0;
-             //    }
-             //}
-
-            galderakEtaAukerakLotu(galdera);
+            //-----jokoa en si----
+            //if ((pos.x >= 383 && pos.x <= 449) && (pos.y >= 158 && pos.y <= 405)) {//pos autobus
+            //    //----SUPUESTO UNI-----
+            //   // galderaID = 1+rand() % 5;
+            //    while (gelaID <= 10) {
+            //        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+            //        while (galderaID <= 5 && !denakErantzunda) {
+            //            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            //            if (erantzunda != 0) {
+            //                Sleep(500);
+            //                galderaID++;
+            //                if (galderaID == 6) {
+            //                    denakErantzunda = 1;
+            //                    galderaID = 1;
+            //                } 
+            //                else if (gelaID == 4 && galderaID == 5) {
+            //                    gelaID = 5;
+            //                    galderaID = 1;
+            //                    denakErantzunda = 1;
+            //                }
+            //                else {
+            //                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+            //                }
+            //            }
+            //        }
+            //        gelaID++;
+            //        denakErantzunda = 0;
+            //    }
+            //}
 
             while (gelaID <= 10) {
                 fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
@@ -271,7 +273,7 @@ int kontrolak(void)
 }
 
 //---HEMEN GALDERAK ETA AUKERAK ESTRUKTURAN SARTZEN DUGU GERO PRINTEATZEKO
-void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
+void galderakEtaEurenAukerakLotuEskuz(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
     int gelaID = 1, galderaID = 1;
     while (gelaID <= 10) {
 
@@ -2209,13 +2211,13 @@ int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDM
                 }
 
                 else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtC.bmp"), 30, 614);
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5C.bmp"), 30, 614);
                     irudiakMarraztu();
                     opzioakAgertu(galdera, gelaID, galderaID, 3);
                 }
 
                 else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
-                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MDtD.bmp"), 656, 616);
+                    irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5D.bmp"), 656, 616);
                     irudiakMarraztu();
                     opzioakAgertu(galdera, gelaID, galderaID, 4);
                 }
@@ -2610,7 +2612,8 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     }
 }
 
-void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
+int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
+
     char galderak[60][128] = { "",".\\galderak\\program\\galdera1.txt", ".\\galderak\\program\\galdera2.txt",".\\galderak\\program\\galdera3.txt",".\\galderak\\program\\galdera4.txt",".\\galderak\\program\\galdera5.txt",
               "", ".\\galderak\\mate\\galdera1.txt", ".\\galderak\\mate\\galdera2.txt",".\\galderak\\mate\\galdera3.txt",".\\galderak\\mate\\galdera4.txt",".\\galderak\\mate\\galdera5.txt",
               "",  ".\\galderak\\fisika\\galdera1.txt", ".\\galderak\\fisika\\galdera2.txt",".\\galderak\\fisika\\galdera3.txt",".\\galderak\\fisika\\galdera4.txt",".\\galderak\\fisika\\galdera5.txt",
@@ -2623,18 +2626,20 @@ void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
               "",  ".\\galderak\\empresa\\galdera1.txt", ".\\galderak\\empresa\\galdera2.txt",".\\galderak\\empresa\\galdera3.txt",".\\galderak\\empresa\\galdera4.txt",".\\galderak\\empresa\\galdera5.txt"
     };
 
-
     FILE* fitx;
-    int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1;
+    int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1, error = 0;
 
-    while (fitxategiKont <= 60) {//gero 49
-
+    while (fitxategiKont < 60) {
 
         fitx = fopen(galderak[fitxategiKont], "r");
 
-        if (fitx == NULL) {
-            printf("Errorea fitxeroarekin\n");
+        if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 23 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
+       
+        else if (fitx == NULL) {
+            printf("Errorea galderen fitxategia irakurtzerako orduan\n");
+            return error = 1;
         }
+
         else {
             galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
             galdera[gelaIDKont][galderaIDKont].galderaID = galderaIDKont;
@@ -2659,8 +2664,8 @@ void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
         else {
             galderaIDKont++;
         }
+
         fitxategiKont++;
 
     }
-
 }

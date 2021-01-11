@@ -15,11 +15,11 @@ int jolastu(void);
 int kontrolak(void);
 
 //----------NIREAK------
-void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+void galderakEtaEurenAukerakLotuEskuz(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota);
 void fondoPantailaGalderekin(char* str, int galderaID, int gelaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 //----PRUEBA CON FITX---
-void galderakEtaAukerakLotu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 
 #endif // !FUNTZIOAK_H
