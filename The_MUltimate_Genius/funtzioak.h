@@ -28,8 +28,8 @@
 
 #define OINARRI_GALDERA1 ".\\galderak\\oinarri\\galdera1.txt"
 #define OINARRI_GALDERA2 ".\\galderak\\oinarri\\galdera2.txt"
-#define OINARRI_GALDERA_3 ".\\galderak\\oinarri\\galder3.txt"
-#define OINARRI_GALDERA_4 ".\\galderak\\oinarri\\galder4.txt"
+#define OINARRI_GALDERA_3 ".\\galderak\\oinarri\\galdera3.txt"
+#define OINARRI_GALDERA_4 ".\\galderak\\oinarri\\galdera4.txt"
 
 #define REDES_GALDERA_1 ".\\galderak\\redes\\galdera1.txt"
 #define REDES_GALDERA_2 ".\\galderak\\redes\\galdera2.txt"

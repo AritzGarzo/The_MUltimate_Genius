@@ -140,15 +140,14 @@ int jolastu(void)
             srand(time(NULL));
             gelaID = 1 + rand() % 10;
             galderaID = 1 + rand() % 5;
-            gelaID = 8;
-            galderaID = 1;
-            //hamilton luzea da beigratu
+            //gelaID = 1;
+            //galderaID = 1;
+
             error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
 
             if (error == 1) {//---FITXATEGIAK GAIZKI IRAKURTZEN BADU JOKOA SEGI AHAL IZATEKO---
                 galderakEtaEurenAukerakLotuEskuz(galdera);
             }
-            galderakEtaEurenAukerakLotuEskuz(galdera);
             while (gelaID <= 10) {
                 fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 while (galderaID <= 5 && !denakErantzunda) {
