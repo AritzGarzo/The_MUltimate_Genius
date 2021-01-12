@@ -2649,3 +2649,5 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
         break;
     }
 }
+
+
