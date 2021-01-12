@@ -9,6 +9,12 @@
 #include <string.h>
 //Mapeo
 extern HITBOX hitbox;
+JOKALARIA sprite;
+void* pixels = NULL;
+int pitch;
+Uint8 bpp;
+Uint32 refreshrate = 0;
+Uint32 moverate = 0;
 
 #define SOINU_KOP 5
 char* soundFiles[] = { ".\\sound\\128GBVHR_01.wav", ".\\sound\\128NIGHT_01.wav", ".\\sound\\132TRANCE_02.wav",
@@ -26,7 +32,7 @@ int hasieratu(void);
 //
 int mu_hasieratu(void);
 void fondoPantaila(char* str);
-void pertsonaiaMugitu(void);
+void pertsonaiaMugitu(JOKALARIA sprite);
 int kontrolak(void);
 
 int main(int argc, char* str[])
@@ -34,12 +40,8 @@ int main(int argc, char* str[])
     int ebentu = 0, irten = 0;
     char esaldia[] = "";
     POSIZIOA pos;    
-    void* pixels = NULL;
-    int pitch;
-    Uint8 bpp;
-    Uint32 refreshrate = 0;
-    Uint32 moverate = 0;
-    JOKALARIA sprite;
+   
+    
 
     mu_hasieratu();
     while (irten != 1)
@@ -60,17 +62,8 @@ int main(int argc, char* str[])
                 KargatuMapa(".\\img\\gelaMapeo.bmp", &pixels, &pitch, &bpp);
                 fondoPantaila(".\\img\\gela1.bmp");
                 
-                    printf("Pierna Izquierda: %d\n", hitbox.behekoa.ezker);
-                    printf("Izquierda x: %d  ", sprite.pos.x + 54);
-                    printf("y: %d \n\n", sprite.pos.y + 59);
-
-                    printf("Pierna derecha: %d\n", hitbox.behekoa.eskuin);
-                    printf("Derecha x: %d  ", sprite.pos.x + 75);
-                    printf("y: %d \n\n", sprite.pos.y);
-                
-                KolisioakKonprobatu(pixels, pitch, bpp);
-                pertsonaiaMugitu();
-                KolisioakKonprobatu(pixels, pitch, bpp);
+                   
+                pertsonaiaMugitu(sprite);
                 fondoPantaila(".\\img\\menu.bmp");
             }
             break;
@@ -167,10 +160,9 @@ void fondoPantaila(char* str)
 }
 
 //Nuevo
-void pertsonaiaMugitu(void)
+void pertsonaiaMugitu(JOKALARIA sprite)
 {
     int mugi, ebentu, x, y, tamaño = 48, tmp = 0;
-    JOKALARIA sprite;
     IRUDIA pos;
     mugi = 3;
 
@@ -183,12 +175,23 @@ void pertsonaiaMugitu(void)
 
         pantailaGarbitu();
         spriteMugitu(sprite.id_2d, pos.pos_hasi.x, pos.pos_hasi.y);
+        
+
+   
 
         ebentu = ebentuaJasoGertatuBada();
 
         switch (ebentu)
         {
         case TECLA_s:
+            KolisioakKonprobatu(pixels, pitch, bpp, sprite);
+            printf("Pierna Izquierda: %d\n", hitbox.behekoa.ezker);
+            printf("Izquierda x: %d  ", sprite.pos.x + 54);
+            printf("y: %d \n\n", sprite.pos.y + 59);
+
+            printf("Pierna derecha: %d\n", hitbox.behekoa.eskuin);
+            printf("Derecha x: %d  ", sprite.pos.x + 75);
+            printf("y: %d \n\n", sprite.pos.y);
             //sprite mover abajo//
             pos.pos_hasi.y = pos.pos_hasi.y + 4;
             //---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//

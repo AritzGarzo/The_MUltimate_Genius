@@ -61,15 +61,15 @@ int ebentuaJasoGertatuBada(void){
 	}
 	return ret;
 }
-void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp)
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite)
 {
-	JOKALARIA sprite;
+
 
 
 	int PertsonaiaEzkerMuga = sprite.pos.x + 46;
 	int PertsonaiaEskuinMuga = sprite.pos.x + 82;
 	int PertsonaiaYGoikoa = sprite.pos.y;
-	int PertsonaiaYBekoa = sprite.pos.y + 59;
+	int PertsonaiaYBekoa = sprite.pos.y + 27;
 	int YBekoa = sprite.pos.y + 52;
 	
 
@@ -88,8 +88,5 @@ void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp)
 	//Behekoa
 	hitbox.behekoa.ezker = getpixel(pixels, pitch, bpp, sprite.pos.x + 54, sprite.pos.y + 59);
 	hitbox.behekoa.eskuin = getpixel(pixels, pitch, bpp, sprite.pos.x + 75, sprite.pos.y + 59);
-	if (hitbox.behekoa.eskuin == BELTZA || hitbox.behekoa.ezker == BELTZA || hitbox.eskuin.behekoa == BELTZA || hitbox.ezker.behekoa == BELTZA)
-	{
-		
-	}
+	
 }

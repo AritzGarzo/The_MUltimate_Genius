@@ -4,6 +4,7 @@
 
 
 
+
 typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 251, MOREA = 253, URDINA = 252 }KOLOREAK;
 typedef struct S_BEHEKOPIXEL
 {
@@ -26,8 +27,8 @@ typedef struct S_HITBOX
 }HITBOX;
 typedef struct S_POSIZIOA
 {
-  int x;
-  int y;
+	int x;
+	int y;
 } POSIZIOA;
 typedef struct
 {
@@ -37,7 +38,12 @@ typedef struct
 	//GRADUA gradua;
 	POSIZIOA pos;
 }JOKALARIA;
-
+typedef struct
+{
+	int id;
+	POSIZIOA pos_hasi;
+	POSIZIOA pos_buka;
+}IRUDIA;
 /*
   Helburua: Funztio hau tekla bat sakatu arte zain dago, 
   eta ondoren zenbaki oso baten bitartez zein sakatu den adieraziko digu.
@@ -46,7 +52,7 @@ typedef struct
 */
 int ebentuaJasoGertatuBada(void);
 POSIZIOA saguarenPosizioa();
-void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp);
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite);
 
 #define SAGU_MUGIMENDUA  4
 #define SAGU_BOTOIA_ESKUMA 5

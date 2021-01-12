@@ -103,9 +103,9 @@ int irudiarenPosizioaAurkitu(int id)
 void KargatuMapa(char mapa[], void** pixels, int* pitch, Uint8* bpp)
 {
 	SDL_Surface* surface = SDL_LoadBMP(mapa);
-	*pixels = surface->pixels;
-	*pitch = surface->pitch;
-	*bpp = surface->format->BytesPerPixel;
+	//*pixels = surface->pixels;
+	//*pitch = surface->pitch;
+	//*bpp = surface->format->BytesPerPixel;
 }
 
 int spriteKargatu(char* fileName)

@@ -66,7 +66,7 @@ int galderak(int gelaID)
         break;
     case 2:
         galderaID = 1 + rand() % 5;
-        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
@@ -77,7 +77,7 @@ int galderak(int gelaID)
                     galderaID = 1;
                 }
                 else {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 }
             }
 
@@ -86,7 +86,7 @@ int galderak(int gelaID)
         break;
     case 3:
         galderaID = 1 + rand() % 5;
-        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
@@ -97,7 +97,7 @@ int galderak(int gelaID)
                     galderaID = 1;
                 }
                 else {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 }
             }
 
@@ -106,7 +106,7 @@ int galderak(int gelaID)
         break;
     case 4:
         galderaID = 1 + rand() % 4;
-        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
@@ -117,7 +117,7 @@ int galderak(int gelaID)
                     galderaID = 1;
                 }
                 else {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 }
             }
 
@@ -126,7 +126,7 @@ int galderak(int gelaID)
         break;
     case 5:
         galderaID = 1 + rand() % 5;
-        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
@@ -137,7 +137,7 @@ int galderak(int gelaID)
                     galderaID = 1;
                 }
                 else {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 }
             }
 
