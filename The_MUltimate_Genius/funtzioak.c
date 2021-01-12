@@ -12,7 +12,6 @@
 #include<time.h>
 #include"funtzioak.h"
 
-
 //int hasieratu(void)
 //{
 //    int i;
@@ -41,7 +40,6 @@
 //    return 0;
 //}
 //
-
 
 int mu_hasieratu(void)
 {
@@ -111,11 +109,11 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 
 
     textuaGaitu();
-    textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
-    textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
-    textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
-    textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
-    textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
+    textuaIdatzi(27, 290, 0, galdera[gelaID][galderaID].testua);
+    textuaIdatzi(55, 512, 550, galdera[gelaID][galderaID].aukerak.A);
+    textuaIdatzi(684, 512, 550, galdera[gelaID][galderaID].aukerak.B);
+    textuaIdatzi(55, 645, 550, galdera[gelaID][galderaID].aukerak.C);
+    textuaIdatzi(684, 645, 550, galdera[gelaID][galderaID].aukerak.D);
 
 
     pantailaBerriztu();
@@ -140,14 +138,16 @@ int jolastu(void)
             srand(time(NULL));
             gelaID = 1 + rand() % 10;
             galderaID = 1 + rand() % 5;
-            //gelaID = 1;
-            //galderaID = 1;
+
+            gelaID = 1;
+            galderaID = 1;
 
             error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
 
             if (error == 1) {//---FITXATEGIAK GAIZKI IRAKURTZEN BADU JOKOA SEGI AHAL IZATEKO---
                 galderakEtaEurenAukerakLotuEskuz(galdera);
             }
+
             while (gelaID <= 10) {
                 fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 while (galderaID <= 5 && !denakErantzunda) {
@@ -207,7 +207,6 @@ int jolastu(void)
         //}
 
     }
-
 
     pantailaBerriztu();
     return irten;
@@ -2611,32 +2610,32 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     {
     case 1:
         textuaGaitu();
-        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 0,galdera[gelaID][galderaID].testua);
+        textuaIdatzi(684, 512, 550, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, 550, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, 550, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 2:
         textuaGaitu();
-        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 0, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 550, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(55, 645, 550, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, 550, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 3:
         textuaGaitu();
-        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 0, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 550, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, 550, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(684, 645, 550, galdera[gelaID][galderaID].aukerak.D);
 
         break;
     case 4:
         textuaGaitu();
-        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(27, 290, 0, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 550, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, 550, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, 550, galdera[gelaID][galderaID].aukerak.C);
         break;
     default:
         break;
