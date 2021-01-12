@@ -1,0 +1,5 @@
+Zenbat da Sin5(pi)/6?
+erro(2)/2
+1/2
+erro(3)/3
+-erro(2)/2

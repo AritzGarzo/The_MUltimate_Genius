@@ -1,0 +1,5 @@
+Fitxategi bat irekitzeko fopen erabiltzen da, funtzio honek fitxategiaren izena eta modua behar du, zein letra da irakurtzeko?
+d
+w
+a
+r

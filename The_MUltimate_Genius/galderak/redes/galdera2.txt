@@ -1,0 +1,5 @@
+Zer izen du transporte kapan lan egiten duen PDU-ari?
+Bits
+Trama
+Segmento
+Pakete

@@ -1,0 +1,5 @@
+Zer da matriz elemental bat?
+Matrizeko diagonal nagusian dagoen zenbakiak 1 dira eta beste guztiak 0
+Matrizeko diagonal nagusian dagoen zenbakiak 0 dira eta beste denak 1
+Ordenaturik dagoen matrize bat
+Matrize batean 0-rik ez edukitzea

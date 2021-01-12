@@ -35,18 +35,23 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 int galderak(int gelaID)
 {
     int exp = 0, galderaID = 0, erantzunda = 0, denakErantzunda = 0;
-    int irten, ebentu, bukatuta = 0;
+    int irten, ebentu, bukatuta = 0, error = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
     GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
     irten = 3;
     srand(time(NULL));
-    galderakEtaEurenAukerakSortu(galdera);
-    //fondoPantaila(".\\img\\Gela.bmp");
+    error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
+    if (error == 1)
+    {
+        galderakEtaEurenAukerakSortu(galdera);
+    }
+
+    
     switch (gelaID)
     {case 1:  
         galderaID = 1 + rand() % 5;
-        fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
@@ -57,7 +62,7 @@ int galderak(int gelaID)
                     galderaID = 1;
                 }
                 else {
-                    fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 }
             }
 
@@ -157,7 +162,6 @@ int galderak(int gelaID)
     pantailaBerriztu();
     return irten;
 }
-
 
 
 //---HEMEN GALDERAK ETA AUKERAK ESTRUKTURAN SARTZEN DUGU GERO PRINTEATZEKO

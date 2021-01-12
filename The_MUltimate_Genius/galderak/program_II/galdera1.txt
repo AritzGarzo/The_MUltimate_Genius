@@ -1,0 +1,5 @@
+Zein da arraya[i]-ren baliokidea?
+*(arraya+i)
+arraya.i
+(arraya+i)
+*arraya+i

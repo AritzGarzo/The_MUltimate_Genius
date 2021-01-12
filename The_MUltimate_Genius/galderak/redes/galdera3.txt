@@ -1,0 +1,5 @@
+Ari - gabeko host batek IP helbide bat eskatu behar du, zer protokolo erabili behar du eskaera hori  egiteko?
+HTTP
+SNMP
+DHCP
+ICMP
