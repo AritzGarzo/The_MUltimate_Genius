@@ -109,12 +109,14 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     irudiaMugitu(id, 0, 0);
     irudiakMarraztu();
 
+
     textuaGaitu();
-    textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-    textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-    textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-    textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-    textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+    textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
+    textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+    textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+    textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+    textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
+
 
     pantailaBerriztu();
 }
@@ -677,7 +679,7 @@ void galderakEtaEurenAukerakLotuEskuz(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) 
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da grafo Hamilton bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Puntu guztietatik pasatzea baina amaiera eta hasiera ezberdinak izanik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Puntu guztietatik behin pasatzea baina amaiera eta hasiera ezberdinak izanik");
-                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Hasiera eta amaiera puntu bera izanik ibildide zirkularra egitea puntu guztietatik\n behin pasatuz");  //ONDO
+                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Hasiera eta amaiera puntu bera izanik ibildide zirkularra egitea puntu guztietatik behin pasatuz");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Hasiera eta amaiera puntu bera izanik puntu guztietatik pasatzea");
 
                     break;
@@ -2606,48 +2608,38 @@ int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDM
 
 void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota) {
 
-    if (gelaID == 8 && galderaID == 1) {
-        textuaGaitu();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
-    }
-
     switch (mota)
     {
     case 1:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 2:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 3:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
 
         break;
     case 4:
         textuaGaitu();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(27, 290, 590, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaIdatzi(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
         break;
     default:
         break;
     }
 }
-
-

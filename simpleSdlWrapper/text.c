@@ -10,7 +10,7 @@
 TTF_Font *font=0;
 
 void textuaGaitu(void){
-	font=TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\ARIAL.TTF", 16, 0); // 32 tamaina
+	font=TTF_OpenFontIndex("C:\\WINDOWS\\Fonts\\ARIAL.TTF", 18, 0); // 32 tamaina
 	if(!font) 
   {
 		printf("TTF_OpenFontIndex: %s\n", TTF_GetError());
@@ -18,7 +18,7 @@ void textuaGaitu(void){
 	}
 }
 
-void textuaIdatzi(int x, int y, char *str)
+void textuaIdatzi(int x, int y, int limitea,char *str)
 {
   SDL_Surface* textSurface;
   SDL_Texture *mTexture;
@@ -28,7 +28,7 @@ void textuaIdatzi(int x, int y, char *str)
 
   if (font == 0) return;
   gRenderer = getRenderer();
-  textSurface = TTF_RenderText_Solid(font, str, textColor);
+  textSurface = TTF_RenderText_Blended_Wrapped(font, str, textColor, limitea);
   mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
   src.x = 0; dst.x = x;
   src.y = 0; dst.y = y;
