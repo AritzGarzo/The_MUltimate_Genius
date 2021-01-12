@@ -18,7 +18,7 @@ void textuaGaitu(void){
 	}
 }
 
-void textuaIdatzi(int x, int y, int limitea,char *str)
+void textuaIdatzi(int koordenatuX, int koordenatuY, int limiteaX,char *esaldia)
 {
   SDL_Surface* textSurface;
   SDL_Texture *mTexture;
@@ -28,10 +28,10 @@ void textuaIdatzi(int x, int y, int limitea,char *str)
 
   if (font == 0) return;
   gRenderer = getRenderer();
-  textSurface = TTF_RenderText_Blended_Wrapped(font, str, textColor, limitea);
+  textSurface = TTF_RenderText_Blended_Wrapped(font, esaldia, textColor, limiteaX);
   mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
-  src.x = 0; dst.x = x;
-  src.y = 0; dst.y = y;
+  src.x = 0; dst.x = koordenatuX;
+  src.y = 0; dst.y = koordenatuY;
   src.w = dst.w = textSurface->w;
   src.h = dst.h = textSurface->h;
   SDL_RenderCopy(gRenderer, mTexture, &src, &dst);

@@ -2,6 +2,6 @@
 #define TEXT_H
 
 void textuaGaitu(void);
-void textuaIdatzi(int x, int y,int x2, char *str);
+void textuaIdatzi(int koordenatuX, int koordenatuY,int limiteaX, char *esaldia);
 
 #endif
