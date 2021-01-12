@@ -4,6 +4,8 @@
 #define GELAIDMAX 11
 #define GALDERAIDMAX 6
 
+#define GALDERA_PANTALLA ".\\img\\Galderak_Erantzunak\\Preguntas.bmp"
+
 #define GALDERA_NULL ""
 
 #define PROGRAM_GALDERA_1 ".\\galderak\\program\\galdera1.txt"
@@ -64,8 +66,6 @@
 #define EMPRESA_GALDERA_3 ".\\galderak\\empresa\\galdera1.txt"
 #define EMPRESA_GALDERA_4 ".\\galderak\\empresa\\galdera1.txt"
 #define EMPRESA_GALDERA_5 ".\\galderak\\empresa\\galdera1.txt"
-
-
 
 #include"GureEstrukturak.h"
 

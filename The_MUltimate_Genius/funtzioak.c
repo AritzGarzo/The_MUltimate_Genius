@@ -138,7 +138,7 @@ int jolastu(void)
             srand(time(NULL));
             gelaID = 1 + rand() % 10;
             galderaID = 1 + rand() % 5;
-            gelaID = 1;
+            gelaID = 8;
             galderaID = 1;
             //hamilton luzea da beigratu
             error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
@@ -146,9 +146,9 @@ int jolastu(void)
             if (error == 1) {//---FITXATEGIAK GAIZKI IRAKURTZEN BADU JOKOA SEGI AHAL IZATEKO---
                 galderakEtaEurenAukerakLotuEskuz(galdera);
             }
-
+            galderakEtaEurenAukerakLotuEskuz(galdera);
             while (gelaID <= 10) {
-                fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 while (galderaID <= 5 && !denakErantzunda) {
                     erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
                     if (erantzunda != 0) {
@@ -164,7 +164,7 @@ int jolastu(void)
                             denakErantzunda = 1;
                         }
                         else {
-                            fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
+                            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                         }
                     }
                 }
@@ -677,7 +677,7 @@ void galderakEtaEurenAukerakLotuEskuz(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) 
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da grafo Hamilton bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Puntu guztietatik pasatzea baina amaiera eta hasiera ezberdinak izanik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Puntu guztietatik behin pasatzea baina amaiera eta hasiera ezberdinak izanik");
-                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Hasiera eta amaiera puntu bera izanik ibildide zirkularra egitea puntu guztietatik behin pasatuz");  //ONDO
+                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Hasiera eta amaiera puntu bera izanik ibildide zirkularra egitea puntu guztietatik\n behin pasatuz");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Hasiera eta amaiera puntu bera izanik puntu guztietatik pasatzea");
 
                     break;
@@ -2606,6 +2606,14 @@ int GalderakErantzun(int exp, int gelaID, int galderaID, GALDERA galdera[GELAIDM
 
 void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota) {
 
+    if (gelaID == 8 && galderaID == 1) {
+        textuaGaitu();
+        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
+        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
+        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
+        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+    }
+
     switch (mota)
     {
     case 1:
@@ -2641,4 +2649,3 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
         break;
     }
 }
-
