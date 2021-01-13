@@ -44,12 +44,11 @@ int main(int argc, char* str[])
             egoera = menua();
             if (egoera == PROFILA_P)
             {
-                egoera = profila(&jokalaria);
-                //egoera = JOLASTU_P;//JOLASTU
+                egoera = profila(&jokalaria);//JOLASTU
             }
-            if (egoera == KARGATU_P)
+            else if (egoera == KARGATU_P)
             {
-                egoera = kargatu(&jokalaria);//
+                egoera = kargatu(&jokalaria);//JOLASTU
             }
             //
             switch (egoera)
@@ -60,7 +59,7 @@ int main(int argc, char* str[])
             case KONTROLAK_P:
                 egoera = kontrolak();//kontrolak
                 break;
-            default://case irten_p:
+            default://case IRTEN_P:
                 break;
             }
         } while (egoera == MENUA_P);
@@ -161,7 +160,7 @@ EGOERA kontrolak()
     {
         ebentu = ebentuaJasoGertatuBada();
         pos = saguarenPosizioa();
-        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 33 && pos.x < 33 + 189) && (pos.y > 633 && pos.y < 633 + 44)))
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)))
         {
             egoera = MENUA_P;//irten (bat atzera)
         }
