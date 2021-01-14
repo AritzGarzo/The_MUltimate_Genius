@@ -32,6 +32,9 @@ int ebentuaJasoGertatuBada(void) {
 			case SDLK_DOWN:
 				ret = TECLA_DOWN;
 				break;
+			case SDLK_ESCAPE:
+				ret = TECLA_ESCAPE;
+				break;
 			default:
 				ret = event.key.keysym.sym;
 				break;

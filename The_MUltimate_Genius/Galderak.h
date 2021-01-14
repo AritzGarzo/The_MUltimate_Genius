@@ -7,7 +7,7 @@
 #include"GureEstrukturak.h"
 
 
-int galderak(int gelaID,JOKALARIA* jokalaria);
+int galderak(int gelaID,JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 
 
 

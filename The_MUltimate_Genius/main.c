@@ -138,21 +138,33 @@ EGOERA menua(void)
 //--------------------------------
 EGOERA jolastu(JOKALARIA* jokalaria)
 {
+	static int egunKont = 1;
+
+	int error = 0;
 	//int jarraitu;
 	EGOERA egoera;
 	//
 	egoera = ETXEA_P;
 	//jarraitu = 1;
 	//
+	GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
+
+	error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
+	if (error == 1)
+	{
+		galderakEtaEurenAukerakSortu(galdera);
+	}
+
 	while (egoera == ETXEA_P || egoera == UNI_P)
 	{
 		if (egoera == ETXEA_P)
 		{
-			egoera = etxea(jokalaria);
+			egoera = etxea(jokalaria,galdera);
 		}
 		if (egoera == UNI_P)
 		{
-			egoera = uni(jokalaria);
+			egoera = uni(jokalaria,galdera);
+			egunKont++;
 		}
 	}
 	//
@@ -485,7 +497,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
 	return egoera;
 }
 
-EGOERA uni(JOKALARIA* jokalaria)
+EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
 	int fondoa, jarraitu = 1, ebentu = 0, klik = 0;
 	EGOERA egoera;
@@ -509,25 +521,27 @@ EGOERA uni(JOKALARIA* jokalaria)
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1,&jokalaria);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1,&jokalaria,galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2, &jokalaria);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
-			egoera = galderak(3, &jokalaria);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(3, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4, &jokalaria);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5, &jokalaria);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
-
+		/*if (ebentu == TECLA_ESCAPE) {
+			egoera = ETXEA_P;
+		}*/
 	}
 	//
 	irudiaKendu(fondoa);
@@ -1026,6 +1040,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 		else {
 			galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
 			galdera[gelaIDKont][galderaIDKont].galderaID = galderaIDKont;
+			galdera[gelaIDKont][galderaIDKont].sartuta = 0;
 			fgets(galdera[gelaIDKont][galderaIDKont].testua, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 128, fitx);

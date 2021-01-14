@@ -180,6 +180,7 @@ typedef struct opzioak {
 
 } OPZIOAK;
 
+
 typedef struct galdera {
 
 	int gelaID;
@@ -187,8 +188,11 @@ typedef struct galdera {
 	char testua[MAX];
 	OPZIOAK aukerak;//swicth erabili aukeratzeko
 	int erabilita;
+	int sartuta;//asignatura bateko gelara sartu den ikusteko
 
 }GALDERA;
+
+
 
 
 #endif
