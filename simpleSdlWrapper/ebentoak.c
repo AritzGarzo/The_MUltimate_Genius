@@ -1,5 +1,11 @@
 #include "ebentoak.h"
+#include "imagen.h"
 
+
+
+
+
+HITBOX hitbox;
 POSIZIOA saguPos;
 SDL_Event event;
 
@@ -60,3 +66,21 @@ int ebentuaJasoGertatuBada(void){
 	return ret;
 }
 
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite)
+{
+
+	//////////////////////////////detectar el color//////////////////////////////
+	hitbox.goikoa = getpixel(pixels, pitch, bpp, sprite.pos.x + 9, sprite.pos.y );        //Burua
+	//Ezkerreko aldea
+
+	hitbox.ezker.erdikoa = getpixel(pixels, pitch, bpp, sprite.pos.x , sprite.pos.y + 14);
+	
+	//Eskuineko aldea
+	
+	hitbox.eskuin.erdikoa = getpixel(pixels, pitch, bpp, sprite.pos.x + 18, sprite.pos.y + 14);
+	
+	//Behekoa
+	hitbox.behekoa.ezker = getpixel(pixels, pitch, bpp, sprite.pos.x , sprite.pos.y + 9);
+	
+
+}

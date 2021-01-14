@@ -1,12 +1,10 @@
 #ifndef EBENTUAK_H
 #define EBENTUAK_H
 #include "SDL.h"
+#include "..\\The_MUltimate_Genius\GureEstrukturak.h"
 
-typedef struct S_POSIZIOA
-{
-  int x;
-  int y;
-} POSIZIOA;
+
+
 
 /*
   Helburua: Funztio hau tekla bat sakatu arte zain dago, 
@@ -16,6 +14,7 @@ typedef struct S_POSIZIOA
 */
 int ebentuaJasoGertatuBada(void);
 POSIZIOA saguarenPosizioa();
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite);
 
 #define SAGU_MUGIMENDUA  4
 #define SAGU_BOTOIA_ESKUMA 5
