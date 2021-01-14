@@ -491,19 +491,20 @@ EGOERA uni(JOKALARIA* jokalaria)
 	EGOERA egoera;
 	POSIZIOA pos, pos_jokalaria;
 	//
+	pos_jokalaria.x = 1150;
+	pos_jokalaria.y = 180;
 	egoera = UNI_P;
-	fondoa = fondoPantaila(".\\img\\uni.bmp");
-	pos_jokalaria.x = 50;
-	pos_jokalaria.y = 50;
+	KargatuMapa(MAPEO_UNI, &pixels, &pitch, &bpp);
+	fondoa = fondoPantaila(UNI_F);
+	
 	//
 	while (egoera == UNI_P)//unibertsitatea den bitartean
 	{
 
 		ebentu = ebentuaJasoGertatuBada();
-		if (ebentu == TECLA_w || ebentu == TECLA_a || ebentu == TECLA_s || ebentu == TECLA_d)
-		{
-			klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
-		}
+		
+		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
+		
 
 		pos = saguarenPosizioa();
 		if (klik == 3)
@@ -768,7 +769,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
-			if ((hitbox.behekoa.ezker == BELTZA))
+			if (hitbox.behekoa.ezker == BELTZA)
 			{
 				pos.y = pos.y;
 				x = 4;
@@ -836,7 +837,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
-			if (hitbox.eskuin.erdikoa == BELTZA)
+			if (hitbox.eskuin.erdikoa == BELTZA || hitbox.eskuin.erdikoa == HORIA)
 			{
 				pos.x = pos.x;
 				x = 4;
@@ -915,31 +916,31 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			}
 			if (egoera == UNI_P)
 			{
-				if ((pos.x >= 0 && pos.x <= 187) && (pos.y >= 188 && pos.y <= 248))
+				if ((pos.x >= 0 && pos.x <= 187) && (pos.y >= 188 && pos.y <= 248) && ((hitbox.ezker.erdikoa == HORIA)|| (hitbox.eskuin.erdikoa == HORIA)))
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 3;
 
 				}
-				if ((pos.x >= 0 && pos.x <= 64) && (pos.y >= 530 && pos.y <= 595))
+				if ((pos.x >= 0 && pos.x <= 64) && (pos.y >= 530 && pos.y <= 595) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 4;
 
 				}
-				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 92 && pos.y <= 5 + 157))
+				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 92 && pos.y <= 5 + 157) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
 
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 5;
 				}
-				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 344 && pos.y <= 407))
+				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 344 && pos.y <= 407) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
 
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 6;
 				}
-				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 594 && pos.y <= 660))
+				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 594 && pos.y <= 660) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
 
 					spriteKendu(sprite.irudia2d.id);

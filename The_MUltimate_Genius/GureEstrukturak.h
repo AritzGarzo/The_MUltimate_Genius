@@ -7,6 +7,8 @@
 
 //--------------Mapak--------------
 #define MAPEO_GELA ".\\img\\gelaMapeo.bmp"
+#define MAPEO_UNI ".\\img\\uniMapeo.bmp"
+
 
 //--------------pantailak--------------
 #define MENUA_F ".\\img\\menu.bmp"
