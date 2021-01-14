@@ -11,6 +11,14 @@
 #include "Galderak.h"
 //Dev
 
+extern HITBOX hitbox;
+JOKALARIA sprite;
+void* pixels = NULL;
+int pitch;
+Uint8 bpp;
+Uint32 refreshrate = 0;
+Uint32 moverate = 0;
+
 //
 int hasieratu(void);
 EGOERA menua(void);
@@ -434,14 +442,16 @@ EGOERA etxea(JOKALARIA* jokalaria)
 	int fondoa, jarraitu = 0, ebentu = 0, klik = 0;
 	POSIZIOA pos, pos_jokalaria;
 	EGOERA egoera;
-	JOKALARIA sprite;
+
 
 	pos_jokalaria.x = 1150;
 	pos_jokalaria.y = 180;
 
 	//
 	egoera = ETXEA_P;
+	KargatuMapa(MAPEO_GELA, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(ETXEA_F);
+
 
 
 
@@ -494,29 +504,29 @@ EGOERA uni(JOKALARIA* jokalaria)
 		{
 			klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
 		}
-		
-			pos = saguarenPosizioa();
-			if (klik == 3)
-			{
-				egoera = galderak(1);//itzultzerakoan etxera bidaltzeko
-			}
-			if (klik == 4)
-			{
-				egoera = galderak(2);//itzultzerakoan etxera bidaltzeko
-			}
-			if (klik == 5)
-			{
-				egoera = galderak(3);//itzultzerakoan etxera bidaltzeko
-			}
-			if (klik == 6)
-			{
-				egoera = galderak(4);//itzultzerakoan etxera bidaltzeko
-			}
-			if (klik == 7)
-			{
-				egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
-			}
-		
+
+		pos = saguarenPosizioa();
+		if (klik == 3)
+		{
+			egoera = galderak(1);//itzultzerakoan etxera bidaltzeko
+		}
+		if (klik == 4)
+		{
+			egoera = galderak(2);//itzultzerakoan etxera bidaltzeko
+		}
+		if (klik == 5)
+		{
+			egoera = galderak(3);//itzultzerakoan etxera bidaltzeko
+		}
+		if (klik == 6)
+		{
+			egoera = galderak(4);//itzultzerakoan etxera bidaltzeko
+		}
+		if (klik == 7)
+		{
+			egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
+		}
+
 	}
 	//
 	irudiaKendu(fondoa);
@@ -738,7 +748,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 	}
 	x = 0; y = 0;
 	pos.x = 1150;
-	pos.y = 180;
+	pos.y = 210;
 
 
 	while (mugi == 10)
@@ -747,99 +757,157 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		spriteMugitu(sprite.irudia2d.id, pos.x, pos.y);
 
 		ebentu = ebentuaJasoGertatuBada();
+		sprite.pos.x = pos.x;
+		sprite.pos.y = pos.y;
 
 		switch (ebentu)
 		{
 		case TECLA_s:
-			//sprite mover abajo//
-			pos.y = pos.y + 4;
-			//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-			y = 0;
-			if (tmp == TECLA_s)
+			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
+			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
+			printf("Goikoa %d\n", hitbox.goikoa);
+			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
+			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+			if ((hitbox.behekoa.ezker == BELTZA))
 			{
-				x = x + 4;
-			}
-			else
-			{
+				pos.y = pos.y;
 				x = 4;
+				y = 0;
+				break;
 			}
-			if (x > 8)
-			{
-				x = 0;
+			else {
+				//sprite mover abajo//
+				pos.y = pos.y + 4;
+				//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+				y = 0;
+				if (tmp == TECLA_s)
+				{
+					x = x + 4;
+				}
+				else
+				{
+					x = 4;
+				}
+				if (x > 8)
+				{
+					x = 0;
+				}
+				tmp = ebentu;
+				//------------------------------------------------------------//
+				break;
 			}
-			tmp = ebentu;
-			//------------------------------------------------------------//
-			break;
-
 		case TECLA_w:
-			//sprite mover arriba//
-			pos.y = pos.y - 4;
-			//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-			y = 13;
-			if (tmp == TECLA_w)
+			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
+			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
+			printf("Goikoa %d\n", hitbox.goikoa);
+			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
+			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+			if (hitbox.goikoa == BELTZA)
 			{
-				x = x + 4;
-			}
-			else
-			{
+				pos.y = pos.y;
 				x = 4;
+				y = 13;
+				break;
 			}
-			if (x > 8)
-			{
-				x = 0;
+			else {
+				//sprite mover arriba//
+				pos.y = pos.y - 4;
+				//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+				y = 13;
+				if (tmp == TECLA_w)
+				{
+					x = x + 4;
+				}
+				else
+				{
+					x = 4;
+				}
+				if (x > 8)
+				{
+					x = 0;
+				}
+				tmp = ebentu;
+				//------------------------------------------------------------//
+				break;
 			}
-			tmp = ebentu;
-			//------------------------------------------------------------//
-			break;
-
 		case TECLA_d:
-			//sprite mover derecha//
-			pos.x = pos.x + 4;
-			//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-			y = 8;
-			if (tmp == TECLA_d)
+			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
+			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
+			printf("Goikoa %d\n", hitbox.goikoa);
+			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
+			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+			if (hitbox.eskuin.erdikoa == BELTZA)
 			{
-				x = x + 4;
+				pos.x = pos.x;
+				x = 4;
+				y = 8;
+				break;
 			}
-			else { x = 4; }
+			else {
+				//sprite mover derecha//
+				pos.x = pos.x + 4;
+				//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+				y = 8;
+				if (tmp == TECLA_d)
+				{
+					x = x + 4;
+				}
+				else { x = 4; }
 
-			if (x > 8)
-			{
-				x = 0;
+				if (x > 8)
+				{
+					x = 0;
+				}
+				tmp = ebentu;
+				//------------------------------------------------------------//
+
+				break;
 			}
-			tmp = ebentu;
-			//------------------------------------------------------------//
-			break;
-
 		case TECLA_a:
-			//sprite mover izquierda//
-			pos.x = pos.x - 4;
-			//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
-			y = 4;
-			if (tmp == TECLA_a)
+			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
+			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
+			printf("Goikoa %d\n", hitbox.goikoa);
+			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
+			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+			if (hitbox.ezker.erdikoa == BELTZA || hitbox.ezker.erdikoa == HORIA)
 			{
-				x = x + 4;
+				pos.x = pos.x;
+				x = 4;
+				y = 4;
+				break;
 			}
-			else { x = 4; }
-			if (x > 8)
-			{
-				x = 0;
+			else {
+				//sprite mover izquierda//
+				pos.x = pos.x - 4;
+				//---------------SPRITEN ANIMAZIOAK IKUSTEKO------------------//
+				y = 4;
+				if (tmp == TECLA_a)
+				{
+					x = x + 4;
+				}
+				else { x = 4; }
+				if (x > 8)
+				{
+					x = 0;
+				}
+				tmp = ebentu;
+				//------------------------------------------------------------//
+
+
+				break;
 			}
-			tmp = ebentu;
-			//------------------------------------------------------------//
-			break;
 		case SAGU_BOTOIA_EZKERRA:
 
 			if (egoera == ETXEA_P)
 			{
-				if ((pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
+				if (hitbox.ezker.erdikoa == HORIA)
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 1;
 				}
 
 				//(ohea)itzultzerakoan etxera edo menura bidaltzeko
-				if ((pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
+				if ((hitbox.ezker.erdikoa == GORRIA) || (hitbox.goikoa == GORRIA) || (hitbox.eskuin.erdikoa == GORRIA) || (hitbox.behekoa.ezker == GORRIA))
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 2;
@@ -851,45 +919,48 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 3;
-					
+
 				}
 				if ((pos.x >= 0 && pos.x <= 64) && (pos.y >= 530 && pos.y <= 595))
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 4;
-					
+
 				}
 				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 92 && pos.y <= 5 + 157))
 				{
-					
+
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 5;
 				}
 				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 344 && pos.y <= 407))
 				{
-					
+
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 6;
 				}
 				if ((pos.x >= 1215 && pos.x <= 1280) && (pos.y >= 594 && pos.y <= 660))
 				{
-					
+
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 7;
 				}
-			
-			}
-			
-			break;
-	default:
-		break;
-	}
-	irudiakMarraztu();
-	spriteakMarraztu(x, y);
-	pantailaBerriztu();
 
-}
-return mugi;
+			}
+
+			break;
+		default:
+			break;
+		}
+
+		irudiakMarraztu();
+		spriteakMarraztu(x, y);
+
+		pantailaBerriztu();
+
+
+	}
+	return mugi;
 
 
 
@@ -954,7 +1025,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 
 		if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 23 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
 
-		 if (fitx == NULL) {
+		if (fitx == NULL) {
 			printf("Errorea galderen fitxategia irakurtzerako orduan\n");
 			return error = 1;
 		}

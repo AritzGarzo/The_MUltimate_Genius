@@ -5,6 +5,8 @@
 #include "ebentoak.h"
 
 
+//--------------Mapak--------------
+#define MAPEO_GELA ".\\img\\gelaMapeo.bmp"
 
 //--------------pantailak--------------
 #define MENUA_F ".\\img\\menu.bmp"
@@ -107,7 +109,32 @@
 
 
 typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P }EGOERA;
+typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 127, MOREA = 253, URDINA = 252 }KOLOREAK;
 
+typedef struct S_POSIZIOA
+{
+	int x;
+	int y;
+} POSIZIOA;
+typedef struct S_BEHEKOPIXEL
+{
+	KOLOREAK ezker;
+	KOLOREAK eskuin;
+}BEHEKOPIXEL;
+typedef struct S_ALBOKOPIXEL
+{
+	KOLOREAK goikoa;
+	KOLOREAK erdikoa;
+	KOLOREAK behekoa;
+}ALBOKOPIXEL;
+typedef struct S_HITBOX
+{
+	ALBOKOPIXEL ezker;
+	ALBOKOPIXEL eskuin;
+	BEHEKOPIXEL behekoa;
+	KOLOREAK goikoa;
+
+}HITBOX;
 typedef struct exp
 {
 	int xp;//galderekin irabazi duen 
@@ -146,7 +173,7 @@ typedef struct irudia
 
 typedef struct jokalaria
 {
-	
+
 	int urtea;//jakiteko zenbateko esperientzia daukan
 	char izena[128];
 	POSIZIOA pos;//sprite-aren mugimendua
@@ -175,5 +202,5 @@ typedef struct galdera {
 
 }GALDERA;
 
-#endif
 
+#endif
