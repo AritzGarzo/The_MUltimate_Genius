@@ -509,7 +509,7 @@ EGOERA uni(JOKALARIA* jokalaria)
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1,jokalaria);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{

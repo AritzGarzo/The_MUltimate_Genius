@@ -30,7 +30,7 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     pantailaBerriztu();
 }
 
-int galderak(int gelaID)
+int galderak(int gelaID,JOKALARIA* jokalaria)
 {
     int exp = 0, galderaID = 0, erantzunda = 0, denakErantzunda = 0;
     int ebentu, bukatuta = 0, error = 0;
@@ -51,7 +51,7 @@ int galderak(int gelaID)
         galderaID = 1 + rand() % 5;
         fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
-            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
@@ -72,7 +72,7 @@ int galderak(int gelaID)
         galderaID = 1 + rand() % 5;
         fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
-            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
@@ -93,7 +93,7 @@ int galderak(int gelaID)
         galderaID = 1 + rand() % 5;
         fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
-            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
@@ -114,7 +114,7 @@ int galderak(int gelaID)
         galderaID = 1 + rand() % 4;
         fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
-            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
@@ -135,7 +135,7 @@ int galderak(int gelaID)
         galderaID = 1 + rand() % 5;
         fondoPantailaGalderekin(".\\img\\Galderak_Erantzunak\\Preguntas.bmp", gelaID, galderaID, galdera);
         while (galderaID <= 5 && !denakErantzunda) {
-            erantzunda = GalderakErantzun(, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
