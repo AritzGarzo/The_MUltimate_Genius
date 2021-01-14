@@ -765,12 +765,15 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		case TECLA_s:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
 			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Gohikoa %d\n", hitbox.goikoa);
+			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
 			if ((hitbox.behekoa.ezker == BELTZA))
 			{
-				pos.y = pos.y - 4;
+				pos.y = pos.y;
+				x = 4;
+				y = 0;
+				break;
 			}
 			else {
 				//sprite mover abajo//
@@ -796,12 +799,15 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		case TECLA_w:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
 			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Gohikoa %d\n", hitbox.goikoa);
+			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
 			if (hitbox.goikoa == BELTZA)
 			{
-				pos.y = pos.y - 4;
+				pos.y = pos.y;
+				x = 4;
+				y = 13;
+				break;
 			}
 			else {
 				//sprite mover arriba//
@@ -827,12 +833,15 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		case TECLA_d:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
 			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Gohikoa %d\n", hitbox.goikoa);
+			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
 			if (hitbox.eskuin.erdikoa == BELTZA)
 			{
-				pos.x = pos.x + 4;
+				pos.x = pos.x;
+				x = 4;
+				y = 8;
+				break;
 			}
 			else {
 				//sprite mover derecha//
@@ -851,17 +860,21 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 				}
 				tmp = ebentu;
 				//------------------------------------------------------------//
+				
 				break;
 			}
 		case TECLA_a:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
 			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Gohikoa %d\n", hitbox.goikoa);
+			printf("Goikoa %d\n", hitbox.goikoa);
 			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
 			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
 			if (hitbox.ezker.erdikoa == BELTZA || hitbox.ezker.erdikoa == HORIA)
 			{
-				pos.x = pos.x - 4;
+				pos.x = pos.x;
+				x = 4;
+				y = 4;
+				break;
 			}
 			else {
 				//sprite mover izquierda//
@@ -879,6 +892,8 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 				}
 				tmp = ebentu;
 				//------------------------------------------------------------//
+
+		
 				break;
 			}
 		case SAGU_BOTOIA_EZKERRA:
@@ -937,8 +952,10 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 	default:
 		break;
 	}
+	
 	irudiakMarraztu();
 	spriteakMarraztu(x, y);
+
 	pantailaBerriztu();
 	
 

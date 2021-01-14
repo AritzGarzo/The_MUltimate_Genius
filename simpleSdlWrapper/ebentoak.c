@@ -80,7 +80,7 @@ void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite)
 	hitbox.eskuin.erdikoa = getpixel(pixels, pitch, bpp, sprite.pos.x + 18, sprite.pos.y + 14);
 	
 	//Behekoa
-	hitbox.behekoa.ezker = getpixel(pixels, pitch, bpp, sprite.pos.x , sprite.pos.y + 9);
+	hitbox.behekoa.ezker = getpixel(pixels, pitch, bpp, sprite.pos.x+9 , sprite.pos.y + 28);
 	
 
 }
