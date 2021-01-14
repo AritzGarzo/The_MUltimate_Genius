@@ -513,19 +513,19 @@ EGOERA uni(JOKALARIA* jokalaria)
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, &jokalaria);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
-			egoera = galderak(3);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(3, &jokalaria);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, &jokalaria);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, &jokalaria);//itzultzerakoan etxera bidaltzeko
 		}
 
 	}

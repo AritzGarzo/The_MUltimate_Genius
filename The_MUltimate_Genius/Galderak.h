@@ -7,7 +7,7 @@
 #include"GureEstrukturak.h"
 
 
-int galderak(int gelaID);
+int galderak(int gelaID,JOKALARIA* jokalaria);
 
 
 
