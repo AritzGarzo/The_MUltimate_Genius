@@ -32,6 +32,12 @@ int sgHasieratu()
     fprintf(stderr, "Ezin lehioa sortu: %s\n", SDL_GetError());
     return -1;
   }
+
+  /*
+    SDL_Surface* ikonoa = SDL_LoadBMP(".\\img\\logo.bmp");
+  SDL_SetWindowIcon(window, ikonoa);
+  
+  */
   gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   TTF_Init();
   atexit(TTF_Quit);

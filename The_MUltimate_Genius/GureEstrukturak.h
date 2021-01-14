@@ -6,15 +6,6 @@
 
 #include "ebentoak.h"
 
-typedef enum { JOLASTEN, GALDU, IRABAZI }EGOERA;
-typedef enum { IRUDIA, MARGOA, TESTUA } MOTA;
-
-typedef struct
-{
-    POSIZIOA pos;
-    int id;
-    MOTA mota;
-}JOKO_ELEMENTUA;
 
 typedef struct opzioak {
     char A[MAX];
@@ -33,5 +24,43 @@ typedef struct galdera {
     int erabilita;
 
 }GALDERA;
+
+
+//----------------------
+
+typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P }EGOERA;
+
+typedef struct exp
+{
+    int xp;//galderekin irabazi duen 
+    int max;//ikasgaiKop20
+}EXP;
+
+typedef struct gradua
+{
+    int iKop;//ikasgai 
+    char izena[128];
+    EXP exp;
+}GRADUA;
+
+typedef struct irudia
+{
+    int id;
+    char izena[128];
+    POSIZIOA pos_hasi;//goi ezkerra
+    POSIZIOA pos_buka;//behe eskubia
+}IRUDIA;
+
+typedef struct jokalaria
+{
+    int urtea;//jakiteko zenbateko esperientzia daukan
+    char izena[128];
+    POSIZIOA pos;//sprite-aren mugimendua
+    IRUDIA irudia;//irudia (las preguntas)
+    IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
+    GRADUA gradua;
+}JOKALARIA;
+
+
 
 #endif

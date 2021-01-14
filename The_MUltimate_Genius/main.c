@@ -14,6 +14,7 @@ int main(int argc, char* str[])
 {
     int ebentu = 0, irten = 0, egoera = 0;
     char esaldia[] = "";
+    JOKALARIA jokalaria;
 
     mu_hasieratu();
 
@@ -29,7 +30,7 @@ int main(int argc, char* str[])
 
         }
         else if (egoera == 3) {
-            irten = jolastu();
+            irten = jolastu(&jokalaria);
             //fondoPantaila(".\\img\\menu.bmp");
 
         }

@@ -74,7 +74,7 @@ int hasieratu(void);
 int mu_hasieratu(void);
 int menua(void);
 void fondoPantaila(char* str);
-int jolastu(void);
+int jolastu(JOKALARIA* jokalaria);
 int kontrolak(void);
 
 //----------NIREAK------
