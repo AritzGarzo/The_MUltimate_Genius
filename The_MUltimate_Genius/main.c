@@ -538,7 +538,6 @@ EGOERA uni(JOKALARIA* jokalaria)
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 {
 	JOKALARIA berria;
-	IKASGAI iBerria;
 	//
 	berria = jokalaria;
 	//
@@ -547,8 +546,6 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	//gradua----------------------------------
 	berria.gradua.iKop = 10;
 	//ikasgaia----------------------------
-	iBerria.notaFinala = 0;
-	berria.gradua.ikasgaiak = &iBerria;
 	//irudia----------------------------------
 		//id----------------------------------
 //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
@@ -567,9 +564,6 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	}
 	//pos---------------------------------
 
-//exp-------------------------------------
-	berria.exp.xp = 0;
-	berria.exp.max = berria.gradua.iKop * 20;
 	//
 	return berria;
 }
@@ -962,8 +956,6 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 	}
 	return mugi;
-
-
 
 }
 void warning_abisua(char* str)

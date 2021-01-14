@@ -12,8 +12,6 @@
 #include<time.h>
 #include"Galderak.h"
 
-
-
 void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
     int id;
@@ -35,18 +33,16 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 int galderak(int gelaID)
 {
     int exp = 0, galderaID = 0, erantzunda = 0, denakErantzunda = 0;
-    int irten, ebentu, bukatuta = 0, error = 0;
+    int ebentu, bukatuta = 0, error = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
     GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
-    irten = 3;
     srand(time(NULL));
     error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
     if (error == 1)
     {
         galderakEtaEurenAukerakSortu(galdera);
     }
-
     
     switch (gelaID)
     {case 1:  
@@ -55,6 +51,7 @@ int galderak(int gelaID)
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
                 galderaID++;
                 if (galderaID == 6) {
@@ -75,6 +72,7 @@ int galderak(int gelaID)
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
                 galderaID++;
                 if (galderaID == 6) {
@@ -95,6 +93,7 @@ int galderak(int gelaID)
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
                 galderaID++;
                 if (galderaID == 6) {
@@ -115,6 +114,7 @@ int galderak(int gelaID)
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
                 galderaID++;
                 if (galderaID == 6) {
@@ -135,6 +135,7 @@ int galderak(int gelaID)
         while (galderaID <= 5 && !denakErantzunda) {
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
             if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);
                 galderaID++;
                 if (galderaID == 6) {
@@ -153,14 +154,8 @@ int galderak(int gelaID)
         break;
     }
 
-                
-                    
-                
-     
-
-
     pantailaBerriztu();
-    return irten;
+    return ETXEA_P;
 }
 
 
