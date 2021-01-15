@@ -525,11 +525,11 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1,&jokalaria,galdera,egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1,jokalaria,galdera,egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
@@ -537,11 +537,11 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 
 		/*if (klik == 8)

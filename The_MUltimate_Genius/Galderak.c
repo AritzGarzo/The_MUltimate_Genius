@@ -2641,10 +2641,6 @@ void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galdera
                     else if (erantzunda == 2) {
                         galdera[gelaID][galderaID - 1].sartuta = 1;
                     }
-                    if (galderaID == 6) {
-                        galderaID = 1;
-                    }
-
                 }
             }
             if (galderaID == 6) {
