@@ -62,6 +62,26 @@ void textuaIdatzi(int x, int y, char* str)
 	SDL_FreeSurface(textSurface);
 	SDL_DestroyTexture(mTexture);
 }
+void textuaGaldera(int koordenatuX, int koordenatuY, int limiteaX, char* esaldia)
+{
+	SDL_Surface* textSurface;
+	SDL_Texture* mTexture;
+	SDL_Color textColor = { 0X00, 0X00, 0X00 };
+	SDL_Rect src, dst;
+	SDL_Renderer* gRenderer;
+
+	if (font == 0) return;
+	gRenderer = getRenderer();
+	textSurface = TTF_RenderText_Blended_Wrapped(font, esaldia, textColor, limiteaX);
+	mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
+	src.x = 0; dst.x = koordenatuX;
+	src.y = 0; dst.y = koordenatuY;
+	src.w = dst.w = textSurface->w;
+	src.h = dst.h = textSurface->h;
+	SDL_RenderCopy(gRenderer, mTexture, &src, &dst);
+	SDL_FreeSurface(textSurface);
+	SDL_DestroyTexture(mTexture);
+}
 
 void textuaIdatzi_beltza(int x, int y, char* str)
 {

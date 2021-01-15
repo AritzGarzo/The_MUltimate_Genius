@@ -23,11 +23,11 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     irudiakMarraztu();
 
     textuaGaitu_galderak();
-    textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-    textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-    textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-    textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-    textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+    textuaGaldera(27, 290, 1280, galdera[gelaID][galderaID].testua);
+    textuaGaldera(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+    textuaGaldera(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+    textuaGaldera(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+    textuaGaldera(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
 
     pantailaBerriztu();
 }
@@ -2482,32 +2482,32 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     {
     case 1:
         textuaGaitu_galderak();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaGaldera(27, 290, 1280, galdera[gelaID][galderaID].testua);
+        textuaGaldera(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaGaldera(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+        textuaGaldera(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 2:
         textuaGaitu_galderak();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaGaldera(27, 290, 1280, galdera[gelaID][galderaID].testua);
+        textuaGaldera(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaGaldera(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
+        textuaGaldera(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
         break;
     case 3:
         textuaGaitu_galderak();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(684, 645, galdera[gelaID][galderaID].aukerak.D);
+        textuaGaldera(27, 290, 1280, galdera[gelaID][galderaID].testua);
+        textuaGaldera(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaGaldera(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaGaldera(684, 645, 590, galdera[gelaID][galderaID].aukerak.D);
 
         break;
     case 4:
         textuaGaitu_galderak();
-        textuaIdatzi(27, 290, galdera[gelaID][galderaID].testua);
-        textuaIdatzi(55, 512, galdera[gelaID][galderaID].aukerak.A);
-        textuaIdatzi(684, 512, galdera[gelaID][galderaID].aukerak.B);
-        textuaIdatzi(55, 645, galdera[gelaID][galderaID].aukerak.C);
+        textuaGaldera(27, 290, 1280, galdera[gelaID][galderaID].testua);
+        textuaGaldera(55, 512, 590, galdera[gelaID][galderaID].aukerak.A);
+        textuaGaldera(684, 512, 590, galdera[gelaID][galderaID].aukerak.B);
+        textuaGaldera(55, 645, 590, galdera[gelaID][galderaID].aukerak.C);
         break;
     default:
         break;
