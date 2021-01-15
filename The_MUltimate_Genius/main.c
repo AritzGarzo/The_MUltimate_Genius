@@ -347,14 +347,14 @@ EGOERA profila(JOKALARIA* jokalaria)
         {
             strcpy(jokalaria->irudia.izena, CHICO_AVATAR);
             jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 185;
-            jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 133;
+            jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 137;
             aldaketa = 1;
         }
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133)))//neska
         {
             strcpy(jokalaria->irudia.izena, CHICA_AVATAR);
             jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 350;
-            jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 133;
+            jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 137;
             aldaketa = 1;
         }
         //jarraitu
@@ -476,6 +476,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
             {
                 egoera = gorde(*jokalaria);
                 fondoa = fondoPantaila(ETXEA_F);
+                //eguna + 1;
             }
         }
     }
@@ -531,7 +532,6 @@ EGOERA uni(JOKALARIA* jokalaria)
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 {
     JOKALARIA berria;
-    IKASGAI iBerria;
     //
     berria = jokalaria;
     //
@@ -539,9 +539,9 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
     berria.urtea = 1;
         //gradua----------------------------------
     berria.gradua.iKop = 10;
-            //ikasgaia----------------------------
-    iBerria.notaFinala = 0;
-    berria.gradua.ikasgaiak = &iBerria;
+            //exp----------------------------
+    berria.gradua.exp.xp = 0;
+    berria.gradua.exp.max = 10;
         //irudia----------------------------------
             //id----------------------------------
     //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
@@ -559,10 +559,7 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
         strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
     }
             //pos---------------------------------
-    
-        //exp-------------------------------------
-    berria.exp.xp = 0;
-    berria.exp.max = berria.gradua.iKop * 20;    
+
     //
     return berria;
 }

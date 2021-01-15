@@ -51,26 +51,11 @@ typedef struct exp
 	int max;//ikasgaiKop*20
 }EXP;
 
-typedef struct ikasgai
-{
-	float notaFinala;
-	char izena[128];
-	char karpeta[128];
-	/*
-	* GALDERAK ETA
-	* separar por carpetas
-	* cada carpeta tenga el nombre de la asignatura
-	* dentro pregunta y su respuesta
-	* aparece pregunta y jugador decide (click)coordenadas
-	*/
-
-}IKASGAI;
-
 typedef struct gradua
 {
 	int iKop;//ikasgai 
 	char izena[128];
-	IKASGAI* ikasgaiak;
+	EXP exp;
 }GRADUA;
 
 typedef struct irudia
@@ -89,7 +74,6 @@ typedef struct jokalaria
 	IRUDIA irudia;//irudia (las preguntas)
 	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	GRADUA gradua;
-	EXP exp;
 }JOKALARIA;
 
 #endif
