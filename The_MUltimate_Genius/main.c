@@ -362,7 +362,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 			strcpy(jokalaria->irudia.izena, CHICO_AVATAR);
 			strcpy(jokalaria->irudia2d.izena, CHICO_AVATAR_M);
 			jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 185;
-			jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 133;
+			jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 185 + 137;
 			aldaketa = 1;
 		}
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 350 && pos.y <= 350 + 133)))//neska
@@ -370,7 +370,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 			strcpy(jokalaria->irudia.izena, CHICA_AVATAR);
 			strcpy(jokalaria->irudia2d.izena, CHICA_AVATAR_M);
 			jokalaria->irudia.pos_hasi.x = 932; jokalaria->irudia.pos_hasi.y = 350;
-			jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 133;
+			jokalaria->irudia.pos_buka.x = 932 + 147; jokalaria->irudia.pos_buka.y = 350 + 137;
 			aldaketa = 1;
 		}
 		//jarraitu
