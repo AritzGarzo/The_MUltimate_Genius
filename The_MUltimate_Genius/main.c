@@ -25,6 +25,7 @@ EGOERA menua(void);
 EGOERA jolastu(JOKALARIA* jokalaria);
 EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
+EGOERA azalpena(void);
 EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria);
@@ -55,6 +56,7 @@ int main(int argc, char* str[])
 			if (egoera == PROFILA_P)
 			{
 				egoera = profila(&jokalaria);
+				egoera = azalpena();
 				//egoera = JOLASTU_P;//JOLASTU
 			}
 			if (egoera == KARGATU_P)
@@ -144,6 +146,7 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 	egoera = ETXEA_P;
 	//jarraitu = 1;
 	//
+
 	while (egoera == ETXEA_P || egoera == UNI_P)
 	{
 		if (egoera == ETXEA_P)
@@ -407,6 +410,24 @@ EGOERA profila(JOKALARIA* jokalaria)
 	textuaDesgaitu();
 	irudiaKendu(fondoa);
 	//
+	return egoera;
+}
+
+EGOERA azalpena(void)
+{
+	int ebentua, fondoa;
+	POSIZIOA pos;
+	EGOERA egoera = AZALPENA_P;
+	fondoa = fondoPantaila(AZALPENA_F);
+	while (egoera == AZALPENA_P)
+	{
+		ebentua = ebentuaJasoGertatuBada();
+		pos = saguarenPosizioa();
+		if (ebentua == SAGU_BOTOIA_EZKERRA && (pos.x >= 1087 && pos.x <= 1262) && (pos.y >= 650 && pos.y <= 700))
+		{
+			egoera = JOLASTU_P;
+		}
+	}
 	return egoera;
 }
 
@@ -1009,7 +1030,7 @@ void karga_gif()
 {
 	int id, i, j;
 	char busa_gif[][128] = { BUS_1, BUS_2, BUS_3, BUS_4, BUS_5, BUS_6, BUS_7, BUS_8, BUS_9, BUS_10, BUS_11, BUS_12, BUS_13, BUS_14, BUS_15, BUS_16, BUS_17, BUS_18, BUS_19, BUS_20, BUS_21, BUS_22 };
-	for (j = 0; j < 3; j++)
+	for (j = 0; j < 2; j++)
 	{
 		for (i = 0; i < 22; i++)
 		{
