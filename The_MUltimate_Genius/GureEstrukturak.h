@@ -22,6 +22,7 @@
 #define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF_.bmp"
 #define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF_.bmp"
 #define ABISUA	".\\img\\abisua.bmp"
+#define ABISUA_UNI	".\\img\\abisua_uni.bmp"
 //----------busa----------
 #define BUS_1 ".\\img\\GIF\\bus_1.bmp"
 #define BUS_2 ".\\img\\GIF\\bus_2.bmp"

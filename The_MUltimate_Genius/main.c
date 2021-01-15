@@ -491,8 +491,11 @@ EGOERA uni(JOKALARIA* jokalaria)
 	EGOERA egoera;
 	POSIZIOA pos, pos_jokalaria;
 	//
+
 	pos_jokalaria.x = 1150;
 	pos_jokalaria.y = 180;
+
+
 	egoera = UNI_P;
 	KargatuMapa(MAPEO_UNI, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(UNI_F);
@@ -526,6 +529,11 @@ EGOERA uni(JOKALARIA* jokalaria)
 		if (klik == 7)
 		{
 			egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
+		}
+		if (klik == 8)
+		{
+			karga_gif();
+			egoera = ETXEA_P;
 		}
 
 	}
@@ -748,8 +756,11 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		sprite.irudia2d.id = spriteKargatu(sprite.irudia2d.izena);
 	}
 	x = 0; y = 0;
+	
 	pos.x = 1150;
 	pos.y = 210;
+	
+	
 
 
 	while (mugi == 10)
@@ -945,6 +956,16 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 7;
+				}
+				if ((pos.x >= 430 && pos.x <= 671) && (pos.y >= 50 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
+				{
+					warning_abisua(ABISUA_UNI);
+				}
+				if ((pos.x >= 715 && pos.x <= 960) && (pos.y >= 64 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
+				{
+
+					spriteKendu(sprite.irudia2d.id);
+					mugi = 8;
 				}
 
 			}
