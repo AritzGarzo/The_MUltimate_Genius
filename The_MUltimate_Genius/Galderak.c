@@ -30,20 +30,25 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     pantailaBerriztu();
 }
 
-int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
+int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna)
 {
-    int galderaID = 0, erantzunda = 0, denakErantzunda = 0, erantzunOndoKont = 0;
+    int galderaID = 1, erantzunda = 0, denakErantzunda = 0, erantzunOndoKont = 0;
+
     int ebentu, bukatuta = 0, error = 0;
     static char esaldia[16] = "";
     POSIZIOA pos;
 
-    //-----EXP-----
-    jokalaria->gradua.exp.xp = 0;
-    jokalaria->gradua.exp.max = 10;
-    //-------------
-    srand(time(NULL));
+    jokalaria->gradua.exp.xp = jokalaria->gradua.exp.xp;
+    jokalaria->gradua.exp.max = jokalaria->gradua.exp.max;
 
-    galderaID = 1 + rand() % 5;
+
+
+    if (eguna == 2) {
+        galderaID = 3;
+    }
+    if (eguna == 3) {
+        azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp));
+    }
 
     fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
     while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
@@ -54,13 +59,11 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
             galderaID++;
             if (erantzunda == 1) {
                 erantzunOndoKont++;
-                if (erantzunOndoKont == 2) {
-                    galdera[gelaID][galderaID].sartuta = 1;
-                }
+                galdera[gelaID][galderaID - 1].sartuta = 1;
             }
             else if (erantzunda == 2) {
                 erantzunOndoKont = 5;// gaizki egin duela esateko
-                galdera[gelaID][galderaID].sartuta=1;
+                galdera[gelaID][galderaID - 1].sartuta = 1;
             }
             if (galderaID == 6) {
                 galderaID = 1;
@@ -73,14 +76,14 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
 
     }
     //denakErantzunda = 0;
-    if (erantzunOndoKont>2) {
+    if (erantzunOndoKont > 2) {
         irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
         irudiakMarraztu();
         pantailaBerriztu();
         Sleep(1000);
 
     }
-    if (erantzunOndoKont == 0) {
+    if (erantzunOndoKont == 0 || erantzunOndoKont == 2) {
         irudiaMugitu(irudiaKargatu(".\\img\\klaseaBukatu.bmp"), 300, 230);
         irudiakMarraztu();
         pantailaBerriztu();
@@ -107,6 +110,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da FOR baten sintaxia?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "(i=0;i<10;i++)"); //ondo
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "[i=0;i<10;i++]");
@@ -118,6 +122,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Nola da 65 bitarrean?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "01101011");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "01000001");  //  ONDO
@@ -129,6 +134,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer diferentzia dago do while eta while-en artean?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "ez dago desberdintasunik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "bat bestea baino azkarragoa da");
@@ -139,6 +145,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "If eta else if sententzia asko erabiltzen denean, zer beste sentetzia dago hori azkarrago egiteko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "switch");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "change");
@@ -149,6 +156,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "ASCII taula karaktere kode bat da, zer orden da egokia?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Zenbakiak->xehez>Larriz");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "xehez>Larriz->zenbakiak");
@@ -171,6 +179,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da (Sinx/Cosx) dx ren integrala?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "-Ln(cosx)");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "tanx");
@@ -181,6 +190,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da Cos2x ren baliokidea");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "(cosx)^2-(sinx)^2");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "cosx-sinx");
@@ -191,6 +201,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Noiz esaten da limite bat jarraia dela? ");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Ez dakit");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Alboko limiteak desberdinak direnean");
@@ -202,6 +213,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zenbat da Sin5(pi)/6?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "erro(2)/2");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "1/2");//ONDO
@@ -212,6 +224,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "idatzi (2i-4)/(3+2i) polarrean.");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "(-8+14i)/13");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "(-6-5i)/14,");
@@ -236,6 +249,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer/zeinen legea da hau? (V=R*I\R=V/I\I=V/R)");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Ohm-en legea");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Thevenin-ren legea");
@@ -246,18 +260,20 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein zen Thevenin?");
-                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Ingeniero bat");//ONDO
-                    strcpy(galdera[gelaID][galderaID].aukerak.B, "Fisiko bat");
-                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Kimiko bat");
+                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Ingeniari bat");//ONDO
+                    strcpy(galdera[gelaID][galderaID].aukerak.B, "Fisikari bat");
+                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Kimikari bat");
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Elektroniko bat");
                     break;
                 case 3:
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, " Zein da Kirchhoff-en legea?");
-                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Korapiloaren legea,");  //ONDO
+                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Korapiloaren legea");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Energia kontserbazioaren legea");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Akzio-erreakzio");
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Kanpo magnetikoaren legea");
@@ -266,7 +282,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Nola kalkulatzen da erresistentzi totala paraleloan badaude?");
+                    galdera[gelaID][galderaID].erabilita = 0;
+                    strcpy(galdera[gelaID][galderaID].testua, "Nola kalkulatzen da erresistentzia baliokidea paraleloan badaude?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "R=R1+R2");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "(1/R)=(1/R1)+(1/R2)");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "R=(1/R1)+(1/R2)");
@@ -276,7 +293,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zein da potentzialaren formula egokia?");
+                    galdera[gelaID][galderaID].erabilita = 0;
+                    strcpy(galdera[gelaID][galderaID].testua, "Zein da potentziaren formula egokia?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "V/(I^2)");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "(I^2)/R");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "(V^2)*R");
@@ -299,7 +317,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zertarako balio du Git?");
+                    galdera[gelaID][galderaID].erabilita = 0;
+                    strcpy(galdera[gelaID][galderaID].testua, "Zertarako balio du Git-ek?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Bertsioen kontrol bat egiteko");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Programa bat gehiago nahasteko");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Textu bat lainoan gordetzeko");
@@ -310,7 +329,8 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "PDF batek irudia badu zer eduki behar du berarekin?");
+                    galdera[gelaID][galderaID].erabilita = 0;
+                    strcpy(galdera[gelaID][galderaID].testua, "PDF batek irudia badu, zer eduki behar du berarekin?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Deskripzio bat bakarrik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Irudien taula bakarrik");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Deskripzio bat eta irudien taula");  //ONDO
@@ -321,6 +341,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer etiketa erabili behar da izenburua jartzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "<head> ... </head>");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "<title> ... </title>");  //ONDO
@@ -332,6 +353,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer etiketa erabili behar da kodigoa jartzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "<strong> ... </strong>");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "<div> ... </div>");
@@ -354,6 +376,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da Google-ren DNS IPv4-a?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "1.1.1.1");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "5.5.5.5");
@@ -365,6 +388,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer izen du transporte kapan lan egiten duen PDU-ari?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "bits");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "trama");
@@ -377,6 +401,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Ari - gabeko host batek IP helbide bat eskatu behar du, zer protokolo erabili behar du eskaera hori  egiteko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "HTTP");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "SNMP");
@@ -388,6 +413,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da IPv6 helbide honen (2001:0000:0000:abcd:0000:0000:0000:0001) idazkera motzena?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "2001:0000:0000:abcd::1");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "2001:0:0:abcd::1");    //ONDO
@@ -399,6 +425,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "255.255.255.248 maskaran zenbat host dira helbideragarriak?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "2");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "6");  //ONDO
@@ -422,6 +449,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da arraya[gelaID][galderaID]-ren baliokidea?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "*(arraya+i)");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "arraya.i");
@@ -433,6 +461,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da erakusle bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Ezer");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Memoriako zati bat");
@@ -445,6 +474,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Nola deklaratzen da erakusle bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "?");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "&");
@@ -456,6 +486,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da programazioan errekurtsibitatea?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Funtzio batek bere buruari deitzea");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Funtzio batek beste funtzio bati deitzea");
@@ -467,6 +498,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Fitxategi bat irekitzeko fopen erabiltzen da, funtzio honek fitxategiaren izena eta modua behar du, zein letra da irakurtzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "d");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "w");
@@ -490,6 +522,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da pibot bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Saskibaloiko posizio bat");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Ezkerretik hasita 0 ez den lehen zenbakia");  //ONDO
@@ -501,6 +534,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Noiz erabili behar da Bernoulli?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Ekuazioa lineala denean");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Ekuazioa ez lineala denea");
@@ -512,6 +546,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer esan nahi du matriz bateko zutabe bakoitzean pibot bat edukitzeak?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Matrizea osatzen duen ekuazioek pibot bat dutela");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Matrizea osatzen duen ekuazioek sistema indeterminatu bat osatzen dutela");
@@ -523,6 +558,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da matriz elemental bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Matrizeko diagonal nagusian dagoen zenbakiak 1 dira eta beste guztiak 0");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Matrizeko diagonal nagusian dagoen zenbakiak 0 dira eta beste denak 1");
@@ -534,6 +570,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da ekuazio diferentzial baten orden maila?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Koefiziente handiena ");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Deribatu maila handiena");   //ONDO
@@ -558,6 +595,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da grafo Hamilton bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Puntu guztietatik pasatzea baina amaiera eta hasiera ezberdinak izanik");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Puntu guztietatik behin pasatzea baina amaiera eta hasiera ezberdinak izanik");
@@ -569,6 +607,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer ezberdintasun dago grafo Eulearra eta Hamiltondarraren artean?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Batek ibilbide ziklikoa egiten du eta besteak ez");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Batek erpinak hartzen ditu kontua eta besteak ertzak");   //ONDO
@@ -580,6 +619,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zenbat modu daude {1,2,3} zenbakiak ordenatzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "4");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "6"); //ONDO
@@ -591,6 +631,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "12 korrikalari dagoen lasterketa baten zenbat modu daude dominak banatzeko orduan? ");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "1250");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "1320"); //ONDO
@@ -602,6 +643,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "15 gozoki izanik zenbat modu daude 20 umeren artean banatzeko gehienez bakoitzak 1 izanik?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "10408");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "15504");//ONDO
@@ -625,6 +667,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Nolakoa da korronte alternoaren uhinak");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Sinusoidala");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Zirkularra");
@@ -636,6 +679,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer da diodo bat?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Artezgailu bat");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Transistore bat");
@@ -647,6 +691,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zein da artezgailu baten helburua?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Korronteen frekuentzia handitzea");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Korronte zuzena alterno bihurtzea");
@@ -657,6 +702,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zenbat transistore mota daude?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "2");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "3");
@@ -668,6 +714,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer zati ditu elikadura iturri basiko batek?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Transdormadorea-> irteera");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Transformadorea->artezgailuak->irteera");
@@ -691,6 +738,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zenbat ingurune nagusi daude enpresa bati eragiten diona?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "1");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "2");//ONDO
@@ -702,6 +750,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Kontabilitate garaian , zenbat atal eduki behar ditu urteko kontuetan?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "2");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "3");
@@ -712,6 +761,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Nola kalkulatzen da enpresa baten bermea?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Aktibo erreala/ zorrak");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Aktibo/Pasibo");
@@ -722,6 +772,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "-Enpresa baten negozio plana zenbat atal nagusi ditu?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "5");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "7");
@@ -733,6 +784,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].gelaID = gelaID;
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
                     strcpy(galdera[gelaID][galderaID].testua, "Zer esan nahi du enpresa baten ingurune orokorra?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Enpresa guztientzako berdina da eta eragin bera du guztiendako");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Enpresa guztientzako berdina da eta denetan izaten du eragina baina ez modu berean");  //ONDO
@@ -2567,4 +2619,42 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     default:
         break;
     }
+}
+
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp) {
+
+    int erantzunda = 0;
+
+    while (gelaID <= 5) {
+        while (galderaID <= 5) {
+            if (galdera[gelaID][galderaID].erabilita == 0) {
+                fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+                erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+                if (erantzunda != 0) {
+                    galdera[gelaID][galderaID].erabilita = 1;
+                    Sleep(500);
+                    galderaID++;
+                    if (erantzunda == 1) {
+
+                        galdera[gelaID][galderaID - 1].sartuta = 1;
+                    }
+                    else if (erantzunda == 2) {
+                        galdera[gelaID][galderaID - 1].sartuta = 1;
+                    }
+                    if (galderaID == 6) {
+                        galderaID = 1;
+                    }
+
+                }
+            }
+            if (galderaID == 6) {
+                gelaID++;
+                galderaID = 1;
+            }
+            else {
+                galderaID++;
+            }
+        }
+    }
+
 }

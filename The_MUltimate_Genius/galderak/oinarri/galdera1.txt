@@ -1,4 +1,4 @@
-Zertarako balio du Git?
+Zertarako balio du Git-ek?
 Bertsioen kontrol bat egiteko
 Programa bat gehiago nahasteko
 Textu bat lainoan gordetzeko

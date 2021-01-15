@@ -140,6 +140,9 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 {
 	static int egunKont = 1;
 
+	jokalaria->gradua.exp.xp = 0;
+	jokalaria->gradua.exp.max = 10;
+
 	int error = 0;
 	//int jarraitu;
 	EGOERA egoera;
@@ -499,6 +502,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
 
 EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
+	static int egunaKont = 1;
 	int fondoa, jarraitu = 1, ebentu = 0, klik = 0;
 	EGOERA egoera;
 	POSIZIOA pos, pos_jokalaria;
@@ -514,34 +518,42 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 	{
 
 		ebentu = ebentuaJasoGertatuBada();
-		
+
 		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
 		
 
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1,&jokalaria,galdera);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1,&jokalaria,galdera,egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
-			egoera = galderak(3, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(3, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5, &jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, &jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
-		/*if (ebentu == TECLA_ESCAPE) {
-			egoera = ETXEA_P;
+
+		/*if (klik == 8)
+		{
+			warning_abisua(ABISUA_UNI);
 		}*/
+		if (klik == 9)
+		{
+			karga_gif();
+			egunaKont++;
+			egoera = ETXEA_P;
+		}
 	}
 	//
 	irudiaKendu(fondoa);
@@ -953,6 +965,17 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 7;
+				}
+				if ((pos.x >= 430 && pos.x <= 671) && (pos.y >= 74 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
+				{
+					spriteKendu(sprite.irudia2d.id);
+					mugi = 8;
+				}
+				if ((pos.x >= 715 && pos.x <= 960) && (pos.y >= 64 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
+				{
+
+					spriteKendu(sprite.irudia2d.id);
+					mugi = 9;
 				}
 
 			}
