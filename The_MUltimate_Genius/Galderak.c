@@ -48,8 +48,8 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
     }
     if (eguna == 3) {
         azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp));
+        return UNI_P;
     }
-
     fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
     while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
         erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);//0= ez erantzun, 1=ondo,2=gaizki
@@ -75,7 +75,6 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
         }
 
     }
-    //denakErantzunda = 0;
     if (erantzunOndoKont > 2) {
         irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
         irudiakMarraztu();
@@ -310,7 +309,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 
         case 4://---oinarri---
             galderaID = 1;
-            while (galderaID <= 4) {
+            while (galderaID <= 5) {
                 switch (galderaID)
                 {
                 case 1:
@@ -342,7 +341,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
                     galdera[gelaID][galderaID].erabilita = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zer etiketa erabili behar da izenburua jartzeko?");
+                    strcpy(galdera[gelaID][galderaID].testua, "HTML-n zer etiketa erabili behar da izenburua jartzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "<head> ... </head>");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "<title> ... </title>");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "<img> ... </img>");
@@ -354,13 +353,27 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
                     galdera[gelaID][galderaID].erabilita = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zer etiketa erabili behar da kodigoa jartzeko?");
+                    strcpy(galdera[gelaID][galderaID].testua, "HTML-n zer etiketa erabili behar da kodigoa jartzeko?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "<strong> ... </strong>");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "<div> ... </div>");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "<script> ... </script>");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "<head> ... <\head>");
 
                     break;
+
+                case 5:
+                    galdera[gelaID][galderaID].gelaID = gelaID;
+                    galdera[gelaID][galderaID].galderaID = galderaID;
+                    galdera[gelaID][galderaID].sartuta = 0;
+                    galdera[gelaID][galderaID].erabilita = 0;
+                    strcpy(galdera[gelaID][galderaID].testua, "Zer lengoaia mota da JavaScript?");
+                    strcpy(galdera[gelaID][galderaID].aukerak.A, "Konpilatutako lengoaia");
+                    strcpy(galdera[gelaID][galderaID].aukerak.B, "Interpretatutako lengoaia"); //ONDO
+                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Bat ere ez");  
+                    strcpy(galdera[gelaID][galderaID].aukerak.D, "Irakurritako lengoaia bat");
+
+                    break;
+
                 default:
                     break;
                 }
@@ -1508,6 +1521,41 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
 
                     break;
 
+
+                case 5:
+                    erantzunda = 2;
+
+                    if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
+                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O5A.bmp"), 30, 490);
+                        irudiakMarraztu();
+                        opzioakAgertu(galdera, gelaID, galderaID, 1);
+                    }
+
+                    else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
+                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O5B.bmp"), 656, 489);
+                        irudiakMarraztu();
+                        opzioakAgertu(galdera, gelaID, galderaID, 2);
+                    }
+
+                    else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
+                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O5C.bmp"), 30, 614);
+                        irudiakMarraztu();
+                        opzioakAgertu(galdera, gelaID, galderaID, 3);
+                        (*exp)++; erantzunda = 1;
+                    }
+
+                    else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
+                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O5D.bmp"), 656, 616);
+                        irudiakMarraztu();
+                        opzioakAgertu(galdera, gelaID, galderaID, 4);
+                    }
+
+                    else {
+                        erantzunda = 0;
+                    }
+
+                    break;
+
                 default:
                     break;
                 }
@@ -2630,27 +2678,21 @@ void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galdera
             if (galdera[gelaID][galderaID].erabilita == 0) {
                 fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
                 erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
-                if (erantzunda != 0) {
+                if (erantzunda == 1) {
                     galdera[gelaID][galderaID].erabilita = 1;
                     Sleep(500);
+                    gelaID++;
+                    galderaID = 1;
+                }
+                else {
                     galderaID++;
-                    if (erantzunda == 1) {
-
-                        galdera[gelaID][galderaID - 1].sartuta = 1;
-                    }
-                    else if (erantzunda == 2) {
-                        galdera[gelaID][galderaID - 1].sartuta = 1;
-                    }
+                }
+                if (galderaID == 6) {
+                    galderaID = 1;
+                    gelaID++;
                 }
             }
-            if (galderaID == 6) {
-                gelaID++;
-                galderaID = 1;
-            }
-            else {
-                galderaID++;
-            }
+            else galderaID++;
         }
     }
-
 }
