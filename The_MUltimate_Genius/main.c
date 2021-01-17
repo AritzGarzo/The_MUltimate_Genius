@@ -449,8 +449,8 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 			printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
 			egoera = JOLASTU_P;
 		}
+		fclose(fitx);
 	}
-	fclose(fitx);
 	return egoera;
 }
 //----------------------------
@@ -546,10 +546,10 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* e
 		}*/
 		if (klik == 9)
 		{
-			if (*egunaKont == 1 && jokalaria->gradua.exp.xp == 10) {
+			if ((*egunaKont == 1||*egunaKont==2) && jokalaria->gradua.exp.xp == 10) {
 				jokalaria->gradua.exp.max=20;
 			}
-			else if (*egunaKont ==2  && jokalaria->gradua.exp.xp == 20) {
+			else if ((*egunaKont == 2||egunaKont==3)  && jokalaria->gradua.exp.xp == 20) {
 				jokalaria->gradua.exp.max = 25;
 			}
 			karga_gif();
@@ -734,9 +734,10 @@ EGOERA gorde(JOKALARIA jokalaria)
 			}
 		}
 		strcpy(str, " ");
+		fclose(fitx);
+
 	}
 	Sleep(2000);
-	fclose(fitx);
 	textuaDesgaitu();
 	pantailaBerriztu();
 	//

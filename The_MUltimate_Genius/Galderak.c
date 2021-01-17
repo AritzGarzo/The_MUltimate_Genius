@@ -34,8 +34,7 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
 {
     int galderaID = 1, erantzunda = 0, denakErantzunda = 0, erantzunOndoKont = 0;
 
-    int ebentu, bukatuta = 0, error = 0;
-    POSIZIOA pos;
+    int bukatuta = 0, error = 0;
 
     jokalaria->gradua.exp.xp = jokalaria->gradua.exp.xp;
     jokalaria->gradua.exp.max = jokalaria->gradua.exp.max;
