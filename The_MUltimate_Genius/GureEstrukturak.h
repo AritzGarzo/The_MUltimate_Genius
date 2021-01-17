@@ -11,6 +11,7 @@
 #define PROFILA_F ".\\img\\profila.bmp"
 #define ETXEA_F ".\\img\\etxea.bmp"
 #define UNI_F ".\\img\\uni.bmp"
+#define EXP_F ".\\img\\exp.bmp"
 //--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
@@ -42,9 +43,6 @@
 #define BUS_20 ".\\img\\GIF\\bus_20.bmp"
 #define BUS_21 ".\\img\\GIF\\bus_21.bmp"
 #define BUS_22 ".\\img\\GIF\\bus_22.bmp"
-	//----------alas----------
-#define ALAS ".\\img\\coza\\alas.bmp"
-#define EXP_F ".\\img\\coza\\exp.bmp"
 
 typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, EXP_P }EGOERA;
 
