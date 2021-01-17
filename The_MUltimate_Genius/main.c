@@ -28,6 +28,11 @@ EGOERA galderak(int orden);
 int fondoPantaila(char* str);
 void warning_abisua(char* str);
 void karga_gif();
+void experientzia_pantaila(JOKALARIA jokalaria);
+void IntStrBihurtu(int n, char str[]);
+void StrBihurtu_nibela(char str[], int nvl);
+void StrBihurtu_exp(char str[], EXP jokalaria);
+void crearCuadro(int x, int y, int luzera, int altuera);
 
 int main(int argc, char* str[])
 {
@@ -362,6 +367,7 @@ EGOERA profila(JOKALARIA* jokalaria)
         {
             if((strcmp(" ", jokalaria->izena) != 0) && (strcmp(" ", jokalaria->gradua.izena) != 0) && (strcmp(" ", jokalaria->irudia.izena) != 0))
             {
+                *jokalaria = pertsonaiaEratu(*jokalaria);
                 egoera = JOLASTU_P;
             }
             else
@@ -522,6 +528,13 @@ EGOERA uni(JOKALARIA* jokalaria)
                 egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
             }
         }
+        //exp
+        if (ebentu == TECLA_i)
+        {
+            experientzia_pantaila(*jokalaria);
+            irudiakMarraztu();
+            pantailaBerriztu();
+        }
     }
     //
     irudiaKendu(fondoa);
@@ -540,6 +553,7 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
         //gradua----------------------------------
     berria.gradua.iKop = 10;
             //exp----------------------------
+    berria.gradua.exp.nvl = 0;
     berria.gradua.exp.xp = 0;
     berria.gradua.exp.max = 10;
         //irudia----------------------------------
@@ -785,8 +799,8 @@ void karga_gif()
 {
     int id, i, j;
     char busa_gif[][128] = {BUS_1, BUS_2, BUS_3, BUS_4, BUS_5, BUS_6, BUS_7, BUS_8, BUS_9, BUS_10, BUS_11, BUS_12, BUS_13, BUS_14, BUS_15, BUS_16, BUS_17, BUS_18, BUS_19, BUS_20, BUS_21, BUS_22 };
-    for (j = 0; j < 3; j++)
-    {
+    //for (j = 0; j < 2; j++)
+    //{
         for (i = 0; i < 22; i++)
         {
             pantailaGarbitu();
@@ -797,5 +811,120 @@ void karga_gif()
             Sleep(50);
             irudiaKendu(id);
         }
+    //}
+}
+
+void experientzia_pantaila(JOKALARIA jokalaria)
+{
+    int ebentu, fondo, luzera;
+    char nibela[128], esperientzia[128], tmp[128];
+    EGOERA egoera;
+    POSIZIOA pos;
+    //
+    egoera = EXP_P;
+    fondo = fondoPantaila(EXP_F);
+    //cargar coza
+        //----irudiak
+    jokalaria.irudia.id = irudiaKargatu(jokalaria.irudia.izena);
+    irudiaMugitu(jokalaria.irudia.id, 168, 142);
+        //----karratua
+    jokalaria.gradua.exp.xp = 7;
+    luzera = (jokalaria.gradua.exp.xp * 466) / jokalaria.gradua.exp.max;//zenbateraino luzatu beharko litzatekeen 
+    irudiakMarraztu();
+    crearCuadro(437, 210, luzera, 74);
+        //----textua
+            //----nibela
+    StrBihurtu_nibela(nibela, jokalaria.gradua.exp.nvl);
+            //----experientzia
+    StrBihurtu_exp(esperientzia, jokalaria.gradua.exp);
+            //---exp
+    textuaGaitu_exp();
+    textuaIdatzi_exp(617, 295, nibela);//nv
+    textuaIdatzi_exp(562, 355, esperientzia);//exp
+    textuaDesgaitu();
+        //----
+    pantailaBerriztu();
+    //
+    while (egoera == EXP_P)
+    {
+        ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == SAGU_BOTOIA_EZKERRA)
+        {
+            pos = saguarenPosizioa();
+            if ((pos.x >= 18 && pos.x <= 18 + 175) && (pos.y >= 650 && pos.y <= 650 + 50))
+            {
+                egoera = UNI_P;
+                irudiaKendu(fondo);
+                irudiaKendu(jokalaria.irudia.id);
+            }
+        }
+    }
+}
+
+void StrBihurtu_nibela(char str[], int nvl)
+{
+    char tmp[128];
+    //
+    IntStrBihurtu(nvl, tmp);
+    strcpy(str, tmp);
+}
+
+void StrBihurtu_exp(char str[], EXP jokalaria)
+{
+    char tmp[128];
+    //
+    IntStrBihurtu(jokalaria.xp, tmp);
+    strcpy(str, tmp);
+        //
+    strcat(str, "/");
+    strcat(str, "\0");
+        //
+    IntStrBihurtu(jokalaria.max, tmp);
+    strcat(str, tmp);
+        //
+    //str[strlen(str)] = '\0';
+    //
+    return str;
+}
+
+void IntStrBihurtu(int n, char str[])
+{
+    int kont, i, kopia;
+    char tmp, c = '0';
+    kopia = n;
+    kont = 0;
+    if (kopia == 0)
+    {
+        str[kont] = c;
+        kont++;
+    }
+    else
+    {
+        while (kopia > 0)
+        {
+            str[kont] = c + (kopia % 10);
+            kopia /= 10;
+            kont++;
+        }
+    }
+    str[kont] = '\0';
+    //itzulbiratu
+    for (i = 0; i < kont / 2; i++)
+    {
+        tmp = str[i];
+        str[i] = str[kont - (i + 1)];
+        str[kont - (i + 1)] = tmp;
+    }
+}
+
+void crearCuadro(int x, int y, int luzera, int altuera)
+{
+    int i;
+    //
+    arkatzKoloreaEzarri(142, 238, 255);
+    //
+    for (i = 0; i < altuera; i++)
+    {
+        zuzenaMarraztu(x, y + i, x + luzera, y + i);
     }
 }
