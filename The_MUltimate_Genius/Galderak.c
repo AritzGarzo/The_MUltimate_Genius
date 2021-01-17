@@ -30,23 +30,20 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     pantailaBerriztu();
 }
 
-int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna)
+int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* eguna)
 {
     int galderaID = 1, erantzunda = 0, denakErantzunda = 0, erantzunOndoKont = 0;
 
     int ebentu, bukatuta = 0, error = 0;
-    static char esaldia[16] = "";
     POSIZIOA pos;
 
     jokalaria->gradua.exp.xp = jokalaria->gradua.exp.xp;
     jokalaria->gradua.exp.max = jokalaria->gradua.exp.max;
 
-
-
-    if (eguna == 2) {
+    if (*eguna == 2) {
         galderaID = 3;
     }
-    if (eguna == 3) {
+    if (*eguna == 3) {
         azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp));
         return UNI_P;
     }

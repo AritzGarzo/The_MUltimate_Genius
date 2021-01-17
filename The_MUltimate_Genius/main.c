@@ -26,8 +26,8 @@ EGOERA jolastu(JOKALARIA* jokalaria);
 EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
 EGOERA kargatu(JOKALARIA* jokalaria);
-EGOERA etxea(JOKALARIA* jokalaria);
-EGOERA uni(JOKALARIA* jokalaria);
+EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont);
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -138,7 +138,8 @@ EGOERA menua(void)
 //--------------------------------
 EGOERA jolastu(JOKALARIA* jokalaria)
 {
-	static int egunKont = 1;
+	 int egunaKont = 1;
+	 int* ptrEgunaKont=&egunaKont;
 
 	jokalaria->gradua.exp.xp = 0;
 	jokalaria->gradua.exp.max = 10;
@@ -162,12 +163,12 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 	{
 		if (egoera == ETXEA_P)
 		{
-			egoera = etxea(jokalaria,galdera);
+			egoera = etxea(jokalaria,ptrEgunaKont);
 		}
 		if (egoera == UNI_P)
 		{
-			egoera = uni(jokalaria,galdera);
-			egunKont++;
+			egoera = uni(jokalaria,galdera,ptrEgunaKont);
+
 		}
 	}
 	//
@@ -453,12 +454,11 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 	return egoera;
 }
 //----------------------------
-EGOERA etxea(JOKALARIA* jokalaria)
+EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont)
 {
 	int fondoa, jarraitu = 0, ebentu = 0, klik = 0;
 	POSIZIOA pos, pos_jokalaria;
 	EGOERA egoera;
-
 
 	pos_jokalaria.x = 1150;
 	pos_jokalaria.y = 180;
@@ -467,9 +467,6 @@ EGOERA etxea(JOKALARIA* jokalaria)
 	egoera = ETXEA_P;
 	KargatuMapa(MAPEO_GELA, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(ETXEA_F);
-
-
-
 
 	//
 	while (egoera == ETXEA_P)//etxea den bitartean
@@ -492,6 +489,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
 		if (klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
 		{
 			egoera = gorde(*jokalaria);
+			(*egunaKont)++;
 		}
 
 	}
@@ -501,9 +499,8 @@ EGOERA etxea(JOKALARIA* jokalaria)
 	return egoera;
 }
 
-EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
+EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont)
 {
-	static int egunaKont = 1;
 	int fondoa, jarraitu = 1, ebentu = 0, klik = 0;
 	EGOERA egoera;
 	POSIZIOA pos, pos_jokalaria;
@@ -552,7 +549,6 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 		if (klik == 9)
 		{
 			karga_gif();
-			egunaKont++;
 			egoera = ETXEA_P;
 		}
 	}
