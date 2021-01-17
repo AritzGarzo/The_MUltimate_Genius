@@ -58,7 +58,7 @@
 
 #define MATE_GALDERA_1 ".\\galderak\\mate\\galdera1.txt"
 #define MATE_GALDERA_2 ".\\galderak\\mate\\galdera2.txt"
-#define MATE_GALDERA_3 ".\\galderak\\mate\\galdera3txt"
+#define MATE_GALDERA_3 ".\\galderak\\mate\\galdera3.txt"
 #define MATE_GALDERA_4 ".\\galderak\\mate\\galdera4.txt"
 #define MATE_GALDERA_5 ".\\galderak\\mate\\galdera5.txt"
 
@@ -72,6 +72,7 @@
 #define OINARRI_GALDERA2 ".\\galderak\\oinarri\\galdera2.txt"
 #define OINARRI_GALDERA_3 ".\\galderak\\oinarri\\galdera3.txt"
 #define OINARRI_GALDERA_4 ".\\galderak\\oinarri\\galdera4.txt"
+#define OINARRI_GALDERA_5 ".\\galderak\\oinarri\\galdera5.txt"
 
 #define REDES_GALDERA_1 ".\\galderak\\redes\\galdera1.txt"
 #define REDES_GALDERA_2 ".\\galderak\\redes\\galdera2.txt"
@@ -139,6 +140,7 @@ typedef struct S_HITBOX
 }HITBOX;
 typedef struct exp
 {
+	int nvl;
 	int xp;//galderekin irabazi duen 
 	int max;//ikasgaiKop*20
 }EXP;

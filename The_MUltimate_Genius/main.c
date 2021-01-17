@@ -390,6 +390,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 		{
 			if ((strcmp(" ", jokalaria->izena) != 0) && (strcmp(" ", jokalaria->gradua.izena) != 0) && (strcmp(" ", jokalaria->irudia.izena) != 0))
 			{
+				*jokalaria = pertsonaiaEratu(*jokalaria);
 				egoera = JOLASTU_P;
 			}
 			else
@@ -571,7 +572,10 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	berria.urtea = 1;
 	//gradua----------------------------------
 	berria.gradua.iKop = 10;
-	//ikasgaia----------------------------
+	//EXP----------------------------
+	berria.gradua.exp.nvl = 0;
+	berria.gradua.exp.max = 10;
+	berria.gradua.exp.xp = 0;
 	//irudia----------------------------------
 		//id----------------------------------
 //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
@@ -588,9 +592,6 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	{
 		strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
 	}
-	//pos---------------------------------
-
-	//
 	return berria;
 }
 
@@ -1037,7 +1038,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 		GALDERA_NULL,PROGRAM_GALDERA_1,PROGRAM_GALDERA_2,PROGRAM_GALDERA_3,PROGRAM_GALDERA_4,PROGRAM_GALDERA_5,
 		GALDERA_NULL,MATE_GALDERA_1,MATE_GALDERA_2,MATE_GALDERA_3,MATE_GALDERA_4,MATE_GALDERA_5,
 		GALDERA_NULL,FISIKA_GALDERA_1,FISIKA_GALDERA_2,FISIKA_GALDERA_3,FISIKA_GALDERA_4,FISIKA_GALDERA_5,
-		GALDERA_NULL,OINARRI_GALDERA1,OINARRI_GALDERA2,OINARRI_GALDERA_3,OINARRI_GALDERA_4,GALDERA_NULL,
+		GALDERA_NULL,OINARRI_GALDERA1,OINARRI_GALDERA2,OINARRI_GALDERA_3,OINARRI_GALDERA_4,OINARRI_GALDERA_5,
 		GALDERA_NULL,REDES_GALDERA_1,REDES_GALDERA_2,REDES_GALDERA_3,REDES_GALDERA_4,REDES_GALDERA_5,
 		GALDERA_NULL,PROGRAM_II_GALDERA_1,PROGRAM_II_GALDERA_2,PROGRAM_II_GALDERA_3,PROGRAM_II_GALDERA_4,PROGRAM_II_GALDERA_1,
 		GALDERA_NULL,MATE_II_GALDERA_1,MATE_II_GALDERA_2,MATE_II_GALDERA_3,MATE_II_GALDERA_4,MATE_II_GALDERA_5,
@@ -1053,9 +1054,9 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 
 		fitx = fopen(galderak[fitxategiKont], "r");
 
-		if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 23 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
+		if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
 
-		if (fitx == NULL) {
+		else if (fitx == NULL) {
 			printf("Errorea galderen fitxategia irakurtzerako orduan\n");
 			return error = 1;
 		}
@@ -1064,6 +1065,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 			galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
 			galdera[gelaIDKont][galderaIDKont].galderaID = galderaIDKont;
 			galdera[gelaIDKont][galderaIDKont].sartuta = 0;
+			galdera[gelaIDKont][galderaIDKont].erabilita = 0;
 			fgets(galdera[gelaIDKont][galderaIDKont].testua, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 128, fitx);
