@@ -477,8 +477,6 @@ EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont)
 
 		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
 
-
-
 		//(busa)itzultzerakoan unibertsitatera bidaltzeko
 		if (klik == 1)   //(pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
 		{
@@ -548,6 +546,12 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* e
 		}*/
 		if (klik == 9)
 		{
+			if (*egunaKont == 1 && jokalaria->gradua.exp.xp == 10) {
+				jokalaria->gradua.exp.max=20;
+			}
+			else if (*egunaKont ==2  && jokalaria->gradua.exp.xp == 20) {
+				jokalaria->gradua.exp.max = 25;
+			}
 			karga_gif();
 			egoera = ETXEA_P;
 		}

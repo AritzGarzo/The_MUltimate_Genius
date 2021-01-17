@@ -49,7 +49,7 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
     }
     fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
     while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
-        erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera);//0= ez erantzun, 1=ondo,2=gaizki
+        erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera,eguna);//0= ez erantzun, 1=ondo,2=gaizki
         if (erantzunda != 0 && erantzunOndoKont < 2) {
             galdera[gelaID][galderaID].erabilita = 1;
             Sleep(500);
@@ -72,6 +72,8 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
         }
 
     }
+
+    
     if (erantzunOndoKont > 2) {
         irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
         irudiakMarraztu();
@@ -818,7 +820,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
     }
 }
 
-int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
+int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX],int* eguna) {
 
     POSIZIOA pos;
     int ebentu = 0, erantzunda = 0;
@@ -2624,7 +2626,9 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
     if (erantzunda == 1 || erantzunda == 2) {
         pantailaBerriztu();
     }
-
+    if (*eguna == 2 && (*exp) > 10) {
+        (*exp) = 10;
+    }
     return erantzunda;
 }
 
@@ -2674,7 +2678,7 @@ void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galdera
         while (galderaID <= 5) {
             if (galdera[gelaID][galderaID].erabilita == 0) {
                 fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
-                erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera);
+                erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera,0);
                 if (erantzunda == 1) {
                     galdera[gelaID][galderaID].erabilita = 1;
                     Sleep(500);
