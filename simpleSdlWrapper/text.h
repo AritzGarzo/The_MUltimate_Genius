@@ -10,4 +10,6 @@ void textuaGaitu_profila(void);
 void textuaIdatzi(int x, int y, char *str);
 void textuaDesgaitu(void);
 void textuaGaldera(int koordenatuX, int koordenatuY, int limiteaX, char* esaldia);
+void textuaGaitu_exp(void);
+void textuaIdatzi_exp(int x, int y, char* str);
 #endif

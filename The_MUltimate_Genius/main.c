@@ -27,8 +27,8 @@ EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
 EGOERA azalpena(void);
 EGOERA kargatu(JOKALARIA* jokalaria);
-EGOERA etxea(JOKALARIA* jokalaria);
-EGOERA uni(JOKALARIA* jokalaria);
+EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont);
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -38,6 +38,11 @@ int fondoPantaila(char* str);
 void warning_abisua(char* str);
 void karga_gif();
 int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+void experientzia_pantaila(JOKALARIA jokalaria);
+void IntStrBihurtu(int n, char str[]);
+void StrBihurtu_nibela(char str[], int nvl);
+void StrBihurtu_exp(char str[], EXP jokalaria);
+void crearCuadro(int x, int y, int luzera, int altuera);
 
 
 int main(int argc, char* str[])
@@ -140,22 +145,35 @@ EGOERA menua(void)
 //--------------------------------
 EGOERA jolastu(JOKALARIA* jokalaria)
 {
+	int egunaKont = 1;
+	int* ptrEgunaKont = &egunaKont;
+
+	jokalaria->gradua.exp.xp = 0;
+	jokalaria->gradua.exp.max = 10;
 	//int jarraitu;
 	EGOERA egoera;
 	//
 	egoera = ETXEA_P;
 	//jarraitu = 1;
 	//
+	int error = 0;
 
+	GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
+
+	error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
+	if (error == 1)
+	{
+		galderakEtaEurenAukerakSortu(galdera);
+	}
 	while (egoera == ETXEA_P || egoera == UNI_P)
 	{
 		if (egoera == ETXEA_P)
 		{
-			egoera = etxea(jokalaria);
+			egoera = etxea(jokalaria, ptrEgunaKont);
 		}
 		if (egoera == UNI_P)
 		{
-			egoera = uni(jokalaria);
+			egoera = uni(jokalaria, galdera, ptrEgunaKont);
 		}
 	}
 	//
@@ -379,6 +397,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 		{
 			if ((strcmp(" ", jokalaria->izena) != 0) && (strcmp(" ", jokalaria->gradua.izena) != 0) && (strcmp(" ", jokalaria->irudia.izena) != 0))
 			{
+				*jokalaria = pertsonaiaEratu(*jokalaria);
 				egoera = JOLASTU_P;
 			}
 			else
@@ -459,7 +478,7 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 	return egoera;
 }
 //----------------------------
-EGOERA etxea(JOKALARIA* jokalaria)
+EGOERA etxea(JOKALARIA* jokalaria, int* Egunakont)
 {
 	int fondoa, jarraitu = 0, ebentu = 0, klik = 0;
 	POSIZIOA pos, pos_jokalaria;
@@ -498,6 +517,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
 		if (klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
 		{
 			egoera = gorde(*jokalaria);
+			(*Egunakont)++;
 		}
 
 	}
@@ -507,7 +527,7 @@ EGOERA etxea(JOKALARIA* jokalaria)
 	return egoera;
 }
 
-EGOERA uni(JOKALARIA* jokalaria)
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont)
 {
 	int fondoa, jarraitu = 1, ebentu = 0, klik = 0;
 	EGOERA egoera;
@@ -521,42 +541,49 @@ EGOERA uni(JOKALARIA* jokalaria)
 	egoera = UNI_P;
 	KargatuMapa(MAPEO_UNI, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(UNI_F);
-	
+
 	//
 	while (egoera == UNI_P)//unibertsitatea den bitartean
 	{
 
 		ebentu = ebentuaJasoGertatuBada();
-		
+
 		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
-		
+
 
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
-			egoera = galderak(3);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(3, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 8)
 		{
+			if ((*egunaKont == 1 || *egunaKont == 2) && jokalaria->gradua.exp.xp == 10) {
+				jokalaria->gradua.exp.max = 20;
+			}
+			else if ((*egunaKont == 2 || *egunaKont == 3) && jokalaria->gradua.exp.xp == 20) {
+				jokalaria->gradua.exp.max = 25;
+			}
 			karga_gif();
 			egoera = ETXEA_P;
 		}
+
 
 	}
 	//
@@ -568,7 +595,6 @@ EGOERA uni(JOKALARIA* jokalaria)
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 {
 	JOKALARIA berria;
-	IKASGAI iBerria;
 	//
 	berria = jokalaria;
 	//
@@ -576,9 +602,10 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	berria.urtea = 1;
 	//gradua----------------------------------
 	berria.gradua.iKop = 10;
-	//ikasgaia----------------------------
-	iBerria.notaFinala = 0;
-	berria.gradua.ikasgaiak = &iBerria;
+	//exp----------------------------
+	berria.gradua.exp.nvl = 0;
+	berria.gradua.exp.xp = 0;
+	berria.gradua.exp.max = 10;
 	//irudia----------------------------------
 		//id----------------------------------
 //berria.irudia.id = irudiaKargatu(berria.irudia.izena); //behar denean kargatuko da
@@ -597,10 +624,7 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	}
 	//pos---------------------------------
 
-//exp-------------------------------------
-	berria.exp.xp = 0;
-	berria.exp.max = berria.gradua.iKop * 20;
-	//
+//
 	return berria;
 }
 
@@ -778,11 +802,11 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		sprite.irudia2d.id = spriteKargatu(sprite.irudia2d.izena);
 	}
 	x = 0; y = 0;
-	
+
 	pos.x = 1150;
 	pos.y = 210;
-	
-	
+
+
 
 
 	while (mugi == 10)
@@ -798,10 +822,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 		{
 		case TECLA_s:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
-			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Goikoa %d\n", hitbox.goikoa);
-			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
-			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+
 			if (hitbox.behekoa.ezker == BELTZA)
 			{
 				pos.y = pos.y;
@@ -832,10 +853,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			}
 		case TECLA_w:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
-			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Goikoa %d\n", hitbox.goikoa);
-			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
-			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+
 			if (hitbox.goikoa == BELTZA)
 			{
 				pos.y = pos.y;
@@ -866,10 +884,10 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			}
 		case TECLA_d:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
-			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Goikoa %d\n", hitbox.goikoa);
-			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
-			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
+			if ((pos.x >= 430 && pos.x <= 671) && (pos.y >= 50 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
+			{
+				warning_abisua(ABISUA_UNI);
+			}
 			if (hitbox.eskuin.erdikoa == BELTZA || hitbox.eskuin.erdikoa == HORIA)
 			{
 				pos.x = pos.x;
@@ -897,12 +915,17 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 				break;
 			}
+		case TECLA_i:
+		{
+			experientzia_pantaila(sprite);
+			irudiakMarraztu();
+			pantailaBerriztu();
+		}
+		break;
+
+
 		case TECLA_a:
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
-			printf("Behekoa: %d\n", hitbox.behekoa.ezker);
-			printf("Goikoa %d\n", hitbox.goikoa);
-			printf("Ezkerra %d\n", hitbox.ezker.erdikoa);
-			printf("Eskuina %d\n", hitbox.eskuin.erdikoa);
 			if (hitbox.ezker.erdikoa == BELTZA || hitbox.ezker.erdikoa == HORIA)
 			{
 				pos.x = pos.x;
@@ -949,7 +972,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			}
 			if (egoera == UNI_P)
 			{
-				if ((pos.x >= 0 && pos.x <= 187) && (pos.y >= 188 && pos.y <= 248) && ((hitbox.ezker.erdikoa == HORIA)|| (hitbox.eskuin.erdikoa == HORIA)))
+				if ((pos.x >= 0 && pos.x <= 187) && (pos.y >= 188 && pos.y <= 248) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 3;
@@ -978,10 +1001,6 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 					spriteKendu(sprite.irudia2d.id);
 					mugi = 7;
-				}
-				if ((pos.x >= 430 && pos.x <= 671) && (pos.y >= 50 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
-				{
-					warning_abisua(ABISUA_UNI);
 				}
 				if ((pos.x >= 715 && pos.x <= 960) && (pos.y >= 64 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 				{
@@ -1051,7 +1070,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 		GALDERA_NULL,PROGRAM_GALDERA_1,PROGRAM_GALDERA_2,PROGRAM_GALDERA_3,PROGRAM_GALDERA_4,PROGRAM_GALDERA_5,
 		GALDERA_NULL,MATE_GALDERA_1,MATE_GALDERA_2,MATE_GALDERA_3,MATE_GALDERA_4,MATE_GALDERA_5,
 		GALDERA_NULL,FISIKA_GALDERA_1,FISIKA_GALDERA_2,FISIKA_GALDERA_3,FISIKA_GALDERA_4,FISIKA_GALDERA_5,
-		GALDERA_NULL,OINARRI_GALDERA1,OINARRI_GALDERA2,OINARRI_GALDERA_3,OINARRI_GALDERA_4,GALDERA_NULL,
+		GALDERA_NULL,OINARRI_GALDERA1,OINARRI_GALDERA2,OINARRI_GALDERA_3,OINARRI_GALDERA_4,OINARRI_GALDERA_5,
 		GALDERA_NULL,REDES_GALDERA_1,REDES_GALDERA_2,REDES_GALDERA_3,REDES_GALDERA_4,REDES_GALDERA_5,
 		GALDERA_NULL,PROGRAM_II_GALDERA_1,PROGRAM_II_GALDERA_2,PROGRAM_II_GALDERA_3,PROGRAM_II_GALDERA_4,PROGRAM_II_GALDERA_1,
 		GALDERA_NULL,MATE_II_GALDERA_1,MATE_II_GALDERA_2,MATE_II_GALDERA_3,MATE_II_GALDERA_4,MATE_II_GALDERA_5,
@@ -1077,6 +1096,8 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 		else {
 			galdera[gelaIDKont][galderaIDKont].gelaID = gelaIDKont;
 			galdera[gelaIDKont][galderaIDKont].galderaID = galderaIDKont;
+			galdera[gelaIDKont][galderaIDKont].sartuta = 0;
+			galdera[gelaIDKont][galderaIDKont].erabilita = 0;
 			fgets(galdera[gelaIDKont][galderaIDKont].testua, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.A, 128, fitx);
 			fgets(galdera[gelaIDKont][galderaIDKont].aukerak.B, 128, fitx);
@@ -1103,4 +1124,117 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 
 	}
 	return error;
+}
+void experientzia_pantaila(JOKALARIA jokalaria)
+{
+	int ebentu, fondo, luzera;
+	char nibela[128], esperientzia[128], tmp[128];
+	EGOERA egoera;
+	POSIZIOA pos;
+	//
+	egoera = EXP_P;
+	fondo = fondoPantaila(EXP_F);
+	//cargar coza
+		//----irudiak
+	jokalaria.irudia.id = irudiaKargatu(jokalaria.irudia.izena);
+	irudiaMugitu(jokalaria.irudia.id, 168, 142);
+	//----karratua
+	luzera = (jokalaria.gradua.exp.xp * 466) / jokalaria.gradua.exp.max;//zenbateraino luzatu beharko litzatekeen 
+	irudiakMarraztu();
+	crearCuadro(437, 210, luzera, 74);
+	//----textua
+		//----nibela
+	StrBihurtu_nibela(nibela, jokalaria.gradua.exp.nvl);
+	//----experientzia
+	StrBihurtu_exp(esperientzia, jokalaria.gradua.exp);
+	//---exp
+	textuaGaitu_exp();
+	textuaIdatzi_exp(617, 295, nibela);//nv
+	textuaIdatzi_exp(562, 355, esperientzia);//exp
+	textuaDesgaitu();
+	//----
+	pantailaBerriztu();
+	//
+	while (egoera == EXP_P)
+	{
+		ebentu = ebentuaJasoGertatuBada();
+		if (ebentu == SAGU_BOTOIA_EZKERRA)
+		{
+			pos = saguarenPosizioa();
+			if ((pos.x >= 18 && pos.x <= 18 + 175) && (pos.y >= 650 && pos.y <= 650 + 50))
+			{
+				egoera = UNI_P;
+				irudiaKendu(fondo);
+				irudiaKendu(jokalaria.irudia.id);
+			}
+		}
+	}
+}
+
+void StrBihurtu_nibela(char str[], int nvl)
+{
+	char tmp[128];
+	//
+	IntStrBihurtu(nvl, tmp);
+	strcpy(str, tmp);
+}
+
+void StrBihurtu_exp(char str[], EXP jokalaria)
+{
+	char tmp[128];
+	//
+	IntStrBihurtu(jokalaria.xp, tmp);
+	strcpy(str, tmp);
+	//
+	strcat(str, "/");
+	strcat(str, "\0");
+	//
+	IntStrBihurtu(jokalaria.max, tmp);
+	strcat(str, tmp);
+	//
+//str[strlen(str)] = '\0';
+//
+	return str;
+}
+
+void IntStrBihurtu(int n, char str[])
+{
+	int kont, i, kopia;
+	char tmp, c = '0';
+	kopia = n;
+	kont = 0;
+	if (kopia == 0)
+	{
+		str[kont] = c;
+		kont++;
+	}
+	else
+	{
+		while (kopia > 0)
+		{
+			str[kont] = c + (kopia % 10);
+			kopia /= 10;
+			kont++;
+		}
+	}
+	str[kont] = '\0';
+	//itzulbiratu
+	for (i = 0; i < kont / 2; i++)
+	{
+		tmp = str[i];
+		str[i] = str[kont - (i + 1)];
+		str[kont - (i + 1)] = tmp;
+	}
+}
+
+void crearCuadro(int x, int y, int luzera, int altuera)
+{
+	int i;
+	//
+	arkatzKoloreaEzarri(142, 238, 255);
+	//
+	for (i = 0; i < altuera; i++)
+	{
+		zuzenaMarraztu(x, y + i, x + luzera, y + i);
+	}
 }

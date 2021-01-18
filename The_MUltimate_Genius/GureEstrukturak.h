@@ -17,6 +17,7 @@
 #define AZALPENA_F ".\\img\\azalpena.bmp"
 #define ETXEA_F ".\\img\\etxea.bmp"
 #define UNI_F ".\\img\\uni.bmp"
+#define EXP_F ".\\img\\exp.bmp"
 //--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
@@ -74,6 +75,7 @@
 #define OINARRI_GALDERA2 ".\\galderak\\oinarri\\galdera2.txt"
 #define OINARRI_GALDERA_3 ".\\galderak\\oinarri\\galdera3.txt"
 #define OINARRI_GALDERA_4 ".\\galderak\\oinarri\\galdera4.txt"
+#define OINARRI_GALDERA_5 ".\\galderak\\oinarri\\galdera5.txt"
 
 #define REDES_GALDERA_1 ".\\galderak\\redes\\galdera1.txt"
 #define REDES_GALDERA_2 ".\\galderak\\redes\\galdera2.txt"
@@ -112,7 +114,7 @@
 #define EMPRESA_GALDERA_5 ".\\galderak\\empresa\\galdera5.txt"
 
 
-typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P }EGOERA;
+typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P, EXP_P }EGOERA;
 typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 127, MOREA = 253, URDINA = 252 }KOLOREAK;
 
 typedef struct S_POSIZIOA
@@ -141,30 +143,16 @@ typedef struct S_HITBOX
 }HITBOX;
 typedef struct exp
 {
+	int nvl;
 	int xp;//galderekin irabazi duen 
 	int max;//ikasgaiKop*20
 }EXP;
-
-typedef struct ikasgai
-{
-	float notaFinala;
-	char izena[128];
-	char karpeta[128];
-	/*
-	* GALDERAK ETA
-	* separar por carpetas
-	* cada carpeta tenga el nombre de la asignatura
-	* dentro pregunta y su respuesta
-	* aparece pregunta y jugador decide (click)coordenadas
-	*/
-
-}IKASGAI;
 
 typedef struct gradua
 {
 	int iKop;//ikasgai 
 	char izena[128];
-	IKASGAI* ikasgaiak;
+	EXP exp;
 }GRADUA;
 
 typedef struct irudia
@@ -184,7 +172,6 @@ typedef struct jokalaria
 	IRUDIA irudia;//irudia (las preguntas)
 	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	GRADUA gradua;
-	EXP exp;
 }JOKALARIA;
 
 
@@ -203,6 +190,7 @@ typedef struct galdera {
 	char testua[MAX];
 	OPZIOAK aukerak;//swicth erabili aukeratzeko
 	int erabilita;
+	int sartuta;
 
 }GALDERA;
 
