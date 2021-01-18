@@ -549,7 +549,7 @@ EGOERA uni(JOKALARIA* jokalaria,GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* e
 			if ((*egunaKont == 1||*egunaKont==2) && jokalaria->gradua.exp.xp == 10) {
 				jokalaria->gradua.exp.max=20;
 			}
-			else if ((*egunaKont == 2||egunaKont==3)  && jokalaria->gradua.exp.xp == 20) {
+			else if ((*egunaKont == 2||*egunaKont==3)  && jokalaria->gradua.exp.xp == 20) {
 				jokalaria->gradua.exp.max = 25;
 			}
 			karga_gif();

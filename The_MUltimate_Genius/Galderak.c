@@ -12,6 +12,9 @@
 #include<time.h>
 #include"Galderak.h"
 
+int fondoPantaila(char* str);
+
+
 void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
     int id;
