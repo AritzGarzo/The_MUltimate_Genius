@@ -27,8 +27,8 @@ EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
 EGOERA azalpena(void);
 EGOERA kargatu(JOKALARIA* jokalaria);
-EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont);
-EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont);
+EGOERA etxea(JOKALARIA* jokalaria);
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -709,15 +709,11 @@ EGOERA gorde(JOKALARIA jokalaria)
 			pantailaBerriztu();
 			textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (Bai/Ez)");
 			//
-			while (strcmp(str, "BAI") != 0 && strcmp(str, "EZ") != 0)
+			while (strcmp(str, "B") != 0 && strcmp(str, "E") != 0)
 			{
 				ebentu = ebentuaJasoGertatuBada();
 				switch (ebentu)
 				{
-				case TECLA_a:
-					if (!strcmp(str, " ")) strcpy(str, "A");
-					else strcat(str, "A");
-					break;
 				case TECLA_b:
 					if (!strcmp(str, " ")) strcpy(str, "B");
 					else strcat(str, "B");
@@ -726,33 +722,25 @@ EGOERA gorde(JOKALARIA jokalaria)
 					if (!strcmp(str, " ")) strcpy(str, "E");
 					else strcat(str, "E");
 					break;
-				case TECLA_i:
-					if (!strcmp(str, " ")) strcpy(str, "I");
-					else strcat(str, "I");
-					break;
-				case TECLA_z:
-					if (!strcmp(str, " ")) strcpy(str, "Z");
-					else strcat(str, "Z");
-					break;
 				default:
 					break;
 				}
 				textuaIdatzi_beltza(10, 80, str);
 				pantailaBerriztu();
 			}
-			if (strcmp(str, "BAI") == 0)
+			if (strcmp(str, "B") == 0)
 			{
 				egoera = ETXEA_P;
 			}
-			if (strcmp(str, "EZ") == 0)
+			if (strcmp(str, "E") == 0)
 			{
 				egoera = MENUA_P;
 			}
 		}
 		strcpy(str, " ");
+		fclose(fitx);
 	}
 	Sleep(2000);
-	fclose(fitx);
 	textuaDesgaitu();
 	pantailaBerriztu();
 	//
