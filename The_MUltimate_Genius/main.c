@@ -32,7 +32,7 @@ void experientzia_pantaila(JOKALARIA jokalaria);
 void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], EXP jokalaria);
-void crearCuadro(int x, int y, int luzera, int altuera);
+void laukizuzenaMarraztu_beteta(int x, int y, int luzera, int altuera);
 
 int main(int argc, char* str[])
 {
@@ -340,13 +340,15 @@ EGOERA profila(JOKALARIA* jokalaria)
             aldaketa = 1;
         }
         //si clicka en gradua le aparece una especie de lista
-        /*if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88)))
+        if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 348 && pos.y <= 348 + 88)))
         {
-            crearLista(tmpGradua);
+            strcpy(tmpGradua, "Informatika");
+            strcpy(jokalaria->gradua.izena, tmpGradua);
+            /*crearLista(tmpGradua);
             strcpy((*jokalaria).gradua.izena, tmpGradua);
-            fondoa = fondoPantaila(PROFILA_F);
+            fondoa = fondoPantaila(PROFILA_F);*/
             aldaketa = 1;
-        }*/
+        }
         //si clicka en una imagen se marca/ilumina
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 932 && pos.x <= 932 + 147) && (pos.y >= 185 && pos.y <= 185 + 133)))//mutila
         {
@@ -713,7 +715,7 @@ EGOERA gorde(JOKALARIA jokalaria)
     //
     return egoera;
 }
-            
+
 EGOERA galderak(int orden)
 {
     int fondoa, irakaslea = 0, jarraitu = 1, ebentu = 0;
@@ -828,10 +830,9 @@ void experientzia_pantaila(JOKALARIA jokalaria)
     jokalaria.irudia.id = irudiaKargatu(jokalaria.irudia.izena);
     irudiaMugitu(jokalaria.irudia.id, 168, 142);
         //----karratua
-    jokalaria.gradua.exp.xp = 7;
     luzera = (jokalaria.gradua.exp.xp * 466) / jokalaria.gradua.exp.max;//zenbateraino luzatu beharko litzatekeen 
     irudiakMarraztu();
-    crearCuadro(437, 210, luzera, 74);
+    laukizuzenaMarraztu_beteta(437, 210, luzera, 74);
         //----textua
             //----nibela
     StrBihurtu_nibela(nibela, jokalaria.gradua.exp.nvl);
@@ -917,7 +918,7 @@ void IntStrBihurtu(int n, char str[])
     }
 }
 
-void crearCuadro(int x, int y, int luzera, int altuera)
+void laukizuzenaMarraztu_beteta(int x, int y, int luzera, int altuera)
 {
     int i;
     //
