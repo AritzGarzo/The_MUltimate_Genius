@@ -195,6 +195,4 @@ typedef struct galdera {
 }GALDERA;
 
 
-
-
 #endif

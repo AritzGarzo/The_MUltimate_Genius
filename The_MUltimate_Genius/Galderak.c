@@ -46,9 +46,10 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
         galderaID = 3;
     }
     if (*eguna == 3) {
-        azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp));
+        azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp),eguna);
         return UNI_P;
     }
+
     fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
     while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
         erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera,eguna);//0= ez erantzun, 1=ondo,2=gaizki
@@ -2628,8 +2629,8 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
     if (erantzunda == 1 || erantzunda == 2) {
         pantailaBerriztu();
     }
-    if (*eguna == 2 && (*exp) > 10) {
-        (*exp) = 10;
+    if (*eguna == 2 && *exp > 10) {
+        *exp = 10;
     }
     return erantzunda;
 }
@@ -2672,30 +2673,25 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     }
 }
 
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp) {
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp,  int* eguna) {
 
     int erantzunda = 0;
 
-    while (gelaID <= 5) {
-        while (galderaID <= 5) {
-            if (galdera[gelaID][galderaID].erabilita == 0) {
-                fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
-                erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera,0);
-                if (erantzunda == 1) {
-                    galdera[gelaID][galderaID].erabilita = 1;
-                    Sleep(500);
-                    gelaID++;
-                    galderaID = 1;
-                }
-                else {
-                    galderaID++;
-                }
-                if (galderaID == 6) {
-                    galderaID = 1;
-                    gelaID++;
-                }
+    while (galderaID <= 5 && gelaID <= 5) {
+        if (galdera[gelaID][galderaID].erabilita == 0) {
+            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera, eguna);
+            if (erantzunda != 0) {
+                galdera[gelaID][galderaID].erabilita = 1;
+                Sleep(500);
+                gelaID++;
             }
-            else galderaID++;
+
         }
+        else if (galderaID == 6) {
+            gelaID++;
+            galderaID = 1;
+        }
+        else galderaID++;
     }
 }

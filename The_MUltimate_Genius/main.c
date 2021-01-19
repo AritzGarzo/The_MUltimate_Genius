@@ -145,15 +145,13 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 	jokalaria->gradua.exp.max = 10;
 
 	int error = 0;
-	//int jarraitu;
 	EGOERA egoera;
-	//
-	egoera = ETXEA_P;
-	//jarraitu = 1;
-	//
 	GALDERA galdera[GELAIDMAX][GALDERAIDMAX];
 
+	egoera = ETXEA_P;
+
 	error = galderakEtaAukerakLotuFitxategiarenBitartez(galdera);
+	error = 1;
 	if (error == 1)
 	{
 		galderakEtaEurenAukerakSortu(galdera);
