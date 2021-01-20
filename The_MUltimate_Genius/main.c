@@ -43,7 +43,6 @@ void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], EXP jokalaria);
 void crearCuadro(int x, int y, int luzera, int altuera);
-EGOERA multi(JOKALARIA* jokalaria);
 
 
 int main(int argc, char* str[])
@@ -59,10 +58,6 @@ int main(int argc, char* str[])
 		do
 		{
 			egoera = menua();
-			if (egoera == MULTI_P)
-			{
-				egoera = multi(&jokalaria);
-			}
 			if (egoera == PROFILA_P)
 			{
 				egoera = profila(&jokalaria);
@@ -1218,28 +1213,4 @@ void crearCuadro(int x, int y, int luzera, int altuera)
 	{
 		zuzenaMarraztu(x, y + i, x + luzera, y + i);
 	}
-}
-
-EGOERA multi(JOKALARIA* jokalaria)
-{
-	int fondoa, ebentu;
-	POSIZIOA pos;
-	EGOERA egoera;
-	//
-	egoera = MULTI_P;
-	fondoa = fondoPantaila(MULTI_F);
-	//
-	while (egoera == MULTI_P)
-	{
-		ebentu = ebentuaJasoGertatuBada();
-		pos = saguarenPosizioa();
-		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 950 && pos.x < 1104) && (pos.y > 668 && pos.y < 716)))
-		{
-			egoera = MENUA_P;//irten (bat atzera)
-		}
-	}
-	//
-	irudiaKendu(fondoa);
-	//
-	return egoera;
 }

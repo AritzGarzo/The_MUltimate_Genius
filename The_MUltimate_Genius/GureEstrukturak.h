@@ -18,7 +18,6 @@
 #define ETXEA_F ".\\img\\etxea.bmp"
 #define UNI_F ".\\img\\uni.bmp"
 #define EXP_F ".\\img\\exp.bmp"
-#define MULTI_F ".\\img\\multi.bmp"
 //--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
@@ -115,7 +114,7 @@
 #define EMPRESA_GALDERA_5 ".\\galderak\\empresa\\galdera5.txt"
 
 
-typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P, EXP_P, MULTI_P }EGOERA;
+typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P, EXP_P }EGOERA;
 typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 127, MOREA = 253, URDINA = 252 }KOLOREAK;
 
 typedef struct S_POSIZIOA
