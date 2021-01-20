@@ -29,6 +29,7 @@ EGOERA azalpena(void);
 EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -82,10 +83,20 @@ int main(int argc, char* str[])
 			default://irten
 				break;
 			}
+			//
+			if (egoera == IRABAZI_P)
+			{
+				egoera = azkenPantaila(egoera, jokalaria, IRABAZI_F);
+			}
+			else if (egoera == GALDU_P)
+			{
+				egoera = azkenPantaila(egoera, jokalaria, GALDU_F);
+			}
+			//
 		} while (egoera == MENUA_P);
 	}
 	//
-	audioTerminate();
+	//audioTerminate();
 	sgItxi();
 
 	return 0;
@@ -504,15 +515,17 @@ EGOERA etxea(JOKALARIA* jokalaria)
 		//(ohea)itzultzerakoan etxera edo menura bidaltzeko
 		if (klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
 		{
-			egoera = gorde(*jokalaria);
-			//
 			if ((jokalaria->eguna == 1 || jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 10) {
 				jokalaria->gradua.exp.max = 20;
+				jokalaria->gradua.exp.nvl++;
 			}
 			else if ((jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 20) {
 				jokalaria->gradua.exp.max = 25;
+				jokalaria->gradua.exp.nvl++;
 			}
 			jokalaria->eguna++;
+			//
+			egoera = gorde(*jokalaria);
 		}
 
 	}
@@ -686,7 +699,6 @@ EGOERA gorde(JOKALARIA jokalaria)
 	ebentu = 0;
 	egoera = MENUA_P;
 	fitx = fopen(karpeta, "wb");
-	jokalaria.eguna++;
 	//
 	pantailaGarbitu();
 	textuaGaitu_beltza();
@@ -748,6 +760,34 @@ EGOERA gorde(JOKALARIA jokalaria)
 	return egoera;
 }
 
+EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str)
+{
+	int fondo, ebentu;
+	EGOERA berria;
+	//
+	berria = egoera;
+	fondo = fondoPantaila(str);
+	if (strcmp(str, IRABAZI_F) == 0)
+	{
+		pantailaGarbitu();
+		irudiakMarraztu();
+		textuaGaitu_galderak();
+		textuaIdatzi(580, 300, jokalaria.izena);
+		textuaDesgaitu();
+		pantailaBerriztu();
+	}
+	//
+	while (berria == egoera)
+	{
+		ebentu = ebentuaJasoGertatuBada();
+		if (ebentu == SAGU_BOTOIA_EZKERRA)
+		{
+			berria = MENUA_P;
+		}
+	}
+	//
+	return egoera;
+}
 //--------------------
 int fondoPantaila(char* str)
 {
@@ -1144,6 +1184,7 @@ void experientzia_pantaila(JOKALARIA jokalaria)
 	}
 }
 
+//--------------------
 void StrBihurtu_nibela(char str[], int nvl)
 {
 	char tmp[128];

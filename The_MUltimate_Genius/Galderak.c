@@ -71,7 +71,7 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
     {
         jokalaria.irudia.id = irudiaKargatu(CHICA_AVATAR_G);
     }
-    irudiaMugitu(jokalaria.irudia.id, 189, 72);
+    irudiaMugitu(jokalaria.irudia.id, 189, 81);
     irudiakMarraztu();
     //
 	irudiakMarraztu();
@@ -96,8 +96,14 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
     //
 	if (jokalaria->eguna == 3) {
 		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna, *jokalaria);
-		//egoera = DIPLOMA_P;
-		//egoera = GAME_OVER;
+        if (jokalaria->gradua.exp.xp >= 23)
+        {
+            egoera = IRABAZI_P;
+        }
+        else
+        {
+            egoera = GALDU_P;
+        }
 	}
     else
     {
