@@ -23,6 +23,8 @@
 #define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
 #define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF_.bmp"
 #define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF_.bmp"
+#define CHICO_AVATAR_G ".\\img\\PersonajeChicoGalderak.bmp"
+#define CHICA_AVATAR_G ".\\img\\PersonajeChicaGalderak.bmp"
 #define ABISUA	".\\img\\abisua.bmp"
 #define ABISUA_UNI	".\\img\\abisua_uni.bmp"
 //----------busa----------
@@ -49,16 +51,19 @@
 #define BUS_21 ".\\img\\GIF\\bus_21.bmp"
 #define BUS_22 ".\\img\\GIF\\bus_22.bmp"
 //----------Irakaslak----------
-#define PROGRAM_PROFE ".\\img"
-#define PROGRAM_II_PROFE
-#define MATE_PROFE
-#define MATE_II_PROFE
-#define EMPRESA_PROFE
-#define FISIKA_PROFE
-#define OINARRI_PROFE
-#define REDES_PROFE
-#define MATE_D_PROFE
-#define ELEKTRONIKA_PROFE
+	//-----1.seihilabetea
+#define PROGRAM_PROFE ".\\img\\ProfeProgram.bmp"
+#define MATE_PROFE ".\\img\\ProfeMates.bmp"
+#define FISIKA_PROFE ".\\img\\ProfesoraFisika.bmp"
+#define OINARRI_PROFE ".\\img\\ProfeOinarri.bmp"
+#define REDES_PROFE ".\\img\\ProfeRedes.bmp"
+
+	//-----2.seihilabetea
+#define PROGRAM_II_PROFE ".\\img\\ProfeProgram.bmp"
+#define MATE_II_PROFE ".\\img\\ProfesoraMate.bmp"
+#define MATE_D_PROFE ".\\img\\ProfeMates.bmp"
+#define ELEKTRONIKA_PROFE ".\\img\\ProfeElec.bmp"
+#define EMPRESA_PROFE ".\\img\\ProfeEmpresa.bmp"
 
 //----------Galderak----------
 #define GALDERA_PANTALLA ".\\img\\Galderak_Erantzunak\\Preguntas.bmp"

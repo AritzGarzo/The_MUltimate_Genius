@@ -14,12 +14,66 @@
 
 
 
-void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
+void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], JOKALARIA jokalaria)
 {
-	int id;
+	int id, id_irakaslea;
+    char irakaslea[128];
+    //
 	pantailaGarbitu();
 	id = irudiaKargatu(str);
 	irudiaMugitu(id, 0, 0);
+    //
+    switch (gelaID)
+    {
+    case 1:
+        strcpy(irakaslea, PROGRAM_PROFE);
+        break;
+    case 2:
+        strcpy(irakaslea, MATE_PROFE);
+        break;
+    case 3:
+        strcpy(irakaslea, FISIKA_PROFE);
+        break;
+    case 4:
+        strcpy(irakaslea, OINARRI_PROFE);
+        break;
+    case 5:
+        strcpy(irakaslea, REDES_PROFE);
+        break;
+        //2.seihilekoa
+    /*case 6:
+        strcpy(irakaslea, PROGRAM_II_PROFE);
+        break;
+    case 7:
+        strcpy(irakaslea, MATE_II_PROFE);
+        break;
+    case 8:
+        strcpy(irakaslea, MATE_D_PROFE);
+        break;
+    case 9:
+        strcpy(irakaslea, ELEKTRONIKA_PROFE);
+        break;
+    case 10:
+        strcpy(irakaslea, EMPRESA_PROFE);
+        break;*/
+    default:
+        strcpy(irakaslea, MATE_PROFE);
+        break;
+    }
+    //----------aurpegiak kargatu
+    id_irakaslea = irudiaKargatu(irakaslea);
+    irudiaMugitu(id_irakaslea, 907, 72);
+    if (strcmp(jokalaria.irudia.izena, CHICO_AVATAR) == 0)
+    {
+        jokalaria.irudia.id = irudiaKargatu(CHICO_AVATAR_G);
+    }
+    else
+    {
+        jokalaria.irudia.id = irudiaKargatu(CHICA_AVATAR_G);
+    }
+    irudiaMugitu(jokalaria.irudia.id, 189, 72);
+    irudiakMarraztu();
+    //
 	irudiakMarraztu();
 
 	textuaGaitu_galderak();
@@ -41,7 +95,7 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
     egoera = UNI_P;
     //
 	if (jokalaria->eguna == 3) {
-		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna);
+		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna, *jokalaria);
 		//egoera = DIPLOMA_P;
 		//egoera = GAME_OVER;
 	}
@@ -51,7 +105,7 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
             galderaID = 3;
         }
 
-        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera, *jokalaria);
         while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
             erantzunda = GalderakErantzun(&(jokalaria->gradua.exp), gelaID, galderaID, galdera, jokalaria->eguna);//0= ez erantzun, 1=ondo,2=gaizki
             if (erantzunda != 0 && erantzunOndoKont < 2) {
@@ -70,7 +124,7 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
                     galderaID = 1;
                 }
                 if (erantzunOndoKont < 2) {
-                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera, *jokalaria);
                 }
             }
         }
@@ -90,7 +144,7 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
         fondoPantaila(UNI_F);
         pantailaBerriztu();
     }
-
+    //
 	return egoera;
 }
 //---HEMEN GALDERAK ETA AUKERAK ESTRUKTURAN SARTZEN DUGU GERO PRINTEATZEKO
@@ -2549,13 +2603,13 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
 	}
 }
 
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna) {
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA jokalaria) {
 
     int erantzunda = 0;
 
     while (galderaID <= 5 && gelaID <= 5) {
         if (galdera[gelaID][galderaID].erabilita == 0) {
-            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera, jokalaria);
             erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera, eguna);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
