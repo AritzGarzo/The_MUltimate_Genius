@@ -44,6 +44,7 @@ void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], EXP jokalaria);
 void crearCuadro(int x, int y, int luzera, int altuera);
 EGOERA multi(JOKALARIA* jokalaria);
+MULTI ip_lortu();
 
 
 int main(int argc, char* str[])
@@ -1222,20 +1223,164 @@ void crearCuadro(int x, int y, int luzera, int altuera)
 
 EGOERA multi(JOKALARIA* jokalaria)
 {
-	int fondoa, ebentu;
-	POSIZIOA pos;
+	int ebentu, subBucle, tmpEbentu, aldaketa, fondoa;
+	char tmpIzena[8], tmpGradua[128];
 	EGOERA egoera;
+	POSIZIOA pos;
 	//
 	egoera = MULTI_P;
 	fondoa = fondoPantaila(MULTI_F);
+	textuaGaitu_profila();
+	//
+	aldaketa = 0;
+	strcpy(tmpIzena, " ");
+	//strcpy(tmpGradua, " ");
+	strcpy(jokalaria->izena, " ");
 	//
 	while (egoera == MULTI_P)
 	{
 		ebentu = ebentuaJasoGertatuBada();
 		pos = saguarenPosizioa();
-		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 950 && pos.x < 1104) && (pos.y > 668 && pos.y < 716)))
+		//if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 950 && pos.x < 1104) && (pos.y > 668 && pos.y < 716)))
+		//{
+		//	egoera = MENUA_P;//irten (bat atzera)
+		//}
+		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 50 && pos.x <= 50 + 414) && (pos.y >= 98 && pos.y <= 98 + 84)))
 		{
-			egoera = MENUA_P;//irten (bat atzera)
+			//mantener el grado
+			irudiakMarraztu();
+			//textuaIdatzi(64, 110, jokalaria->gradua.izena);
+			pantailaBerriztu();
+			//
+			subBucle = 0;
+			while (strlen(tmpIzena) != 7 && subBucle == 0)
+			{
+				pos = saguarenPosizioa();
+				tmpEbentu = ebentuaJasoGertatuBada();
+				switch (tmpEbentu)
+				{
+				case SAGU_BOTOIA_EZKERRA:
+					if ((pos.x < 50) || (pos.x > 50 + 414) || (pos.y < 98) || (pos.y > 98 + 84))
+					{
+						subBucle = -1;
+					}
+					break;
+					//
+				case TECLA_a:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "A");
+					else strcat(tmpIzena, "A");
+					break;
+				case TECLA_b:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "B");
+					else strcat(tmpIzena, "B");
+					break;
+				case TECLA_c:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "C");
+					else strcat(tmpIzena, "C");
+					break;
+				case TECLA_d:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "D");
+					else strcat(tmpIzena, "D");
+					break;
+				case TECLA_e:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "E");
+					else strcat(tmpIzena, "E");
+					break;
+				case TECLA_f:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "F");
+					else strcat(tmpIzena, "F");
+					break;
+				case TECLA_g:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "G");
+					else strcat(tmpIzena, "G");
+					break;
+				case TECLA_h:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "H");
+					else strcat(tmpIzena, "H");
+					break;
+				case TECLA_i:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "I");
+					else strcat(tmpIzena, "I");
+					break;
+				case TECLA_j:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "J");
+					else strcat(tmpIzena, "J");
+					break;
+				case TECLA_k:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "K");
+					else strcat(tmpIzena, "K");
+					break;
+				case TECLA_l:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "L");
+					else strcat(tmpIzena, "L");
+					break;
+				case TECLA_m:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "M");
+					else strcat(tmpIzena, "M");
+					break;
+				case TECLA_n:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "N");
+					else strcat(tmpIzena, "N");
+					break;
+				case TECLA_o:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "O");
+					else strcat(tmpIzena, "O");
+					break;
+				case TECLA_p:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "P");
+					else strcat(tmpIzena, "P");
+					break;
+				case TECLA_q:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Q");
+					else strcat(tmpIzena, "Q");
+					break;
+				case TECLA_r:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "R");
+					else strcat(tmpIzena, "R");
+					break;
+				case TECLA_s:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "S");
+					else strcat(tmpIzena, "S");
+					break;
+				case TECLA_t:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "T");
+					else strcat(tmpIzena, "T");
+					break;
+				case TECLA_u:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "U");
+					else strcat(tmpIzena, "U");
+					break;
+				case TECLA_v:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "V");
+					else strcat(tmpIzena, "V");
+					break;
+				case TECLA_w:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "W");
+					else strcat(tmpIzena, "W");
+					break;
+				case TECLA_x:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "X");
+					else strcat(tmpIzena, "X");
+					break;
+				case TECLA_y:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Y");
+					else strcat(tmpIzena, "Y");
+					break;
+				case TECLA_z:
+					if (!strcmp(tmpIzena, " ")) strcpy(tmpIzena, "Z");
+					else strcat(tmpIzena, "Z");
+					break;
+				default:
+					break;
+				}
+				textuaIdatzi(64, 110, tmpIzena);
+				pantailaBerriztu();
+			}
+			textuaIdatzi(64, 110, tmpIzena);
+			strcpy(jokalaria->izena, tmpIzena);
+			pantailaBerriztu();
+			strcpy(tmpIzena, " ");
+			aldaketa = 1;
 		}
 	}
 	//
@@ -1243,3 +1388,67 @@ EGOERA multi(JOKALARIA* jokalaria)
 	//
 	return egoera;
 }
+
+/*MULTI ip_lortu()
+{
+	system("C:\\Windows\\System32\\ipconfig > ipconfig.txt");
+
+	FILE* fp;
+
+	char line[MAX1];
+
+	fp = fopen("ipconfig.txt", "r");
+	if (fp == NULL)
+	{
+		printf("No se pudo abrir la carpeta %s", "ipconfig.txt");
+		return 1;
+	}
+	while (fgets(line, MAXCHAR, fp) != NULL)
+	{
+		char word[] = "IPv4";
+		int wordlen = strlen(word);
+
+		int x = 0;
+		int y = 0;
+		char ip[30];
+		while (line[x] != '\0')
+		{
+			if (line[x] == word[y])
+			{
+				while (line[x] == word[y] && line[x] != '\0')
+				{
+					x++;
+					y++;
+				}
+				if (y == wordlen)
+				{
+					char* s = line;
+					char* last = strrchr(s, ' ');
+
+					if (last != NULL)
+					{
+						printf("%s\n", last + 1);
+					}
+				}
+			}
+			else {
+				while (line[x] != ' ')
+				{
+					x++;
+					if (line[x] == '\0')
+					{
+						break;
+					}
+				}
+			}
+			x++;
+			y = 0;
+		}
+	}
+
+	fclose(fp);
+
+	return multi;
+}*/
+
+

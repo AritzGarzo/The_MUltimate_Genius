@@ -1,6 +1,7 @@
 #ifndef GUREESTRUKTURAK_H
 #define GUREESTRUKTURAK_H
 #define MAX 128
+#define MAX1 100000
 
 #include "ebentoak.h"
 
@@ -195,6 +196,14 @@ typedef struct galdera {
 	int sartuta;
 
 }GALDERA;
+
+
+typedef struct multi
+{
+	char izena[128];
+	char ip[16];//XXX.XXX.XXX.XXX
+	int portua;
+}MULTI;
 
 
 #endif
