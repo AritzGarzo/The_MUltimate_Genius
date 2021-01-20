@@ -43,6 +43,7 @@ void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], EXP jokalaria);
 void crearCuadro(int x, int y, int luzera, int altuera);
+EGOERA multi(JOKALARIA* jokalaria);
 
 
 int main(int argc, char* str[])
@@ -58,6 +59,10 @@ int main(int argc, char* str[])
 		do
 		{
 			egoera = menua();
+			if (egoera == MULTI_P)
+			{
+				egoera = multi(&jokalaria);
+			}
 			if (egoera == PROFILA_P)
 			{
 				egoera = profila(&jokalaria);
@@ -137,6 +142,10 @@ EGOERA menua(void)
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 479 && pos.y < 479 + 68)))//kargatu
 		{
 			egoera = KARGATU_P;//kargatu
+		}
+		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 984 && pos.x < 1122) && (pos.y >= 194 && pos.y < 307)))//kargatu
+		{
+			egoera = MULTI_P;//kargatu
 		}
 	}
 	//
@@ -607,7 +616,7 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	//eguna---------------------------------
 	berria.eguna = 1;
 
-//
+	//
 	return berria;
 }
 
@@ -1053,13 +1062,14 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 	FILE* fitx;
 	int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1, error = 0;
 
+
 	while (fitxategiKont < 60) {
 
 		fitx = fopen(galderak[fitxategiKont], "r");
 
 		if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 23 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
 
-		if (fitx == NULL) {
+		else if (fitx == NULL) {
 			printf("Errorea galderen fitxategia irakurtzerako orduan\n");
 			return error = 1;
 		}
@@ -1208,4 +1218,28 @@ void crearCuadro(int x, int y, int luzera, int altuera)
 	{
 		zuzenaMarraztu(x, y + i, x + luzera, y + i);
 	}
+}
+
+EGOERA multi(JOKALARIA* jokalaria)
+{
+	int fondoa, ebentu;
+	POSIZIOA pos;
+	EGOERA egoera;
+	//
+	egoera = MULTI_P;
+	fondoa = fondoPantaila(MULTI_F);
+	//
+	while (egoera == MULTI_P)
+	{
+		ebentu = ebentuaJasoGertatuBada();
+		pos = saguarenPosizioa();
+		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 950 && pos.x < 1104) && (pos.y > 668 && pos.y < 716)))
+		{
+			egoera = MENUA_P;//irten (bat atzera)
+		}
+	}
+	//
+	irudiaKendu(fondoa);
+	//
+	return egoera;
 }
