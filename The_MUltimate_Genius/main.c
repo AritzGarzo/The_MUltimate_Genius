@@ -27,8 +27,8 @@ EGOERA kontrolak(void);
 EGOERA profila(JOKALARIA* jokalaria);
 EGOERA azalpena(void);
 EGOERA kargatu(JOKALARIA* jokalaria);
-EGOERA etxea(JOKALARIA* jokalaria, int* egunaKont);
-EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont);
+EGOERA etxea(JOKALARIA* jokalaria);
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -145,8 +145,6 @@ EGOERA menua(void)
 //--------------------------------
 EGOERA jolastu(JOKALARIA* jokalaria)
 {
-	int egunaKont = 1;
-	int* ptrEgunaKont = &egunaKont;
 
 	jokalaria->gradua.exp.xp = 0;
 	jokalaria->gradua.exp.max = 10;
@@ -169,11 +167,11 @@ EGOERA jolastu(JOKALARIA* jokalaria)
 	{
 		if (egoera == ETXEA_P)
 		{
-			egoera = etxea(jokalaria, ptrEgunaKont);
+			egoera = etxea(jokalaria);
 		}
 		if (egoera == UNI_P)
 		{
-			egoera = uni(jokalaria, galdera, ptrEgunaKont);
+			egoera = uni(jokalaria, galdera);
 		}
 	}
 	//
@@ -478,7 +476,7 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 	return egoera;
 }
 //----------------------------
-EGOERA etxea(JOKALARIA* jokalaria, int* Egunakont)
+EGOERA etxea(JOKALARIA* jokalaria)
 {
 	int fondoa, jarraitu = 0, ebentu = 0, klik = 0;
 	POSIZIOA pos, pos_jokalaria;
@@ -492,21 +490,12 @@ EGOERA etxea(JOKALARIA* jokalaria, int* Egunakont)
 	egoera = ETXEA_P;
 	KargatuMapa(MAPEO_GELA, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(ETXEA_F);
-
-
-
-
 	//
 	while (egoera == ETXEA_P)//etxea den bitartean
 	{
-
 		ebentu = ebentuaJasoGertatuBada();
-
-
+		//
 		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
-
-
-
 		//(busa)itzultzerakoan unibertsitatera bidaltzeko
 		if (klik == 1)   //(pos.x >= 384 && pos.x <= 384 + 64) && (pos.y >= 159 && pos.y <= 159 + 244))
 		{
@@ -517,7 +506,7 @@ EGOERA etxea(JOKALARIA* jokalaria, int* Egunakont)
 		if (klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
 		{
 			egoera = gorde(*jokalaria);
-			(*Egunakont)++;
+			jokalaria->eguna++;
 		}
 
 	}
@@ -527,64 +516,57 @@ EGOERA etxea(JOKALARIA* jokalaria, int* Egunakont)
 	return egoera;
 }
 
-EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* egunaKont)
+EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
 	int fondoa, jarraitu = 1, ebentu = 0, klik = 0;
 	EGOERA egoera;
 	POSIZIOA pos, pos_jokalaria;
 	//
-
 	pos_jokalaria.x = 1150;
 	pos_jokalaria.y = 180;
-
 
 	egoera = UNI_P;
 	KargatuMapa(MAPEO_UNI, &pixels, &pitch, &bpp);
 	fondoa = fondoPantaila(UNI_F);
-
 	//
 	while (egoera == UNI_P)//unibertsitatea den bitartean
 	{
-
 		ebentu = ebentuaJasoGertatuBada();
-
+		//
 		klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
-
 
 		pos = saguarenPosizioa();
 		if (klik == 3)
 		{
-			egoera = galderak(1, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(1, jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 4)
 		{
-			egoera = galderak(2, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(2, jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 5)
 		{
-			egoera = galderak(3, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(3, jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 6)
 		{
-			egoera = galderak(4, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(4, jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 7)
 		{
-			egoera = galderak(5, jokalaria, galdera, egunaKont);//itzultzerakoan etxera bidaltzeko
+			egoera = galderak(5, jokalaria, galdera);//itzultzerakoan etxera bidaltzeko
 		}
 		if (klik == 8)
 		{
-			if ((*egunaKont == 1 || *egunaKont == 2) && jokalaria->gradua.exp.xp == 10) {
+			if ((jokalaria->eguna == 1 || jokalaria->eguna == 2) && jokalaria->gradua.exp.xp == 10) {
 				jokalaria->gradua.exp.max = 20;
 			}
-			else if ((*egunaKont == 2 || *egunaKont == 3) && jokalaria->gradua.exp.xp == 20) {
+			else if ((jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 20) {
 				jokalaria->gradua.exp.max = 25;
 			}
 			karga_gif();
 			egoera = ETXEA_P;
 		}
-
-
 	}
 	//
 	irudiaKendu(fondoa);
@@ -622,7 +604,8 @@ JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
 	{
 		strcpy(berria.irudia2d.izena, CHICA_AVATAR_M);
 	}
-	//pos---------------------------------
+	//eguna---------------------------------
+	berria.eguna = 1;
 
 //
 	return berria;
@@ -726,15 +709,11 @@ EGOERA gorde(JOKALARIA jokalaria)
 			pantailaBerriztu();
 			textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (Bai/Ez)");
 			//
-			while (strcmp(str, "BAI") != 0 && strcmp(str, "EZ") != 0)
+			while (strcmp(str, "B") != 0 && strcmp(str, "E") != 0)
 			{
 				ebentu = ebentuaJasoGertatuBada();
 				switch (ebentu)
 				{
-				case TECLA_a:
-					if (!strcmp(str, " ")) strcpy(str, "A");
-					else strcat(str, "A");
-					break;
 				case TECLA_b:
 					if (!strcmp(str, " ")) strcpy(str, "B");
 					else strcat(str, "B");
@@ -743,33 +722,25 @@ EGOERA gorde(JOKALARIA jokalaria)
 					if (!strcmp(str, " ")) strcpy(str, "E");
 					else strcat(str, "E");
 					break;
-				case TECLA_i:
-					if (!strcmp(str, " ")) strcpy(str, "I");
-					else strcat(str, "I");
-					break;
-				case TECLA_z:
-					if (!strcmp(str, " ")) strcpy(str, "Z");
-					else strcat(str, "Z");
-					break;
 				default:
 					break;
 				}
 				textuaIdatzi_beltza(10, 80, str);
 				pantailaBerriztu();
 			}
-			if (strcmp(str, "BAI") == 0)
+			if (strcmp(str, "B") == 0)
 			{
 				egoera = ETXEA_P;
 			}
-			if (strcmp(str, "EZ") == 0)
+			if (strcmp(str, "E") == 0)
 			{
 				egoera = MENUA_P;
 			}
 		}
 		strcpy(str, " ");
+		fclose(fitx);
 	}
 	Sleep(2000);
-	fclose(fitx);
 	textuaDesgaitu();
 	pantailaBerriztu();
 	//

@@ -172,6 +172,7 @@ typedef struct jokalaria
 	IRUDIA irudia;//irudia (las preguntas)
 	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
 	GRADUA gradua;
+	int eguna;
 }JOKALARIA;
 
 

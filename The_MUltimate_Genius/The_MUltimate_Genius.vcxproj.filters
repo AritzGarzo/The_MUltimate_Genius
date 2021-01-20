@@ -46,7 +46,7 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="Galderak.h">
-      <Filter>include\sdl</Filter>
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -69,7 +69,7 @@
       <Filter>src\sdl</Filter>
     </ClCompile>
     <ClCompile Include="Galderak.c">
-      <Filter>src\sdl</Filter>
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
