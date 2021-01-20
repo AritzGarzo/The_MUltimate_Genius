@@ -61,7 +61,7 @@
 
 #define MATE_GALDERA_1 ".\\galderak\\mate\\galdera1.txt"
 #define MATE_GALDERA_2 ".\\galderak\\mate\\galdera2.txt"
-#define MATE_GALDERA_3 ".\\galderak\\mate\\galdera3txt"
+#define MATE_GALDERA_3 ".\\galderak\\mate\\galdera3.txt"
 #define MATE_GALDERA_4 ".\\galderak\\mate\\galdera4.txt"
 #define MATE_GALDERA_5 ".\\galderak\\mate\\galdera5.txt"
 

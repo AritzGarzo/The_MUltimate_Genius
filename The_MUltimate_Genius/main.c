@@ -1053,13 +1053,14 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 	FILE* fitx;
 	int fitxategiKont = 1, gelaIDKont = 1, galderaIDKont = 1, error = 0;
 
+
 	while (fitxategiKont < 60) {
 
 		fitx = fopen(galderak[fitxategiKont], "r");
 
 		if (fitxategiKont == 6 || fitxategiKont == 12 || fitxategiKont == 18 || fitxategiKont == 23 || fitxategiKont == 24 || fitxategiKont == 30 || fitxategiKont == 36 || fitxategiKont == 42 || fitxategiKont == 48 || fitxategiKont == 54);
 
-		if (fitx == NULL) {
+		else if (fitx == NULL) {
 			printf("Errorea galderen fitxategia irakurtzerako orduan\n");
 			return error = 1;
 		}
