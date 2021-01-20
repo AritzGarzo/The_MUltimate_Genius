@@ -61,13 +61,14 @@ int main(int argc, char* str[])
 			if (egoera == PROFILA_P)
 			{
 				egoera = profila(&jokalaria);
-				egoera = azalpena();
-				//egoera = JOLASTU_P;//JOLASTU
+				if (egoera == JOLASTU_P)
+				{
+					egoera = azalpena();
+				}
 			}
 			if (egoera == KARGATU_P)
 			{
-				//kargatu()
-				egoera = JOLASTU_P;//JOLASTU
+				egoera = kargatu(&jokalaria);//JOLASTU
 			}
 			//
 			switch (egoera)
@@ -145,14 +146,9 @@ EGOERA menua(void)
 //--------------------------------
 EGOERA jolastu(JOKALARIA* jokalaria)
 {
-
-	jokalaria->gradua.exp.xp = 0;
-	jokalaria->gradua.exp.max = 10;
-	//int jarraitu;
 	EGOERA egoera;
 	//
 	egoera = ETXEA_P;
-	//jarraitu = 1;
 	//
 	int error = 0;
 
@@ -465,14 +461,17 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 	}
 	else
 	{
-		irakurketa = fread(&jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
+		irakurketa = fread(jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
 		if (irakurketa != 1)
 		{
 			printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
+		}
+		else
+		{
 			egoera = JOLASTU_P;
 		}
+		fclose(fitx);
 	}
-	fclose(fitx);
 	return egoera;
 }
 //----------------------------
@@ -506,6 +505,13 @@ EGOERA etxea(JOKALARIA* jokalaria)
 		if (klik == 2)    //(pos.x >= 1193 && pos.x <= 1193 + 46) && (pos.y >= 149 && pos.y <= 149 + 57))
 		{
 			egoera = gorde(*jokalaria);
+			//
+			if ((jokalaria->eguna == 1 || jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 10) {
+				jokalaria->gradua.exp.max = 20;
+			}
+			else if ((jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 20) {
+				jokalaria->gradua.exp.max = 25;
+			}
 			jokalaria->eguna++;
 		}
 
@@ -558,12 +564,6 @@ EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 		}
 		if (klik == 8)
 		{
-			if ((jokalaria->eguna == 1 || jokalaria->eguna == 2) && jokalaria->gradua.exp.xp == 10) {
-				jokalaria->gradua.exp.max = 20;
-			}
-			else if ((jokalaria->eguna == 2 || jokalaria->eguna == 3) && jokalaria->gradua.exp.xp == 20) {
-				jokalaria->gradua.exp.max = 25;
-			}
 			karga_gif();
 			egoera = ETXEA_P;
 		}
@@ -686,6 +686,7 @@ EGOERA gorde(JOKALARIA jokalaria)
 	ebentu = 0;
 	egoera = MENUA_P;
 	fitx = fopen(karpeta, "wb");
+	jokalaria.eguna++;
 	//
 	pantailaGarbitu();
 	textuaGaitu_beltza();
@@ -707,7 +708,7 @@ EGOERA gorde(JOKALARIA jokalaria)
 		{
 			textuaIdatzi_beltza(10, 40, "Partida gordeta.");
 			pantailaBerriztu();
-			textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (Bai/Ez)");
+			textuaIdatzi_beltza(10, 60, "Jolasten jarraitu nahi duzu? (B/E)");
 			//
 			while (strcmp(str, "B") != 0 && strcmp(str, "E") != 0)
 			{
@@ -1106,7 +1107,7 @@ void experientzia_pantaila(JOKALARIA jokalaria)
 	//
 	egoera = EXP_P;
 	fondo = fondoPantaila(EXP_F);
-	//cargar coza
+	//pertsonaiaren irudia kargatu
 		//----irudiak
 	jokalaria.irudia.id = irudiaKargatu(jokalaria.irudia.izena);
 	irudiaMugitu(jokalaria.irudia.id, 168, 142);

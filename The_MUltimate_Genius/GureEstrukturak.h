@@ -48,6 +48,18 @@
 #define BUS_20 ".\\img\\GIF\\bus_20.bmp"
 #define BUS_21 ".\\img\\GIF\\bus_21.bmp"
 #define BUS_22 ".\\img\\GIF\\bus_22.bmp"
+//----------Irakaslak----------
+#define PROGRAM_PROFE ".\\img"
+#define PROGRAM_II_PROFE
+#define MATE_PROFE
+#define MATE_II_PROFE
+#define EMPRESA_PROFE
+#define FISIKA_PROFE
+#define OINARRI_PROFE
+#define REDES_PROFE
+#define MATE_D_PROFE
+#define ELEKTRONIKA_PROFE
+
 //----------Galderak----------
 #define GALDERA_PANTALLA ".\\img\\Galderak_Erantzunak\\Preguntas.bmp"
 

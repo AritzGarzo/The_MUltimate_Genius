@@ -32,62 +32,66 @@ void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galde
 	pantailaBerriztu();
 }
 
-int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
+EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
 {
 	int galderaID = 1, erantzunda = 0;
 	int bukatuta = 0, erantzunOndoKont = 0;
-
-
-	jokalaria->gradua.exp.xp = jokalaria->gradua.exp.xp;
-	jokalaria->gradua.exp.max = jokalaria->gradua.exp.max;
-
-	if (jokalaria->eguna == 2) {
-		galderaID = 3;
-	}
+    EGOERA egoera;
+    //
+    egoera = UNI_P;
+    //
 	if (jokalaria->eguna == 3) {
 		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna);
-		return UNI_P;
+		//egoera = DIPLOMA_P;
+		//egoera = GAME_OVER;
 	}
+    else
+    {
+        if (jokalaria->eguna == 2) {
+            galderaID = 3;
+        }
 
-	fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
-	while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
-		erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera, jokalaria->eguna);//0= ez erantzun, 1=ondo,2=gaizki
-		if (erantzunda != 0 && erantzunOndoKont < 2) {
-			galdera[gelaID][galderaID].erabilita = 1;
-			Sleep(500);
-			galderaID++;
-			if (erantzunda == 1) {
-				erantzunOndoKont++;
-				galdera[gelaID][galderaID - 1].sartuta = 1;
-			}
-			else if (erantzunda == 2) {
-				erantzunOndoKont = 5;// gaizki egin duela esateko
-				galdera[gelaID][galderaID - 1].sartuta = 1;
-			}
-			if (galderaID == 6) {
-				galderaID = 1;
-			}
-			if (erantzunOndoKont < 2) {
-				fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
-			}
-		}
-	}
+        fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+        while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp), gelaID, galderaID, galdera, jokalaria->eguna);//0= ez erantzun, 1=ondo,2=gaizki
+            if (erantzunda != 0 && erantzunOndoKont < 2) {
+                galdera[gelaID][galderaID].erabilita = 1;
+                Sleep(500);
+                galderaID++;
+                if (erantzunda == 1) {
+                    erantzunOndoKont++;
+                    galdera[gelaID][galderaID - 1].sartuta = 1;
+                }
+                else if (erantzunda == 2) {
+                    erantzunOndoKont = 5;// gaizki egin duela esateko
+                    galdera[gelaID][galderaID - 1].sartuta = 1;
+                }
+                if (galderaID == 6) {
+                    galderaID = 1;
+                }
+                if (erantzunOndoKont < 2) {
+                    fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
+                }
+            }
+        }
 
-	if (erantzunOndoKont > 2) {
-		irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
-		irudiakMarraztu();
-		pantailaBerriztu();
-		Sleep(1000);
-	}
-	if (erantzunOndoKont == 0 || erantzunOndoKont == 2) {
-		irudiaMugitu(irudiaKargatu(".\\img\\klaseaBukatu.bmp"), 300, 230);
-		irudiakMarraztu();
-		pantailaBerriztu();
-		Sleep(1000);
-	}
-	fondoPantaila(UNI_F);
-	pantailaBerriztu();
-	return UNI_P;
+        if (erantzunOndoKont > 2) {
+            irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
+            irudiakMarraztu();
+            pantailaBerriztu();
+            Sleep(1000);
+        }
+        if (erantzunOndoKont == 0 || erantzunOndoKont == 2) {
+            irudiaMugitu(irudiaKargatu(".\\img\\klaseaBukatu.bmp"), 300, 230);
+            irudiakMarraztu();
+            pantailaBerriztu();
+            Sleep(1000);
+        }
+        fondoPantaila(UNI_F);
+        pantailaBerriztu();
+    }
+
+	return egoera;
 }
 //---HEMEN GALDERAK ETA AUKERAK ESTRUKTURAN SARTZEN DUGU GERO PRINTEATZEKO
 void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
@@ -817,7 +821,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 	}
 }
 
-int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna) {
+int GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna) {
 
     POSIZIOA pos;
     int ebentu = 0, erantzunda = 0;
@@ -840,8 +844,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
-
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
@@ -884,7 +887,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P2B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
 
                     }
@@ -930,7 +933,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -953,7 +956,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P4A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1006,7 +1009,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P5D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1032,7 +1035,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1067,7 +1070,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M2A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1114,7 +1117,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1142,7 +1145,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M4B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1171,7 +1174,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate\\M5A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1212,7 +1215,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
@@ -1245,7 +1248,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F2A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1279,7 +1282,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F3A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1319,7 +1322,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F4B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1366,7 +1369,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Fisika\\F5D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
 
                     }
 
@@ -1390,7 +1393,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
@@ -1435,7 +1438,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O2C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1462,7 +1465,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O3B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
@@ -1502,7 +1505,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O4C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1537,7 +1540,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\oinarri\\O5C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1584,7 +1587,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R1D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else {
@@ -1612,7 +1615,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R2C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1645,7 +1648,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1672,7 +1675,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R4B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
@@ -1705,7 +1708,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\redes\\R5B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
@@ -1740,7 +1743,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
@@ -1791,7 +1794,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII2D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else {
@@ -1819,7 +1822,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
@@ -1841,7 +1844,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII4A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
@@ -1893,7 +1896,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program_II\\PII5D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else {
@@ -1921,7 +1924,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II1C.bmp"), 30, 614);
@@ -1958,7 +1961,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II2D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else {
                         erantzunda = 0;
@@ -1981,7 +1984,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II3D.bmp"), 656, 616);
@@ -1998,7 +2001,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II4B.bmp"), 656, 489);
@@ -2030,7 +2033,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Mate_II\\M_II5C.bmp"), 30, 614);
@@ -2070,7 +2073,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD1D.bmp"), 656, 616);
@@ -2093,7 +2096,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD2C.bmp"), 30, 614);
@@ -2122,7 +2125,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD3C.bmp"), 30, 614);
@@ -2150,7 +2153,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD4C.bmp"), 30, 614);
@@ -2177,7 +2180,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\MateD\\MD5C.bmp"), 30, 614);
@@ -2206,7 +2209,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E1B.bmp"), 656, 489);
@@ -2233,7 +2236,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E2B.bmp"), 656, 489);
@@ -2270,7 +2273,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E3D.bmp"), 656, 616);
@@ -2297,7 +2300,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E4D.bmp"), 656, 616);
@@ -2329,7 +2332,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Elektronika\\E5D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else {
                         erantzunda = 0;
@@ -2353,7 +2356,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM1C.bmp"), 30, 614);
@@ -2390,7 +2393,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM2D.bmp"), 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else {
                         erantzunda = 0;
@@ -2402,7 +2405,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3A.bmp"), 30, 490);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 1);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM3B.bmp"), 656, 489);
@@ -2439,7 +2442,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4C.bmp"), 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D-----------------
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM4D.bmp"), 656, 616);
@@ -2464,7 +2467,7 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                         irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Empresa\\EM5B.bmp"), 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
-                        (*exp)++; erantzunda = 1;
+                        exp->xp++; erantzunda = 1;
                     }
 
                     else if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
@@ -2498,9 +2501,12 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
     if (erantzunda == 1 || erantzunda == 2) {
         pantailaBerriztu();
     }
-    if (eguna == 2 && (*exp) > 10) {
-        (*exp) = 10;
+    //capar la exp demás
+    if(exp->xp > exp->max)
+    {
+        exp->xp = exp->max;
     }
+    //
     return erantzunda;
 }
 
