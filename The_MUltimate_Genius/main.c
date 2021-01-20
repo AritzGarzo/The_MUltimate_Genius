@@ -61,7 +61,11 @@ int main(int argc, char* str[])
 			if (egoera == PROFILA_P)
 			{
 				egoera = profila(&jokalaria);
-				egoera = azalpena();
+				if (egoera == JOLASTU_P)
+				{
+					egoera = azalpena();
+				}
+				
 				//egoera = JOLASTU_P;//JOLASTU
 			}
 			if (egoera == KARGATU_P)
