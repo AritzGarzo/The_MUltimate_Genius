@@ -138,10 +138,7 @@ EGOERA menua(void)
 		{
 			egoera = KARGATU_P;//kargatu
 		}
-		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 984 && pos.x < 1122) && (pos.y >= 194 && pos.y < 307)))//kargatu
-		{
-			egoera = MULTI_P;//kargatu
-		}
+		
 	}
 	//
 	return egoera;
