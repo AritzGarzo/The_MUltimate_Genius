@@ -407,7 +407,7 @@ EGOERA profila(JOKALARIA* jokalaria)
 			}
 			else
 			{
-				warning_abisua(ABISUA);
+				warning_abisua(HUTSUNERIK_EZ);
 				strcpy(jokalaria->izena, " ");
 				//strcpy(jokalaria->gradua.izena, " ");
 				strcpy(jokalaria->irudia.izena, " ");
@@ -898,7 +898,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 			KolisioakKonprobatu(pixels, pitch, bpp, sprite);
 			if ((pos.x >= 430 && pos.x <= 671) && (pos.y >= 50 && pos.y <= 125) && ((hitbox.ezker.erdikoa == HORIA) || (hitbox.eskuin.erdikoa == HORIA)))
 			{
-				warning_abisua(ABISUA_UNI);
+				warning_abisua(OBRAK);
 			}
 			if (hitbox.eskuin.erdikoa == BELTZA || hitbox.eskuin.erdikoa == HORIA)
 			{

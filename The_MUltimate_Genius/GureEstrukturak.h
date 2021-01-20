@@ -5,30 +5,36 @@
 #include "ebentoak.h"
 
 
-//--------------Mapak--------------
-#define MAPEO_GELA ".\\img\\gelaMapeo.bmp"
-#define MAPEO_UNI ".\\img\\uniMapeo.bmp"
-
 
 //--------------pantailak--------------
-#define MENUA_F ".\\img\\menu.bmp"
-#define KONTROLAK_F ".\\img\\kontrolak.bmp"
-#define PROFILA_F ".\\img\\profila.bmp"
-#define AZALPENA_F ".\\img\\azalpena.bmp"
-#define ETXEA_F ".\\img\\etxea.bmp"
-#define UNI_F ".\\img\\uni.bmp"
-#define EXP_F ".\\img\\exp.bmp"
-#define IRABAZI_F ".\\img\\graduado.bmp"
-#define GALDU_F ".\\img\\gameOver.bmp"
+#define MENUA_F ".\\img\\pantailak\\menu.bmp"
+#define KONTROLAK_F ".\\img\\pantailak\\kontrolak.bmp"
+#define PROFILA_F ".\\img\\pantailak\\profila.bmp"
+#define AZALPENA_F ".\\img\\pantailak\\kontrolak.bmp"
+#define ETXEA_F ".\\img\\pantailak\\etxea.bmp"
+#define UNI_F ".\\img\\pantailak\\uni.bmp"
+#define EXP_F ".\\img\\pantailak\\exp.bmp"
+#define IRABAZI_F ".\\img\\pantailak\\graduado.bmp"
+#define GALDU_F ".\\img\\pantailak\\gameOver.bmp"
+
+//--------------Mapak--------------
+#define MAPEO_GELA ".\\img\\pantailak\\mapaketa\\gelaMapeo.bmp"
+#define MAPEO_UNI ".\\img\\pantailak\\mapaketa\\uniMapeo.bmp"
+
 //--------------pertsonaia--------------
-#define CHICO_AVATAR ".\\img\\PersonajeChicoHablando.bmp"
-#define CHICA_AVATAR ".\\img\\PersonajeChicaHablando.bmp"
-#define CHICO_AVATAR_M ".\\img\\PersonajeChicoVF_.bmp"
-#define CHICA_AVATAR_M ".\\img\\PersonajeChicaVF_.bmp"
-#define CHICO_AVATAR_G ".\\img\\PersonajeChicoGalderak.bmp"
-#define CHICA_AVATAR_G ".\\img\\PersonajeChicaGalderak.bmp"
-#define ABISUA	".\\img\\abisua.bmp"
-#define ABISUA_UNI	".\\img\\abisua_uni.bmp"
+#define CHICO_AVATAR ".\\img\\pertsonaia\\PersonajeChicoHablando.bmp"
+#define CHICA_AVATAR ".\\img\\pertsonaia\\PersonajeChicaHablando.bmp"
+#define CHICO_AVATAR_M ".\\img\\pertsonaia\\PersonajeChicoVF_.bmp"
+#define CHICA_AVATAR_M ".\\img\\pertsonaia\\PersonajeChicaVF_.bmp"
+#define CHICO_AVATAR_G ".\\img\\pertsonaia\\PersonajeChicoGalderak.bmp"
+#define CHICA_AVATAR_G ".\\img\\pertsonaia\\PersonajeChicaGalderak.bmp"
+
+//--------------abisuak--------------
+#define HUTSUNERIK_EZ ".\\img\\abisuak\\hutsunerikEz.bmp"
+#define OBRAK ".\\img\\abisuak\\obrak.bmp"
+#define BUKATU ".\\img\\abisuak\\klaseaBukatu.bmp"
+#define BOTA ".\\img\\abisuak\\GelatikBota.bmp"
+
 //----------busa----------
 #define BUS_1 ".\\img\\GIF\\bus_1.bmp"
 #define BUS_2 ".\\img\\GIF\\bus_2.bmp"
@@ -54,18 +60,18 @@
 #define BUS_22 ".\\img\\GIF\\bus_22.bmp"
 //----------Irakaslak----------
 	//-----1.seihilabetea
-#define PROGRAM_PROFE ".\\img\\ProfeProgram.bmp"
-#define MATE_PROFE ".\\img\\ProfeMates.bmp"
-#define FISIKA_PROFE ".\\img\\ProfesoraFisika.bmp"
-#define OINARRI_PROFE ".\\img\\ProfeOinarri.bmp"
-#define REDES_PROFE ".\\img\\ProfeRedes.bmp"
+#define PROGRAM_PROFE ".\\img\\irakasleak\\ProfeProgram.bmp"
+#define MATE_PROFE ".\\img\\irakasleak\\ProfeMates.bmp"
+#define FISIKA_PROFE ".\\img\\irakasleak\\ProfesoraFisika.bmp"
+#define OINARRI_PROFE ".\\img\\irakasleak\\ProfeOinarri.bmp"
+#define REDES_PROFE ".\\img\\irakasleak\\ProfeRedes.bmp"
 
 	//-----2.seihilabetea
-#define PROGRAM_II_PROFE ".\\img\\ProfeProgram.bmp"
-#define MATE_II_PROFE ".\\img\\ProfesoraMate.bmp"
-#define MATE_D_PROFE ".\\img\\ProfeMates.bmp"
-#define ELEKTRONIKA_PROFE ".\\img\\ProfeElec.bmp"
-#define EMPRESA_PROFE ".\\img\\ProfeEmpresa.bmp"
+#define PROGRAM_II_PROFE ".\\img\\irakasleak\\ProfeProgram.bmp"
+#define MATE_II_PROFE ".\\img\\irakasleak\\ProfesoraMate.bmp"
+#define MATE_D_PROFE ".\\img\\irakasleak\\ProfeMates.bmp"
+#define ELEKTRONIKA_PROFE ".\\img\\irakasleak\\ProfeElec.bmp"
+#define EMPRESA_PROFE ".\\img\\irakasleak\\ProfeEmpresa.bmp"
 
 //----------Galderak----------
 #define GALDERA_PANTALLA ".\\img\\Galderak_Erantzunak\\Preguntas.bmp"

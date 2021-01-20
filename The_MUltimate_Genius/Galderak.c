@@ -136,13 +136,13 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
         }
 
         if (erantzunOndoKont > 2) {
-            irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
+            irudiaMugitu(irudiaKargatu(BOTA), 300, 230);
             irudiakMarraztu();
             pantailaBerriztu();
             Sleep(1000);
         }
         if (erantzunOndoKont == 0 || erantzunOndoKont == 2) {
-            irudiaMugitu(irudiaKargatu(".\\img\\klaseaBukatu.bmp"), 300, 230);
+            irudiaMugitu(irudiaKargatu(BUKATU), 300, 230);
             irudiakMarraztu();
             pantailaBerriztu();
             Sleep(1000);
