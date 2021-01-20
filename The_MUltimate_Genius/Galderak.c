@@ -95,7 +95,7 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
     egoera = UNI_P;
     //
 	if (jokalaria->eguna == 3) {
-		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna, *jokalaria);
+		azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), jokalaria->eguna, jokalaria);
         if (jokalaria->gradua.exp.xp >= 23)
         {
             egoera = IRABAZI_P;
@@ -2609,14 +2609,14 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
 	}
 }
 
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA jokalaria) {
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA* jokalaria) {
 
     int erantzunda = 0;
 
     while (galderaID <= 5 && gelaID <= 5) {
         if (galdera[gelaID][galderaID].erabilita == 0) {
-            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera, jokalaria);
-            erantzunda = GalderakErantzun(exp, gelaID, galderaID, galdera, eguna);
+            fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera, *jokalaria);
+            erantzunda = GalderakErantzun(&(jokalaria->gradua.exp), gelaID, galderaID, galdera, eguna);
             if (erantzunda != 0) {
                 galdera[gelaID][galderaID].erabilita = 1;
                 Sleep(500);

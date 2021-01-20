@@ -786,7 +786,7 @@ EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str)
 		}
 	}
 	//
-	return egoera;
+	return berria;
 }
 //--------------------
 int fondoPantaila(char* str)
