@@ -46,13 +46,13 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
         galderaID = 3;
     }
     if (*eguna == 3) {
-        azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp),eguna);
+        azterketa(galdera, 1, 1, &(jokalaria->gradua.exp.xp), eguna);
         return UNI_P;
     }
 
     fondoPantailaGalderekin(GALDERA_PANTALLA, gelaID, galderaID, galdera);
     while (erantzunOndoKont < 2 && galdera[gelaID][galderaID].sartuta == 0) {
-        erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera,eguna);//0= ez erantzun, 1=ondo,2=gaizki
+        erantzunda = GalderakErantzun(&(jokalaria->gradua.exp.xp), gelaID, galderaID, galdera, eguna);//0= ez erantzun, 1=ondo,2=gaizki
         if (erantzunda != 0 && erantzunOndoKont < 2) {
             galdera[gelaID][galderaID].erabilita = 1;
             Sleep(500);
@@ -76,7 +76,7 @@ int galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDER
 
     }
 
-    
+
     if (erantzunOndoKont > 2) {
         irudiaMugitu(irudiaKargatu(".\\img\\GelatikBota.bmp"), 300, 230);
         irudiakMarraztu();
@@ -371,7 +371,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     strcpy(galdera[gelaID][galderaID].testua, "Zer lengoaia mota da JavaScript?");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Konpilatutako lengoaia");
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Interpretatutako lengoaia"); //ONDO
-                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Bat ere ez");  
+                    strcpy(galdera[gelaID][galderaID].aukerak.C, "Bat ere ez");
                     strcpy(galdera[gelaID][galderaID].aukerak.D, "Irakurritako lengoaia bat");
 
                     break;
@@ -823,10 +823,11 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
     }
 }
 
-int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX],int* eguna) {
+int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int* eguna) {
 
     POSIZIOA pos;
-    int ebentu = 0, erantzunda = 0;
+    int ebentu = 0, erantzunda = 0, irudiaId;
+
     while (erantzunda == 0)
     {
         ebentu = ebentuaJasoGertatuBada();
@@ -843,28 +844,32 @@ int GalderakErantzun(int* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
                     erantzunda = 2;
 
                     if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS A------------------
-                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1A.bmp"), 30, 490);
+                        irudiaId = irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1A.bmp");
+                        irudiaMugitu(irudiaId, 30, 490);
                         irudiakMarraztu();
-                        opzioakAgertu(galdera, gelaID, galderaID, 1);
+                        opzioakAgertu(galdera, gelaID, galderaID, 1);//aukera sobranteak printeatzeko
                         (*exp)++; erantzunda = 1;
 
                     }
 
                     else if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 493 && pos.y <= 569)) { //-------------POS B------------------
-                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1B.bmp"), 656, 489);
+                        irudiaId = irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1B.bmp");
+                        irudiaMugitu(irudiaId, 656, 489);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 2);
 
                     }
 
                     else  if ((pos.x >= 34 && pos.x <= 628) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS C------------------
-                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1C.bmp"), 30, 614);
+                        irudiaId = irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1C.bmp");
+                        irudiaMugitu(irudiaId, 30, 614);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 3);
                     }
 
                     else   if ((pos.x >= 659 && pos.x <= 1255) && (pos.y >= 616 && pos.y <= 694)) { //-------------POS D------------------
-                        irudiaMugitu(irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1D.bmp"), 656, 616);
+                        irudiaId = irudiaKargatu(".\\img\\Galderak_Erantzunak\\Program\\P1D.bmp");
+                        irudiaMugitu(irudiaId, 656, 616);
                         irudiakMarraztu();
                         opzioakAgertu(galdera, gelaID, galderaID, 4);
                     }
@@ -2673,7 +2678,7 @@ void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int gal
     }
 }
 
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp,  int* eguna) {
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int* eguna) {
 
     int erantzunda = 0;
 
