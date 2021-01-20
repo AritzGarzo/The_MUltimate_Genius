@@ -1,0 +1,5 @@
+Zein da Cos2x ren baliokidea
+(cosx)^2-(sinx)^2
+cosx-sinx
+2sinxcosx
+sinxcosx

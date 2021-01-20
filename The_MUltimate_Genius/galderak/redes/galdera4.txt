@@ -1,0 +1,5 @@
+Zein da IPv6 helbide honen (2001:0000:0000:abcd:0000:0000:0000:0001) idazkera motzena?
+2001:0000:0000:abcd::1
+2001:0:0:abcd::1
+2001::abcd::1
+2001::abdc:0:1

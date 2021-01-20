@@ -1,21 +1,20 @@
 #ifndef EBENTUAK_H
 #define EBENTUAK_H
 #include "SDL.h"
+#include "..\\The_MUltimate_Genius\GureEstrukturak.h"
 
-typedef struct S_POSIZIOA
-{
-  int x;
-  int y;
-} POSIZIOA;
+
+
 
 /*
-  Helburua: Funztio hau tekla bat sakatu arte zain dago, 
+  Helburua: Funztio hau tekla bat sakatu arte zain dago,
   eta ondoren zenbaki oso baten bitartez zein sakatu den adieraziko digu.
   Sarrera:
   Irteera: Sakatuta teklaren identifikadorea
 */
 int ebentuaJasoGertatuBada(void);
 POSIZIOA saguarenPosizioa();
+void KolisioakKonprobatu(void* pixels, int pitch, Uint8 bpp, JOKALARIA sprite);
 
 #define SAGU_MUGIMENDUA  4
 #define SAGU_BOTOIA_ESKUMA 5
@@ -65,6 +64,6 @@ POSIZIOA saguarenPosizioa();
 #define TECLA_DOWN 274
 #define TECLA_RIGHT 275
 #define TECLA_LEFT 276
-			
+
 
 #endif

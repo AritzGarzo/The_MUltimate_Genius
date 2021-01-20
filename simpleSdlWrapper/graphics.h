@@ -2,8 +2,8 @@
 #define GRAPHICS_H
 #include "SDL.h"
 
-#define SCREEN_WIDTH  640
-#define SCREEN_HEIGHT  480
+#define SCREEN_WIDTH  1280
+#define SCREEN_HEIGHT  720
 
 int sgHasieratu();
 void sgItxi();//Sin opciones
@@ -14,6 +14,7 @@ void zirkuluaMarraztu(int x, int y, int r);
 void pantailaGarbitu();
 void pantailaBerriztu();
 
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y);
 int irudiaMarraztu(SDL_Texture* texture, SDL_Rect *pDest);
 
 SDL_Renderer* getRenderer(void);

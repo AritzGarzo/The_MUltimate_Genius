@@ -1,0 +1,5 @@
+Zer etiketa erabili behar da izenburua jartzeko?
+<head> ... </head>
+<title> ... </title>
+<img> ... </img>
+<p> ... </p>

@@ -1,0 +1,5 @@
+ASCII taula karaktere kode bat da, zer orden da egokia?
+Zenbakiak, xehez, larriz
+Xehez, larriz, zenbakiak
+Larriz, xehez, zenbakiak
+Zenbakiak, larriz, xehez

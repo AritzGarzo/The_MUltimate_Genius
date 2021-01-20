@@ -26,12 +26,14 @@ int sgHasieratu()
     return -1;
   }
   atexit(SDL_Quit);
-  window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("The Multimate Genius", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL)
   {
     fprintf(stderr, "Ezin lehioa sortu: %s\n", SDL_GetError());
     return -1;
   }
+  SDL_Surface* ikonoa = SDL_LoadBMP(".\\img\\logo.bmp");
+  SDL_SetWindowIcon(window, ikonoa);
   gRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   TTF_Init();
   atexit(TTF_Quit);
@@ -102,4 +104,20 @@ void pantailaGarbitu()
 void pantailaBerriztu()
 {
   SDL_RenderPresent(gRenderer);
+}
+
+int spriteMarraztu(SDL_Texture* texture, SDL_Rect* pDest, int x, int y)
+{
+	SDL_Rect src;
+
+	src.x = x * 5;//Mueve el cuadrado que enfoca tantas veces como le digas en el eje x
+	src.y = y * 7;//Mueve el cuadrado que enfoca tantas veces como le digas en el eje y
+	src.w = 18;//pDest->w;
+	src.h = 28;//pDest->h;
+	pDest->w = 35;//Determina el ancho del cuadrado que enfoca a la imagen
+	pDest->h = 35;//Determina el alto del cuadrado que enfoca a la imagen
+
+
+	SDL_RenderCopy(gRenderer, texture, &src, pDest);
+	return 0;
 }

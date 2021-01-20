@@ -1,0 +1,5 @@
+Zertarako balio du Git?
+Bertsioen kontrol bat egiteko
+Programa bat gehiago nahasteko
+Textu bat lainoan gordetzeko
+Web bat egiteko

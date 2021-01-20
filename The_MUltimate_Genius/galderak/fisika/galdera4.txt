@@ -1,0 +1,5 @@
+Nola kalkulatzen da erresistentzi totala paraleloan badaude?
+R=R1+R2
+(1/R)=(1/R1)+(1/R2)
+R=(1/R1)+(1/R2)
+R=(1/R1)+R2)
