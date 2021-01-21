@@ -466,25 +466,46 @@ EGOERA kargatu(JOKALARIA* jokalaria)
 	egoera = MENUA_P;
 	fitx = fopen(karpeta, "rb");
 	//
+	pantailaGarbitu();
+	textuaGaitu_beltza();
+	textuaIdatzi_beltza(10, 20, "Partida kargatzen...");
+	pantailaBerriztu();
+	Sleep(2000);
 	if (fitx == NULL)
 	{
 		printf("Errorea \"%s\" fitxategia irekitzean.\n", karpeta);
+		textuaIdatzi_beltza(10, 40, "Ez dago aurreko jokaldirik gordeta.");
+		textuaIdatzi_beltza(10, 60, "Partida bat gordetzeko, beste bat gorde behar da aurretik.");
+		pantailaBerriztu();
+		Sleep(4500);
 	}
 	else
 	{
-		irakurketa = fread(jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
+		textuaIdatzi_beltza(10, 40, "Partida kargatuta.");
+		textuaIdatzi_beltza(10, 60, "Jokalaria kargatzen...");
+		Sleep(2500);
+		pantailaBerriztu();
+		irakurketa = fread(&jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
 		if (irakurketa != 1)
 		{
 			printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
+			textuaIdatzi(10, 80, "Jokalaria ezin izan da kargatu.");
+			pantailaBerriztu();
+			Sleep(2500);
 		}
 		else
 		{
+			textuaIdatzi_beltza(10, 80, "Jokalaria kargatuta.");
+			textuaIdatzi_beltza(10, 100, "Informazio guztia ongi kargatu da.");
+			pantailaBerriztu();
+			Sleep(1500);
 			egoera = JOLASTU_P;
 		}
 		fclose(fitx);
 	}
 	return egoera;
 }
+
 //----------------------------
 EGOERA etxea(JOKALARIA* jokalaria)
 {
