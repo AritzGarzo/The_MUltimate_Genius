@@ -251,7 +251,7 @@ void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
                     galdera[gelaID][galderaID].galderaID = galderaID;
                     galdera[gelaID][galderaID].sartuta = 0;
                     galdera[gelaID][galderaID].erabilita = 0;
-                    strcpy(galdera[gelaID][galderaID].testua, "Zer/zeinen legea da hau? (V=R*I\R=V/I\I=V/R)");
+                    strcpy(galdera[gelaID][galderaID].testua, "Zer/zeinen legea da hau? (V=R*I R=V/I I=V/R)");
                     strcpy(galdera[gelaID][galderaID].aukerak.A, "Ohm-en legea");  //ONDO
                     strcpy(galdera[gelaID][galderaID].aukerak.B, "Thevenin-ren legea");
                     strcpy(galdera[gelaID][galderaID].aukerak.C, "Coulomb-en legea");
