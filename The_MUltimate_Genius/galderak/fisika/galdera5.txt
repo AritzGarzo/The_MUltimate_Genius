@@ -2,4 +2,4 @@ Zein da potentzialaren formula egokia?
 V/(I^2)
 (I^2)/R
 (V^2)*R
-I*(R^2)
+(I^2)*R
