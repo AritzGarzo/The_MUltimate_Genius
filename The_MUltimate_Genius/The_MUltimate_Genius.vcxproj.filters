@@ -45,6 +45,9 @@
     <ClInclude Include="funtzioak.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="Galdera.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -66,6 +69,9 @@
       <Filter>src\sdl</Filter>
     </ClCompile>
     <ClCompile Include="funtzioak.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Galdera.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

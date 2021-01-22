@@ -25,6 +25,7 @@
     <ClInclude Include="..\simpleSdlWrapper\soinua.h" />
     <ClInclude Include="..\simpleSdlWrapper\text.h" />
     <ClInclude Include="funtzioak.h" />
+    <ClInclude Include="Galdera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\simpleSdlWrapper\ebentoak.c" />
@@ -33,6 +34,7 @@
     <ClCompile Include="..\simpleSdlWrapper\soinua.c" />
     <ClCompile Include="..\simpleSdlWrapper\text.c" />
     <ClCompile Include="funtzioak.c" />
+    <ClCompile Include="Galdera.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

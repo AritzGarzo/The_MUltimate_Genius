@@ -1,8 +1,9 @@
 #ifndef FUNTZIOAK_H
 #define FUNTZIOAK_H
-#define MAX 128
 
 #include "ebentoak.h"
+#include "Galdera.h"
+
 
 //--------------pantailak--------------
 #define MENUA_F ".\\img\\pantailak\\menu.bmp"
@@ -72,9 +73,6 @@
 #define EMPRESA_PROFE ".\\img\\irakasleak\\ProfeEmpresa.bmp"
 
 //----------Galderak----------
-#define GELAIDMAX 11
-#define GALDERAIDMAX 6
-//------
 #define GALDERA_PANTALLA ".\\img\\Galderak_Erantzunak\\Preguntas.bmp"
 
 #define GALDERA_NULL ""
@@ -456,29 +454,11 @@ typedef struct jokalaria
 	int eguna;
 }JOKALARIA;
 
-typedef struct opzioak {
-	char A[MAX];
-	char B[MAX];
-	char C[MAX];
-	char D[MAX];
-
-} OPZIOAK;
-
-typedef struct galdera {
-
-	int gelaID;
-	int galderaID;
-	char testua[MAX];
-	OPZIOAK aukerak;//swicth erabili aukeratzeko
-	int erabilita;
-	int sartuta;
-
-}GALDERA;
 
 
 
 //----------FUNTZIOAK DEKLARATZEN
-int hasieratu(void);
+	//egoera
 EGOERA menua(void);
 EGOERA jolastu(JOKALARIA* jokalaria);
 EGOERA kontrolak(void);
@@ -488,25 +468,26 @@ EGOERA kargatu(JOKALARIA* jokalaria);
 EGOERA etxea(JOKALARIA* jokalaria);
 EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
 EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str);
-JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
+EGOERA gorde(JOKALARIA jokalaria);
+EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+EGOERA GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
+
+//------galderak
+JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
+void experientzia_pantaila(JOKALARIA jokalaria);
+int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
+void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA* jokalaria);
+
+//---------------------------------------------------------------------------
+int hasieratu(void);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
 void crearLista(char str[]);
-EGOERA gorde(JOKALARIA jokalaria);
 int fondoPantaila(char* str);
 void warning_abisua(char* str);
 void karga_gif();
-int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void experientzia_pantaila(JOKALARIA jokalaria);
 void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], int xp_orain, int max);
 void crearCuadro(int x, int y, int luzera, int altuera);
-//------galderak
-EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void galderakEtaEurenAukerakSortu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota);
-void fondoPantailaGalderekin(char* str, int galderaID, int gelaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], JOKALARIA jokalaria);
-EGOERA GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna);
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA* jokalaria);
 #endif
