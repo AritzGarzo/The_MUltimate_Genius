@@ -399,9 +399,9 @@ EGOERA kargatu(JOKALARIA* jokalaria)
     {
         textuaIdatzi_beltza(10, 40, "Partida kargatuta.");
         textuaIdatzi_beltza(10, 60, "Jokalaria kargatzen...");
-        Sleep(2500);
         pantailaBerriztu();
-        irakurketa = fread(&jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
+        Sleep(2500);
+        irakurketa = fread(jokalaria, sizeof(JOKALARIA), 1, fitx);//karpeta: gordeketa.dat
         if (irakurketa != 1)
         {
             printf("Errorea \"%s\" fitxategian irakurtzerakoan.\n", karpeta);
@@ -421,7 +421,6 @@ EGOERA kargatu(JOKALARIA* jokalaria)
     }
     return egoera;
 }
-
 //----------------------------
 EGOERA etxea(JOKALARIA* jokalaria)
 {
@@ -1101,7 +1100,7 @@ void experientzia_pantaila(JOKALARIA jokalaria)
         //----nibela
     StrBihurtu_nibela(nibela, jokalaria.gradua.exp.nvl);
     //----experientzia
-    StrBihurtu_exp(esperientzia, jokalaria.gradua.exp);
+    StrBihurtu_exp(esperientzia, jokalaria.gradua.exp.xp, jokalaria.gradua.exp.max);
     //---exp
     textuaGaitu_exp();
     textuaIdatzi_exp(617, 295, nibela);//nv
@@ -1134,17 +1133,17 @@ void StrBihurtu_nibela(char str[], int nvl)
     strcpy(str, tmp);
 }
 
-void StrBihurtu_exp(char str[], EXP jokalaria)
+void StrBihurtu_exp(char str[], int xp_orain, int max)
 {
     char tmp[128];
     //
-    IntStrBihurtu(jokalaria.xp, tmp);
+    IntStrBihurtu(xp_orain, tmp);
     strcpy(str, tmp);
     //
     strcat(str, "/");
     strcat(str, "\0");
     //
-    IntStrBihurtu(jokalaria.max, tmp);
+    IntStrBihurtu(max, tmp);
     strcat(str, tmp);
     //
 //str[strlen(str)] = '\0';

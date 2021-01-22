@@ -500,7 +500,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 void experientzia_pantaila(JOKALARIA jokalaria);
 void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
-void StrBihurtu_exp(char str[], EXP jokalaria);
+void StrBihurtu_exp(char str[], int xp_orain, int max);
 void crearCuadro(int x, int y, int luzera, int altuera);
 //------galderak
 EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
