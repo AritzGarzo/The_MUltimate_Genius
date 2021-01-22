@@ -1,7 +1,7 @@
 #ifndef EBENTUAK_H
 #define EBENTUAK_H
 #include "SDL.h"
-#include "..\\The_MUltimate_Genius\GureEstrukturak.h"
+#include "..\\The_MUltimate_Genius\funtzioak.h"
 
 
 

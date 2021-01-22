@@ -42,10 +42,7 @@
     <ClInclude Include="..\simpleSdlWrapper\soinua.h">
       <Filter>include\sdl</Filter>
     </ClInclude>
-    <ClInclude Include="GureEstrukturak.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="Galderak.h">
+    <ClInclude Include="funtzioak.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,7 +65,7 @@
     <ClCompile Include="..\simpleSdlWrapper\text.c">
       <Filter>src\sdl</Filter>
     </ClCompile>
-    <ClCompile Include="Galderak.c">
+    <ClCompile Include="funtzioak.c">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
