@@ -820,6 +820,7 @@ int fondoPantaila(char* str)
 	pantailaBerriztu();
 	return id;
 }
+
 int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera)
 {
 	int mugi, x, y, tamaño = 48, tmp = 0;
@@ -1061,6 +1062,7 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
 
 
 }
+
 void warning_abisua(char* str)
 {
 	int id, i;
@@ -1079,6 +1081,7 @@ void warning_abisua(char* str)
 		Sleep(100);
 	}
 }
+
 void karga_gif()
 {
 	int id, i, j;
@@ -1097,6 +1100,7 @@ void karga_gif()
 		}
 	}
 }
+
 int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]) {
 
 	char galderak[60][128] = {
@@ -1159,6 +1163,7 @@ int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDE
 	}
 	return error;
 }
+
 void experientzia_pantaila(JOKALARIA jokalaria)
 {
 	int ebentu, fondo, luzera;
@@ -1204,7 +1209,6 @@ void experientzia_pantaila(JOKALARIA jokalaria)
 		}
 	}
 }
-
 //--------------------
 void StrBihurtu_nibela(char str[], int nvl)
 {

@@ -2897,7 +2897,6 @@ int GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAID
     return erantzunda;
 }
 
-
 void opzioakAgertu(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int mota) {
 
 	switch (mota)

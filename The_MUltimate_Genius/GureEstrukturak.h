@@ -4,8 +4,6 @@
 
 #include "ebentoak.h"
 
-
-
 //--------------pantailak--------------
 #define MENUA_F ".\\img\\pantailak\\menu.bmp"
 #define KONTROLAK_F ".\\img\\pantailak\\kontrolak.bmp"
@@ -398,17 +396,20 @@ typedef struct S_POSIZIOA
 	int x;
 	int y;
 } POSIZIOA;
+
 typedef struct S_BEHEKOPIXEL
 {
 	KOLOREAK ezker;
 	KOLOREAK eskuin;
 }BEHEKOPIXEL;
+
 typedef struct S_ALBOKOPIXEL
 {
 	KOLOREAK goikoa;
 	KOLOREAK erdikoa;
 	KOLOREAK behekoa;
 }ALBOKOPIXEL;
+
 typedef struct S_HITBOX
 {
 	ALBOKOPIXEL ezker;
@@ -417,6 +418,7 @@ typedef struct S_HITBOX
 	KOLOREAK goikoa;
 
 }HITBOX;
+
 typedef struct exp
 {
 	int nvl;
@@ -450,7 +452,6 @@ typedef struct jokalaria
 	GRADUA gradua;
 	int eguna;
 }JOKALARIA;
-
 
 typedef struct opzioak {
 	char A[MAX];
