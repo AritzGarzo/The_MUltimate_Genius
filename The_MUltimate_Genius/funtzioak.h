@@ -4,22 +4,6 @@
 #include "ebentoak.h"
 #include "Jokalaria.h"
 
-
-//--------------pantailak--------------
-#define MENUA_F ".\\img\\pantailak\\menu.bmp"
-#define KONTROLAK_F ".\\img\\pantailak\\kontrolak.bmp"
-#define PROFILA_F ".\\img\\pantailak\\profila.bmp"
-#define AZALPENA_F ".\\img\\pantailak\\kontrolak.bmp"
-#define ETXEA_F ".\\img\\pantailak\\etxea.bmp"
-#define UNI_F ".\\img\\pantailak\\uni.bmp"
-#define EXP_F ".\\img\\pantailak\\exp.bmp"
-#define IRABAZI_F ".\\img\\pantailak\\graduado.bmp"
-#define GALDU_F ".\\img\\pantailak\\gameOver.bmp"
-
-//--------------Mapak--------------
-#define MAPEO_GELA ".\\img\\pantailak\\mapaketa\\gelaMapeo.bmp"
-#define MAPEO_UNI ".\\img\\pantailak\\mapaketa\\uniMapeo.bmp"
-
 //--------------pertsonaia--------------
 #define CHICO_AVATAR ".\\img\\pertsonaia\\PersonajeChicoHablando.bmp"
 #define CHICA_AVATAR ".\\img\\pertsonaia\\PersonajeChicaHablando.bmp"
@@ -58,7 +42,6 @@
 #define BUS_21 ".\\img\\GIF\\bus_21.bmp"
 #define BUS_22 ".\\img\\GIF\\bus_22.bmp"
 
-typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P, EXP_P, IRABAZI_P, GALDU_P }EGOERA;
 typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 127, MOREA = 253, URDINA = 252 }KOLOREAK;
 
 
@@ -86,27 +69,6 @@ typedef struct S_HITBOX
 }HITBOX;
 
 
-
-
-
-
-//----------FUNTZIOAK DEKLARATZEN
-	//egoera
-EGOERA menua(void);
-EGOERA jolastu(JOKALARIA* jokalaria);
-EGOERA kontrolak(void);
-EGOERA profila(JOKALARIA* jokalaria);
-EGOERA azalpena(void);
-EGOERA kargatu(JOKALARIA* jokalaria);
-EGOERA etxea(JOKALARIA* jokalaria);
-EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str);
-EGOERA gorde(JOKALARIA jokalaria);
-EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-EGOERA GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna);
-int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
-
-
 //---------------------------------------------------------------------------
 int hasieratu(void);
 void koadroaMarraztu(int x1, int y1, int x2, int y2);
@@ -118,4 +80,5 @@ void IntStrBihurtu(int n, char str[]);
 void StrBihurtu_nibela(char str[], int nvl);
 void StrBihurtu_exp(char str[], int xp_orain, int max);
 void crearCuadro(int x, int y, int luzera, int altuera);
+
 #endif

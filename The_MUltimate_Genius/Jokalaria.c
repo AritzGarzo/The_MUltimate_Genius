@@ -8,8 +8,7 @@
 #include <string.h>
 #include <Windows.h>
 #include "Jokalaria.h"
-
-
+#include "Egoera.h"
 
 //--------------------------------jokalaria estruktura
 JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria)
@@ -68,7 +67,7 @@ void experientzia_pantaila(JOKALARIA jokalaria)
     {
         jokalaria.irudia.id = irudiaKargatu(CHICA_AVATAR_G);
     }
-    irudiaMugitu(jokalaria.irudia.id, 168, 142);
+    irudiaMugitu(jokalaria.irudia.id, 148, 125);
     //----karratua
     luzera = (jokalaria.gradua.exp.xp * 466) / jokalaria.gradua.exp.max;//zenbateraino luzatu beharko litzatekeen 
     irudiakMarraztu();

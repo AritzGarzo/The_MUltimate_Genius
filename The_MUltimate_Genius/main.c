@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <Windows.h>
+#include "Egoera.h"
 //Master
 
 int main(int argc, char* str[])
