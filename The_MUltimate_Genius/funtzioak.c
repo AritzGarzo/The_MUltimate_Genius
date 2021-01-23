@@ -1153,8 +1153,15 @@ void experientzia_pantaila(JOKALARIA jokalaria)
     fondo = fondoPantaila(EXP_F);
     //pertsonaiaren irudia kargatu
         //----irudiak
-    jokalaria.irudia.id = irudiaKargatu(jokalaria.irudia.izena);
-    irudiaMugitu(jokalaria.irudia.id, 168, 142);
+    if (strcmp(jokalaria.irudia.izena, CHICO_AVATAR) == 0)
+    {
+        jokalaria.irudia.id = irudiaKargatu(CHICO_AVATAR_G);
+    }
+    else
+    {
+        jokalaria.irudia.id = irudiaKargatu(CHICA_AVATAR_G);
+    }
+        irudiaMugitu(jokalaria.irudia.id, 168, 142);
     //----karratua
     luzera = (jokalaria.gradua.exp.xp * 466) / jokalaria.gradua.exp.max;//zenbateraino luzatu beharko litzatekeen 
     irudiakMarraztu();

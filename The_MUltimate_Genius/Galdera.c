@@ -9,6 +9,8 @@
 #include "funtzioak.h"
 #include "Galdera.h"
 
+
+
 //--------------------------------galdera estruktura
 void fondoPantailaGalderekin(char* str, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], char* ikaslea)
 {
