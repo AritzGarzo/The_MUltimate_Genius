@@ -2,7 +2,7 @@
 #define FUNTZIOAK_H
 
 #include "ebentoak.h"
-#include "Galdera.h"
+#include "Jokalaria.h"
 
 
 //--------------pantailak--------------
@@ -61,11 +61,7 @@
 typedef enum { MENUA_P, PROFILA_P, JOLASTU_P, IRTEN_P, KONTROLAK_P, KARGATU_P, ETXEA_P, UNI_P, AZALPENA_P, EXP_P, IRABAZI_P, GALDU_P }EGOERA;
 typedef enum { GORRIA = 249, BELTZA = 0, TXURIA = 255, BERDEA = 250, HORIA = 127, MOREA = 253, URDINA = 252 }KOLOREAK;
 
-typedef struct S_POSIZIOA
-{
-	int x;
-	int y;
-} POSIZIOA;
+
 
 typedef struct S_BEHEKOPIXEL
 {
@@ -89,39 +85,7 @@ typedef struct S_HITBOX
 
 }HITBOX;
 
-typedef struct exp
-{
-	int nvl;
-	int xp;//galderekin irabazi duen 
-	int max;//ikasgaiKop*20
-}EXP;
 
-typedef struct gradua
-{
-	int iKop;//ikasgai 
-	char izena[128];
-	EXP exp;
-}GRADUA;
-
-typedef struct irudia
-{
-	int id;
-	char izena[128];
-	POSIZIOA pos_hasi;//goi ezkerra
-	POSIZIOA pos_buka;//behe eskubia
-}IRUDIA;
-
-typedef struct jokalaria
-{
-
-	int urtea;//jakiteko zenbateko esperientzia daukan
-	char izena[128];
-	POSIZIOA pos;//sprite-aren mugimendua
-	IRUDIA irudia;//irudia (las preguntas)
-	IRUDIA irudia2d;//mugituko den irudia (movimientos/animaciones)
-	GRADUA gradua;
-	int eguna;
-}JOKALARIA;
 
 
 
@@ -142,11 +106,6 @@ EGOERA galderak(int gelaID, JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GAL
 EGOERA GalderakErantzun(EXP* exp, int gelaID, int galderaID, GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int eguna);
 int pertsonaiaMugitu(int ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoera);
 
-//------galderak
-JOKALARIA pertsonaiaEratu(JOKALARIA jokalaria);
-void experientzia_pantaila(JOKALARIA jokalaria);
-int galderakEtaAukerakLotuFitxategiarenBitartez(GALDERA galdera[GELAIDMAX][GALDERAIDMAX]);
-void azterketa(GALDERA galdera[GELAIDMAX][GALDERAIDMAX], int gelaID, int galderaID, int* exp, int eguna, JOKALARIA* jokalaria);
 
 //---------------------------------------------------------------------------
 int hasieratu(void);
