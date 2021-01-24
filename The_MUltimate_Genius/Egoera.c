@@ -51,6 +51,10 @@ EGOERA menua(void)
         {
             egoera = KARGATU_P;//kargatu
         }
+        if (ebentu == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
     }
     //
     return egoera;
@@ -103,6 +107,10 @@ EGOERA kontrolak()
         {
             egoera = MENUA_P;//irten (bat atzera)
         }
+        if (ebentu == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
     }
     //
     irudiaKendu(fondoa);
@@ -136,6 +144,10 @@ EGOERA profila(JOKALARIA* jokalaria)
         ebentu = ebentuaJasoGertatuBada();
         pos = saguarenPosizioa();
         //si clicka en izena
+        if (ebentu == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
         if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 172 && pos.x <= 172 + 458) && (pos.y >= 166 && pos.y <= 166 + 88)))
         {
             //mantener el grado
@@ -348,8 +360,12 @@ EGOERA azalpena(void)
     while (egoera == AZALPENA_P)
     {
         ebentua = ebentuaJasoGertatuBada();
+        if (ebentua == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
         pos = saguarenPosizioa();
-        if (ebentua == SAGU_BOTOIA_EZKERRA && (pos.x >= 1087 && pos.x <= 1262) && (pos.y >= 650 && pos.y <= 700))
+        if ((ebentua == SAGU_BOTOIA_EZKERRA) && (pos.x >= 1087 && pos.x <= 1262) && (pos.y >= 650 && pos.y <= 700))
         {
             egoera = JOLASTU_P;
         }
@@ -448,7 +464,10 @@ EGOERA etxea(JOKALARIA* jokalaria)
             //
             egoera = gorde(*jokalaria);
         }
-
+        if (klik == 9)
+        {
+            egoera = IRTEN_P;
+        }
     }
     //
     irudiaKendu(fondoa);
@@ -472,6 +491,10 @@ EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
     while (egoera == UNI_P)//unibertsitatea den bitartean
     {
         ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
         //
         klik = pertsonaiaMugitu(ebentu, pos_jokalaria, *jokalaria, egoera);
 
@@ -500,6 +523,10 @@ EGOERA uni(JOKALARIA* jokalaria, GALDERA galdera[GELAIDMAX][GALDERAIDMAX])
         {
             karga_gif();
             egoera = ETXEA_P;
+        }
+        if (klik == 9)
+        {
+            egoera = IRTEN_P;
         }
     }
     //
@@ -556,6 +583,9 @@ EGOERA gorde(JOKALARIA jokalaria)
                     if (!strcmp(str, " ")) strcpy(str, "E");
                     else strcat(str, "E");
                     break;
+                case GERTAERA_IRTEN:
+                    egoera = IRTEN_P;
+                    break;
                 default:
                     break;
                 }
@@ -601,6 +631,10 @@ EGOERA azkenPantaila(EGOERA egoera, JOKALARIA jokalaria, char* str)
     while (berria == egoera)
     {
         ebentu = ebentuaJasoGertatuBada();
+        if (ebentu == GERTAERA_IRTEN)
+        {
+            egoera = IRTEN_P;
+        }
         if (ebentu == SAGU_BOTOIA_EZKERRA)
         {
             berria = MENUA_P;
@@ -809,7 +843,9 @@ int pertsonaiaMugitu(int  ebentu, POSIZIOA pos, JOKALARIA jokalaria, EGOERA egoe
             pantailaBerriztu();
         }
         break;
-
+        case GERTAERA_IRTEN:
+            mugi = 9;
+            break;
 
         case TECLA_a:
             KolisioakKonprobatu(pixels, pitch, bpp, sprite);
