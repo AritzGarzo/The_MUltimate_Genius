@@ -3,32 +3,36 @@ Mondragon Unibertsitateko Ingeniaritza Informatikako, 1. POPBL-a.
 
 Jokoa hasteko, hurrengo pausuak jarraitu:
 
-Visual Studio 2019koa deskargatu.
-Errepositoria deskargatu.
-Ireki " The_MUltimate_Genius.sln".
-"Depurador local de Windows" clickatu
+Gure web orrian sartu.
+Exekutablea esaten duen lekura joan eta link-ean sartu.
+Instaladorea deskargatu.
+Instaladorea ireki eta jokoa instalatzen hasi.
+Jolasa non gorde erabaki.
 GOZATU!!
 
 Para comenzar el juego, sigue los siguientes pasos:
 
-Descargar Visual Studio 2019.
-Descargar el repositorio.
-Abre " The_MUltimate_Genius.sln".
-Click-a "Depurador local de Windows".
-DISFRUTA!!
+Entrar en nuestra web.
+Entrar en la sección "Exekutablea" y entrar en el link.
+Descargar el instalador.
+Abrir el instalador y empezar a instalar el juego.
+Decidir la dirección donde se guardará el juego.
+DISFRUTARLO!!
 
-If you want to start the game, follow this steps:
+If you want to start the game, follow the steps bellow:
 
-Download Visual Studio 2019.
-Download the repository.
-Open " The_MUltimate_Genius.sln".
-Click "Depurador local de Windows".
-ENJOY!!
+Go into our website.
+Go to the part called "Exekutablea" and click in the link.
+Download the installer.
+Open the installer and start installing the game.
+Choose the address to download the game.
+ENJOY IT!!
 
 Pour initier le jeux, suivre cettes étapes:
 
-Télécharger Visual Studio 2019.
-Télécharger le réferentiel.
-Ouvre “ The_MUltimate_Genius.sln”.
-Cliquer “Depurador local de Windows”.
+Entrez sur notre site Web.
+Entrez dans la section "Exekutablea" et entrez le lien.
+Téléchargez le programme d'installation.
+Ouvrez le programme d'installation et commencez à installer le jeu.
+Décidez de l'adresse où le jeu sera sauvegardé.
 Profiter le jeu
