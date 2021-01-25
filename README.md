@@ -27,12 +27,3 @@ Download the installer.
 Open the installer and start installing the game.
 Choose the address to download the game.
 ENJOY IT!!
-
-Pour initier le jeux, suivre cettes étapes:
-
-Entrez sur notre site Web.
-Entrez dans la section "Exekutablea" et entrez le lien.
-Téléchargez le programme d'installation.
-Ouvrez le programme d'installation et commencez à installer le jeu.
-Décidez de l'adresse où le jeu sera sauvegardé.
-Profiter le jeu
