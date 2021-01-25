@@ -13,10 +13,10 @@ GOZATU!!
 Para comenzar el juego, sigue los siguientes pasos:
 
 Entrar en nuestra web.
-Entrar en la sección "Exekutablea" y entrar en el link.
+Entrar en la seccion "Exekutablea" y entrar en el link.
 Descargar el instalador.
 Abrir el instalador y empezar a instalar el juego.
-Decidir la dirección donde se guardará el juego.
+Decidir la direccion donde se guardara el juego.
 DISFRUTARLO!!
 
 If you want to start the game, follow the steps bellow:
