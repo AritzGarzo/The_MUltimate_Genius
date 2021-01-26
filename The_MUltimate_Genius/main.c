@@ -11,6 +11,9 @@
 #include "Galderak.h"
 //Dev
 
+#define MUSIKAERRE ".\\galderak\\musika\\ErreZenituzten.wav"
+#define BOTOIA ".\\galderak\\musika\\BotoiaKlik.wav"
+
 extern HITBOX hitbox;
 JOKALARIA sprite;
 void* pixels = NULL;
@@ -58,6 +61,11 @@ int main(int argc, char* str[])
 	{
 		do
 		{
+			/* PARA MUSIKA
+			audioInit();
+			int musikaID=loadTheMusic(MUSIKAERRE);
+			playMusic();
+			*/
 			egoera = menua();
 			if (egoera == PROFILA_P)
 			{
@@ -129,6 +137,9 @@ EGOERA menua(void)
 	id = fondoPantaila(MENUA_F);
 	pantailaBerriztu();
 	//
+
+	int soinuaID;
+	audioInit();
 	while (egoera == MENUA_P)
 	{
 		ebentu = ebentuaJasoGertatuBada();
@@ -136,18 +147,29 @@ EGOERA menua(void)
 		//
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x > 18 && pos.x < 18 + 175) && (pos.y > 650 && pos.y < 650 + 50)))
 		{
+			 soinuaID=loadSound(BOTOIA);
+			playSound(soinuaID);
 			egoera = IRTEN_P;//ir
 		}
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 386 && pos.y < 386 + 68)))//kontrolak
 		{
+			soinuaID = loadSound(BOTOIA);
+			playSound(soinuaID);
+
 			egoera = KONTROLAK_P;//kontrolak
 		}
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 293 && pos.y < 293 + 68)))//profila
 		{
+			soinuaID = loadSound(BOTOIA);
+			playSound(soinuaID);
+
 			egoera = PROFILA_P;//profila
 		}
 		if ((ebentu == SAGU_BOTOIA_EZKERRA) && ((pos.x >= 483 && pos.x < 483 + 343) && (pos.y >= 479 && pos.y < 479 + 68)))//kargatu
 		{
+			soinuaID = loadSound(BOTOIA);
+			playSound(soinuaID);
+
 			egoera = KARGATU_P;//kargatu
 		}
 	}
